@@ -31,7 +31,7 @@
 .comment{
     padding-top: 10px;
     padding-left: 15px;
-    height: 60px;
+    /* height: 60px; */
     font-size: 13px;
 }
 .half {
@@ -59,4 +59,7 @@
     text-align: right;
     float: right;
     margin-right: 30px
+}
+.rightText {
+    margin-right: 18px;
 }

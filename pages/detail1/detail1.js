@@ -478,6 +478,15 @@ Page({
             images: image
         })
     },
+
+    //弹出详细地址
+    alertLocation:function(e){
+        wx.showModal({
+            title: '详情',
+            content: e.currentTarget.dataset.value,
+            showCancel:false,
+        })
+    }
     
 
 })

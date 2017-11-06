@@ -1,7 +1,7 @@
 <template name="prompt">
 	<view class="prompt-container {{ className }} {{ animateCss }}" hidden="{{ !visible }}">
 	    <view class="prompt-message">
-	        <image src="{{ icon }}" class="prompt-icon" />
+	        <image src="{{ icon }}" class="prompt-icon" mode='aspectFit' />
 	        <view class="prompt-title">{{ title }}</view>
 	        <view class="prompt-text">{{ text }}</view>
 	        <view class="prompt-button-area" wx:if="{{ buttons && !!buttons.length }}">

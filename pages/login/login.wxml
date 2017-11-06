@@ -18,18 +18,48 @@
 </view> -->
 
 <view class="container">
-  <view class="record-box" data-datetime="{{record.datetime}}" wx:for="{{detailList}}" wx:for-item="record">
-    <view class="record" style="left:{{record.offsetX}}px" bindtouchstart="recordStart" catchtouchmove="recordMove" bindtouchend="recordEnd">
-      <view class="left">
-        <view>{{record.type}} {{record.count+record.unit}}</view>
-        <view class="summary">{{record.remark}}</view>
-      </view>
-      <view class="right">
-        {{record.datetime}}
-      </view>
+    <view class="record-box" wx:for="{{detailList}}" wx:for-item="record" style='margin:13rpx 0'>
+        <view style='border-bottom:1px solid #f4f4f4'>
+            <view class='left' style='float:left;height:240rpx'>
+                <image src='{{record.book_image}}' style='width:240rpx;height:240rpx'></image>
+            </view>
+            <view class='right' style='width:{{phoneInfo.screenWidth*phoneInfo.pixelRatio-240}}rpx;float:left;font-size:30rpx;line-height:80rpx;height:240rpx;padding-left:10rpx'>
+                <view style='text-align:center'>{{record.book_name}}</view>
+                <view style='color:#888;font-size:28rpx'>
+                    <image src="../../images/location.png" style="width:15px;height:15px;"></image>
+                        {{record.location}}
+                </view>
+                <view style='color:#888;font-size:28rpx'>
+                    <image src="../../images/time.png" style="width:15px;height:15px;"></image>
+                    {{record.count}}
+                </view>
+            </view>
+            <view style='clear:both'></view>
+        </view>
+        <view class='operate' style='width:100%'>
+            <view style='float:right;height:80rpx;line-height:80rpx'>
+                <view style='display:inline-block;margin-right:15rpx;width:100rpx'>
+                    <image src='../../images/edit.png' style='width:16px;height:16px;'></image>编辑
+                </view>
+                <view style='display:inline-block;margin-right:15rpx;width:100rpx'>
+                    <image src='../../images/downBook.png' style='width:16px;height:16px;'></image>下线
+                </view>
+                <view style='display:inline-block;margin-right:15rpx;width:40rpx;'>
+                    <image src='../../images/delete.png' style='width:18px;height:18px;'></image>
+                </view>
+
+            </view>
+            <view style='clear:both'></view>
+        </view>
     </view>
-    <view class="delete-box">
-      <view>删除</view>
-    </view>
-  </view>
 </view>
+
+<!-- <view class="item-box">  
+  <view class="items">  
+    <view wx:for="{{list}}"  wx:key="{{index}}"  class="item">  
+      <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">  
+      <image class="item-icon" mode="widthFix" src="https://img3.doubanio.com/lpic/s8461493.jpg"></image>{{index}}{{item.txt}}</view>
+      <view data-index="{{index}}" bindtap = "delItem" class="inner del">下线</view>  
+    </view>  
+  </view>  
+</view>   -->

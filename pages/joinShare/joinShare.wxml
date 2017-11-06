@@ -13,7 +13,7 @@
         <view class="item"  bindtap='donate' data-type="0">
             <image class='image' src='../../images/agency.png'></image>
             <span>代为运营</span>
-            <view class="rightText" style="width:200px;height:47px;line-height:47px;">
+            <view class="rightText" style="width:120px;height:47px;line-height:47px;">
                 {{data.operate}}本
                 <!-- <switch bindchange="" checked="{{checked}}" /> -->
             </view>

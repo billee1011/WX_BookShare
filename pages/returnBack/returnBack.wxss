@@ -1,4 +1,10 @@
 /**图书列表**/
+page{
+    background: #fff
+}
+.prompt-container{
+    background: #ffffff;
+}
 .book-list{
   margin-top: 10px;
   width: 98%;

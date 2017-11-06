@@ -2,8 +2,43 @@
 
 <!--下线图书列表-->
 <view class="book-list">
-    <view wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book">
-        <template is="bookDownline" data="{{book}}"></template>
+    <!-- <view wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book"> -->
+         <!-- <template is="bookDownline" data="{{book}}"></template>  -->
+        
+    <!-- </view> -->
+    <view class="record-box" wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book" style='margin:13rpx 0'>
+        <view style='border-bottom:1px solid #f4f4f4'>
+            <view class='left'>
+                <image src='{{book.book_image}}'></image>
+            </view>
+            <view class='right' style='width:{{phoneInfo.screenWidth*phoneInfo.pixelRatio-280}}rpx;'>
+                <view class='book_name'>{{book.book_name}}</view>
+                <view class='info'>
+                    <image src="../../images/location.png"></image>
+                        {{book.location}}
+                </view>
+                <view class='info'>
+                    <image src="../../images/time.png"></image>
+                    {{book.keep_time}}
+                </view>
+            </view>
+            <view style='clear:both'></view>
+        </view>
+        <view class='operate-box'>
+            <view class='operate'>
+                <view class='operate_view'>
+                    <image src='../../images/edit.png'></image>编辑
+                </view>
+                <view class='operate_view'>
+                    <image src='../../images/downBook.png'></image>下线
+                </view>
+                <view class='operate_view'>
+                    <image src='../../images/delete.png' style='width:18px;height:18px;'></image>
+                </view>
+
+            </view>
+            <view style='clear:both'></view>
+        </view>
     </view>
 </view>
 

@@ -23,8 +23,8 @@
             <view class='location'>
                 <image class='location_pic' wx:if="{{book_type == 0}}" src='../../images/applier.png'></image>
                 <image class='location_pic' wx:if="{{book_type == 1}}" src='../../images/location.png'></image>
-                <text class="address" wx:if="{{book_type == 0}}">书主：{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}</text>
-                <text class="address" wx:elif="{{book_type == 1}}">自营点：{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}</text>
+                <text class="address" wx:if="{{book_type == 0}}"  bindtap='alertLocation' data-value="{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}">书主：{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}</text>
+                <text class="address" wx:elif="{{book_type == 1}}"  bindtap='alertLocation' data-value="{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}">自营点：{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}</text>
 
             </view>
         </view>

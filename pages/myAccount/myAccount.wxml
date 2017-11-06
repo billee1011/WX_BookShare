@@ -5,7 +5,7 @@
         <view class="item">
             <image class='image' src='../../images/balance.png'></image>
             <span>账户积分</span>
-            <view class="rightText" style="width:200px;height:47px;line-height:47px;">
+            <view class="rightText" style="width:300rpx;height:47px;line-height:47px;">
                 {{integral}}分
                 <!-- <switch bindchange="" checked="{{checked}}"/> -->
             </view>

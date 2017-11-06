@@ -21,6 +21,16 @@
   margin-top: 200px;
 }*/
 
+page{
+  background: #fff
+}
+.prompt-container{
+  background: #fff
+}
+.prompt-icon{
+  width:200rpx;
+}
+
 .clear-both {
     clear: both;
 }
@@ -32,7 +42,6 @@
 /*search-area :start*/
 
 .search-area {
-    height: 35px;
     width: 100%;
     padding: 2px 2px;
     position: fixed;
@@ -51,7 +60,7 @@
     background: #fff;
     margin: 0 auto;
     border-radius: 5px;
-    height: 21px;
+    height: 42rpx;
 }
 
 .search-scanner image {
@@ -135,8 +144,9 @@
 
 .book-list {
     /* width: 94%; */
-    margin: 134rpx 0 4rpx 0;    
-    padding: 4rpx 0;
+    /* margin: 4rpx 0 4rpx 0;    
+    padding: 4rpx 0; */
+    padding: 0 0;
 }
 
 .book-tmp {

@@ -1,0 +1,6 @@
+page{
+    background: #ffffff;
+}
+.prompt-container{
+    background: #ffffff;
+}

@@ -4,14 +4,23 @@
 		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
-		"minified": true
+		"minified": true,
+		"newFeature": true
 	},
-	"compileType": "weapp",
+	"compileType": "miniprogram",
 	"libVersion": "1.5.2",
 	"appid": "wxe0a4d0328b2d85cb",
 	"projectname": "bookshare",
 	"condition": {
-		"weapp": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
 			"current": -1,
 			"list": [
 				{
@@ -31,16 +40,26 @@
 					"name": "comment",
 					"pathName": "pages/comment/comment",
 					"query": "book_id=30"
+				},
+				{
+					"id": -1,
+					"name": "toAuth",
+					"pathName": "pages/toAuth/toAuth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/borrowBasket/borrowBasket",
+					"pathName": "pages/borrowBasket/borrowBasket",
+					"query": ""
 				}
 			]
-		},
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
 		}
 	}
 }

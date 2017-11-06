@@ -29,9 +29,47 @@
                 </view>
                 <view class="weui-tab__content" hidden="{{ activeIndex != 1 }}">
                     <template is="prompt" data="{{ ...$wux.prompt.msg2 }}" />
-                    <view wx:for="{{borrowInB2C}}" wx:for-index="index" wx:for-item="book">
+                    <view wx:for="{{borrowInB2C}}" wx:for-index="index" wx:for-item="book" style='margin:13rpx 4px;box-shadow:1px 1px 1px #c2c2c4'>
                         <!-- 借出模板 -->
-                        <template is="pilotBorrowIn" data="{{book}}"></template>      
+                        <!-- <template is="pilotBorrowInOld" data="{{book}}"></template>        -->
+                        <view style='background:#fafafa' bindtap="detail">
+                            <view class='owner-info' style='height:70rpx;line-height:70rpx;background:#ffffff'>
+                                <view style='width:180px;height:70rpx;float:left;text-align:left;position:relative'>
+                                    <image src='../../images/applier.png' style='width:36rpx;height:36rpx;position:absolute;top:15rpx;left:10rpx'></image>
+                                    <text style='line-height:30px;margin-left:60rpx'>{{book.pilot_name}}</text>
+                                    <image src='../../images/right.png' style='width:60rpx;height:60rpx;position:absolute;top:6rpx;'></image>
+                                </view>
+                                <view style='float:right;margin-right:40rpx'>
+                                    <text class='order-status' style='color:red'>借书进行中</text>
+                                </view>
+                            </view>
+                            <view style='height:300rpx'>
+                                <view class="record" style="left:{{record.offsetX}}px" bindtap="pilotBorrowIn" data-sharingId="{{book.sharing_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
+                                    <view class="left">
+                                        <image src='{{book.book_image}}' mode='aspectFit' style='width:120px;height:128px'></image>
+
+                                    </view>
+                                    <view class="right" style='width:{{phoneInfo.screenWidth-140}}px;padding-left:10rpx;line-height:100rpx;font-size:26rpx'>
+                                         <view style='color:#404040;font-size:31rpx;' class='noOver'>
+                                            {{book.book_name}}
+                                        </view>
+                                        <view class='noOver'>
+                                            <image src="../../images/location.png" style="width:15px;height:15px;"></image> {{book.location}}</view>
+                                        <view class="summary noOver">
+                                            <image src="../../images/time.png" style="width:15px;height:15px;"></image> {{book.agree_at}}
+                                        </view> 
+                                    </view>
+                                </view>
+
+                                <view class="delete-box">
+                                    <view>删除</view>
+                                </view>
+                            </view>
+                            <view class='operate' style='width:100%;background:#ffffff;padding:8rpx 0;'>
+                                <button size='mini' plain='true' type='warn' style='width:175rpx;margin-right:5px;float:right' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" wx:if="{{book.if_loan == 0}}">取消</button>
+                                <view style='clear:both'></view>
+                            </view>
+                        </view>
                     </view>
                 </view>
                 <view class="weui-tab__content" hidden="{{ activeIndex != 2 }}">

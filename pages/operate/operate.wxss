@@ -3,8 +3,12 @@ page{
 }
 .speed-dial{
     position: absolute;
-    left:10px!important;
-    top:25px!important;
+    left:22rpx!important;
+    top:40rpx!important;
+}
+.floating-button {
+  left:25rpx!important;
+  bottom:10rpx!important
 }
 .bottom{
     width: 100%;
@@ -22,12 +26,12 @@ page{
 }
 .list-box{
     width: 48%;
-    margin: 15px 1% 15px 1%;
+    margin: 15rpx 1% 15rpx 1%;
     float: left;
     /* height: 90px; */
 }
 .icon-text{
-    height: 20px;
-    line-height: 20px;
-    font-size: 12px
+    height: 30rpx;
+    line-height: 30rpx;
+    font-size: 25rpx
 }
