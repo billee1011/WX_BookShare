@@ -22,14 +22,24 @@ Page({
             success: function (res) {
                 if (res.data == "noApplication") {
                     $wuxPrompt.init('msg1', {
-                        title: '空空如也',
-                        text: '暂时没有相关数据',
+                        title: '怎么这么空',
+                        text: '还没有人借你的书呢？会不会是书评写的不好',
                     }).show()
                 } else {
                     if (res.data[0] == '' && res.data[1] == '') {
                         $wuxPrompt.init('msg1', {
-                            title: '空空如也',
-                            text: '暂时没有相关数据',
+                            title: '怎么这么空',
+                            text: '还没有人借你的书呢？会不会是书评写的不好',
+                            buttons: [
+                                {
+                                    text: '管理图书'
+                                }
+                            ],
+                            buttonClicked(index, item) {
+                                wx.navigateTo({
+                                    url: '../bookMan/bookMan',
+                                })
+                            },
                         }).show()
                     }
                     that.setData({

@@ -102,9 +102,9 @@ html, body {
 
 .item_arrow {
     float: right;
-    height: 26px;
-    width: 26px;
-    margin: 11px 20px;
+    height: 40px;
+    width: 40px;
+    margin: 6px 20px;
 }
 
 .presshover {

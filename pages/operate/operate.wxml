@@ -98,7 +98,7 @@
         </view> -->
             <view class="list-box" bindtap="uploadBook">
                 <view class="icon-box">
-                    <image src="../../images/share1.png" style="width:100px;height:100px;margin: 0 auto"></image>
+                    <image src="../../images/share1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
                 </view>
                 <view class="icon-text">
                     <span>上传分享</span>
@@ -106,7 +106,7 @@
             </view>
             <view class="list-box" bindtap="borrowBasket">
                 <view class="icon-box">
-                    <image src="../../images/self_support1.png" style="width:90px;height:95px;margin: 0 auto"></image>
+                    <image src="../../images/self_support1.png" style="width:170rpx;height:190rpx;margin: 0 auto"></image>
                 </view>
                 <view class="icon-text"  style='margin-top:5px'>
                     <span>借书</span>
@@ -117,7 +117,7 @@
         <view class="bottom-box">
             <view class="list-box" bindtap="borrowApplication">
                 <view class="icon-box">
-                    <image src="../../images/borrowOut1.png" style="width:100px;height:100px;margin: 0 auto"></image>
+                    <image src="../../images/borrowOut1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
                 </view>
                 <view class="icon-text">
                     <span>收书</span>
@@ -126,7 +126,7 @@
             
             <view class="list-box">
                 <view class="icon-box">
-                    <view style="width:80px;height:107px;margin: 0 auto;position:relative">
+                    <view style="width:200rpx;height:210rpx;margin: 0 auto;position:relative">
                         <template is="button" data="{{ ...$wux.button.br }}" />
                     </view>
                 </view>

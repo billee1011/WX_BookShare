@@ -152,6 +152,7 @@ module.exports = {
                                     var res = JSON.parse(res.rawData);//eval('(' + res.rawData + ')');
                                     //创建账号到数据库
                                     var url = ('https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=regiser&avatarUrl=' + res.avatarUrl + "&city=" + res.city + "&country=" + res.country + "&gender=" + res.gender + "&nickName=" + res.nickName + "&province=" + res.province + "&openId=" + resData.data.openid).replace(/\s+/g, "");
+                                    console.log(url)
                                     wx.request({
                                         url: url,
                                         success: function (res) {

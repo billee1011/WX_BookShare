@@ -21,7 +21,7 @@
 
 .price {
     display: inline;
-    margin-left: 20px;
+    margin-left: 10px;
     line-height: 23px;
     font-size: 23px;
     font-family: Helvetica;
@@ -51,10 +51,15 @@
 }
 
 .address {
+    display: inline-block;
     font-size: 13px;
     color: #81838e;
     margin-left: 16rpx;
     margin-right: 11px;
+    max-width:160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .abstract {

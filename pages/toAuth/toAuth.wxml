@@ -46,7 +46,7 @@
     <view class="phone item">
         <image src="../../images/telephone.png" class="item_ico"></image>
         <text>联系方式</text>
-        <input class="value-right" type="text" bindinput="setPhone" value="{{userInfo.phoneNumber?userInfo.phoneNumber:''}}" placeholder="请输入联系方式" />
+        <input class="value-right" style='width:300rpx' type="text" bindinput="setPhone" value="{{userInfo.phoneNumber?userInfo.phoneNumber:''}}" placeholder="请输入联系方式" />
     </view>
     <view class="h1"></view>
     <view class="phone item">
@@ -61,10 +61,10 @@
         <input class="value-right" type="text" bindinput="setCardId" value="{{userInfo.studentCard?userInfo.studentCard:''}}" placeholder="请输入学号/教职工编号" />
     </view>
     <view class="h1"></view> -->
-    <view id="footer" style="width:98%;margin:25px 1%;">
-    <button bindtap="toAuth" style="color:#fff;height:50px;background: #33CCFF;">
-        认证
-    </button>
+    <view id="footer" style="width:98%;margin:25px auto;">
+      <button bindtap="toAuth" style="color:#fff;height:50px;width:220rpx;margin:0 auto;background: #33CCFF;">
+          认证
+      </button>
 </view>
 </view>
 

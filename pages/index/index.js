@@ -1,5 +1,6 @@
 import { $wuxNotification } from '../../components/wux'
 import { $wuxBackdrop } from '../../components/wux'
+import { $wuxPrompt } from '../../components/wux'
 var utils = require('../../utils/util.js');
 //index.js
 //获取应用实例
@@ -30,7 +31,6 @@ Page({
     },
 
     onLoad: function () {
-        console.log(app.globalData.openId)
         wx.showLoading({
             title: '加载中',
         })
@@ -39,6 +39,7 @@ Page({
         that.getBookList();
         that.getSorts();
         wx.hideLoading()
+        console.log(app.globalData.phoneInfo)
         // that.$wuxBackdrop = $wuxBackdrop.init();
         // that.retain()
         
@@ -165,8 +166,26 @@ Page({
             success: function (res) {
                 that.setData({
                     bookObj: res.data,
-                    loading: false
+                    loading: false,
+                    haveBook:false
                 })
+                if(res.data.length==0){
+                  that.setData({
+                    haveBook: true
+                  })
+                  $wuxPrompt.init('msg2', {
+                    title: '当前分类下还没有图书哦',
+                    text: '可以去看看其他分类',
+                    buttons: [
+                      {
+                        text: '切换'
+                      }
+                    ],
+                    buttonClicked(index, item) {
+                      that.togglePtype()
+                    },
+                  }).show()
+                }
             },
             fail: function () {
                 wx.showToast({

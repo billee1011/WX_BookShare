@@ -175,7 +175,7 @@ Page({
             success: function (res) {
                 if (res.tapIndex == 0){
                     wx.navigateTo({
-                        url: '../joinShare/joinShare',
+                        url: '../donate/donate?donateType=0',
                     })
                 } else if (res.tapIndex == 1){
                     wx.navigateTo({

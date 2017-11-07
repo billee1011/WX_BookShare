@@ -40,6 +40,24 @@
 					"name": "comment",
 					"pathName": "pages/comment/comment",
 					"query": "book_id=30"
+				},
+				{
+					"id": -1,
+					"name": "toAuth",
+					"pathName": "pages/toAuth/toAuth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/borrowBasket/borrowBasket",
+					"pathName": "pages/borrowBasket/borrowBasket",
+					"query": ""
 				}
 			]
 		}

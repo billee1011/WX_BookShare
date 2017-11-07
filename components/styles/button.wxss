@@ -57,8 +57,6 @@
 }
 
 .speed-dial .floating-button {
-    right: 0;
-    bottom: 0;
     position: relative;
 }
 
@@ -162,8 +160,8 @@
 }
 
 .speed-dial-bottom-right.speed-dial {
-    right: 63px;
-    top: 100px;
+    right: 130rpx;
+    top: 200rpx;
 }
 
 .speed-dial-top-left .speed-dial-button[data-label]:after, 

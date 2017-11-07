@@ -10,7 +10,8 @@ Page({
         tabs: ['C2C', '自营点'],
         activeIndex: '0',
         sliderOffset: 0,
-        sliderLeft: 0
+        sliderLeft: 0,
+        phoneInfo: app.globalData.phoneInfo,
     },
 
     /**
@@ -30,12 +31,23 @@ Page({
                     $wuxPrompt.init('msg1', {
                         title: '空空如也',
                         text: '暂时没有相关数据',
+                        
                     }).show()
                 } else {
                     if (res.data[0] == '' && res.data[1] == '') {
                         $wuxPrompt.init('msg1', {
                             title: '空空如也',
-                            text: '暂时没有相关数据',
+                            text: '邻居的孩子已经看了N本书了',
+                            buttons: [
+                                {
+                                    text: '超过他'
+                                }
+                            ],
+                            buttonClicked(index, item) {
+                                wx.switchTab({
+                                    url: '../index/index'
+                                })
+                            },
                         }).show()
                     }
                     that.setData({
@@ -63,15 +75,17 @@ Page({
                 if (res.data == "noBorrowIn") {
                     $wuxPrompt.init('msg2', {
                         icon: '../../assets/images/iconfont-order.png',
-                        title: '您还没有相关的订单',
-                        text: '可以去看看有哪些想买',
+                        title: '空空如也',
+                        text: '自营点借书更方便哦',
                         buttons: [
                             {
-                                text: '随便逛逛'
+                                text: '我想借书'
                             }
                         ],
                         buttonClicked(index, item) {
-                            console.log(index, item)
+                            wx.switchTab({
+                                url: '../index/index'
+                            })
                         },
                     }).show()
                 } else {
