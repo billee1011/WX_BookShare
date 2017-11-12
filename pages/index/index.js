@@ -21,6 +21,9 @@ Page({
 
         //页面引导
         locks: 0, 
+
+        searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
+        searchLoadingComplete: false  //“没有数据”的变量，默认false，隐藏  
     },
 
     

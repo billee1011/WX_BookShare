@@ -1,42 +1,68 @@
-<import src="../templates/templates.wxml" />
-<view class="container" style="padding:0px 0px;background:#f4f4f4">
+<view style='background:#f4f4f4;'>
     <loading hidden="{{ !loading }}">加载中...</loading>
+    <!-- 轮播图 -->
+    <view style='margin: 0 1.5%;margin-top:1.5%;'>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:500rpx; background:#FFF;'>
+            <block wx:for="{{images}}">
+                <swiper-item>
+                    <image src="{{item}}" bindload='imageLoad' bindtap='previewImage' class="slide-image" width="355" height="150" data-index="{{ index }}" bindtap="delete" style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx;margin-left:{{ images[index].marginLeftWidth }}rpx;"
+                    />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!--轮播图结束  -->
+    <!-- 书籍信息 -->
+    <view style='background:#fff;margin: 0 1.5%;'>
+        <view class='meta' style='padding: 2rpx 5rpx;'>
+            <view class='title'>{{bookInfo.book_name}} {{bookInfo.writer}}———{{bookInfo.book_press}}</view>
+            <!--（ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}）-->
+            <view class='price'>
+                <text class='big-price'>{{bookInfo.price}}</text>
+                <text class='small-price'>积分</text>
+            </view>
+            <view class='location'>
+                <image class='location_pic' wx:if="{{book_type == 0}}" src='../../images/applier.png'></image>
+                <image class='location_pic' wx:if="{{book_type == 1}}" src='../../images/location.png'></image>
+                <text class="address" wx:if="{{book_type == 0}}" bindtap='alertLocation' data-value="{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}">书主：{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}</text>
+                <text class="address" wx:elif="{{book_type == 1}}" bindtap='alertLocation' data-value="{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}">自营点：{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}</text>
 
-    <image class="background" src="{{bookInfo.image_large}}" mode="aspectFill" />
-    <image class="poster" src="{{bookInfo.image_large}}" bindtap='previewImage' mode="aspectFit" />
-    <view style="padding:0px 0px;width:95%;margin:0 auto">
-        <view class="meta">
-            <text class="title">{{bookInfo.book_name}}</text>
-            <text class="info">作者： {{bookInfo.writer}} </text>
-            <text class="info">ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}</text>
-            <!-- <text class="info">时间：30天</text> -->
-            <!-- <view class="info">
-                        <text style="float:left">书主：</text>
-                        <picker bindchange="bindPickerChange" style="width:100px;float:left" value="{{index}}" range="{{owner}}">
-                            <view class="picker">
-                                {{owner[index]}}
-                            </view>
-                        </picker>
-                    </view> -->
-            <text class="info" wx:if="{{book_type == 0}}">书主：{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}</text>
-            <text class="info" wx:elif="{{book_type == 1}}">自营点：{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}</text>
-            <text class="info">出版社：{{bookInfo.book_press}}</text>
-            <text class="info">出版日期：{{bookInfo.publish_date}}</text>
-            <text class="info">所需积分：{{bookInfo.price}}分</text>
-        </view>
-        <view class="summary">
-            <text class="label">摘要：</text>
-            <text class="content" style="line-height:25px;width:80%;margin:0 auto">{{bookInfo.introduction}}</text>
+            </view>
         </view>
     </view>
-</view>
-<view class="comment" style="width：97%;margin: 0 1.5%;margin-bottom:60px">
+    <!--书籍信息结束  -->
+    <view class='divLine'></view>
+    <!--摘要  -->
+    <view class='abstract' wx:if="{{bookInfo.introduction}}">
+        <view class='abstract_title'>摘要：</view>
+        <view class='abstract_text'>{{bookInfo.introduction}}</view>
+    </view>
+    <!--摘要结束  -->
+    <view class='divLine'></view>
+    <!--评论  -->
     <view wx:if="{{commentInfo != 'none'}}" wx:for="{{commentInfo}}" wx:for-index="index" wx:for-item="comment">
-        <template is="commentTemp" data="{{comment}}" />
+        <view class="comment" style="width：97%;margin: 0 1.5%;margin-bottom:7px;padding: 5px 10px;">
+            <view style="width:100%;">
+                <view class="left" style="width:15%;float:left;">
+                    <image class='user_img' src="{{comment.favicon}}"></image>
+                    <!-- <view style='clear:both'></view> -->
+                </view>
+                <view class="center" style="float:left;width:85%;padding-top: 0px!important;margin-top: 5px;text-align:left;">
+                    <span class="user_name">{{comment.nickName}}</span>
+                    <span class="user_score">{{comment.book_content?comment.book_content:2.5}}分</span>
+                </view>
+                <view style='clear:both'></view>
+            </view>
+            <view class="comment_text">
+                {{comment.card_content}}
+            </view>
+            <view class='comment_time'>——{{comment.create_at}}</view>
+        </view>
     </view>
-    <view style='height:100px;width:100%'></view>
+
+    <!--评论结束  -->
 </view>
-<view class="block" style="width:100%;height:100px;"></view>
+<view style='width:100%;height:50px'></view>
 <view id="footer" style="display:block;bottom:0px;position:fixed;width:100%;height:50px;z-index:1000px;background:#fff">
     <view type="submit" bindtap="cancelLove" wx:if="{{bookInfo.haveLoved ==1 || haveLoved ==1}}" style="width:20%;border-right: 2px solid #f0f0f0;" class="bottom-operate">
         <view>
@@ -70,11 +96,11 @@
             <span>看过</span>
         </view>
     </view>
-    <view type="submit" bindtap="borrowBook" style="width:48%;background:#75a8f9;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#fff" class="bottom-operate">
+    <view type="submit" bindtap="togglePtype" style="width:48%;background:#75a8f9;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#fff" class="bottom-operate">
         借阅
     </view>
 </view>
-<!--分类 start-->
+<!-- 弹出框 -->
 <scroll-view style="height:100%" id="catewrap" scroll-into-view="c2" scroll-y="true" hidden="{{!cateisShow}}">
     <view class="close" bindtap="togglePtype" id="closecatelist"></view>
     <view id="cateall" bindtap="cateselect" class="cl_list ">
@@ -82,21 +108,20 @@
     </view>
     <view id="cateall" bindtap="cateselect" class="cl_list ">
         <text style="float:left;width:100px;line-height:47px">书主</text>
-        <!-- <picker bindchange="bindPickerChange" style="width:100px;float:right" value="{{index}}" range="{{owner}}">
+        <picker bindchange="bindIndexChange" style="width:100px;float:right" value="{{index}}" range="{{owners}}">
             <view class="picker">
-                {{owner[index]}}
+                {{owners[index]}}
             </view>
-        </picker> -->
-        <text class="rightText">{{bookInfo.userName}}</text>
+        </picker>
     </view>
     <view id="cateall" bindtap="cateselect" class="cl_list ">
         <text style="float:left;width:100px;line-height:47px">允许借阅</text>
-        <input type="text" value="{{bookInfo.keep_time}}天" bindinput="setBorrowDays" id="uploadDays" style="float:right;width:200px;height:47px;line-height:47px;text-align:right;margin-right:30px" />
+        <text style="float:right;width:200px;height:47px;line-height:47px;text-align:right;margin-right:30px">{{keepTimes[index]}}天</text>
     </view>
-    <form name='pushMsgFm' report-submit="true" bindsubmit="affirmBorrowBook">
+    <form name='pushMsgFm' report-submit="true" bindsubmit="borrowBook">
         <button form-type="submit" style="width:95%;margin:0 auto;border-radius:5px;height:50px;background: #FE552E;text-align: center;color:#fff;position:fixed;bottom:0px" class="btn">
             确认借阅
         </button>
     </form>
 </scroll-view>
-<!--分类 end-->
+<!-- 弹出框结束 -->

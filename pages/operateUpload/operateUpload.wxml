@@ -1,0 +1,7 @@
+<!--pages/operateUpload/operateUpload.wxml-->
+
+<text>书主将图书交给平台代为运营（借阅者到平台自营点取书）</text>
+<button type='button' data-type='1' bindtap='uploadBook'>上传至自营点</button>
+
+<text>自己持有图书（借阅者电话联系书主取书）</text>
+<button type='button' data-type='2' bindtap='uploadBook'>上传</button>

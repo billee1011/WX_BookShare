@@ -1,12 +1,12 @@
 <import src="../../components/notification/notification.wxml" />
-
+<import src="../templates/templates.wxml" />
 <template is="notification" data="{{ ...$wux.notification }}" />
 
 
 <view class="all">
     <view class="login" style="height:200px;">
         <image src="../../images/backGround.jpg" style="height: 200px" class="loginbg"></image>
-        <image src="{{userInfo.favicon?userInfo.favicon:'../../images/user_defaulthead@2x.png'}}" style="border-radius: 100px" class="personal_logo" id="personal_logo"  bindtap="login"></image>
+        <image src="{{userInfo.favicon?userInfo.favicon:'../../images/user_defaulthead@2x.png'}}" style="border-radius: 100px" class="personal_logo" id="personal_logo" bindtap="login"></image>
         <view class="userinfo">
             <view class="title" id="user_name">
                 {{userInfo.nickName?userInfo.nickName:"点击授权登录"}}
@@ -25,23 +25,36 @@
             </view>
         </view>
         <view style='background-color: #fff;' class='bottom-box'>
-        <view class="list-box" bindtap="returnBack">
-            <view class="icon-box">
-                <image src="../../images/giveBack2.png" style="width:36px;height:36px;margin: 0 auto"></image>
+            <view class="list-box" bindtap="returnBack">
+                <view style='position:relative;width:44px;margin:0 auto'>
+                    <view class="icon-box">
+                        <image src="../../images/giveBack2.png" style="width:36px;height:36px;margin: 0 auto"></image>
+                    </view>
+                    <view class="icon-text">
+                        <span>待归还</span>
+                    </view>
+                    <view class="jh-tab-bubble" wx:if="{{ needReturnNum.num > 0}}">
+                        <text class="jh-tab-count">{{ needReturnNum.num < 100? needReturnNum.num: 99 }}</text>
+                    </view>
+                    <!-- <template is="redPoint" data="{{needReturnNum}}"></template> -->
+                </view>
             </view>
-            <view class="icon-text">
-                <span>待归还</span>
+            <view class="list-box" bindtap="getBook">
+            <view style='position:relative;width:44px;margin:0 auto'>
+                <view class="icon-box">
+                    <image src="../../images/receive2.png" style="width:36px;height:36px;margin: 0 auto"></image>
+                </view>
+                <view class="icon-text">
+                    <span>待收回</span>
+                </view>
+                <view class="jh-tab-bubble" wx:if="{{ getBookNum.num > 0}}">
+                        <text class="jh-tab-count">{{ getBookNum.num < 100? getBookNum.num: 99 }}</text>
+                    </view>
+                <!-- <template is="redPoint" data="{{getBookNum}}"></template> -->
             </view>
-        </view>
-        <view class="list-box" bindtap="getBook">
-            <view class="icon-box">
-                <image src="../../images/receive2.png" style="width:36px;height:36px;margin: 0 auto"></image>
+                
             </view>
-            <view class="icon-text">
-                <span>待收回</span>
-            </view>
-        </view>
-        <!-- <view class="list-box" bindtap="borrowIn">
+            <!-- <view class="list-box" bindtap="borrowIn">
             <view class="icon-box">
                 <image src="../../images/receive2.png" style="width:36px;height:36px;margin: 0 auto"></image>
             </view>
@@ -49,7 +62,7 @@
                 <span>借入</span>
             </view>
         </view> -->
-        <view style='clear:both'></view>
+            <view style='clear:both'></view>
         </view>
     </view>
     <!-- 第一块 -->

@@ -417,7 +417,7 @@ Page({
                                             
                                             wx.showModal({
                                                 title: '提醒',
-                                                content: '扫描书架成功!',
+                                                content: '扫描书柜成功，积分已入账!',
                                                 showCancel:false,
                                                 success:function(res){
                                                     if (res.confirm) {

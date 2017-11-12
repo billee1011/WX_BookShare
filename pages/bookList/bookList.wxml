@@ -3,11 +3,11 @@
     <view wx:if="{{shareNum==0}}">
         <view class="list-info" bindtap="openBookListInfo" data-type="3">
             <view class='item'>
-                <text class="list-name">我分享的</text>
+                <text class="list-name">我上传的</text>
                 <text class='number'>{{shareNum}}本书</text>
             </view>
             <view class="describe">
-                书中自有黄金屋 书中自有颜如玉 ——某人
+                上传有收益，快来上传吧！
             </view>
         </view>
     </view>
@@ -18,10 +18,11 @@
                 <text class='number'>{{shareNum}}本书</text>
             </view>
             <view class="describe">
-                书中自有黄金屋 书中自有颜如玉 ——某人
+                我已上传了{{shareNum}}本书，多多上传，多多收益！
             </view>
         </view>
     </view>
+
 
 
     <view wx:if="{{loveNum==0}}">
@@ -31,7 +32,7 @@
                 <text class='number'>{{loveNum}}本书</text>
             </view>
             <view class="describe">
-                纸上觉来终觉浅 绝知此事要躬行 ——某人
+                您看没有想看的书，快去添加吧！
             </view>
         </view>
     </view>
@@ -42,7 +43,7 @@
                 <text class='number'>{{loveNum}}本书</text>
             </view>
             <view class="describe">
-                纸上觉来终觉浅 绝知此事要躬行 ——某人
+                您看没有想看的书，快去添加吧！
             </view>
         </view>
     </view>

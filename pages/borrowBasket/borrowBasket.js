@@ -18,7 +18,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        wx.setNavigationBarTitle({ title: "借书篮" })
+        wx.setNavigationBarTitle({ title: "借书" })
         var that = this;
         wx.request({
             url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),

@@ -695,13 +695,16 @@
 <!-- 书单列表页面 -->
 <!-- 书单列表模板 -->
 <template name="bookListTemplate">
-    <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
+    <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative'>
         <image src="{{book.book_image}}" class="book-image"></image>
         <view class="book-info">
             <view class="book-name">{{book.book_name}}</view>
             <view class="book-applier">
                 {{book.writer}}
             </view>
+        </view>
+        <view class="jh-tab-bubble" style='top:10rpx;right:10rpx'>
+            <text class="jh-tab-count">{{ book.borrow_times }}</text>
         </view>
         <view class="clear-both"></view>
     </view>
@@ -823,3 +826,12 @@
 </template>
 <!-- 积分记录 模板-->
 <!-- 积分列表 -->
+
+<!-- 红点 -->
+    <template name="redPoint">
+        <!-- 右上角 红色数字 -->
+        <view class="jh-tab-bubble">
+            <text class="jh-tab-count">{{getBookNum}}</text>
+        </view>
+    </template>
+<!-- 红点 -->

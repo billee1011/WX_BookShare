@@ -34,8 +34,9 @@ button{
 .book-tmp {
     padding: 2rpx 0 2rpx 0;
     background: #fff;
-    margin-bottom: 4rpx;
+    margin-bottom: 16rpx;
     height: 240rpx;
+    box-shadow:1px 1px 1px #c2c2c4;
 }
 
 .book-image {
@@ -121,6 +122,7 @@ button{
 
 .book-applier .right {
     float: right;
+    margin-right: 30rpx;
 }
 
 .operate-box {
@@ -313,4 +315,24 @@ button{
 }
 .like{
     width:20px;height:20px;
+}
+
+
+/*红点*/
+.jh-tab-bubble {
+    background-color: #E64340;
+    text-align: center;
+    justify-content: flex-start;
+    align-content: center;
+    position: absolute;
+    top: -7px;
+    right: -3px;
+    width: 16px;
+    height: 16px;
+    line-height: 13px;
+    border-radius: 8px;
+}
+.jh-tab-count {
+    color: white;
+    font-size: 10px;
 }

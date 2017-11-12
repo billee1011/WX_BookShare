@@ -1,6 +1,3 @@
-<view class="weui-cells__tips" style="font-size: 12px;">
-    <text style="color:red;">提示：</text>代为运营中途不可以退出！否则会出现已经上传过错误
-</view>
 <view class="aui-content">
     <ul class="aui-timeline">
         <li>

@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.5.2",
+	"libVersion": "1.6.4",
 	"appid": "wxe0a4d0328b2d85cb",
 	"projectname": "bookshare",
 	"condition": {
@@ -22,44 +22,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "detail1",
-					"pathName": "pages/detail1/detail1",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "payment",
-					"pathName": "pages/payment/payment",
-					"query": ""
-				},
-				{
-					"id": 2,
-					"name": "comment",
-					"pathName": "pages/comment/comment",
-					"query": "book_id=30"
-				},
-				{
-					"id": -1,
-					"name": "toAuth",
-					"pathName": "pages/toAuth/toAuth",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "pages/borrowBasket/borrowBasket",
-					"pathName": "pages/borrowBasket/borrowBasket",
-					"query": ""
-				}
-			]
+			"list": []
 		}
 	}
 }

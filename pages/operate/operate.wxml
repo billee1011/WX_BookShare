@@ -120,7 +120,7 @@
                     <image src="../../images/borrowOut1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
                 </view>
                 <view class="icon-text">
-                    <span>收书</span>
+                    <span>借出</span>
                 </view>
             </view>
             
