@@ -170,20 +170,9 @@ Page({
             })
             return;
         }
-        wx.showActionSheet({
-            itemList: ['上传至自营点', '普通上传'],
-            success: function (res) {
-                if (res.tapIndex == 0){
-                    wx.navigateTo({
-                        url: '../donate/donate?donateType=0',
-                    })
-                } else if (res.tapIndex == 1){
-                    wx.navigateTo({
-                        url: '../operateShare/operateShare',
+        wx.navigateTo({
+            url: '../operateUpload/operateUpload',
 
-                    })
-                }
-            }
         })
     },
     borrowBasket:function(){
