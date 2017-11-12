@@ -43,7 +43,7 @@
                 <text class='number'>{{loveNum}}本书</text>
             </view>
             <view class="describe">
-                您看没有想看的书，快去添加吧！
+                这些都是您想看的书，快去看一看吧！
             </view>
         </view>
     </view>
