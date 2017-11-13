@@ -1,4 +1,5 @@
 //operateShare.js 关于我们
+var event = require('../../utils/event.js')
 //获取应用实例
 var app = getApp()
 Page({
@@ -54,9 +55,20 @@ Page({
             }
         })
         
+        //绑定监听
+        event.on('DataChanged', this, function (data) {
+            this.setData({
+                sorts: data
+            });
+        })
+        
     },
     onReady: function () {
 
+    },
+    //移除绑定监听
+    onUnload: function () {
+        event.remove('DataChanged', this);
     },
 
     //扫码
@@ -206,7 +218,7 @@ Page({
             return;
         }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.sortsIDArray[sortsIndex]).replace(/\s+/g, ""),
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.sorts).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -289,6 +301,11 @@ Page({
         var that = this;
         that.setData({
             card_content: e.detail.value//书评内容
+        })
+    },
+    openSorts:function(){
+        wx.navigateTo({
+            url: '../sorts/sorts',
         })
     }
 })

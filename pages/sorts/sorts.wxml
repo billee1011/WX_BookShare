@@ -1,2 +1,15 @@
 <!--pages/sorts/sorts.wxml-->
 
+<view class="weui-cells weui-cells_after-title">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="weui-cell weui-check__label" wx:for="{{sortsArray}}" wx:key="{{item.value}}">
+            <view class="weui-cell__hd">
+              <checkbox value="{{item.ID}}" checked="{{item.checked}}"/>
+            </view>
+            <view>
+                <image src='{{sort_url}}{{item.sort_image}}' style='width:72rpx;height:72rpx;margin-right:14rpx'></image>
+            </view>
+            <view class="weui-cell__bd">{{item.sort_name}}</view>
+          </label>
+        </checkbox-group>
+      </view>
