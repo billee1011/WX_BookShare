@@ -86,7 +86,7 @@
         </view>
         <view class="h1"></view>
         <view class="comment">
-            <textarea style="line-height:20px;height:80px;width:100%" type='text' bindinput="setContent" placeholder-style="padding-top:10px" maxlength="-1" placeholder='请写出您对此书的评价~' />
+            <textarea style="line-height:20px;width:100%" type='text' bindinput="setContent" placeholder-style="padding-top:10px" maxlength="-1" placeholder='请写出您对此书的评价~' />
         </view>
         <view class="h1"></view>
         <view class="comment1">

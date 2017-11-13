@@ -703,7 +703,7 @@
                 {{book.writer}}
             </view>
         </view>
-        <view class="jh-tab-bubble" style='top:10rpx;right:10rpx'>
+        <view class="jh-tab-bubble" style='top:10rpx;right:10rpx' wx:if="{{book.borrow_times!=0}}">
             <text class="jh-tab-count">{{ book.borrow_times }}</text>
         </view>
         <view class="clear-both"></view>

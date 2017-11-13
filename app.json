@@ -49,7 +49,8 @@
         "pages/borrowBasket/borrowBasket",
 "pages/library/library",
         "pages/operateIntr/operateIntr",
-        "pages/operateUpload/operateUpload"
+        "pages/operateUpload/operateUpload",
+        "pages/sorts/sorts"
 
         
     ],

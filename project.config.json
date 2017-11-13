@@ -21,17 +21,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "operateUpload",
 					"pathName": "pages/operateUpload/operateUpload",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "sorts",
+					"pathName": "pages/sorts/sorts"
 				}
 			]
-
 		}
 	}
 }

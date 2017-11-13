@@ -3,7 +3,7 @@
         <li>
             <view class="aui-iconfont aui-bg-info">1</view>
             <view class="aui-timeline-item">
-                <view class="aui-timeline-body">扫描相应图书</view>
+                <view class="aui-timeline-body">扫描图书背后条形码</view>
             </view>
         </li>
         <li>

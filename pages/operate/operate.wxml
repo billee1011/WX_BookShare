@@ -109,7 +109,7 @@
                     <image src="../../images/self_support1.png" style="width:170rpx;height:190rpx;margin: 0 auto"></image>
                 </view>
                 <view class="icon-text"  style='margin-top:5px'>
-                    <span>借书</span>
+                    <span>我要取书</span>
                 </view>
             </view>
             <view style="clear:both"></view>
