@@ -47,9 +47,11 @@
         "pages/invitePeople/invite",
         "pages/detail1/detail1",
         "pages/borrowBasket/borrowBasket",
-        "pages/library/library",
+"pages/library/library",
         "pages/operateIntr/operateIntr",
         "pages/operateUpload/operateUpload"
+
+        
     ],
     "window": {
         "backgroundTextStyle": "light",

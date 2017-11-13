@@ -23,7 +23,14 @@
 		"miniprogram": {
 			"current": -1,
 
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "operateUpload",
+					"pathName": "pages/operateUpload/operateUpload",
+					"query": ""
+				}
+			]
 
 		}
 	}

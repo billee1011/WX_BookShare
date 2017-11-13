@@ -16,4 +16,6 @@
             <button class="btn btn_primary" href="javascript:;" type='button' data-type='2' bindtap='uploadBook'>普通上传</button>
         </view>
     </view>
+
 </view>
+
