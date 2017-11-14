@@ -14,6 +14,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options)
         var that = this
         var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
         wx.request({
@@ -21,6 +22,7 @@ Page({
             method: "GET",
             dataType: "json",
             success: function (res) {
+                var dataObj = res.data["fullData"]
                 if (res.data == "none") {
                     wx.showToast({
                         title: '暂无分类',
@@ -28,17 +30,15 @@ Page({
                         duration: 2000
                     })
                 } else {
+                   
+                    event.emit('Data', dataObj);
+                    for (var i in options){
+                        dataObj[options[i]-1].checked = true;
+                    }
                     that.setData({
-                        sortsArray: res.data["fullData"],
+                        sortsArray: dataObj,
                     })
-                    event.emit('Data', that.data.sortsArray);
-                    event.on('DataChanged', this, function (data) {
-                        var that = this;
-                        for (var i = 0; i < data.length; i++) {
-                            var index = data[i];
-                            console.log(index)
-                        }
-                    })
+                    
                 }
             }
         })

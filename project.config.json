@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -40,9 +40,13 @@
 					"name": "logs",
 					"pathName": "pages/logs/logs",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "operateShare",
+					"pathName": "pages/operateShare/operateShare"
 				}
 			]
-
 		}
 	}
 }

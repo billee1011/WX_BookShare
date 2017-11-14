@@ -64,7 +64,8 @@ Page({
                 sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " "
             }
             this.setData({
-                sumSort: sumSort
+                sumSort: sumSort,
+                selectData: data
              })
         })
         
@@ -316,8 +317,19 @@ Page({
         })
     },
     openSorts:function(){
+        var that = this
+        var data = that.data.selectData;
+        var url = "../sorts/sorts";
+        for (var i in data){
+            if(i == 0){
+                url += "?selected" + i + "=" + data[i];
+            }else{
+                url += "&selected" + i + "=" + data[i];
+            }
+            
+        }
         wx.navigateTo({
-            url: '../sorts/sorts',
+            url: url,
         })
     }
 })
