@@ -16,6 +16,7 @@ Page({
         age: ["请选择",'无限制', '3-5岁', '6-9岁', '10-12岁'],
         ageValue:[null,0,1,2,3],
         sortIndex:0,
+        sort_url: app.globalData.sort_url,
         //当前设备信息
         phoneInfo: app.globalData.phoneInfo,
 
