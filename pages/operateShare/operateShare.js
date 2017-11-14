@@ -57,11 +57,22 @@ Page({
         
         //绑定监听
         event.on('DataChanged', this, function (data) {
+            var that = this;
+            var sumSort = "";
+            for(var i=0;i<data.length;i++){
+                var index = data[i];
+                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " "
+            }
             this.setData({
-                sorts: data
-            });
+                sumSort: sumSort
+             })
         })
         
+        event.on('Data', this, function (data) {
+            this.setData({
+                sortsArray: data,
+            });
+        })        
     },
     onReady: function () {
 
@@ -69,6 +80,7 @@ Page({
     //移除绑定监听
     onUnload: function () {
         event.remove('DataChanged', this);
+        event.remove('Data', this);
     },
 
     //扫码

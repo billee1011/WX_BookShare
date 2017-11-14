@@ -31,6 +31,14 @@ Page({
                     that.setData({
                         sortsArray: res.data["fullData"],
                     })
+                    event.emit('Data', that.data.sortsArray);
+                    event.on('DataChanged', this, function (data) {
+                        var that = this;
+                        for (var i = 0; i < data.length; i++) {
+                            var index = data[i];
+                            console.log(index)
+                        }
+                    })
                 }
             }
         })
@@ -86,10 +94,11 @@ Page({
     },
 
     checkboxChange: function (e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-        console.log(JSON.stringify(e.detail.value))
-        event.emit('DataChanged', JSON.stringify(e.detail.value));
+        var that = this;
+        // console.log(e)
+        // console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+        // console.log(JSON.stringify(e.detail.value))
+        event.emit('DataChanged', e.detail.value);        
+        // console.log(that.data.sortsArray)
     }
-
-
 })
