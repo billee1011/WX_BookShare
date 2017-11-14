@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
 	"appid": "wxe0a4d0328b2d85cb",
-	"projectname": "bookshare",
+	"projectname": "BeeBook",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,6 +33,12 @@
 					"id": -1,
 					"name": "sorts",
 					"pathName": "pages/sorts/sorts",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "logs",
+					"pathName": "pages/logs/logs",
 					"query": ""
 				}
 			]
