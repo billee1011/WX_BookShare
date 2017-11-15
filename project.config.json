@@ -12,6 +12,16 @@
 	"appid": "wxe0a4d0328b2d85cb",
 	"projectname": "bookshare",
 	"condition": {
+		"weapp": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test"
+				}
+			]
+		},
 		"search": {
 			"current": -1,
 			"list": []

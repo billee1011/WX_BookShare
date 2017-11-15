@@ -1,0 +1,36 @@
+<view style='background:#CCCCCC' bindtap="detail">
+                            <view class='owner-info' style='height:70rpx;line-height:70rpx;background:#ffffff'>
+                                <view style='width:180px;height:60rpx;float:left;text-align:center;position:relative'>
+                                    <image src='../../images/applier.png' style='width:40rpx;height:36rpx;position:absolute;top:15rpx;left:10rpx'></image>
+                                    <text style='font-size:30rpx；'>计算机科学与软件学院</text>
+                                    <image src='../../images/right.png' style='width:60rpx;height:60rpx;position:absolute;top:6rpx;'></image>
+                                </view>
+                                <view style='float:right;margin-right:40rpx'>
+                                    <text class='order-status,ziti' style='color:red;font-style:italic;'>借书进行中</text>
+                                </view>
+                            </view>
+                            <view style='height:210rpx'>
+                                <view class="record" style="left:{{record.offsetX}}px" bindtap="pilotBorrowIn" data-sharingId="{{book.sharing_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
+                                    <view class="left">
+                                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' mode='aspectFit' style='width:100px;height:100px'></image>
+
+                                    </view>
+                                    <view class="right" style='width:{{phoneInfo.screenWidth-116}}px;padding-left:10rpx;line-height:100rpx;font-size:26rpx'>
+                                         <view style='color:#404040;font-size:30rpx;padding-left:26%' class='noOver' >
+                                            冒险大王邓肯
+                                        </view>
+                                        <view class='noOver'>
+                                            <image src="../../images/location.png" style="width:15px;height:15px;"></image><text class='ziti'>计算机科学与软件学院</text> 
+                                        </view>
+                                        <view class="summary noOver">
+                                            <image src="../../images/time.png" style="width:15px;height:15px;"></image> <text class='ziti'>10天</text>
+                                        </view> 
+                                    </view>
+                                </view>
+
+                            </view>
+                            <view class='operate' style='width:100%;background:#ffffff;padding:8rpx 0;align-items:right'>
+                                <button size='mini' plain='true' type='warn' style='width:175rpx;margin-right:5px;float:right' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" >取消</button>
+                                <view style='clear:both'></view>
+                            </view>
+                        </view>
