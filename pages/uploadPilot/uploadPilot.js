@@ -1,4 +1,5 @@
 //uploadPilot.js 自营点上传图书
+var event = require('../../utils/event.js')
 //获取应用实例
 var app = getApp()
 var sourceType = [['camera'], ['album'], ['camera', 'album']]
@@ -6,9 +7,9 @@ var sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 Page({
     data: {
         bookInfo:null,
-        hidden:1,
+        hidden:4,
         step:1,
-        cateisShow: false,
+        cateisShow: true,
         array: ['无限制', '3-5岁', '6-9岁', '10-12岁'],
         arrayValue: ['0', '1', '2', '3'],
         ageIndex: 0,
@@ -54,6 +55,7 @@ Page({
                 }
             }
         })
+
         var can_share_id = wx.getStorageSync('can_share_id')
         var qrcodeId     = wx.getStorageSync('qrcodeId')
         var price        = wx.getStorageSync('price')
@@ -129,8 +131,32 @@ Page({
                 }
             })
         }
+
+        //绑定监听
+        event.on('DataChanged', this, function (data) {
+            var that = this;
+            var sumSort = "";
+            for (var i = 0; i < data.length; i++) {
+                var index = data[i];
+                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " "
+            }
+            this.setData({
+                sumSort: sumSort,
+                selectData: data
+            })
+        })
+
+        event.on('Data', this, function (data) {
+            this.setData({
+                sortsArray: data,
+            });
+        })  
     },
-    
+    //移除绑定监听
+    onUnload: function () {
+        event.remove('DataChanged', this);
+        event.remove('Data', this);
+    },
     //清除缓存
     clearStorageSelf:function(){
         //清除缓存
@@ -469,8 +495,22 @@ Page({
 
     //选择分类
     bindSortsChange: function (e) {
-        this.setData({
-            sortsIndex: e.detail.value
+        // this.setData({
+        //     sortsIndex: e.detail.value
+        // })
+        var that = this
+        var data = that.data.selectData;
+        var url = "../sorts/sorts";
+        for (var i in data) {
+            if (i == 0) {
+                url += "?selected" + i + "=" + data[i];
+            } else {
+                url += "&selected" + i + "=" + data[i];
+            }
+
+        }
+        wx.navigateTo({
+            url: url,
         })
     },
 

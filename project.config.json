@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -44,7 +44,14 @@
 				{
 					"id": -1,
 					"name": "operateShare",
-					"pathName": "pages/operateShare/operateShare"
+					"pathName": "pages/operateShare/operateShare",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "uploadPilot",
+					"pathName": "pages/uploadPilot/uploadPilot",
+					"query": ""
 				}
 			]
 		}
