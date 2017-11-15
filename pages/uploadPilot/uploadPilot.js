@@ -7,9 +7,9 @@ var sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 Page({
     data: {
         bookInfo:null,
-        hidden:4,
+        hidden:1,
         step:1,
-        cateisShow: true,
+        cateisShow: false,
         array: ['无限制', '3-5岁', '6-9岁', '10-12岁'],
         arrayValue: ['0', '1', '2', '3'],
         ageIndex: 0,
