@@ -1,0 +1,48 @@
+<import src="../templates/templates.wxml" />
+
+<!--下线图书列表-->
+<view class="book-list">
+    <!-- <view wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book"> -->
+    <!-- <template is="bookDownline" data="{{book}}"></template>  -->
+
+    <!-- </view> -->
+    <view class="record-box" style='margin:13rpx 0'>
+        <view style='border-bottom:1px'>
+            <view class='left' style="padding:5px">
+                <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:240rpx'></image>
+            </view>
+            <view class='right' style='width:500rpx;'>
+                <view class='infoBookname'>冒险大王邓肯计算机科学与软件学院{{phoneInfo.pixelRatio}}
+                </view>
+                <view class='info'>
+                    <image src="../../images/location.png"></image>
+                    计算机科学与软件学院
+                </view>
+                <view class='info'>
+                    <image src="../../images/time.png"></image>
+                    10天
+                </view>
+                <!-- <view class='operate'>
+                    <view class='operate_view'>
+                        <image src='../../images/edit.png'></image> 编辑
+                    </view>
+                    <view class='operate_view'>
+                        <image src='../../images/downBook.png' height='17rpx' width='17rpx'></image> 下线
+                    </view>
+                </view> -->
+            </view>
+        </view>
+        <!-- <view class='operate-box'>
+            <view style='clear:both'></view>
+        </view> -->
+    </view>
+    
+</view>
+
+
+<!--图书列表-->
+<view class="book-list">
+    <view wx:for="{{onLineBooks}}" wx:for-index="index" wx:for-item="book">
+        <template is="bookOnLine" data="{{book}}"></template>
+    </view>
+</view>
