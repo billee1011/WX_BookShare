@@ -1,0 +1,51 @@
+<!--pages/helpDetail/helpDetail.wxml-->
+<view class='page'>
+    <view class = "problemTitle">
+        <text>问题</text>
+    </view>
+    <view class='page-head-line'></view>
+    <view class = "solveText">
+        <view class = "word"> 
+            <text>解决方案</text> 
+        </view>
+        <view class = "imageInsert">
+            <image class='image' src='../../images/finish.png'></image>
+        </view>
+    </view>
+    <view >
+    <view class='option'>
+        <view class='good' bindtap='btn_good'>
+            <button >已解决</button>
+        </view>
+        <view class='bad' bindtap='btn_bad'>
+            <button>未解决</button>
+        </view>
+    </view>
+        
+<view wx:if="{{text=='unsolved'}}" class='solveingWays'>
+    <view class='title'>
+           <text>未解决原因</text>
+    </view>
+    <view class='optionList'>
+    <view style='margin-right:10rpx'>
+        <button class='mind'><text style='font-size:27rpx;color:grey'>描述不清晰</text></button>
+        </view>
+    <view style='margin-right:10rpx'>
+        <button class='mind'><text style='font-size:27rpx;color:grey'>操作后未解决</text></button>
+    </view>
+    <view style='margin-right:10rpx'>
+        <button class='mind'><text style='font-size:27rpx;color:grey'>规则不合理</text></button>
+    </view>
+    <view style='margin-right:10rpx'>
+        <button class='mind'><text style='font-size:27rpx;color:grey'>功能不好用</text></button>
+    </view>
+    </view>
+</view>
+
+
+    </view>
+</view>
+
+
+
+
