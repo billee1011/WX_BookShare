@@ -2,12 +2,12 @@
 
 <!--下线图书列表-->
 <view class="book-list">
-    <!-- <view wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book"> -->
-         <!-- <template is="bookDownline" data="{{book}}"></template>  -->
+     <view wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book"> 
+          <template is="bookDownline" data="{{book}}"></template>  
         
-    <!-- </view> -->
-    <view class="record-box" wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book" style='margin:13rpx 0'>
-        <view style='border-bottom:1px solid #f4f4f4'>
+     </view> 
+    <!-- <view class="record-box" wx:for="{{downLineBooks}}" wx:for-index="index" wx:for-item="book" style='margin:13rpx 0'>
+        <view style='border-bottom:1px solid #f4f4f4;padding-top'>
             <view class='left'>
                 <image src='{{book.book_image}}'></image>
             </view>
@@ -19,7 +19,7 @@
                 </view>
                 <view class='info'>
                     <image src="../../images/time.png"></image>
-                    {{book.keep_time}}
+                    {{book.keep_time}}天
                 </view>
             </view>
             <view style='clear:both'></view>
@@ -27,19 +27,19 @@
         <view class='operate-box'>
             <view class='operate'>
                 <view class='operate_view'>
-                    <image src='../../images/edit.png'></image>编辑
+                    <button size='mini' plain='true' type='default'  data-bookid="{{book.book_id}}" data-canshareid="{{book.can_share_id}}" bindtap="editKeepTime">编辑</button>
                 </view>
                 <view class='operate_view'>
-                    <image src='../../images/downBook.png'></image>下线
+                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="downLine">下线</button>
                 </view>
-                <view class='operate_view'>
+                <view class='operate_view' style='padding-top:0px'>
                     <image src='../../images/delete.png' style='width:18px;height:18px;'></image>
                 </view>
 
             </view>
             <view style='clear:both'></view>
         </view>
-    </view>
+    </view> -->
 </view>
 
 

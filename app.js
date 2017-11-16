@@ -90,8 +90,8 @@ App({
     globalData: {
         userInfo: null,
         certificationOk: 0,//是否认证
-        appId: 'wxe0a4d0328b2d85cb',
-        appSecret: '25f225cee1b8da033ecbd23ac68beb1a',
+        appId: 'wx5d6f10b9d21533a6',//wxe0a4d0328b2d85cb
+        appSecret: 'a534c61c9b99d4dc0cb010cd4017da9b',//25f225cee1b8da033ecbd23ac68beb1a
         session_key: null,
         openId: null,
         apiUrl: "35978598.1949science.cn/",//"localhost:8081",//www.1949science.cn  139.199.171.106/bookshare
@@ -102,7 +102,7 @@ App({
         latitude: 39.2349700000,//团队所在纬度
         longitude: 117.0582000000,//团队所在经度
         contractPhone:'13752766442',//联系我们的联系方式
-        
+        sort_url:'http://139.199.171.106'
 
     },
 })

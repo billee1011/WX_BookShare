@@ -43,6 +43,8 @@
     <view wx:for="{{bookObj}}" wx:for-index="index" wx:for-item="book" style='display:inline-block;width:{{ phoneInfo.windowWidth*0.32 }}px;margin:2px 0.5%'>
       <!-- <template is="indexList" data="{{book}}" /> -->
       <template is="indexListNew" data="{{book}}" />
+      <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>  
     </view>
     <view style='clear:both'></view>
   </view>
@@ -65,7 +67,7 @@
     <view class="catelist" style='margin-top:10px;width:100%;'>
       <view wx:for="{{sortsArray}}" wx:for-index="index" wx:for-item="book">
         <view class="cl_list cl_ico" data-id="{{book.ID}}" data-index="{{index+1}}" bindtap="selectSort">
-          <image src="http://139.199.171.106{{book.sort_image}}"></image>
+          <image src="{{sort_url}}{{book.sort_image}}"></image>
           <text wx:if="{{sortIndex==index+1}}" class='cl_ico_checked cl_ico'></text>
           <text>{{book.sort_name}}</text>
         </view>

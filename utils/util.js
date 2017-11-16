@@ -1,3 +1,4 @@
+var  app = getApp();
 function formatTime(date) {
     var year = date.getFullYear()
     var month = date.getMonth() + 1
@@ -106,8 +107,6 @@ module.exports = {
 
                                 if (res.confirm) {
 
-                                    console.log('用户点击确定')
-
                                     wx.openSetting({
 
                                         success: function success(res) {
@@ -140,58 +139,79 @@ module.exports = {
             success: function (res) {
                 if (res.code) {
                     //请求access_token
-                    wx.request({
-                        url: 'https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=getSessionKey&code=' + res.code,
-                        success: function (res) {
-                            var resData = res;
-                            getApp().globalData.session_key = res.data.session_key
-                            getApp().globalData.openId = res.data.openid
-                            //获取个人信息
-                            wx.getUserInfo({
-                                success: function (res) {
-                                    var res = JSON.parse(res.rawData);//eval('(' + res.rawData + ')');
-                                    //创建账号到数据库
-                                    var url = ('https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=regiser&avatarUrl=' + res.avatarUrl + "&city=" + res.city + "&country=" + res.country + "&gender=" + res.gender + "&nickName=" + res.nickName + "&province=" + res.province + "&openId=" + resData.data.openid).replace(/\s+/g, "");
-                                    console.log(url)
-                                    wx.request({
-                                        url: url,
-                                        success: function (res) {
-                                            if (res.data[0]["certificationOk"] == 0){
-                                                // var str = "您还没有认证，请前往个人中心认证!";
-                                                // wx.showModal({
-                                                //     title: '提醒',
-                                                //     content: str,
-                                                //     showCancel: false,
-                                                // })
-                                                param.showNotification('', '', "您还没有认证，请前往个人中心认证!");
-                                            } else if (res.data[0]["certificationOk"] == 3){
-                                                // var str = "";
-                                                // wx.showModal({
-                                                //     title: '提醒',
-                                                //     content: str,
-                                                //     showCancel: false,
-                                                // })
-                                                param.showNotification('', '', "认证被驳回，请重新上传信息！");
+                    if (!getApp().globalData.openId){
+                        wx.request({
+                            url: 'https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=getSessionKey&code=' + res.code,
+                            success: function (res) {
+                                var resData = res;
+                                getApp().globalData.session_key = res.data.session_key
+                                getApp().globalData.openId = res.data.openid
+                                //获取个人信息
+                                wx.getUserInfo({
+                                    success: function (res) {
+                                        var res = JSON.parse(res.rawData);//eval('(' + res.rawData + ')');
+                                        //创建账号到数据库
+                                        var url = ('https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=regiser&avatarUrl=' + res.avatarUrl + "&city=" + res.city + "&country=" + res.country + "&gender=" + res.gender + "&nickName=" + res.nickName + "&province=" + res.province + "&openId=" + resData.data.openid).replace(/\s+/g, "");
+                                        wx.request({
+                                            url: url,
+                                            success: function (res) {
+                                                if (res.data[0]["certificationOk"] == 0) {
+                                                    // var str = "您还没有认证，请前往个人中心认证!";
+                                                    // wx.showModal({
+                                                    //     title: '提醒',
+                                                    //     content: str,
+                                                    //     showCancel: false,
+                                                    // })
+                                                    param.showNotification('', '', "您还没有认证，请前往个人中心认证!");
+                                                } else if (res.data[0]["certificationOk"] == 3) {
+                                                    // var str = "";
+                                                    // wx.showModal({
+                                                    //     title: '提醒',
+                                                    //     content: str,
+                                                    //     showCancel: false,
+                                                    // })
+                                                    param.showNotification('', '', "认证被驳回，请重新上传信息！");
+                                                }
+
+                                                getApp().globalData.userId = res.data[0]["ID"];
+                                                getApp().globalData.userInfo = res.data[0];
+                                                getApp().globalData.certificationOk = res.data[0]["certificationOk"];
+                                                param.setData({
+                                                    userInfo: getApp().globalData.userInfo,
+                                                    certificationOk: getApp().globalData.certificationOk,
+                                                })
                                             }
-                                            
-                                            getApp().globalData.userId = res.data[0]["ID"];
-                                            getApp().globalData.userInfo = res.data[0];
-                                            getApp().globalData.certificationOk = res.data[0]["certificationOk"];
-                                            param.setData({
-                                                userInfo: getApp().globalData.userInfo,
-                                                certificationOk: getApp().globalData.certificationOk,
-                                            })
-                                        }
-                                    })
-                                }
-                            })
-                        }
-                    })
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                    
                 } else {
                     getApp().globalData.userId = null;
                 }
             }
         });
+    },
+
+    //获取当前用户是否有未完成的订单
+    getNonePay:function(){
+        wx.request({
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            method: "GET",
+            header: {
+                'content-type': 'application/json',
+            },
+            success: function (res) {
+                console.log(res.data)
+                if (res.data) {
+                    wx.navigateTo({
+                        url: '../pay/pay?sharingId=' + res.data.sharingId,
+                    })
+                }
+            }
+        })
     }
 }
 

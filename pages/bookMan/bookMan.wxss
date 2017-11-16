@@ -81,6 +81,9 @@
 
 .record-box .right .book_name {
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .record-box .right .info {
@@ -110,6 +113,7 @@
 .operate-box .operate .operate_view {
     display: inline-block;
     margin-right: 15rpx;
+    padding-top:11rpx
 }
 
 .operate-box .operate .operate_view image {

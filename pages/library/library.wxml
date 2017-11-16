@@ -1,0 +1,10 @@
+<view class="htmleaf-container">
+		<view class="htmleaf-content" style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
+			<view id="splitter"  style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
+			<text style='font-size:40px' bindtap="openLibrary" >点击进入</text>
+			<image src="./road-to-nowhere.jpg"  style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;clip:rect(0px,{{phoneInfo.screenHeight}}px,{{phoneInfo.screenHeight/2}}px,0px)' alt=""></image>
+			<image src="./road-to-nowhere.jpg"  style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;rect({{phoneInfo.screenHeight/2}}px,{{phoneInfo.screenHeight}}px,{{phoneInfo.screenHeight}}px,0px)' alt=""></image>
+			<image src="./road-to-nowhere.jpg" style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;' alt="Photograph of highway to Uluru, Australia" style="position: static; opacity: 0"></image>
+			</view>
+		</view>
+	</view>

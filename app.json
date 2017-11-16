@@ -46,12 +46,20 @@
         "pages/billBoard/billBoard",
         "pages/invitePeople/invite",
         "pages/detail1/detail1",
-        "pages/borrowBasket/borrowBasket"
+        "pages/borrowBasket/borrowBasket",
+        "pages/library/library",
+        "pages/operateIntr/operateIntr",
+        "pages/operateUpload/operateUpload",
+        "pages/sorts/sorts",
+        "pages/detailPay/detailPay",
+        "pages/pay/pay"
+
+        
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#000000",
-        "navigationBarTitleText": "阅享",
+        "navigationBarTitleText": "蜜蜂图书共享平台",
         "navigationBarTextStyle": "white",
         "backgroundColor": "#ffffff"
     },
@@ -60,7 +68,7 @@
         "list": [
             {
                 "pagePath": "pages/index/index",
-                "text": "首页",
+                "text": "我要借书",
                 "iconPath": "images/index.png",
                 "selectedIconPath": "images/index-selected.png"
             },
