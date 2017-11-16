@@ -47,10 +47,12 @@
         "pages/invitePeople/invite",
         "pages/detail1/detail1",
         "pages/borrowBasket/borrowBasket",
-"pages/library/library",
+        "pages/library/library",
         "pages/operateIntr/operateIntr",
         "pages/operateUpload/operateUpload",
-        "pages/sorts/sorts"
+        "pages/sorts/sorts",
+        "pages/detailPay/detailPay",
+        "pages/pay/pay"
 
         
     ],

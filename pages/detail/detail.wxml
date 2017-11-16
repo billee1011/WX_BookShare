@@ -19,7 +19,7 @@
             <!--（ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}）-->
             <view class='price'>
                 <text class='big-price'>{{bookInfo.price}}</text>
-                <text class='small-price'>积分</text>
+                <text class='small-price'>元/天</text>
             </view>
             <view class='location'>
                 <image class='location_pic' wx:if="{{book_type == 0}}" src='../../images/applier.png'></image>

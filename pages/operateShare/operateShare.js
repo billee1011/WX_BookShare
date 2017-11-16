@@ -244,10 +244,11 @@ Page({
                         duration: 2000
                     })
                 } else if (res.data == "success"){
-                    wx.showToast({
-                        title: '分享成功，积分已入账，请查收！',
-                        icon: 'success',
-                        duration: 2000
+                    wx.showModal({
+                        title: '通知',
+                        content: '分享成功,等待收益！',
+                        showCancel: false,
+                        confirmText: '我知道了',
                     })
                 }else{
                     wx.showToast({

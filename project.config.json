@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
-	"appid": "wxe0a4d0328b2d85cb",
+	"appid": "wx5d6f10b9d21533a6",
 	"projectname": "BeeBook",
 	"condition": {
 		"search": {
@@ -21,7 +21,6 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
 			"list": [
 				{
 					"id": -1,
