@@ -24,7 +24,8 @@
                 被驳回
             </view>
         </view>
-        <view style='background-color: #fff;' class='bottom-box'>
+        <!-- 待支付 待归还 代收书 -->
+         <view style='background-color: #fff;' class='bottom-box'>
             <view class="list-box" bindtap="returnBack">
                 <view style='position:relative;width:44px;margin:0 auto'>
                     <view class="icon-box">
@@ -36,37 +37,41 @@
                     <view class="jh-tab-bubble" wx:if="{{ needReturnNum.num > 0}}">
                         <text class="jh-tab-count">{{ needReturnNum.num < 100? needReturnNum.num: 99 }}</text>
                     </view>
-                    <!-- <template is="redPoint" data="{{needReturnNum}}"></template> -->
                 </view>
             </view>
             <view class="list-box" bindtap="getBook">
-            <view style='position:relative;width:44px;margin:0 auto'>
-                <view class="icon-box">
-                    <image src="../../images/receive2.png" style="width:36px;height:36px;margin: 0 auto"></image>
-                </view>
-                <view class="icon-text">
-                    <span>待收回</span>
-                </view>
-                <view class="jh-tab-bubble" wx:if="{{ getBookNum.num > 0}}">
+                <view style='position:relative;width:44px;margin:0 auto'>
+                    <view class="icon-box">
+                        <image src="../../images/receive2.png" style="width:36px;height:36px;margin: 0 auto"></image>
+                    </view>
+                    <view class="icon-text">
+                        <span>待收回</span>
+                    </view>
+                    <view class="jh-tab-bubble" wx:if="{{ getBookNum.num > 0}}">
                         <text class="jh-tab-count">{{ getBookNum.num < 100? getBookNum.num: 99 }}</text>
                     </view>
-                <!-- <template is="redPoint" data="{{getBookNum}}"></template> -->
+                </view>
+
             </view>
-                
+            <view class="list-box" bindtap="openWaitingPay">
+                <view style='position:relative;width:44px;margin:0 auto'>
+                    <view class="icon-box">
+                        <image src="../../images/pay.png" style="width:36px;height:36px;margin: 0 auto"></image>
+                    </view>
+                    <view class="icon-text">
+                        <span>待支付</span>
+                    </view>
+                    <view class="jh-tab-bubble" wx:if="{{ payBookNum.num > 0}}">
+                        <text class="jh-tab-count">{{ payBookNum.num < 100? payBookNum.num: 99 }}</text>
+                    </view>
+                </view>
+
             </view>
-            <!-- <view class="list-box" bindtap="borrowIn">
-            <view class="icon-box">
-                <image src="../../images/receive2.png" style="width:36px;height:36px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>借入</span>
-            </view>
-        </view> -->
             <view style='clear:both'></view>
-        </view>
+        </view> 
     </view>
     <!-- 第一块 -->
-    <view class="thirdblock" style='margin-top:75px;'>
+    <view class="thirdblock"> <!--style='margin-top:75px;'-->
         <view class="item" bindtap="openAccount" data-index="1">
             <image src="../../images/account.png" class="item_ico"></image>
             <span>我的账户</span>
@@ -107,12 +112,12 @@
         <image src="../../images/right.png" class="item_arrow"></image>
     </view>
     <view class="h1"></view> -->
-        <view class="item" bindtap="billBoard">
+        <!-- <view class="item" bindtap="billBoard">
             <image src="../../images/join_in.png" class="item_ico"></image>
             <span>邀请朋友</span>
             <image src="../../images/hot.png" class="item_arrow"></image>
         </view>
-        <view class="h1"></view>
+        <view class="h1"></view> -->
         <view class="item" bindtap="openSetting">
             <image src="../../images/setting.png" class="item_ico"></image>
             <span>设置</span>

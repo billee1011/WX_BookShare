@@ -30,14 +30,14 @@ Page({
                     integralRecord: res.data[1]["record"],
                     loading: false,
                 })
-                this.integral = new $wuxCountUp(1, res.data[0]["integral"], 0, 10, {
-                    printValue(value) {
-                        this.setData({
-                            integral: value,
-                        })
-                    }
-                })
-                this.integral.start()
+                // this.integral = new $wuxCountUp(1, res.data[0]["integral"], 0, 10, {
+                //     printValue(value) {
+                //         this.setData({
+                //             integral: value,
+                //         })
+                //     }
+                // })
+                // this.integral.start()
             },
             fail: function () {
                 wx.showToast({

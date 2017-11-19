@@ -23,6 +23,9 @@ Page({
                         title: '空空如也',
                         text: '您还不需要还书！',
                     }).show()
+                    that.setData({
+                        returnBack: ""
+                    })
                 } else {
                     that.setData({
                         returnBack: res.data
@@ -90,18 +93,21 @@ Page({
                                                                     duration: 2000
                                                                 })
                                                             } else if (res.data == "success") {
-                                                                wx.showModal({
-                                                                    title: '归还成功',
-                                                                    content: '评论得积分，是否前往？',
-                                                                    cancelText: "算了",
-                                                                    confirmText:"立即前往",
-                                                                    success: function (res) {
-                                                                        if (res.confirm) {
-                                                                            wx.navigateTo({
-                                                                                url: '../comment/comment?sharingId=' + sharingId + "&bookId=" + bookId,
-                                                                            })
-                                                                        }
-                                                                    }
+                                                                // wx.showModal({
+                                                                //     title: '归还成功',
+                                                                //     content: '您还没有评论，是否前往？',
+                                                                //     cancelText: "算了",
+                                                                //     confirmText:"立即前往",
+                                                                //     success: function (res) {
+                                                                //         if (res.confirm) {
+                                                                //             wx.navigateTo({
+                                                                //                 url: '../comment/comment?sharingId=' + sharingId + "&bookId=" + bookId,
+                                                                //             })
+                                                                //         }
+                                                                //     }
+                                                                // })
+                                                                wx.navigateTo({
+                                                                    url: '../pay/pay?sharingId=' + sharingId,
                                                                 })
                                                             } else if (res.data == "fail") {
                                                                 wx.showToast({
@@ -201,4 +207,11 @@ Page({
         })
     },
 
+    pilotBorrowIn: function (e) {
+        var sharingId = e.currentTarget.dataset.sharingid;
+        var canShareId = e.currentTarget.dataset.canshareid;
+        wx.navigateTo({
+            url: '../pilotBorrowIn/pilotBorrowIn?sharingId=' + sharingId + "&canShareId=" + canShareId,
+        })
+    }
 })

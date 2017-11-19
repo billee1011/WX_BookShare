@@ -109,7 +109,7 @@ header ._left img {
 	/* height: 300px;
 	background:pink; */
     background:#fff;
-	margin-bottom: 0.5rem;
+	/* margin-bottom: 0.5rem; */
 }
 .person_wallet_recharge{
 	width: 95%;

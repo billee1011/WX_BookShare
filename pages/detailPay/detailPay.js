@@ -78,7 +78,6 @@ Page({
     },
     onShow: function () {
         utils.checkSettingStatu();
-        utils.getNonePay();
     },
 
     // previewImage: function (e) {
@@ -115,109 +114,132 @@ Page({
     },
 
     borrowBook: function (e) {
+        var that = this
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
             })
             return;
         }
-        //借书
-        var that = this;
-        var canShareId = that.data.canShareId;
-        var book_type = that.data.book_type;
-        var checkStatus = that.data.bookInfo.protect;//信息保护
+        wx.showModal({
+            title: '提醒',
+            content: '您是否要借阅此书？',
+            confirmText:"是的",
+            cancelText:"点错了",
+            success:function(res){
+                if(res.confirm){
+                    //借书
+                    var canShareId = that.data.canShareId;
+                    var book_type = that.data.book_type;
+                    var checkStatus = that.data.bookInfo.protect;//信息保护
 
-        //C2C借书
-        if (checkStatus == 1) {
-            //开启信息保护
-            that.togglePtype();
-        } else {
-            //判断不能借自己书、是否借出
-            wx.request({
-                url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=affirmBorrowBook&canShareId=' + canShareId + '&user_id=' + app.globalData.userId + "&protect=0" + "&price=" + that.data.bookInfo.price + "&bookType=" + book_type).replace(/\s+/g, ""),
-                method: "GET",
-                header: {
-                    'content-type': 'application/json',
-                },
-                success: function (res) {
-                    // if (res.data[0].result == "noEnough") {
-                    //     wx.showToast({
-                    //         title: '您的积分不够,请通过其他方式获取积分！',
-                    //         image: '../../images/warning.png',
-                    //         duration: 2000
-                    //     })
-                    //     return;
-                    // }else 
-                    if (res.data[0].result == "sharing") {
-                        wx.showToast({
-                            title: '图书已被借出！',
-                            image: '../../images/warning.png',
-                            duration: 2000
-                        })
-                    } else if (res.data[0].result == "fail") {
-                        wx.showToast({
-                            title: '借书失败，请稍后重试！',
-                            image: '../../images/fail.png',
-                            duration: 2000
-                        })
-                    } else if (res.data[0].result == "success") {
-                        if (book_type == 0) {
-                            wx.showModal({
-                                title: '通知',
-                                content: '扣除您' + that.data.bookInfo.price + '积分，您可以直接联系书主借书！',
-                                success: function (res) {
-                                    if (res.confirm) {
-                                        wx.makePhoneCall({
-                                            phoneNumber: that.data.bookInfo.phoneNumber //仅为示例，并非真实的电话号码
-                                        })
-                                    } else if (res.cancel) {
+                    //C2C借书
+                    if (checkStatus == 1) {
+                        //开启信息保护
+                        that.togglePtype();
+                    } else {
+                        //判断不能借自己书、是否借出
+                        wx.request({
+                            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=affirmBorrowBook&canShareId=' + canShareId + '&user_id=' + app.globalData.userId + "&protect=0" + "&price=" + that.data.bookInfo.price + "&bookType=" + book_type).replace(/\s+/g, ""),
+                            method: "GET",
+                            header: {
+                                'content-type': 'application/json',
+                            },
+                            success: function (res) {
+                                // if (res.data[0].result == "noEnough") {
+                                //     wx.showToast({
+                                //         title: '您的积分不够,请通过其他方式获取积分！',
+                                //         image: '../../images/warning.png',
+                                //         duration: 2000
+                                //     })
+                                //     return;
+                                // }
+                                if (res.data[0].result == "haveNoReturn") {
+                                    wx.showModal({
+                                        title: '提醒',
+                                        content: '您当前还有未归还的书，归还后可以再借！',
+                                        confirmText:"前去归还",
+                                        cancelText:"我知道了",
+                                        success:function(res){
+                                            if(res.confirm){
+                                                wx.navigateTo({
+                                                    url: '../returnBack/returnBack',
+                                                })
+                                            }
+                                        }
+                                    })
+                                }else if (res.data[0].result == "sharing") {
+                                    wx.showToast({
+                                        title: '图书已被借出！',
+                                        image: '../../images/warning.png',
+                                        duration: 2000
+                                    })
+                                } else if (res.data[0].result == "fail") {
+                                    wx.showToast({
+                                        title: '借书失败，请稍后重试！',
+                                        image: '../../images/fail.png',
+                                        duration: 2000
+                                    })
+                                } else if (res.data[0].result == "success") {
+                                    if (book_type == 0) {
                                         wx.showModal({
                                             title: '通知',
-                                            content: '您可以前往借入界面联系书主',
-                                            showCancel: false,
+                                            content: '借入成功，您可以直接联系书主借书！',
                                             success: function (res) {
                                                 if (res.confirm) {
-
+                                                    wx.makePhoneCall({
+                                                        phoneNumber: that.data.bookInfo.phoneNumber //仅为示例，并非真实的电话号码
+                                                    })
                                                 } else if (res.cancel) {
-
+                                                    wx.showModal({
+                                                        title: '通知',
+                                                        content: '您可以前往我要取书界面联系书主',
+                                                        showCancel: false,
+                                                    })
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        //自营点借书成功提示
+                                        wx.showModal({
+                                            title: '通知',
+                                            content: '借入成功，你需要前往' + that.data.bookInfo.location + '借书！',
+                                            showCancel: false,
+                                            confirmText: '我知道了',
+                                            success:function(res){
+                                                if(res.confirm){
+                                                    wx.navigateBack({
+                                                        delta:1
+                                                    })
                                                 }
                                             }
                                         })
                                     }
-                                }
-                            })
-                        } else {
-                            //自营点借书成功提示
-                            wx.showModal({
-                                title: '通知',
-                                content: '借入成功，你需要前往' + that.data.bookInfo.location+'借书！',
-                                showCancel: false,
-                                confirmText:'我知道了'
-                            })
-                        }
 
-                    } else if (res.data[0].result == "mine") {
-                        wx.showToast({
-                            title: '您不能借自己的书！',
-                            image: '../../images/waning.png',
-                            duration: 2000
+                                } else if (res.data[0].result == "mine") {
+                                    wx.showToast({
+                                        title: '您不能借自己的书！',
+                                        image: '../../images/waning.png',
+                                        duration: 2000
+                                    })
+                                }
+                            },
+                            fail: function () {
+                                wx.showToast({
+                                    title: '借书失败，请稍后重试！',
+                                    image: '../../images/fail.png',
+                                    duration: 2000
+                                })
+                            }
                         })
                     }
-                },
-                fail: function () {
-                    wx.showToast({
-                        title: '借书失败，请稍后重试！',
-                        image: '../../images/fail.png',
-                        duration: 2000
-                    })
+                }else{
+                    return ;
                 }
-            })
-        }
+            }
+        })
     },
 
-    previewImage: function (e) {
-        console.log("!23")
-    },
     delete:function(e){
         var that = this;
         wx.previewImage({

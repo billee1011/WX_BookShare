@@ -16,14 +16,14 @@ App({
         })
         
         //定时器获取access_token
-        var timename = setInterval(function(){
-            wx.request({
-                url: ('https://' + that.globalData.apiUrl + '?m=home&c=User&a=getAccessToken').replace(/\s+/g, ""),
-                success: function (res) {
-                    that.globalData.access_token = res.data.access_token
-                }
-            })
-        }, that.globalData.timer);
+        // var timename = setInterval(function(){
+        //     wx.request({
+        //         url: ('https://' + that.globalData.apiUrl + '?m=home&c=User&a=getAccessToken').replace(/\s+/g, ""),
+        //         success: function (res) {
+        //             that.globalData.access_token = res.data.access_token
+        //         }
+        //     })
+        // }, that.globalData.timer);
 
         //获取手机的宽度和高度
         that.globalData.phoneInfo = wx.getSystemInfoSync()

@@ -65,7 +65,8 @@ Page({
             }
             this.setData({
                 sumSort: sumSort,
-                selectData: data
+                selectData: data,
+                selectDataStr: JSON.stringify(data)
              })
         })
         
@@ -231,7 +232,7 @@ Page({
             return;
         }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.sorts).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.selectDataStr).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -245,10 +246,17 @@ Page({
                     })
                 } else if (res.data == "success"){
                     wx.showModal({
-                        title: '通知',
-                        content: '分享成功,等待收益！',
-                        showCancel: false,
-                        confirmText: '我知道了',
+                        title: '提醒',
+                        content: '分享成功，有人借阅您的图书您就会得到收益噢！',
+                        showCancel:false,
+                        confirmText:"我知道了",
+                        success: function (res) {
+                            if (res.confirm) {
+                                wx.navigateBack({
+                                    delta:1
+                                })
+                            }
+                        }
                     })
                 }else{
                     wx.showToast({

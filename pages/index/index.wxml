@@ -40,7 +40,7 @@
   <!--图书列表-->
   <view class="book-list">
     <template is="prompt" wx:if="{{haveBook}}" data="{{ ...$wux.prompt.msg2 }}" />
-    <view wx:for="{{bookObj}}" wx:for-index="index" wx:for-item="book" style='display:inline-block;width:{{ phoneInfo.windowWidth*0.32 }}px;margin:2px 0.5%'>
+    <view wx:for="{{bookObj}}" wx:for-index="index" wx:for-item="book" style='display:inline-block;width:{{ phoneInfo.windowWidth*0.25 }}px;margin:2px 4%'>
       <!-- <template is="indexList" data="{{book}}" /> -->
       <template is="indexListNew" data="{{book}}" />
       <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  

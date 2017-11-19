@@ -1,0 +1,47 @@
+<import src="../templates/templates.wxml" />
+<import src="../../components/prompt/prompt.wxml" />
+
+<!--图书列表-->
+<view class="book-list">
+    <template is="prompt" data="{{ ...$wux.prompt.msg1 }}" />
+    <view wx:for="{{returnBack}}" wx:for-index="index" wx:for-item="book">
+        <!-- c2c等待支付页面 -->
+        <view>
+            <view style='background:#fafafa;margin-bottom:10rpx;box-shadow:1px 1px 1px #c2c2c4' bindtap="detail">
+                <view class='owner-info'>
+                    <view style='width:180px;height:70rpx;float:left;text-align:left;position:relative'>
+                        <image src='../../images/applier.png' style='width:30rpx;height:30rpx;position:absolute;top:18rpx;left:10rpx'></image>
+                        <text style='line-height:30px;margin-left:50rpx'>{{book.pilot_name?book.pilot_name:book.userName}}</text>
+                        <image src='../../images/personal_icon_arrow.png' style='width:15rpx;height:20rpx;position:absolute;top:24rpx;margin-left:10rpx'></image>
+                    </view>
+                    <view style='float:right;margin-right:25rpx'>
+                        <text class='order-status' style='color:red'>待支付</text>
+                    </view>
+                </view>
+                <view style='padding-top:6rpx'>
+                    <view class="record" bindtap="pilotBorrowIn" data-sharingId="{{book.sharing_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
+                        <view class="left">
+                            <image src='{{book.book_image}}' style='width:100px' mode='widthFix' bindload="setPicWidth"></image>
+                        </view>
+                        <view class="right" style='width:{{phoneInfo.screenWidth-170}}px;'>
+                            <view style='color:#404040;font-size:31rpx;' class='noOver'>
+                                {{book.book_name}}
+                            </view>
+                            <view class='noOver'>
+                                <image src="../../images/location.png" class='icon-small'></image> {{book.location}}</view>
+                            <view class="noOver">
+                                <image src="../../images/time.png" class='icon-small'></image> {{book.loan_at}}
+                            </view>
+                        </view>
+                        <view style='clear:both'></view>
+                    </view>
+                </view>
+                <view class='operate' wx:if="{{book.if_pay == 0}}">
+                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="openPay" data-ownerId='{{book.owner_id}}'>支付</button>
+                    <view style='clear:both'></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<!--图书列表 end-->

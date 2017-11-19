@@ -24,7 +24,8 @@ Page({
             success: function (res) {
                 that.setData({
                     needReturnNum: res.data[0],
-                    getBookNum: res.data[1]
+                    getBookNum: res.data[1],
+                    payBookNum: res.data[2]
                 })
             }
         })
@@ -203,4 +204,16 @@ Page({
             url: '../getBook/getBook'
         })
     },
+    openWaitingPay:function(){
+        if (app.globalData.certificationOk != 2) {
+            wx.showToast({
+                title: '您还没有进行信息认证！',
+                image: '../../images/warning.png',
+            })
+            return;
+        }
+        wx.navigateTo({
+            url: '../waitingPay/waitingPay'
+        })
+    }
 })

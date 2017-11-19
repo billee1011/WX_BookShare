@@ -1,0 +1,27 @@
+/* pages/myBook/myBook.wxss */
+
+.prompt-container {
+    background: #f4f4f4;
+}
+
+.weui-navbar__item {
+    padding: 9px 0;
+}
+
+.weui-navbar__slider {
+    width: 4.1em;
+}
+
+.operate {
+    width: 100%;
+    background: #fff;
+    padding: 8rpx 0;
+    /* border-top:1px solid #F5F5F5; */
+}
+
+.operate button {
+    width: 125rpx;
+    margin-right: 5px;
+    float: right;
+    font-size: 24rpx
+}

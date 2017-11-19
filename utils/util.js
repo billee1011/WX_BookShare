@@ -207,7 +207,7 @@ module.exports = {
                 console.log(res.data)
                 if (res.data) {
                     wx.navigateTo({
-                        url: '../pay/pay?sharingId=' + res.data.sharingId,
+                        url: '../pay/pay?sharingId=' + res.data[0].sharingId,
                     })
                 }
             }

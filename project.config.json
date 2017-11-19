@@ -21,6 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -45,6 +46,18 @@
 					"name": "operateShare",
 					"pathName": "pages/operateShare/operateShare",
 					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "pay",
+					"pathName": "pages/pay/pay",
+					"query": "sharingId=273"
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": "sharingId=273"
 				}
 			]
 		}

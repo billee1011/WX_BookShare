@@ -142,7 +142,8 @@ Page({
             }
             this.setData({
                 sumSort: sumSort,
-                selectData: data
+                selectData: data,
+                selectDataStr: JSON.stringify(data)
             })
         })
 
@@ -569,7 +570,7 @@ Page({
         if (!thatData.cardContent){
             wx.showModal({
                 title: '提醒',
-                content: '您还没有填写书评，填写书评可能会给您带来更多的积分呦',
+                content: '您还没有填写书评，填写书评可能会吸引更多人借阅呦',
                 confirmText:"填写",
                 cancelText:"算了",
                 success: function (res) {
@@ -583,7 +584,7 @@ Page({
         }
 
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId+"&user_id=" + app.globalData.userId + "&age=" + thatData.arrayValue[ageIndex] + "&sort=" + thatData.sortsIDArray[sortsIndex] + "&card_content=" + thatData.cardContent+"&book_content=5").replace(/\s+/g, ""),
+            url: ('https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + thatData.arrayValue[ageIndex] + "&sort=" + thatData.selectDataStr + "&card_content=" + thatData.cardContent+"&book_content=5").replace(/\s+/g, ""),
             method: "GET",
             dataType:"text",
             success: function (res) {

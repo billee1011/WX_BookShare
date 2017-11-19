@@ -346,7 +346,7 @@
 <!-- 归还页面模板 -->
 <!-- 等待归还模板 -->
 <template name="returnBackContact">
-    <view class="book-tmp" bindtap="detail" wx:if="{{book.if_affirm == 0 && book.if_refuse==0 && book.if_finish==1}}">
+    <view class="book-tmp" bindtap="detail" wx:if="{{book.type == 0 && book.if_affirm == 0 && book.if_refuse==0 && book.if_finish==1}}">
         <image src="{{book.book_image}}" class="book-image"></image>
         <view class="book-info">
             <view class="book-name">
@@ -828,10 +828,41 @@
 <!-- 积分列表 -->
 
 <!-- 红点 -->
-    <template name="redPoint">
-        <!-- 右上角 红色数字 -->
-        <view class="jh-tab-bubble">
-            <text class="jh-tab-count">{{getBookNum}}</text>
-        </view>
-    </template>
+<template name="redPoint">
+    <!-- 右上角 红色数字 -->
+    <view class="jh-tab-bubble">
+        <text class="jh-tab-count">{{getBookNum}}</text>
+    </view>
+</template>
 <!-- 红点 -->
+
+
+<!-- 书主 我的图书 start-->
+<template name="myBookTemplate">
+    <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+        <image src="{{book.book_image}}" class="book-image"></image>
+        <view class="book-info">
+            <view class="book-name">{{book.book_name}}</view>
+            <view class="book-applier">
+                {{book.writer}}
+            </view>
+        </view>
+        <view class="jh-tab-bubble" style='top:10rpx;right:10rpx' wx:if="{{book.borrow_times!=0}}">
+            <text class="jh-tab-count">{{ book.borrow_times }}</text>
+        </view>
+        <view class="clear-both"></view>
+
+    </view>
+    <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx'>
+        <view bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+            <view style='float:left'>当前每日收入：<text style='color:red'>￥0.6</text></view>
+            更多信息
+            <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+            <view style='clear:both'></view>
+        </view>
+        <view data-index='{{currentCanShare}}'>
+            已带来收入：￥3.6{{currentCanShare == book.can_share_id}}
+        </view>
+    </view>
+</template>
+<!-- 书主 我的图书 end -->

@@ -52,7 +52,9 @@
         "pages/operateUpload/operateUpload",
         "pages/sorts/sorts",
         "pages/detailPay/detailPay",
-        "pages/pay/pay"
+        "pages/pay/pay",
+        "pages/waitingPay/waitingPay",
+        "pages/myBook/myBook"
 
         
     ],

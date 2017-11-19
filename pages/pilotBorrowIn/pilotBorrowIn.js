@@ -261,18 +261,27 @@ Page({
                                         success: function (res) {
                                             if (res.data == "returned") {
                                                 wx.showToast({
-                                                    title: '您已成功还书，无需重复！',
+                                                    title: '扫描成功，无需重复！',
                                                     image: '../../images/warning.png',
                                                     duration: 2000
                                                 })
                                             } else if (res.data == "success") {
-                                                wx.showToast({
-                                                    title: '还书成功！',
-                                                    icon: 'success',
-                                                    duration: 2000
-                                                })
+                                                
                                                 that.setData({
                                                     step: e.target.dataset.index
+                                                })
+                                                wx.showModal({
+                                                    title: '提示',
+                                                    content: '还书成功，前去支付！',
+                                                    showCancel:false,
+                                                    confirmText:"支付",
+                                                    success:function(res){
+                                                        if(res.confirm){
+                                                            wx.navigateTo({
+                                                                url: '../pay/pay?sharingId='+that.data.sharingId,
+                                                            })
+                                                        }
+                                                    }
                                                 })
                                             }
                                         },
