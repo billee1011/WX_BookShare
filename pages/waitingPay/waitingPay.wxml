@@ -11,7 +11,7 @@
                 <view class='owner-info'>
                     <view style='width:180px;height:70rpx;float:left;text-align:left;position:relative'>
                         <image src='../../images/applier.png' style='width:30rpx;height:30rpx;position:absolute;top:18rpx;left:10rpx'></image>
-                        <text style='line-height:30px;margin-left:50rpx'>{{book.pilot_name?book.pilot_name:book.userName}}</text>
+                        <text style='line-height:30px;margin-left:50rpx'>{{book.pilot_name?book.pilot_name:book.owner_name}}</text>
                         <image src='../../images/personal_icon_arrow.png' style='width:15rpx;height:20rpx;position:absolute;top:24rpx;margin-left:10rpx'></image>
                     </view>
                     <view style='float:right;margin-right:25rpx'>
@@ -28,12 +28,29 @@
                                 {{book.book_name}}
                             </view>
                             <view class='noOver'>
-                                <image src="../../images/location.png" class='icon-small'></image> {{book.location}}</view>
-                            <view class="noOver">
-                                <image src="../../images/time.png" class='icon-small'></image> {{book.loan_at}}
+                                <image src="../../images/location.png" class='icon-small'></image> {{book.location}}
                             </view>
                         </view>
                         <view style='clear:both'></view>
+                    </view>
+                </view>
+                <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                    <view>
+                        <view style='float:left'>金额：
+                            <text style='color:red'>￥{{book.money!=null?book.money:0.00}}</text>
+                        </view>
+                        <!-- 更多信息 -->
+                        <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                        <view style='clear:both'></view>
+                    </view>
+                    <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                        <view style='text-align:left;width:50%;display:inline-block'>
+                            时长：
+                            <text style='color:red'>{{book.time!=null?book.time:0}}天</text>
+                        </view>
+                        <view style='text-align:right;width:50%;display:inline-block'>
+                            借阅时间：{{book.loan_at!=null?book.loan_at:"暂无数据"}}
+                        </view>
                     </view>
                 </view>
                 <view class='operate' wx:if="{{book.if_pay == 0}}">

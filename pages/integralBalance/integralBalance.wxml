@@ -5,13 +5,12 @@
     <view class="firstblock" style="margin-top:10px">
         <view class="item" style='height:250px;'>
             <view class="countup integral">{{ integral }}</view>
-            <view style='text-align:center;color:#c9c9c9;font-size:20px;'>账户积分（分）</view>
+            <view style='text-align:center;color:#c9c9c9;font-size:20px;'>账户金额（元）</view>
         </view>
         <view class='h1'></view>
         <view class="item" style='padding:5px 5%;'>
             <button class='submit' bindtap="" type="submit" disable>
-                <!-- 充值 -->
-                您可以通过上传图书获得积分
+                提现
             </button>
         </view>
     </view>

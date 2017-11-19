@@ -4,9 +4,9 @@
     <view class="firstblock" bindtap='integralBalance' style="margin-top:10px">
         <view class="item">
             <image class='image' src='../../images/balance.png'></image>
-            <span>账户积分</span>
+            <span>账户金额</span>
             <view class="rightText" style="width:300rpx;height:47px;line-height:47px;">
-                {{integral}}分
+                ￥{{integral}}
                 <!-- <switch bindchange="" checked="{{checked}}"/> -->
             </view>
         </view>

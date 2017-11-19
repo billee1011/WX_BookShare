@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+      phoneInfo: app.globalData.phoneInfo
   },
 
   /**
@@ -103,5 +103,21 @@ Page({
       wx.navigateTo({
           url: '../pay/pay?sharingId=' + sharingId + "&ownerId=" + ownerId,
       })
-  }
+  },
+
+  openMore: function (e) {
+      var canShareId = e.currentTarget.dataset.canshareid;
+      var that = this
+
+      if (canShareId != that.data.currentCanShare) {
+          that.setData({
+              currentCanShare: canShareId
+          })
+      } else {
+          that.setData({
+              currentCanShare: false
+          })
+      }
+  },
+
 })

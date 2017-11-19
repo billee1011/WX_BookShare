@@ -123,6 +123,8 @@ page{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: 100rpx;
+    line-height: 100rpx
 }
 
 .icon-small {

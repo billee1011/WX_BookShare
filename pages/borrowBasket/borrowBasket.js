@@ -30,8 +30,17 @@ Page({
                 if (res.data == "noBorrowIn") {
                     $wuxPrompt.init('msg1', {
                         title: '空空如也',
-                        text: '暂时没有相关数据',
-                        
+                        text: '邻居的孩子已经看了N本书了',
+                        buttons: [
+                            {
+                                text: '超过他'
+                            }
+                        ],
+                        buttonClicked(index, item) {
+                            wx.switchTab({
+                                url: '../index/index'
+                            })
+                        },
                     }).show()
                 } else {
                     if (res.data[0] == '' && res.data[1] == '') {
