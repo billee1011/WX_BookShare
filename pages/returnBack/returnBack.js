@@ -59,6 +59,7 @@ Page({
     //扫码 整体流程完成
     screenQRcode: function (e) {
         var bookId = e.target.dataset.bookid;
+        var ownerId = e.target.dataset.ownerid;
         wx.getSetting({
             success(res) {
                 if (res.authSetting['scope.userInfo']) {
@@ -107,7 +108,7 @@ Page({
                                                                 //     }
                                                                 // })
                                                                 wx.navigateTo({
-                                                                    url: '../pay/pay?sharingId=' + sharingId,
+                                                                    url: '../pay/pay?sharingId=' + sharingId + "&ownerId=" + ownerId,
                                                                 })
                                                             } else if (res.data == "fail") {
                                                                 wx.showToast({
