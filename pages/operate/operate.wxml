@@ -85,10 +85,10 @@
             </block>
         </swiper>
     </view>
-    <view style='width:100%;line-height:60rpx;font-size:23rpx;padding:6rpx 12rpx;border-bottom:1px solid #fff;background:#fff'>
+    <view  bindtap='changeRole' style='width:100%;line-height:60rpx;font-size:23rpx;padding:6rpx 12rpx;border-bottom:1px solid #fff;background:#fff'>
         <text>当前角色：<text style='color:red' wx:if="{{role}}">书主</text><text style='color:red' wx:else>借书人</text></text>
         <!-- <image src='../../images/exchange.png' style='width:40rpx;height:40rpx;float:right;margin-right:30rpx;margin-top:5px;'></image> -->
-        <text bindtap='changeRole' style='float:right;margin-right:40rpx'>切换</text>
+        <text style='float:right;margin-right:40rpx'>切换</text>
     </view>
     <!-- 书主操作按钮 -->
     <view class="bottom" wx:if="{{role}}">
