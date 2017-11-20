@@ -1,0 +1,43 @@
+/* pages/helpList/helpList.wxss */
+.box1{
+    margin-bottom: 20rpx;
+}
+.box2{
+    border-width: 2rpx;
+    border-color:#f4f4f4;
+    border-style: solid;
+    background: white;
+    height: 80rpx;
+    line-height: 80rpx 
+}
+.box3{
+    border-width: 4rpx;
+    border-color:#f4f4f4;
+    border-style: solid;
+    background: white; 
+    float: left;
+    text-align: center;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    width: 32%
+}
+.text{
+    font-size: 28rpx;
+    align-self: left;
+    margin-left: 20rpx;
+    padding: 16rpx;
+}
+.photo {
+    height: 60rpx;
+    width:60rpx;
+    float: right;
+    margin-top: 10rpx
+}
+.pos-1{
+    position: absolute;
+    bottom:0%;
+    font-size: 38rpx;
+    background: white;
+    width: 100%
+}

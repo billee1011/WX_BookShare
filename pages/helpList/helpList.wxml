@@ -1,0 +1,36 @@
+<!--pages/helpList/helpList.wxml-->
+<view class='box1'>
+    <view style='background:#fff;'>
+        <input type='text' placeholder='搜索' style='width:80%;float:left;vertical-align:bottom;padding-left:12rpx' placeholder-style='padding-left:10rpx' class='text' auto-focus />
+        <icon type="search" size="18" color="#666666" style='float:right;margin-right:20rpx;margin-top: 18rpx;' />
+        <view style='clear:both'></view>
+    </view>
+</view>
+<view>
+    <text class='text' style='font-size:24rpx'>热点问题</text>
+</view>
+<view style='width:100%' class='box1'>
+    <view class='box2'>
+        <text class='text'>如何借书</text>
+        <image class='photo' src='../../images/right.png'></image>
+    </view>
+    <view class='box2'>
+        <text class='text'>如何还书</text>
+        <image class='photo' src='../../images/right.png'></image>
+    </view>
+    <view class='box2'>
+        <text class='text'>如何充值</text>
+        <image class='photo' src='../../images/right.png'></image>
+    </view>
+</view>
+<view class='pos-1'>
+    <view class='box3'>
+        <text>全部问题</text>
+    </view>
+    <view class='box3'>
+        <text>快捷帮助</text>
+    </view>
+    <view class='box3'>
+        <text>意见反馈</text>
+    </view>
+</view>
