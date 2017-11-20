@@ -1,16 +1,16 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.5.2",
-	"appid": "wxe0a4d0328b2d85cb",
-	"projectname": "bookshare",
+	"libVersion": "1.6.4",
+	"appid": "wx5d6f10b9d21533a6",
+	"projectname": "BeeBook",
 	"condition": {
 		"weapp": {
 			"current": 1,
@@ -37,43 +37,35 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
 			"list": [
 				{
-					"id": 0,
-					"name": "detail1",
-					"pathName": "pages/detail1/detail1",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "payment",
-					"pathName": "pages/payment/payment",
-					"query": ""
-				},
-				{
-					"id": 2,
-					"name": "comment",
-					"pathName": "pages/comment/comment",
-					"query": "book_id=30"
-				},
-				{
 					"id": -1,
-					"name": "toAuth",
-					"pathName": "pages/toAuth/toAuth",
+					"name": "operateUpload",
+					"pathName": "pages/operateUpload/operateUpload",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
+					"name": "sorts",
+					"pathName": "pages/sorts/sorts",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "pages/borrowBasket/borrowBasket",
-					"pathName": "pages/borrowBasket/borrowBasket",
+					"name": "logs",
+					"pathName": "pages/logs/logs",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "operateShare",
+					"pathName": "pages/operateShare/operateShare",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "register",
+					"pathName": "pages/register/register"
 				}
 			]
 		}

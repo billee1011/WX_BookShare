@@ -189,14 +189,9 @@ Page({
                             //自营点借书成功提示
                             wx.showModal({
                                 title: '通知',
-                                content: '借入成功，扣除' + that.data.bookInfo.price + '积分，你需要前往此自营点借书！',
-                                success: function (res) {
-                                    if (res.confirm) {
-
-                                    } else if (res.cancel) {
-
-                                    }
-                                }
+                                content: '借入成功，扣除' + that.data.bookInfo.price + '积分，你需要前往' + that.data.bookInfo.location+'借书！',
+                                showCancel: false,
+                                confirmText:'我知道了'
                             })
                         }
 

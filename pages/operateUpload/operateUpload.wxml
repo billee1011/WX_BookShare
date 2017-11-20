@@ -1,0 +1,21 @@
+
+<view class='body'>
+    <view class='view1'>
+        <view class='title'>
+            <text>请选择上传方式</text>
+        </view>
+        <view>
+            <text class='intro' style="color:red;">*</text>
+            <text class='intro'>书主将图书交给平台代为运营</text>
+            <text class='intro'>（借阅者直接到自营点取书）</text>
+            <button class="btn btn_primary" href="javascript:;" type='button' data-type='1' bindtap='uploadBook'>上传至自营点</button>
+        </view>
+        <view style='margin-top:24rpx;'>
+            <text class='intro' style="color:red;">*</text>
+            <text class='intro'>书主自己持有图书（借阅者电话联系书主取书）</text>
+            <button class="btn btn_primary" href="javascript:;" type='button' data-type='2' bindtap='uploadBook'>普通上传</button>
+        </view>
+    </view>
+
+</view>
+

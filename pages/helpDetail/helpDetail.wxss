@@ -1,0 +1,61 @@
+/* pages/helpDetail/helpDetail.wxss */
+.problemTitle{
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-top: 20rpx;
+    margin-bottom: 10rpx;
+}
+.page-head-line{
+    width: 100% ;
+    height: 2rpx;
+    background-color: #D8D8D8;
+}
+.solveText{
+     margin-top: 10rpx;
+}
+.imageInsert{
+    text-align: center
+}
+image{
+    width: 200rpx;
+    height: 200rpx;
+}
+.hover-class{
+    background-color: "grey";
+}
+.good{
+    width:50%;
+}
+.bad{
+    width:50%;
+    float: right;
+}
+.option{
+    margin: 40rpx;
+    display: flex; 
+}
+.page{
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    display: flex;  
+    flex-direction: column;
+}
+.title{
+    width:100%;
+    text-align: center;
+    color:#D8D8D8
+}
+.option-view{
+    display: inline-block
+}
+.optionList{
+    display: flex;
+}
+button{
+    width: 250rpx;
+    height: 70rpx;
+    background-color: #D8D8D8;
+}
+.mind{
+    width:160rpx;
+}

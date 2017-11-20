@@ -1,4 +1,5 @@
 //operateShare.js 关于我们
+var event = require('../../utils/event.js')
 //获取应用实例
 var app = getApp()
 Page({
@@ -54,9 +55,33 @@ Page({
             }
         })
         
+        //绑定监听
+        event.on('DataChanged', this, function (data) {
+            var that = this;
+            var sumSort = "";
+            for(var i=0;i<data.length;i++){
+                var index = data[i];
+                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " "
+            }
+            this.setData({
+                sumSort: sumSort,
+                selectData: data
+             })
+        })
+        
+        event.on('Data', this, function (data) {
+            this.setData({
+                sortsArray: data,
+            });
+        })        
     },
     onReady: function () {
 
+    },
+    //移除绑定监听
+    onUnload: function () {
+        event.remove('DataChanged', this);
+        event.remove('Data', this);
     },
 
     //扫码
@@ -206,7 +231,7 @@ Page({
             return;
         }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.sortsIDArray[sortsIndex]).replace(/\s+/g, ""),
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.sorts).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -219,10 +244,11 @@ Page({
                         duration: 2000
                     })
                 } else if (res.data == "success"){
-                    wx.showToast({
-                        title: '分享成功，积分已入账，请查收！',
-                        icon: 'success',
-                        duration: 2000
+                    wx.showModal({
+                        title: '通知',
+                        content: '分享成功,等待收益！',
+                        showCancel: false,
+                        confirmText: '我知道了',
                     })
                 }else{
                     wx.showToast({
@@ -289,6 +315,22 @@ Page({
         var that = this;
         that.setData({
             card_content: e.detail.value//书评内容
+        })
+    },
+    openSorts:function(){
+        var that = this
+        var data = that.data.selectData;
+        var url = "../sorts/sorts";
+        for (var i in data){
+            if(i == 0){
+                url += "?selected" + i + "=" + data[i];
+            }else{
+                url += "&selected" + i + "=" + data[i];
+            }
+            
+        }
+        wx.navigateTo({
+            url: url,
         })
     }
 })

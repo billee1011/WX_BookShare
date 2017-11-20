@@ -17,7 +17,7 @@
   
 </view> -->
 
-<view class="container">
+<!-- <view class="container">
     <view class="record-box" wx:for="{{detailList}}" wx:for-item="record" style='margin:13rpx 0'>
         <view style='border-bottom:1px solid #f4f4f4'>
             <view class='left' style='float:left;height:240rpx'>
@@ -52,7 +52,7 @@
             <view style='clear:both'></view>
         </view>
     </view>
-</view>
+</view> -->
 
 <!-- <view class="item-box">  
   <view class="items">  
@@ -63,3 +63,136 @@
     </view>  
   </view>  
 </view>   -->
+
+<view>
+    <view class='bookcase_owner'>刘鑫的图书馆</view>
+    <view class='bookcase_body' style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
+        <view style='padding:100px 35px 5px 35px;'>
+            <view class='bookcase_board' style="background-size:{{phoneInfo.screenWidth-60}}px 20px;">
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view style='clear:both'></view>
+            </view>
+            <view class='bookcase_board' style="background-size:{{phoneInfo.screenWidth-60}}px 20px;">
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view style='clear:both'></view>
+            </view>
+            <view class='bookcase_board' style="background-size:{{phoneInfo.screenWidth-60}}px 20px;">
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view style='clear:both'></view>
+            </view>
+            <view class='bookcase_board' style="background-size:{{phoneInfo.screenWidth-60}}px 20px;">
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s24551042.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯邓肯
+                    </span>
+
+
+                </view>
+                <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px'>
+                    <view>
+                        <image src='https://img3.doubanio.com/lpic/s8461493.jpg' style='width:{{phoneInfo.screenWidth/3-40}}px;' mode='widthFix'></image>
+                    </view>
+                    <span style='color:#000;' class="bookcase_bookName">
+                        冒险大王邓肯
+                    </span>
+
+                </view>
+                <view style='clear:both'></view>
+            </view>
+
+        </view>
+    </view>
+</view>

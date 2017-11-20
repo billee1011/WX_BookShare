@@ -1,0 +1,127 @@
+/* pages/leftSwiperDel/index.wxss */
+
+/* view{  
+    box-sizing: border-box;  
+}  
+.item-box{  
+    margin: 0 auto;  
+    padding:40rpx 0;  
+}  
+.items{  
+    width: 100%;  
+}  
+.item{  
+    position: relative;  
+    border-top: 2rpx solid #eee;  
+    height: 300rpx;  
+    line-height: 120rpx;  
+    overflow: hidden;  
+}  
+.item:last-child{  
+    border-bottom: 2rpx solid #eee;  
+}  
+.inner{  
+    position: absolute;  
+    top:0;  
+}  
+.inner.txt{  
+    background-color: #fff;  
+    width: 100%;  
+    z-index: 5;  
+    padding:0 10rpx;  
+    transition: left 0.2s ease-in-out;  
+    white-space:nowrap;  
+    overflow:hidden;  
+    text-overflow:ellipsis;  
+}  
+.inner.del{  
+    background-color: #e64340;  
+    width: 180rpx;text-align: center;  
+    z-index: 4;  
+    right: 0;  
+    color: #fff;
+    height: 278rpx  
+}  
+.item-icon{  
+    width: 220rpx;  
+    vertical-align: middle;  
+    margin-right: 16rpx  
+}  
+.thumb{  
+    width: 200rpx;  
+    height: 200rpx;  
+    -webkit-overflow-scrolling: touch;  
+    overflow: scroll;  
+}   */
+
+.record-box {
+    /* height: 120rpx; */
+    width: 100%;
+    border-bottom: 1rpx solid #ddd;
+    background-color: #fff;
+}
+
+.record-box .left {
+    /* float: left; */
+    height: 240rpx;
+    display: inline-block;
+}
+
+.record-box .left image {
+    width: 240rpx;
+    height: 260rpx;
+}
+
+.record-box .right {
+    /* float: left; */
+    display: inline-block;
+    font-size: 30rpx;
+    line-height: 60rpx;
+    height: 240rpx;
+    padding-left: 10rpx;
+}
+.record-box .right .info {
+    margin-top: 5rpx;
+    color: #888;
+    font-size: 25rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.record-box .right .infoBookname{
+    font-weight:600;
+    margin-top: 10rpx;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.record-box .right .info image {
+    width: 15rpx;
+    height: 15rpx;
+}
+
+.operate-box {
+    width: 100%;
+    margin:0 0;
+    height: 280rpx;
+}
+
+.record-box .right .operate {
+    float: right;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.record-box .right .operate_view {
+    display: inline-block;
+    margin-right: 15rpx;
+
+}
+
+.record-box .right .operate_view image {
+    width: 16rpx;
+    height: 16rpx;
+}

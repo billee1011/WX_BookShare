@@ -17,7 +17,17 @@ Page({
     
     onLoad: function (options) {
         var that = this;
-        utils.getUserData(that);  
+        utils.getUserData(that);
+        wx.request({
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            method: "GET",
+            success: function (res) {
+                that.setData({
+                    needReturnNum: res.data[0],
+                    getBookNum: res.data[1]
+                })
+            }
+        })
         that.setData({
             userInfo: app.globalData.userInfo,
             certificationOk: app.globalData.certificationOk,

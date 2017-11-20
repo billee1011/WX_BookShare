@@ -16,11 +16,15 @@ Page({
         age: ["请选择",'无限制', '3-5岁', '6-9岁', '10-12岁'],
         ageValue:[null,0,1,2,3],
         sortIndex:0,
+        sort_url: app.globalData.sort_url,
         //当前设备信息
         phoneInfo: app.globalData.phoneInfo,
 
         //页面引导
         locks: 0, 
+
+        searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
+        searchLoadingComplete: false  //“没有数据”的变量，默认false，隐藏  
     },
 
     
@@ -39,10 +43,30 @@ Page({
         that.getBookList();
         that.getSorts();
         wx.hideLoading()
-        console.log(app.globalData.phoneInfo)
+        
         // that.$wuxBackdrop = $wuxBackdrop.init();
         // that.retain()
         
+    },
+    onReady:function(){
+        console.log(app.globalData.userId)
+        wx.request({
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            method: "GET",
+            header: {
+                'content-type': 'application/json',
+            },
+            success: function (res) {
+                console.log(res.data)
+            },
+            fail: function () {
+                wx.showToast({
+                    title: '获取数据失败，请稍后重试！',
+                    image: '../../images/fail.png',
+                    duration: 2000
+                })
+            }
+        })
     },
 
     //下滑到px时搜索取消
@@ -199,6 +223,7 @@ Page({
 
     onShow: function (){
         this.onLoad();
+        
     },
 
     changeTab: function (event) {
@@ -264,8 +289,13 @@ Page({
         // })
         
         //新页面
+        // wx.navigateTo({
+        //     url: '../detail1/detail1?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+        // })
+
+        //支付新页面
         wx.navigateTo({
-            url: '../detail1/detail1?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+            url: '../detailPay/detailPay?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
         })
     },
 
