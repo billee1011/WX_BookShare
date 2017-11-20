@@ -13,12 +13,18 @@
 	"projectname": "bookshare",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "test",
-					"pathName": "pages/test/test"
+					"pathName": "pages/test/test",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "helpList",
+					"pathName": "pages/helpList/helpList"
 				}
 			]
 		},

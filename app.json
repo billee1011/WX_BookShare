@@ -47,7 +47,8 @@
         "pages/invitePeople/invite",
         "pages/detail1/detail1",
         "pages/borrowBasket/borrowBasket",
-        "pages/test/test"
+        "pages/test/test",
+        "pages/helpList/helpList" 
     ],
     "window": {
         "backgroundTextStyle": "light",
