@@ -1,27 +1,46 @@
+<import src="../../components/prompt/prompt.wxml" />
 <import src="../templates/templates.wxml" />
-<import src="../../components/prompt/prompt.wxml"/>
-<!--图书列表-->
-<view class="book-list">
-<template is="prompt" data="{{ ...$wux.prompt.msg1 }}"/>
-    <view wx:for="{{application}}" wx:for-index="index" wx:for-item="book">
-        <!-- 等待响应 -->
-        <template is="borrowApplyLoading" data="{{book}}"></template>
 
-        <!-- 已同意 但未借出模板 -->
-        <template is="agreeApplyNoLoan" data="{{book}}"></template>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar" style='position:fixed;background:#f4f4f4'>
+                <block wx:for-items="{{ tabs}}" wx:key="{{ index }}">
+                    <view id="{{ index }}" class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{ item }}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{ sliderLeft }}px; transform: translateX({{ sliderOffset }}px); -webkit-transform: translateX({{ sliderOffset }}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{ activeIndex != 0 }}">
+                    <!-- 正在申请的请求 -->
+                    <template is="prompt" data="{{ ...$wux.prompt.msg1 }}" />
+                    <view wx:for="{{application}}" wx:for-index="index" wx:for-item="book">
+                        <!-- 等待响应 -->
+                        <template is="borrowApplyLoading" data="{{book}}"></template>
 
-        <!-- 已同意 已借出模板 -->
-        <template is="agreeApplyAndLoan" data="{{book}}"></template>
-    </view>
-</view>
-<!--图书列表 end-->
+                        <!-- 已同意 但未借出模板 -->
+                        <template is="agreeApplyNoLoan" data="{{book}}"></template>
 
-<view class="book-list">
-    <view wx:for="{{record}}" wx:for-index="index" wx:for-item="book">
-        <!-- 拒绝模板 -->
-        <template is="refuseApply" data="{{book}}"></template>
+                        <!-- 已同意 已借出模板 -->
+                        <template is="agreeApplyAndLoan" data="{{book}}"></template>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{ activeIndex != 1 }}">
+                    <template is="prompt" data="{{ ...$wux.prompt.msg2 }}" />
+                    <!-- 已完成或者已拒绝的请求 -->
+                    <view class="book-list">
+                        <view wx:for="{{record}}" wx:for-index="index" wx:for-item="book">
+                            <!-- 拒绝模板 -->
+                            <template is="refuseApply" data="{{book}}"></template>
 
-        <!-- 完成模板 -->
-        <template is="finishApply" data="{{book}}"></template>
+                            <!-- 完成模板 -->
+                            <template is="finishApply" data="{{book}}"></template>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

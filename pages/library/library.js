@@ -43,7 +43,7 @@ Page({
   openLibrary:function(){
       var that = this 
       wx.redirectTo({
-          url: '../bookListInfo/bookListInfo?userId=' + that.data.userId +'&typeVal=3',
+          url: '../login/login?userId=' + that.data.userId,
       })
   }
 })

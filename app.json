@@ -54,8 +54,9 @@
         "pages/detailPay/detailPay",
         "pages/pay/pay",
         "pages/waitingPay/waitingPay",
-        "pages/myBook/myBook"
-
+        "pages/myBook/myBook",
+        "pages/haveBorrowed/haveBorrowed",
+        "pages/ageSelect/ageSelect"
         
     ],
     "window": {

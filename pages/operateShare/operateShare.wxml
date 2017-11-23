@@ -51,25 +51,14 @@
             <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumSort}}' class='rightText' bindtap='openSorts'></input>
         </view>
         <view class="h1"></view>
-        <view class="item">
+        <!-- <view class="item">
             <view><span style="font-size:10px;">可借天数：</span></view>
             <input style="margin-top:-46px" type="number" class="rightText" value="{{uploadDays}}" bindinput="setDays" />
         </view>
-        <view class="h1"></view>
+        <view class="h1"></view> -->
         <view class="item">
-            <!-- <span>适龄：</span> -->
-            <!-- <input type="number" class="rightText" value="{{}}" bindinput="" /> -->
-            <span>适龄：</span>
-            <view class="section" style="margin-top:-46px">
-                <view style="height:47px;line-height:47px;margin-left:10px;float:right">
-                    <image style='height:10px;width:10px' src='../../images/triangle.png'></image>
-                </view>
-                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                    <view class="picker">
-                        {{array[index]}}
-                    </view>
-                </picker>
-            </view>
+            <view><span>适龄：</span></view>
+            <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
         </view>
         <view class="h1"></view>
         <view class="item">

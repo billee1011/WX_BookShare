@@ -35,7 +35,7 @@ button{
     padding: 2rpx 0 2rpx 0;
     background: #fff;
     margin-bottom: 16rpx;
-    height: 240rpx;
+    height: 260rpx;
     box-shadow:1px 1px 1px #c2c2c4;
 }
 

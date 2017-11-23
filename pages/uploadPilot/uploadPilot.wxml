@@ -85,12 +85,7 @@
     </view> -->
     <view id="cateall" bindtap="cateselect" class="cl_list ">
         <text style="float:left;width:100px;line-height:47px">适龄</text>
-        <picker bindchange="bindAgeChange" style="width:100px;float:right" value="{{index}}" range="{{array}}">
-            <view class="picker">
-                {{array[ageIndex]}}
-            </view>
-        </picker>
-        <text class="rightText">{{bookInfo.title}}</text>
+        <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
     </view>
     <view id="cateall" bindtap="cateselect" class="cl_list ">
         <text style="float:left;width:100px;line-height:47px">分类</text>

@@ -109,7 +109,7 @@ Page({
         return {
             title: this.data.bookInfo.book_name,
             desc: this.data.introduction,
-            path: '/pages/detail/detail?canShareId=' + this.data.canShareId
+            path: '/pages/detailPay/detailPay?canShareId=' + this.data.canShareId + "&bookId=" + that.data.bookId + "&book_type=" + that.data.book_type
         }
     },
 
@@ -219,7 +219,7 @@ Page({
                                 } else if (res.data[0].result == "mine") {
                                     wx.showToast({
                                         title: '您不能借自己的书！',
-                                        image: '../../images/waning.png',
+                                        image: '../../images/warning.png',
                                         duration: 2000
                                     })
                                 }

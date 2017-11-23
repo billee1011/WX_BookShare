@@ -68,7 +68,7 @@ Page({
       var uploadType = e.currentTarget.dataset.type;
       if (uploadType == 1) {
           wx.navigateTo({
-              url: '../donate/donate?donateType=0',
+              url: '../uploadPilot/uploadPilot?donateType=0',
           })
       } else if (uploadType == 2) {
           wx.navigateTo({

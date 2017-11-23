@@ -23,6 +23,9 @@ Page({
                         title: '空空如也',
                         text: '暂时没有人还书',
                     }).show()
+                    that.setData({
+                        returnBack: null
+                    })
                 } else {
                     if (res.data[0] == '' && res.data[1] == '') {
                         $wuxPrompt.init('msg1', {
@@ -64,7 +67,7 @@ Page({
         var that = this;
         var sharingId = e.currentTarget.dataset.sharingid;
         wx.navigateTo({
-            url: '../qrcode/qrcode?sharingId=' + sharingId
+            url: '../qrcode/qrcode?sharingId=' + sharingId+"&type=1"
         })
     },
 

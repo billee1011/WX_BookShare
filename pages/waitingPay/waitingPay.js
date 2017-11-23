@@ -27,7 +27,7 @@ Page({
               if (res.data == "noPay") {
                   $wuxPrompt.init('msg1', {
                       title: '空空如也',
-                      text: '您还不需要还书！',
+                      text: '您还没有未支付的图书！',
                   }).show()
                   that.setData({
                       returnBack: ""

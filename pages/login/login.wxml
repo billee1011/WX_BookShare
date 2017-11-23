@@ -63,7 +63,6 @@
     </view>  
   </view>  
 </view>   -->
-
 <view>
     <view class='bookcase_owner'>刘鑫的图书馆</view>
     <view class='bookcase_body' style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>

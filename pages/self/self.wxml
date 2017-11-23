@@ -25,7 +25,7 @@
             </view>
         </view>
         <!-- 待支付 待归还 代收书 -->
-         <view style='background-color: #fff;' class='bottom-box'>
+         <!-- <view style='background-color: #fff;' class='bottom-box'>
             <view class="list-box" bindtap="returnBack">
                 <view style='position:relative;width:44px;margin:0 auto'>
                     <view class="icon-box">
@@ -68,10 +68,10 @@
 
             </view>
             <view style='clear:both'></view>
-        </view> 
+        </view>  -->
     </view>
     <!-- 第一块 -->
-    <view class="thirdblock" style='margin-top:75px;'> <!--style='margin-top:75px;'-->
+    <view class="thirdblock"> <!--style='margin-top:75px;'-->
         <view class="item" bindtap="openAccount" data-index="1">
             <image src="../../images/account.png" class="item_ico"></image>
             <span>我的账户</span>

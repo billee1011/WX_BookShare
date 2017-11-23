@@ -1,5 +1,7 @@
-<view class="container">
-    <image src="{{picUrl}}"></image>
+<view class="container" style='text-align:center'>
+    <image src="{{picUrl}}" style='margin-top:45%;width:240px;height:240px'></image>
+    <text wx:if="{{qrtype==0}}">将此二维码出示给书主，书主在“借书申请”—“扫码确认”扫描即可</text>
+    <text wx:if="{{qrtype==1}}">将此二维码出示给借书人，对方在“待归还”—“归还”扫描即可</text>
     <view class="weui-cells__tips">提示：二维码无法出现的可联系管理员:13752766442</view>
     <label hidden='true'>对借书人评价</label>
     <button  hidden='true' bindtap="openCommentBorrower">评价</button>

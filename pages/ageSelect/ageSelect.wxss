@@ -1,0 +1,8 @@
+/* pages/ageSelect/ageSelect.wxss */
+@import "../../assets/styles/weui.wxss"
+.weui-cell{
+    padding: 15px 15px
+}
+.weui-cell__bd{
+    margin-left: 20rpx
+}

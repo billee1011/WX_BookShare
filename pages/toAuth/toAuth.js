@@ -250,13 +250,18 @@ Page({
             success: function (res) {
                 var data = res.data
                 if (data == "success"){
-                    wx.showToast({
-                        title: '等待管理员审核！',
-                        icon: 'success',
-                        duration: 2000
-                    })
-                    wx.navigateBack({
-                        delta: 1
+                    wx.showModal({
+                        title: '提示',
+                        content: '等待管理员审核！',
+                        showCancel:false,
+                        confirmText:"好的",
+                        success:function(res){
+                            if(res.confirm){
+                                wx.navigateBack({
+                                    delta: 1
+                                })
+                            }
+                        }
                     })
                 }else if(data == "fail"){
                     wx.showToast({

@@ -18,17 +18,18 @@ Page({
     onLoad: function (options) {
         var that = this;
         utils.getUserData(that);
-        wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
-            method: "GET",
-            success: function (res) {
-                that.setData({
-                    needReturnNum: res.data[0],
-                    getBookNum: res.data[1],
-                    payBookNum: res.data[2]
-                })
-            }
-        })
+        //获取未支付 待归还 待收回的数量
+        // wx.request({
+        //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+        //     method: "GET",
+        //     success: function (res) {
+        //         that.setData({
+        //             needReturnNum: res.data[0],
+        //             getBookNum: res.data[1],
+        //             payBookNum: res.data[2]
+        //         })
+        //     }
+        // })
         that.setData({
             userInfo: app.globalData.userInfo,
             certificationOk: app.globalData.certificationOk,
@@ -108,9 +109,19 @@ Page({
     },
 
     openAccount: function (event) {
-        //打开我的账户
+        //打开我的账户z中间
+        // wx.navigateTo({
+        //     url: '../myAccount/myAccount',
+        // })
+        if (app.globalData.certificationOk != 2) {
+            wx.showToast({
+                title: '您还没有进行信息认证！',
+                image: '../../images/warning.png',
+            })
+            return;
+        }
         wx.navigateTo({
-            url: '../myAccount/myAccount',
+            url: '../integralBalance/integralBalance',
         })
     },
 

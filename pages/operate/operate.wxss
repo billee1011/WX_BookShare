@@ -1,42 +1,57 @@
-page{
-    
+page {
 }
-.speed-dial{
+
+.speed-dial {
     position: absolute;
-    left:22rpx!important;
-    top:40rpx!important;
+    left: 22rpx !important;
+    top: 40rpx !important;
 }
+
 .floating-button {
-  left:25rpx!important;
-  bottom:10rpx!important
+    left: 25rpx !important;
+    bottom: 10rpx !important;
 }
-.bottom{
+
+.bottom {
     width: 100%;
     margin-bottom: 0px;
     z-index: 100px;
     position: fixed;
-    /* bottom:30px; */
+    /* bottom: 51px; */
     /* background: #fff; */
-    
 }
-.bottom-box{
+
+.bottom-box {
     width: 100%;
     /* background: #fff; */
-    text-align: center
+    text-align: center;
 }
-.list-box{
+
+.list-box {
     width: 48%;
     margin: 15rpx 1% 15rpx 1%;
     float: left;
     /* height: 90px; */
 }
-.icon-text{
+
+.icon-text {
     height: 30rpx;
     line-height: 30rpx;
-    font-size: 25rpx
+    font-size: 25rpx;
 }
 
 .speed-dial-buttons {
-    margin-left:60px;
-    margin-bottom:0px
+    margin-left: 60px;
+    margin-bottom: 0px;
+}
+
+.redPoint {
+    display: block;
+    background: #f00;
+    border-radius: 50%;
+    width: 0.4em;
+    height: 0.4em;
+    top: 49rpx;
+    right: 44rpx;
+    position: absolute;
 }

@@ -147,11 +147,33 @@ Page({
             })
         })
 
+        //绑定监听
+        event.on('ageDataChanged', this, function (data) {
+            console.log(data)
+            var that = this;
+            var sumAge = "";
+            for (var i = 0; i < data.length; i++) {
+                var index = data[i];
+                sumAge = sumAge + that.data.ageArray[index - 1]["age"] + " "
+            }
+            this.setData({
+                sumAge: sumAge,
+                selectAgeData: data,
+                selectAgeDataStr: JSON.stringify(data)
+            })
+        })
+
         event.on('Data', this, function (data) {
             this.setData({
                 sortsArray: data,
             });
         })  
+
+        event.on('ageData', this, function (data) {
+            this.setData({
+                ageArray: data,
+            });
+        })
     },
     //移除绑定监听
     onUnload: function () {
@@ -584,7 +606,7 @@ Page({
         }
 
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + thatData.arrayValue[ageIndex] + "&sort=" + thatData.selectDataStr + "&card_content=" + thatData.cardContent+"&book_content=5").replace(/\s+/g, ""),
+            url: ('https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + that.data.selectAgeDataStr + "&sort=" + thatData.selectDataStr + "&card_content=" + thatData.cardContent+"&book_content=5").replace(/\s+/g, ""),
             method: "GET",
             dataType:"text",
             success: function (res) {
@@ -626,5 +648,23 @@ Page({
             },
         });
         
+    },
+
+    //打开适龄页面
+    openAges: function () {
+        var that = this
+        var data = that.data.selectAgeData;
+        var url = "../ageSelect/ageSelect";
+        for (var i in data) {
+            if (i == 0) {
+                url += "?selected" + i + "=" + data[i];
+            } else {
+                url += "&selected" + i + "=" + data[i];
+            }
+
+        }
+        wx.navigateTo({
+            url: url,
+        })
     }
 })

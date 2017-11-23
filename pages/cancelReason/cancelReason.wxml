@@ -1,5 +1,8 @@
-<view class="txt" style="color:#9e9e9e">
+<view class="txt" style="color:#9e9e9e" wx:if="{{pageType==0}}">
   取消原因，（至少选择一项）：
+</view>
+<view class="txt" style="color:#9e9e9e" wx:if="{{pageType==1}}">
+  拒绝原因，（至少选择一项）：
 </view>
 <view class='item'>
   <checkbox-group bindchange="checkboxChange">

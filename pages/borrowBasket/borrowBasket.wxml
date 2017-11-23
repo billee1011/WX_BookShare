@@ -20,7 +20,47 @@
                         <template is="borrowInLoading" data="{{book}}"></template>
 
                         <!-- 同意模板 书主未借出 联系书主-->
-                        <template is="contactOwner" data="{{book}}"></template>
+                        <!-- <template is="contactOwner" data="{{book}}"></template> -->
+                        <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                            <image src="{{book.book_image}}" class="book-image"></image>
+                            <view class="book-info">
+                                <view class="book-name">{{book.book_name}}</view>
+                                <view class="book-applier">
+                                    {{book.writer}}
+                                </view>
+                            </view>
+                            <view class="clear-both"></view>
+
+                        </view>
+                        <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                            <view>
+                                <view style='float:left'>
+                                    <text style='color:red'>注</text>： 联系书主商量取书时间地点，见面出示二维码给书主
+                                </view>
+                                <!-- 更多信息 -->
+                                <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                                <view style='clear:both'></view>
+                            </view>
+                            <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                                <view style='text-align:left;width:50%;display:inline-block'>
+                                    书主：
+                                    <text style='color:red'>{{book.userName?book.userName:book.nickName}}</text>
+                                </view>
+                                <view style='text-align:right;width:50%;display:inline-block'>
+                                    时间：{{book.agree_at?book.agree_at:'暂无数据'}}
+                                </view>
+                            </view>
+                        </view>
+                        <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                            <view class='operate'>
+                                <button size='mini' plain='true' type='primary' data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="creatBorrowQRcode">出示二维码</button>
+                                <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindtap="callOwner">联系书主</button>
+                                <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" style='color: #cccccc;border:1px solid  #cccccc'>取消</button>
+                                <view style='clear:both'></view>
+                            </view>
+                        </view>
+
+
 
                         <!-- 同意模板 书主借出 确认收到书-->
                         <template is="affirmGetBook" data="{{book}}"></template>
@@ -32,54 +72,48 @@
                     <view wx:for="{{borrowInB2C}}" wx:for-index="index" wx:for-item="book" class='record-box'>
                         <!-- 借出模板 -->
                         <!-- <template is="pilotBorrowInOld" data="{{book}}"></template>        -->
-                        <view style='background:#fafafa;margin-bottom:10rpx;' bindtap="detail">
-                            <view class='owner-info'>
-                                <view style='width:180px;height:70rpx;float:left;text-align:left;position:relative'>
-                                    <image src='../../images/applier.png' style='width:30rpx;height:30rpx;position:absolute;top:18rpx;left:10rpx'></image>
-                                    <text style='line-height:30px;margin-left:50rpx'>{{book.pilot_name}}</text>
-                                    <image src='../../images/personal_icon_arrow.png' style='width:15rpx;height:20rpx;position:absolute;top:24rpx;margin-left:10rpx'></image>
+                        <view style='background:#fafafa;margin-bottom:10rpx;'>
+                            <view class="book-tmp" bindtap="pilotBorrowIn" data-sharingId="{{book.sharing_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                                <image src="{{book.book_image}}" class="book-image"></image>
+                                <view class="book-info">
+                                    <view class="book-name">{{book.book_name}}</view>
+                                    <view class="book-applier">
+                                        {{book.writer}}
+                                    </view>
                                 </view>
-                                <view style='float:right;margin-right:25rpx'>
-                                    <text class='order-status' style='color:red'>借书进行中</text>
+                                <view class="clear-both"></view>
+
+                            </view>
+                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                                <view>
+                                    <view style='float:left'>申请时间：
+                                        <text style='color:red'>{{book.agree_at?book.agree_at:'暂无数据'}}</text>
+                                    </view>
+                                    <!-- 更多信息 -->
+                                    <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                                    <view style='clear:both'></view>
+                                </view>
+                                <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                                    <view style='text-align:left;width:50%;display:inline-block'>
+                                        自营点：
+                                        <text style='color:red'>{{book.pilot_name?book.pilot_name:'暂无数据'}}</text>
+                                    </view>
+                                    <view style='text-align:right;width:50%;display:inline-block'>
+                                        当前状态：待取
+                                    </view>
                                 </view>
                             </view>
-                            <view style='padding-top:6rpx'>
-                                <view class="record" bindtap="pilotBorrowIn" data-sharingId="{{book.sharing_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
-                                    <view class="left">
-                                        <image src='{{book.book_image}}' style='width:100px' mode='widthFix' bindload="setPicWidth"></image>
-                                    </view>
-                                    <view class="right" style='width:{{phoneInfo.screenWidth-170}}px;'>
-                                        <view style='color:#404040;font-size:31rpx;' class='noOver'>
-                                            {{book.book_name}}
-                                        </view>
-                                        <view class='noOver'>
-                                            <image src="../../images/location.png" class='icon-small'></image> {{book.location}}</view>
-                                        <view class="noOver">
-                                            <image src="../../images/time.png" class='icon-small'></image> {{book.agree_at}}
-                                        </view>
-                                        <view class="noOver" wx:if="{{book.need_return_time}}">
-                                            <image src="../../images/time.png" class='icon-small'></image>归还时间：{{book.need_return_time}}
-                                        </view>
-                                    </view>
+                            <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                                <view class='operate'>
+                                    <button size='mini' plain='true' type='primary' bindtap="pilotBorrowIn" data-sharingId="{{book.sharing_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">取书</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" style='color: #cccccc;border:1px solid  #cccccc'>取消</button>
+
                                     <view style='clear:both'></view>
                                 </view>
                             </view>
-                            <view class='operate' wx:if="{{book.if_loan == 0}}">
-                                <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow">取消</button>
-                                <view style='clear:both'></view>
-                            </view>
                         </view>
                     </view>
-                    <view wx:for="{{borrowInB2CRecord}}" wx:for-index="index" wx:for-item="book">
-                            <!-- 取消模板  -->
-                            <template is="pilotCancelBorrowIn" data="{{book}}"></template>
 
-                            <!-- 完成模板  -->
-                            <template is="pilotFinishBorrowIn" data="{{book}}"></template>
-
-                            <view class="clear-both"></view>
-
-                        </view>
                 </view>
             </view>
         </view>

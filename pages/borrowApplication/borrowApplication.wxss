@@ -1,14 +1,25 @@
 page{
-    background: #ffffff;
+    background: #f4f4f4;
 }
-.prompt-container{
-    background: #ffffff;
-}
+
 .book-name{
-    text-align: left;
+    text-align: center;
     margin-left:10rpx
 }
 .seal image{
     width: 40px;
     height: 40px
+}
+
+/* 页面框架css */
+.prompt-container{
+    background: #f4f4f4;
+}
+
+.weui-navbar__item {
+    padding: 9px 0;
+}
+
+.weui-navbar__slider {
+    width: 4.1em;
 }

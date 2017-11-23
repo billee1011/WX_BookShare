@@ -6,8 +6,23 @@ const sliderWidth = 96
 
 Page({
     data: {
+        //页面分栏框架
+        tabs: ['借书申请', '申请记录'],
+        activeIndex: '0',
+        sliderOffset: 0,
+        sliderLeft: 60,
+
+        //页面数据
         application: null,
         record:null
+    },
+
+    //切换tab
+    tabClick(e) {
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.id,
+        })
     },
 
     onLoad: function () {
@@ -24,9 +39,23 @@ Page({
                     $wuxPrompt.init('msg1', {
                         title: '怎么这么空',
                         text: '还没有人借你的书呢？会不会是书评写的不好',
+                        buttons: [
+                            {
+                                text: '管理图书'
+                            }
+                        ],
+                        buttonClicked(index, item) {
+                            wx.navigateTo({
+                                url: '../myBook/myBook',
+                            })
+                        },
+                    }).show()
+                    $wuxPrompt.init('msg2', {
+                        title: '怎么这么空',
+                        text: '还没有人借过您的书！',
                     }).show()
                 } else {
-                    if (res.data[0] == '' && res.data[1] == '') {
+                    if (res.data[0] == '') {
                         $wuxPrompt.init('msg1', {
                             title: '怎么这么空',
                             text: '还没有人借你的书呢？会不会是书评写的不好',
@@ -37,7 +66,23 @@ Page({
                             ],
                             buttonClicked(index, item) {
                                 wx.navigateTo({
-                                    url: '../bookMan/bookMan',
+                                    url: '../myBook/myBook',
+                                })
+                            },
+                        }).show()
+                    }
+                    if (res.data[1] == '') {
+                        $wuxPrompt.init('msg2', {
+                            title: '怎么这么空',
+                            text: '还没有人借你的书呢？会不会是书评写的不好',
+                            buttons: [
+                                {
+                                    text: '管理图书'
+                                }
+                            ],
+                            buttonClicked(index, item) {
+                                wx.navigateTo({
+                                    url: '../myBook/myBook',
                                 })
                             },
                         }).show()
@@ -165,7 +210,7 @@ Page({
         var sharingId = e.currentTarget.dataset.sharingid;
         var canShareId = e.currentTarget.dataset.canshareid;
         wx.navigateTo({
-            url: '../cancelReason/cancelReason?sharingId=' + sharingId + "&canShareId=" + canShareId,
+            url: '../cancelReason/cancelReason?sharingId=' + sharingId + "&canShareId=" + canShareId+"&type=1",//type = 1 为拒绝
         })
     },
 

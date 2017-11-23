@@ -69,10 +69,32 @@ Page({
                 selectDataStr: JSON.stringify(data)
              })
         })
+
+        //绑定监听
+        event.on('ageDataChanged', this, function (data) {
+            console.log(data)
+            var that = this;
+            var sumAge = "";
+            for (var i = 0; i < data.length; i++) {
+                var index = data[i];
+                sumAge = sumAge + that.data.ageArray[index-1]["age"] + " "
+            }
+            this.setData({
+                sumAge: sumAge,
+                selectAgeData: data,
+                selectAgeDataStr: JSON.stringify(data)
+            })
+        })
         
         event.on('Data', this, function (data) {
             this.setData({
                 sortsArray: data,
+            });
+        })
+
+        event.on('ageData', this, function (data) {
+            this.setData({
+                ageArray: data,
             });
         })        
     },
@@ -83,6 +105,8 @@ Page({
     onUnload: function () {
         event.remove('DataChanged', this);
         event.remove('Data', this);
+        event.remove('ageDataChanged', this);
+        event.remove('ageData', this);
     },
 
     //扫码
@@ -232,7 +256,7 @@ Page({
             return;
         }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + arrayValue[index] + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.selectDataStr).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + that.data.selectAgeDataStr + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.selectDataStr).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -325,17 +349,37 @@ Page({
             card_content: e.detail.value//书评内容
         })
     },
-    openSorts:function(){
+
+    //打开分类页面
+    openSorts: function () {
         var that = this
         var data = that.data.selectData;
         var url = "../sorts/sorts";
-        for (var i in data){
-            if(i == 0){
+        for (var i in data) {
+            if (i == 0) {
                 url += "?selected" + i + "=" + data[i];
-            }else{
+            } else {
                 url += "&selected" + i + "=" + data[i];
             }
-            
+
+        }
+        wx.navigateTo({
+            url: url,
+        })
+    },
+
+    //打开适龄页面
+    openAges: function () {
+        var that = this
+        var data = that.data.selectAgeData;
+        var url = "../ageSelect/ageSelect";
+        for (var i in data) {
+            if (i == 0) {
+                url += "?selected" + i + "=" + data[i];
+            } else {
+                url += "&selected" + i + "=" + data[i];
+            }
+
         }
         wx.navigateTo({
             url: url,

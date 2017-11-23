@@ -224,35 +224,47 @@
 
 <!-- 同意模板 书主未借出 联系书主模板 扫码升级-->
 <template name="contactOwner">
-    <view class="book-tmp" bindtap="detail" wx:if="{{book.if_agree== 1 && book.if_loan==0 && book.if_refuse==0}}">
+    <view class="book-tmp1"  wx:if="{{book.if_agree== 1 && book.if_loan==0 && book.if_refuse==0}}">
         <image src="{{book.book_image}}" class="book-image"></image>
-        <view class="book-info">
+        <view class="book-info"  bindtap="detail">
             <view class="book-apply-name">
                 {{book.book_name}}
-                <!-- <view class="subtitle">
-                            已同意
-                        </view> -->
             </view>
             <view class="book-applier">
                 <view class="left">
                     <image src="../../images/applier.png" style="width:15px;height:15px;"></image> {{book.userName?book.userName:book.nickName}}
                 </view>
                 <view class="right">
-                    <image src="../../images/time.png" style="width:15px;height:15px;"></image> 08-25 10:20
+                    <image src="../../images/time.png" style="width:15px;height:15px;"></image> {{book.agree_at}}
+                </view>
+                <view style='clear:both'></view>
+            </view>
+        </view>
+        <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                <view>
+                    <view style='float:left'>
+                        <text style='color:red'>注</text>： 联系书主商量取书时间地点，见面出示二维码给书主
+                    </view>
+                    <!-- 更多信息 -->
+                    <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx;float:right'></image>
+                    <view style='clear:both'></view>
+                </view>
+                <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                    <view style='text-align:left;width:50%;display:inline-block'>
+                        自营点：
+                        <text style='color:red'>{{book.pilot_name?book.pilot_name:'暂无数据'}}</text>
+                    </view>
+                    <view style='text-align:right;width:50%;display:inline-block'>
+                        当前状态：待取
+                    </view>
                 </view>
             </view>
-            <view class="operate-box">
-                <form name='pushMsgFm' report-submit="true" data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindsubmit="callOwner">
-                    <button form-type="submit" class="agree">
-                        联系书主
-                    </button>
-                </form>
-
-                <form name='pushMsgFm' report-submit="true" data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindsubmit="creatBorrowQRcode">
-                    <button form-type="submit" class="refuse">
-                        出示二维码
-                    </button>
-                </form>
+        <view>
+            <view class='operate'>
+                <button size='mini' plain='true' type='primary' data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="creatBorrowQRcode">出示二维码</button>
+                <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindtap="callOwner">联系书主</button>
+                <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" style='color: #cccccc;border:1px solid  #cccccc'>取消</button>
+                <view style='clear:both'></view>
             </view>
         </view>
         <view class="clear-both"></view>
@@ -703,7 +715,7 @@
                 {{book.writer}}
             </view>
         </view>
-        <view class="jh-tab-bubble" style='top:10rpx;right:10rpx' wx:if="{{book.borrow_times!=0}}">
+        <view class="jh-tab-bubble" style='top:10rpx;right:10rpx' wx:if="{{book.borrow_times!=0 && book.borrow_times!=null}}">
             <text class="jh-tab-count">{{ book.borrow_times }}</text>
         </view>
         <view class="clear-both"></view>
@@ -855,7 +867,9 @@
     </view>
     <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx'>
         <view bindtap='openMore' data-canShareID="{{book.can_share_id}}">
-            <view style='float:left'>当前每日收入：<text style='color:red'>￥0.6</text></view>
+            <view style='float:left'>当前每日收入：
+                <text style='color:red'>￥0.6</text>
+            </view>
             更多信息
             <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
             <view style='clear:both'></view>

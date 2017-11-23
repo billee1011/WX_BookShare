@@ -7,63 +7,36 @@ Page({
      * 页面的初始数据
      */
     data: {
-        tabs: ['自行联系书主', '自营点'],
+        tabs: ['进行中', '已完成','已取消/拒绝'],
         activeIndex: '0',
         sliderOffset: 0,
         sliderLeft: 0,
         phoneInfo: app.globalData.phoneInfo,
+        bookData:new Array()
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        wx.setNavigationBarTitle({ title: "借书" })
+        wx.setNavigationBarTitle({ title: "已借图书" })
         var that = this;
         that.getSystemInfo()
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getHaveBorrowed&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
             },
             success: function (res) {
-                if (res.data == "noBorrowIn") {
-                    $wuxPrompt.init('msg1', {
-                        title: '空空如也',
-                        text: '邻居的孩子已经看了N本书了',
-                        buttons: [
-                            {
-                                text: '超过他'
-                            }
-                        ],
-                        buttonClicked(index, item) {
-                            wx.switchTab({
-                                url: '../index/index'
-                            })
-                        },
-                    }).show()
-                } else {
-                    if (res.data[0] == '') {
-                        $wuxPrompt.init('msg1', {
-                            title: '空空如也',
-                            text: '邻居的孩子已经看了N本书了',
-                            buttons: [
-                                {
-                                    text: '超过他'
-                                }
-                            ],
-                            buttonClicked(index, item) {
-                                wx.switchTab({
-                                    url: '../index/index'
-                                })
-                            },
-                        }).show()
-                    }
-                    that.setData({
-                        borrowInC2C: res.data[0],
-                    })
+                var data = res.data[0];
+                for(var i in res.data[1]){
+                    data.push(res.data[1][i]);
                 }
+                that.setData({
+                    bookData: data,
+                })
+                
             },
             fail: function () {
                 wx.showToast({
@@ -73,67 +46,6 @@ Page({
                 })
             }
         })
-
-        wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getPilotBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
-            method: "GET",
-            header: {
-                'content-type': 'application/json'
-            },
-            success: function (res) {
-                if (res.data == "noBorrowIn") {
-                    $wuxPrompt.init('msg2', {
-                        icon: '../../assets/images/iconfont-order.png',
-                        title: '空空如也',
-                        text: '自营点借书更方便哦',
-                        buttons: [
-                            {
-                                text: '我想借书'
-                            }
-                        ],
-                        buttonClicked(index, item) {
-                            wx.switchTab({
-                                url: '../index/index'
-                            })
-                        },
-                    }).show()
-                } else {
-                    if (res.data[0] == '') {
-                        $wuxPrompt.init('msg2', {
-                            icon: '../../assets/images/iconfont-order.png',
-                            title: '您还没有要取的图书',
-                            text: '可以去看看有哪些想看的',
-                            buttons: [
-                                {
-                                    text: '前去看看'
-                                }
-                            ],
-                            buttonClicked(index, item) {
-                                if(index == 0){
-                                    wx.switchTab({
-                                        url: '../index/index',
-                                    })
-                                }
-                            },
-                        }).show()
-                    }
-                    that.setData({
-                        borrowInB2C: res.data[0],
-                    })
-                }
-            },
-            fail: function () {
-                wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
-                    image: '../../images/fail.png',
-                    duration: 2000
-                })
-            }
-        })
-
-        this.getSystemInfo();
-
-
     },
 
     /**
@@ -179,7 +91,7 @@ Page({
         var that = this;
         var sharingId = e.currentTarget.dataset.sharingid;
         wx.navigateTo({
-            url: '../qrcode/qrcode?sharingId=' + sharingId+"&type=0"
+            url: '../qrcode/qrcode?sharingId=' + sharingId
         })
     },
 
@@ -240,17 +152,19 @@ Page({
         })
     },
 
+
+    //查看更多
     openMore: function (e) {
-        var canShareId = e.currentTarget.dataset.canshareid;
+        var sharingid = e.currentTarget.dataset.sharingid;
         var that = this
 
-        if (canShareId != that.data.currentCanShare) {
+        if (sharingid != that.data.currentSharingId) {
             that.setData({
-                currentCanShare: canShareId
+                currentSharingId: sharingid
             })
         } else {
             that.setData({
-                currentCanShare: false
+                currentSharingId: false
             })
         }
     },

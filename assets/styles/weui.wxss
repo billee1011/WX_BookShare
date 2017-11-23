@@ -917,7 +917,7 @@ icon {
   left: 0;
   bottom: 0;
   /* width: 6em; */
-  height: 3px;
+  height: 2px;
   background-color: #1AAD19;
   -webkit-transition: -webkit-transform .3s;
   transition: -webkit-transform .3s;

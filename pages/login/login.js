@@ -6,11 +6,18 @@ Page({
         phoneInfo: app.globalData.phoneInfo,
     },
     onLoad:function(options){
+        wx.showLoading({
+            title: '加载中',
+        })
         var that = this;
-        var data = null;
+        var data = new Array();
+        var userId = options.userId
+        if (!userId || userId ==null){
+            userId = app.globalData.userId;
+        }
         /**获取C2C的图书 type=3**/
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getC2CMyBookMoney&userId=113').replace(/\s+/g, ""),
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getC2CMyBookMoney&userId=' + userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -21,8 +28,6 @@ Page({
                     that.setData({
                         c2cBookObj: res.data
                     })
-                } else {
-                    
                 }
 
             },
@@ -63,6 +68,7 @@ Page({
                 })
             }
         })
+        wx.hideLoading()
 
     },
 
@@ -87,4 +93,15 @@ Page({
 
 
     },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+        return {
+            title: "快来我的图书馆借书吧!",
+            desc: "我的图书馆里有很多好书,快来看看吧!",
+            path: '/pages/library/library?userId=' + app.globalData.userId
+        }
+    }
 });
