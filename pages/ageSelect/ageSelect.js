@@ -95,5 +95,10 @@ Page({
     checkboxChange: function (e) {
         var that = this;
         event.emit('ageDataChanged', e.detail.value);
+    },
+    goback: function () {
+        wx.navigateBack({
+            delta: 1
+        })
     }
 })

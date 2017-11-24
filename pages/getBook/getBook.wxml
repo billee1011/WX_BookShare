@@ -2,11 +2,58 @@
 <import src="../../components/prompt/prompt.wxml" />
 
 <!--图书列表-->
-<view class="book-list">
+ <!-- <view class="book-list">
     <template is="prompt" data="{{ ...$wux.prompt.msg1 }}" />
     <view wx:for="{{returnBack}}" wx:for-index="index" wx:for-item="book">
-        <!-- 书主确认归还模板 -->
+          书主确认归还模板  
         <template is="owerAffirmGet" data="{{book}}"></template>
     </view>
-</view>
+</view>   -->
 <!--图书列表 end-->
+
+<view class="page">
+    <view class="weui-tab__content">
+        <template is="prompt" data="{{ ...$wux.prompt.msg1 }}" />
+        <view wx:for="{{returnBack}}" wx:for-index="index" wx:for-item="book">
+            <!-- 同意模板 书主未借出 联系书主-->
+            <!-- <template is="contactOwner" data="{{book}}"></template> -->
+            <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                <image src="{{book.book_image}}" class="book-image"></image>
+                <view class="book-info">
+                    <view class="book-name">{{book.book_name}}</view>
+                    <view class="book-applier">
+                        {{book.writer}}
+                    </view>
+                </view>
+                <view class="clear-both"></view>
+
+            </view>
+            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                <view>
+                    <view style='float:left'>
+                        <text style='color:red'>注</text>： 请联系书主，见面后扫码收回
+                    </view>
+                    <!-- 更多信息 -->
+                    <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                    <view style='clear:both'></view>
+                </view>
+                <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                    <view style='text-align:left;width:50%;display:inline-block'>
+                        书主：
+                        <text style='color:red'>{{book.userName?book.userName:book.nickName}}</text>
+                    </view>
+                    <view style='text-align:right;width:50%;display:inline-block'>
+                        时间：{{book.agree_at?book.agree_at:'暂无数据'}}
+                    </view>
+                </view>
+            </view>
+            <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                <view class='operate'>
+                    <button size='mini' plain='true' type='primary' data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="creatBorrowQRcode">出示二维码</button>
+                    <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindtap="callOwner">联系书主</button>
+                    <view style='clear:both'></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

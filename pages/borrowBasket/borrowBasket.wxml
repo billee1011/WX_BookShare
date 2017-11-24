@@ -35,7 +35,7 @@
                         <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
                             <view>
                                 <view style='float:left'>
-                                    <text style='color:red'>注</text>： 联系书主商量取书时间地点，见面出示二维码给书主
+                                    <text style='color:red'>注</text>： 该书由书主持有，请联系书主
                                 </view>
                                 <!-- 更多信息 -->
                                 <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
