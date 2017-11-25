@@ -115,8 +115,9 @@ Page({
                   'content-type': 'application/json'
               },
               success: function (res) {
-                  console.log(res);
+                  console.log(res.data)
                   wx.requestPayment({
+                      'appId': app.globalData.appId,
                       'timeStamp': res.data['out_trade_no'],
                       'nonceStr': res.data['nonceStr'],
                       'package': res.data["package"],
