@@ -99,5 +99,10 @@ Page({
         // console.log(JSON.stringify(e.detail.value))
         event.emit('DataChanged', e.detail.value);        
         // console.log(that.data.sortsArray)
+    },
+    goback:function(){
+        wx.navigateBack({
+            delta: 1
+        })
     }
 })

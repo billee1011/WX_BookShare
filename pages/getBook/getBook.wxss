@@ -1,85 +1,87 @@
-/**图书列表**/
-page{
-    background: #fff
-}
-.prompt-container{
-    background: #ffffff;
-}
-.book-list{
-  margin-top: 10px;
-  width: 98%;
-  padding: 2px 2px;
-}
-.book-tmp{
-  padding:2rpx 15rpx 2rpx 15rpx;
-  background: #fff;
-  margin-bottom: 15rpx;
-  height: 240rpx;
-  border-radius: 5px;
-}
-.book-image{
-  width: 25%;
-  height: 220rpx;
-  float: left;
-}
-.book-info{
-  width: 75%;
-  float: right;
-  height: 100%;
-}
-.book-name{
-  height: 33%;
-  line-height: 60rpx;
-  display: block!important;
-  margin-top:5px;
-  margin-left: 10px;
-  font-size: 12px
-}
-.book-applier{
-  height: 30%;
-  line-height: 60rpx;
-  display: block!important;
-  margin-left: 10px;
-  font-size: 12px
-}
-.book-applier .left{
-    float:left
-}
-.book-applier .right{
-    float:right;
-    margin-right: 10px
-}
-.operate-box{
-    height: 25%;
-    margin: 2.5% 0 2.5% 0;
-}
-.operate-box button{
-    color: #fff;
-    text-align: center;
-    width:80px;
-    height: 30px;
-    border-radius:5px;
-    line-height: 30px;
-    font-size: 12px
-}
-.operate-box .refuse{
-    background: red;
-    float: left;
-    margin-left: 10px
-}
-.operate-box .agree{
-    background: #3ABE20;
-    float: right;
-    margin-right: 10px
+page {
+    background: #f4f4f4;
 }
 
-.subtitle {
-    font-size: 12px;
-    color: #3ABE20;
-    border: 1px solid #fff;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 4px;
-    height: 30px;
-    float:right
+.prompt-container {
+    background: #f4f4f4;
+}
+
+.weui-navbar__item {
+    padding: 9px 0;
+}
+
+.weui-navbar__slider {
+    width: 4.1em;
+}
+@import "../../assets/styles/weui.wxss";
+
+.record {
+    background-color: #fafafa;
+}
+
+.record .right {
+    float: left;
+    margin-right: 10rpx;
+    color: #888;
+    padding-left: 10rpx;
+    line-height: 2.3;
+    font-size: 26rpx;
+}
+
+.record .left {
+    margin-left: 10rpx;
+    float: left;
+    min-width: 30%;
+}
+
+.record-box {
+    margin:13rpx 4px;box-shadow:1px 1px 1px #c2c2c4;
+}
+
+.owner-info {
+    font-size: 24rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    background: #fff;
+    border-bottom:1px solid #F5F5F5
+}
+
+.noOver {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.icon-small {
+    width: 15px;
+    height: 15px;
+}
+
+.operate {
+    width: 100%;
+    background: #fff;
+    padding: 8rpx 0;
+    border-top:1px solid #F5F5F5;
+}
+
+.operate button {
+    margin-right: 5px;
+    float: right;
+    font-size: 24rpx
+}
+.book-tmp1 {
+    padding: 2rpx 0 2rpx 0;
+    background: #fff;
+    margin-bottom: 16rpx;
+    height: auto;
+    box-shadow:1px 1px 1px #c2c2c4;
+}
+.book-apply-name{
+    height: 120rpx;
+    line-height: 120rpx;
+    font-size: 28rpx;
+}
+.weui-tab__content{
+    margin-top:20rpx
 }

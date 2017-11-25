@@ -1,12 +1,14 @@
 <!--pages/ageSelect/ageSelect.wxml-->
 <view class="weui-cells weui-cells_after-title" bindchange="checkboxChange">
-        <checkbox-group bindchange="checkboxChange">
-          <label class="weui-cell weui-check__label" wx:for="{{agesArray}}" wx:key="{{item.value}}">
+    <checkbox-group bindchange="checkboxChange">
+        <label class="weui-cell weui-check__label" wx:for="{{agesArray}}" wx:key="{{item.value}}">
             <view class="weui-cell__hd">
-              <checkbox value="{{item.ID}}" data-name='{{item.age}}' checked="{{item.checked}}"/>
+                <checkbox value="{{item.ID}}" data-name='{{item.age}}' checked="{{item.checked}}" />
             </view>
             <view class="weui-cell__bd">{{item.age}}</view>
-          </label>
-        </checkbox-group>
-      </view>
-
+        </label>
+    </checkbox-group>
+</view>
+<view class='bottom'>
+    <view bindtap='goback' class="weui-btn weui-btn_primary">确定</view>
+</view>

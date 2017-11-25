@@ -9,7 +9,7 @@ Page({
      */
     data: {
         index: 3,
-        opened: !1, 
+        opened: !1,
 
         //轮播广告
         imgUrls: [
@@ -22,7 +22,7 @@ Page({
         autoplay: true,
         interval: 3000,
         duration: 500,
-        role:true
+        role: true
     },
 
     /**
@@ -55,14 +55,14 @@ Page({
         })
     },
 
-    onShow:function(){
+    onShow: function () {
         this.onLoad()
     },
 
     /**
      * 别人的借书申请
      */
-    borrowApplication:function(){
+    borrowApplication: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -92,7 +92,7 @@ Page({
     },
 
     //待归还
-    returnBack:function(){
+    returnBack: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -106,7 +106,7 @@ Page({
     },
 
     //收书
-    getBook:function(){
+    getBook: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -132,7 +132,7 @@ Page({
             url: '../bookMan/bookMan'
         })
     },
-    
+
     screenISBN: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
@@ -143,11 +143,11 @@ Page({
         }
         wx.navigateTo({
             url: '../operateShare/operateShare',
-            
+
         })
     },
 
-    pilot:function(){
+    pilot: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -168,13 +168,13 @@ Page({
             })
             return;
         }
-      wx.navigateTo({
-          url: '../bookList/bookList'
-      })
+        wx.navigateTo({
+            url: '../bookList/bookList'
+        })
     },
 
     /***********更改后的页面方法*************/
-    uploadBook:function(){
+    uploadBook: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -187,7 +187,7 @@ Page({
 
         })
     },
-    borrowBasket:function(){
+    borrowBasket: function () {
         wx.navigateTo({
             url: '../borrowBasket/borrowBasket',
 
@@ -216,20 +216,28 @@ Page({
                 }
             ],
             buttonClicked(index, item) {
-                
-                index === 0 && wx.navigateTo({
-                    url: '/pages/login/login'           //个人图书馆
-                })
+                if (app.globalData.certificationOk = 2) {
 
-                index === 1 && wx.navigateTo({
-                    url: '/pages/operateIntr/operateIntr'//操作说明
-                })
+                    index === 0 && wx.navigateTo({
+                        url: '/pages/login/login'           //个人图书馆
+                    })
 
-                index === 2 && wx.navigateTo({
-                    url: '../getBook/getBook'//待收回图书
-                })
+                    index === 1 && wx.navigateTo({
+                        url: '/pages/operateIntr/operateIntr'//操作说明
+                    })
 
-                return true
+                    index === 2 && wx.navigateTo({
+                        url: '../getBook/getBook'//待收回图书
+                    })
+
+                    return true
+                } else {
+                    wx.showToast({
+                        title: '您还没有进行信息认证！',
+                        image: '../../images/warning.png',
+                    })
+                    return;
+                }
             },
             callback(vm, opened) {
                 vm.setData({
@@ -256,17 +264,32 @@ Page({
                 {
                     label: '操作说明',
                     icon: "data:image/png;base64,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",
+                },
+                {
+                    label: '已借图书',
+                    icon: "data:image/png;base64,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",
                 }
             ],
             buttonClicked(index, item) {
+                if (app.globalData.certificationOk = 2) {
 
-                index === 0 && that.openWaitingPay() //打开待支付页面
+                    index === 0 && that.openWaitingPay() //打开待支付页面
 
-                index === 1 && wx.navigateTo({
-                    url: '/pages/operateIntr/operateIntr'//操作说明
-                })
+                    index === 1 && wx.navigateTo({
+                        url: '/pages/operateIntr/operateIntr'//操作说明
+                    })
+                    index === 2 && wx.navigateTo({
+                        url: '../haveBorrowed/haveBorrowed'//已借图书
+                    })
 
-                return true
+                    return true
+                } else {
+                    wx.showToast({
+                        title: '您还没有进行信息认证！',
+                        image: '../../images/warning.png',
+                    })
+                    return;
+                }
             },
             callback(vm, opened) {
                 vm.setData({
@@ -286,7 +309,7 @@ Page({
     },
 
     //打开我的图书页面
-    openMyBook:function(){
+    openMyBook: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -300,15 +323,15 @@ Page({
     },
 
     //切换角色
-    changeRole:function(){
+    changeRole: function () {
         var that = this
         that.setData({
-            role:!that.data.role
+            role: !that.data.role
         })
     },
 
     //切换至待归还页面
-    openToReturn:function(){
+    openToReturn: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -334,8 +357,8 @@ Page({
         })
     },
 
-    //打开已借图书列表
-    openHaveBorrowed:function(){
+    //打开tabbar我要借书
+    toBorrowed: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showToast({
                 title: '您还没有进行信息认证！',
@@ -343,9 +366,9 @@ Page({
             })
             return;
         }
-        wx.navigateTo({
-            url: '../haveBorrowed/haveBorrowed'
-        })
+        wx.switchTab({
+            url: '../index/index'
+        });
     },
 
 })

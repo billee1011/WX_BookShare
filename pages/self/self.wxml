@@ -118,10 +118,10 @@
             <image src="../../images/hot.png" class="item_arrow"></image>
         </view>
         <view class="h1"></view> -->
-        <view class="item" bindtap="openSetting">
+        <!-- <view class="item" bindtap="openSetting">
             <image src="../../images/setting.png" class="item_ico"></image>
             <span>设置</span>
-        </view>
+        </view> -->
     </view>
     <view class="h10"></view>
     <view class="h10"></view>

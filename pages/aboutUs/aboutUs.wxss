@@ -62,6 +62,7 @@
     background-color: #fff;
     font-size: 13px;
     word-wrap: break-word;
+    text-indent: 2em;
 }
 
 .submit {

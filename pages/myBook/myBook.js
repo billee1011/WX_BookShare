@@ -170,31 +170,39 @@ Page({
     downLine: function (e) {
         var canShareId = e.currentTarget.dataset.canshareid;
         var that = this;
-        wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=downLine&canShareId=' + canShareId).replace(/\s+/g, ""),
-            header: {
-                'content-type': 'application/json'
-            },
+        wx.showModal({
+            title: '提示',
+            content: '您确定要下线吗？下线以后别人就看不到你的图书咯！',
             success: function (res) {
-                if (res.data == "downLined") {
-                    wx.showToast({
-                        title: '您已下线该图书，无需重复！',
-                        image: '../../images/warning.png',
-                        duration: 2000
-                    })
-                } else if (res.data == "success") {
-                    wx.showToast({
-                        title: '下线成功！',
-                        icon: 'success',
-                        duration: 2000
-                    })
-                    that.onLoad();
+                if (res.confirm) {
+                    wx.request({
+                        url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=downLine&canShareId=' + canShareId).replace(/\s+/g, ""),
+                        header: {
+                            'content-type': 'application/json',
+                        },
+                        success: function (res) {
+                            if (res.data == "downLined") {
+                                wx.showToast({
+                                    title: '您已下线该图书，无需重复！',
+                                    image: '../../images/warning.png',
+                                    duration: 2000
+                                })
+                            } else if (res.data == "success") {
+                                wx.showToast({
+                                    title: '下线成功！',
+                                    icon: 'success',
+                                    duration: 2000
+                                })
+                                that.onLoad();
 
-                } else if (res.data == "fail") {
-                    wx.showToast({
-                        title: '下线失败，请稍后重试！',
-                        image: '../../images/fail.png',
-                        duration: 2000
+                            } else if (res.data == "fail") {
+                                wx.showToast({
+                                    title: '下线失败，请稍后重试！',
+                                    image: '../../images/fail.png',
+                                    duration: 2000
+                                })
+                            }
+                        }
                     })
                 }
             }
@@ -205,36 +213,45 @@ Page({
     //上线图书
     onLine: function (e) {
         var canShareId = e.currentTarget.dataset.canshareid;
-        var that = this;
-        wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=onLine&canShareId=' + canShareId).replace(/\s+/g, ""),
-            header: {
-                'content-type': 'application/json'
-            },
+        var that = this;        
+        wx.showModal({
+            title: '提示',
+            content: '上线成功，等着图书为您赚钱吧！',
+            showCancel: false,
+            confirmText: '知道啦',
             success: function (res) {
-                if (res.data == "onLined") {
-                    wx.showToast({
-                        title: '您已上线该图书，无需重复！',
-                        image: '../../images/warning.png',
-                        duration: 2000
-                    })
-                } else if (res.data == "success") {
-                    wx.showToast({
-                        title: '上线成功！',
-                        icon: 'success',
-                        duration: 2000
-                    })
-                    that.onLoad();
-                } else if (res.data == "fail") {
-                    wx.showToast({
-                        title: '上线失败，请稍后重试！',
-                        image: '../../images/fail.png',
-                        duration: 2000
+                if (res.confirm) {
+                    wx.request({
+                        url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=onLine&canShareId=' + canShareId).replace(/\s+/g, ""),
+                        header: {
+                            'content-type': 'application/json'
+                        },
+                        success: function (res) {
+                            if (res.data == "onLined") {
+                                wx.showToast({
+                                    title: '您已上线该图书，无需重复！',
+                                    image: '../../images/warning.png',
+                                    duration: 2000
+                                })
+                            } else if (res.data == "success") {
+                                wx.showToast({
+                                    title: '上线成功！',
+                                    icon: 'success',
+                                    duration: 2000
+                                })
+                                that.onLoad();
+                            } else if (res.data == "fail") {
+                                wx.showToast({
+                                    title: '上线失败，请稍后重试！',
+                                    image: '../../images/fail.png',
+                                    duration: 2000
+                                })
+                            }
+                        }
                     })
                 }
             }
         })
-
     },
 
     retrieval:function(){
