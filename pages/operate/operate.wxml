@@ -100,13 +100,13 @@
             <view class="icon-box">
                 <image src="../../images/share1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
             </view>
-            <view class="icon-text">
+            <view class="icon-text" style='margin-top:5px'>
                 <span>上传分享</span>
             </view>
         </view>
         <view class="list-box" bindtap="openMyBook">
             <view class="icon-box">
-                <image src="../../images/self_support1.png" style="width:170rpx;height:190rpx;margin: 0 auto"></image>
+                <image src="../../images/self_support1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
             </view>
             <view class="icon-text" style='margin-top:5px'>
                 <span>我的图书</span>
@@ -118,7 +118,7 @@
         <view class="list-box" bindtap="borrowApplication">
             <view class="icon-box">
                 <view style='position:relative;width:200rpx;margin:0 auto'>
-                    <image src="../../images/borrowOut1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
+                    <image src="../../images/borrowRequest.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
                     <view class="jh-tab-bubble" style='top:13rpx;right:13rpx' wx:if="{{ operateNum[0] > 0}}">
                         <text class="jh-tab-count">{{ operateNum[0] < 100? operateNum[0]: 99 }}</text>
                     </view>
@@ -150,7 +150,7 @@
     <view class="bottom-box">
         <view class="list-box" bindtap="borrowBasket">
             <view class="icon-box">
-                <image src="../../images/self_support1.png" style="width:170rpx;height:190rpx;margin: 0 auto"></image>
+                <image src="../../images/toTake.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
             </view>
             <view class="icon-text" style='margin-top:5px'>
                 <span>我要取书</span>
@@ -166,9 +166,9 @@
         </view> -->
         <view class="list-box" bindtap="toBorrowed">
             <view class="icon-box">
-                <image src="../../images/share1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
+                <image src="../../images/toBorrow.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
             </view>
-            <view class="icon-text">
+            <view class="icon-text" style='margin-top:5px'>
                 <span>我要借书</span>
             </view>
         </view>
@@ -177,7 +177,7 @@
     <view class="bottom-box">
         <view class="list-box" bindtap="openToReturn">
             <view style='position:relative;width:200rpx;margin:0 auto'>
-                <image src="../../images/borrowOut1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
+                <image src="../../images/waitReturn.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
                 <view class="jh-tab-bubble" style='top:13rpx;right:13rpx' wx:if="{{ operateNum[2] > 0}}">
                     <text class="jh-tab-count">{{ operateNum[2] < 100? operateNum[2]: 99 }}</text>
                 </view>
