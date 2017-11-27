@@ -100,7 +100,7 @@
             <view class="icon-box">
                 <image src="../../images/share1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
             </view>
-            <view class="icon-text">
+            <view class="icon-text" style='margin-top:5px'>
                 <span>上传分享</span>
             </view>
         </view>
@@ -168,7 +168,7 @@
             <view class="icon-box">
                 <image src="../../images/toBorrow.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
             </view>
-            <view class="icon-text">
+            <view class="icon-text" style='margin-top:5px'>
                 <span>我要借书</span>
             </view>
         </view>
