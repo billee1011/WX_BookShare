@@ -32,9 +32,14 @@ Page({
             },
             success: function (res) {
                 app.globalData.userInfo = res.data[0];
+                if (res.data[0]["authPic"]){
+                    that.setData({
+                        pictureFiles: 'https://' + app.globalData.apiUrl + res.data[0]["authPic"],
+
+                    })
+                }
                 that.setData({
                     userInfo: res.data[0],
-                    pictureFiles: 'https://'+app.globalData.apiUrl+res.data[0]["authPic"],
                     userName: res.data[0]["userName"],
                     phoneNumber: res.data[0]["phoneNumber"],
                     userSchool: res.data[0]["userSchool"],
@@ -230,54 +235,109 @@ Page({
             })
             return;
         }
-        wx.uploadFile({
-          url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=User&a=selfAuth',
-            header: {
-                'content-type': "multipart/form-data"
-            }, // 设置请求的 header
-            filePath: that.data.pictureFiles,
-            name: 'authPic',//app.globalData.userId+
-            formData: {
-                "ID": app.globalData.userId,
-                'userName': that.data.userName,
-                'phoneNumber': that.data.phoneNumber,
-                'userSchool': that.data.school[schoolIndex],
-                'userClass': that.data.userClass,
-                "studentCard": that.data.studentCard,
-                "eMail": that.data.eMail
-            },
-            
-            success: function (res) {
-                var data = res.data
-                if (data == "success"){
-                    wx.showModal({
-                        title: '提示',
-                        content: '等待管理员审核！',
-                        showCancel:false,
-                        confirmText:"好的",
-                        success:function(res){
-                            if(res.confirm){
-                                wx.navigateBack({
-                                    delta: 1
-                                })
+
+        //修改了图片
+        if (that.data.changePic == "true" || that.data.changePic || that.data.changePic==true){
+            wx.showLoading({
+                title: '上传中',
+            })
+            wx.uploadFile({
+                url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=User&a=selfAuth',
+                header: {
+                    'content-type': "multipart/form-data"
+                }, // 设置请求的 header
+                filePath: that.data.pictureFiles,
+                name: 'authPic',//app.globalData.userId+
+                formData: {
+                    "ID": app.globalData.userId,
+                    'userName': that.data.userName,
+                    'phoneNumber': that.data.phoneNumber,
+                    'userSchool': that.data.school[schoolIndex],
+                    'userClass': that.data.userClass,
+                    "studentCard": that.data.studentCard,
+                    "eMail": that.data.eMail
+                },
+
+                success: function (res) {
+                    var data = res.data
+                    wx.hideLoading()
+                    if (data == "success") {
+                        wx.hideLoading()
+                        app.globalData.certificationOk = 1;
+                        wx.showModal({
+                            title: '提示',
+                            content: '等待管理员审核！',
+                            showCancel: false,
+                            confirmText: "好的",
+                            success: function (res) {
+                                if (res.confirm) {
+                                    wx.navigateBack({
+                                        delta: 1
+                                    })
+                                }
                             }
-                        }
-                    })
-                }else if(data == "fail"){
-                    wx.showToast({
-                        title: '申请失败,请稍后重试！',
-                        image: '../../images/fail.png',
-                        duration: 2000
-                    })
-                } else {
-                    wx.showToast({
-                        title: "提交信息失败,请重试！",
-                        image: '../../images/fail.png',
-                        duration: 2000
-                    })
+                        })
+                    } else {
+                        wx.showModal({
+                            title: '提示',
+                            content: '提交信息失败,请重试！',
+                            showCancel: false,
+                            confirmText: "我知道了",
+                            success: function () {
+                                return;
+                            }
+                        })
+                    }
                 }
-            }
-        })
+            })
+        }else{
+            wx.request({
+                url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=User&a=selfAuth',
+                method:"POST",
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                }, // 设置请求的 header
+                data: {
+                    "ID": app.globalData.userId,
+                    'userName': that.data.userName,
+                    'phoneNumber': that.data.phoneNumber,
+                    'userSchool': that.data.school[schoolIndex],
+                    'userClass': that.data.userClass,
+                    "studentCard": that.data.studentCard,
+                    "eMail": that.data.eMail
+                },
+                success: function (res) {
+                    var data = res.data
+                    if (data == "success") {
+                        app.globalData.certificationOk = 1;
+                        wx.showModal({
+                            title: '提示',
+                            content: '等待管理员审核！',
+                            showCancel: false,
+                            confirmText: "好的",
+                            success: function (res) {
+                                if (res.confirm) {
+                                    wx.navigateBack({
+                                        delta: 1
+                                    })
+                                }
+                            }
+                        })
+                    } else {
+                        wx.showModal({
+                            title: '提示',
+                            content: '提交信息失败,请重试！',
+                            showCancel: false,
+                            confirmText: "我知道了",
+                            success: function () {
+                                return;
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        
     }
 
     /**************************************简化后的认证方法 ***********************************/

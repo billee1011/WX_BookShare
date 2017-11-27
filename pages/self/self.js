@@ -35,6 +35,7 @@ Page({
             certificationOk: app.globalData.certificationOk,
         })
         
+        
     },
     
     onReady:function(){
