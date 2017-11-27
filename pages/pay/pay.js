@@ -106,11 +106,6 @@ Page({
           wx.request({
               url: ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
               method: 'POST',
-              data: {
-                  total_fee: that.data.orderDetail.money,   /*订单金额*/
-                  openId: app.globalData.openId,
-                  body: "借阅" + that.data.orderDetail.book_name+"所支付费用"
-              },
               header: {
                   'content-type': 'application/json'
               },
@@ -118,7 +113,7 @@ Page({
                   console.log(res.data)
                   wx.requestPayment({
                       'appId': app.globalData.appId,
-                      'timeStamp': res.data['out_trade_no'],
+                      'timeStamp': res.data['timeStamp'],
                       'nonceStr': res.data['nonceStr'],
                       'package': res.data["package"],
                       'signType': 'MD5',
