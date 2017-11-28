@@ -67,6 +67,18 @@
     <view class='bookcase_owner'>刘鑫的图书馆</view>
     <view class='bookcase_body' style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
         <view style='padding:100px 35px 5px 35px;'>
+        <view class="in-code" bindtap='getInviteCode'>
+            <image src="../../images/invite/ewm.png" 
+                data-wares_image="http://shareapi.aldwx.com/public/image/template/mini-retailers-img.jpg"
+                data-wares_logo="http://shareapi.aldwx.com/public/image/template/mini-retailers-logo.png"
+                data-wares_title="美丽优选"
+                data-wares_content="我挺喜欢的宝贝，分享给你，进来看看还能领优惠券哦~"
+                data-wares_price="￥61.99扫码购买"
+                bindtap="aldminishare"
+                data-template_key="c064296fb9fab42265f5c0d8484ebcfc">
+            </image>
+            
+        </view>
             <view wx:for="{{myLibrary}}">
                 <view class='bookcase_board' wx:if="{{index % 3 == 0}}" style="background-size:{{phoneInfo.screenWidth-60}}px 20px;position：relative">
                     <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px' bindtap="detail" data-bookId="{{myLibrary[index].book_id}}" data-type="{{myLibrary[index].type}}" data-canShareID="{{myLibrary[index].can_share_id}}">

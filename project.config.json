@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -54,10 +54,10 @@
 					"query": "sharingId=337"
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "login",
 					"pathName": "pages/login/login",
-					"query": "sharingId=273"
+					"query": "userId=136"
 				},
 				{
 					"id": -1,
@@ -69,6 +69,18 @@
 					"id": -1,
 					"name": "uploadPilot",
 					"pathName": "pages/uploadPilot/uploadPilot",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "socket",
+					"pathName": "pages/socket/socket",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "billBoard",
+					"pathName": "pages/billBoard/billBoard",
 					"query": ""
 				}
 			]

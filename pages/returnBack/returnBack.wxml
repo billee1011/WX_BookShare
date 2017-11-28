@@ -47,7 +47,7 @@
                             <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                             <view style='clear:both'></view>
                         </view>
-                        <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                        <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                             <view style='text-align:left;width:100%;display:inline-block'>
                                 借入时间：{{book.loan_at!=null?book.loan_at:"暂无数据"}}
                                 <text style='color:red'></text>

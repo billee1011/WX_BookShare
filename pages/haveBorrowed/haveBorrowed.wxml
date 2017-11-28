@@ -92,17 +92,17 @@
                             <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4' bindtap='openMore' data-canShareID="{{book.can_share_id}}" data-sharingId='{{book.sharing_id}}'>
                                 <view>
                                     <view style='float:left'>借阅天数：
-                                        <text style='color:red'>{{book.time?book.time+'天':'暂无数据'}}</text>
+                                        <text>{{book.time?book.time+'天':'暂无数据'}}</text>
                                     </view>
                                     <!-- 更多信息 -->
                                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                                     <view style='clear:both'></view>
                                 </view>
-                                <view wx:if='{{currentSharingId == book.sharing_id}}'>
+                                <view>  <!-- wx:if='{{currentSharingId == book.sharing_id}}' -->
                                     <view wx:if="{{book.type == 0}}">
                                         <view style='text-align:left;width:50%;display:inline-block'>
                                             书主：
-                                            <text style='color:red'>{{book.ownerName?book.ownerName:'暂无数据'}}</text>
+                                            <text>{{book.ownerName?book.ownerName:'暂无数据'}}</text>
                                         </view>
                                         <view style='text-align:right;width:50%;display:inline-block'>
                                             金额：￥{{book.money?book.money:"暂无数据"}}
@@ -111,7 +111,7 @@
                                     <view wx:else>
                                         <view style='text-align:left;width:50%;display:inline-block'>
                                             自营点：
-                                            <text style='color:red'>{{book.pilotName?book.pilotName:'暂无数据'}}</text>
+                                            <text>{{book.pilotName?book.pilotName:'暂无数据'}}</text>
                                         </view>
                                         <view style='text-align:right;width:50%;display:inline-block'>
                                             金额：￥{{book.money?book.money:"暂无数据"}}
@@ -156,13 +156,13 @@
                                     <view style='float:left'>
                                         <text wx:if="{{book.reason_type == 0}}">取消时间：</text>
                                         <text wx:if="{{book.reason_type == 1}}">拒绝时间：</text>
-                                        <text style='color:red'>{{book.refuse_at?book.refuse_at:'暂无数据'}}</text>
+                                        <text>{{book.refuse_at?book.refuse_at:'暂无数据'}}</text>
                                     </view>
                                     <!-- 更多信息 -->
                                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                                     <view style='clear:both'></view>
                                 </view>
-                                <view wx:if='{{currentSharingId == book.sharing_id}}'>
+                                <view> <!-- wx:if='{{currentSharingId == book.sharing_id}}' -->
                                     <view style='text-align:left;width:100%;display:inline-block'>
                                         原因：
                                         <text style='color:red'>{{book.reason!=null&&book.reason?book.reason:book.refuse_content}}</text>

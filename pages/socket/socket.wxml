@@ -1,0 +1,8 @@
+<!--pages/socket/socket.wxml-->
+<text>pages/socket/socket.wxml</text>
+
+实时交易信息
+
+<input type='text' bindinput='setValue'></input>
+
+<button bindtap='sendMessage'>提交</button>
