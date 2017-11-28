@@ -40,9 +40,10 @@
                                     </view>
                                     <!-- 更多信息 -->
                                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                                    <!-- <text style='color:#8A8A8A'>更多</text> -->
                                     <view style='clear:both'></view>
                                 </view>
-                                <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                                <view> <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                                     <view style='text-align:left;width:50%;display:inline-block'>
                                         已带来收入：
                                         <text style='color:red'>￥{{book.totalMoney!=null?book.totalMoney:0.00}}</text>
@@ -91,7 +92,7 @@
                                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                                     <view style='clear:both'></view>
                                 </view>
-                                <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                                <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                                     <view style='text-align:left;width:50%;display:inline-block'>
                                         已带来收入：
                                         <text style='color:red'>￥{{book.totalMoney!=null?book.totalMoney:0.00}}</text>

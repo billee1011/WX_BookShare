@@ -41,10 +41,10 @@
                                 <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                                 <view style='clear:both'></view>
                             </view>
-                            <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                            <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                                 <view style='text-align:left;width:50%;display:inline-block'>
                                     书主：
-                                    <text style='color:red'>{{book.userName?book.userName:book.nickName}}</text>
+                                    <text>{{book.userName?book.userName:book.nickName}}</text>
                                 </view>
                                 <view style='text-align:right;width:50%;display:inline-block'>
                                     时间：{{book.agree_at?book.agree_at:'暂无数据'}}
@@ -87,16 +87,16 @@
                             <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
                                 <view>
                                     <view style='float:left'>申请时间：
-                                        <text style='color:red'>{{book.agree_at?book.agree_at:'暂无数据'}}</text>
+                                        <text>{{book.agree_at?book.agree_at:'暂无数据'}}</text>
                                     </view>
                                     <!-- 更多信息 -->
                                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                                     <view style='clear:both'></view>
                                 </view>
-                                <view wx:if='{{currentCanShare == book.can_share_id}}'>
+                                <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                                     <view style='text-align:left;width:50%;display:inline-block'>
                                         自营点：
-                                        <text style='color:red'>{{book.pilot_name?book.pilot_name:'暂无数据'}}</text>
+                                        <text>{{book.pilot_name?book.pilot_name:'暂无数据'}}</text>
                                     </view>
                                     <view style='text-align:right;width:50%;display:inline-block'>
                                         当前状态：待取

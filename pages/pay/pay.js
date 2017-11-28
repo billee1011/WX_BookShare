@@ -24,7 +24,7 @@ Page({
             success: function (res) {
                 that.setData({
                     orderDetail: res.data[0],
-                    ownerId:options.ownerId
+                    ownerId: options.ownerId
                 })
             }
         })
@@ -103,83 +103,85 @@ Page({
     //支付
     pay: function () {
         var that = this
-          wx.request({
-              url: ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
-              method: 'POST',
-              data: {
-                  total_fee: that.data.orderDetail.money,   /*订单金额*/
-                  openId: app.globalData.openId,
-                  body: "借阅" + that.data.orderDetail.book_name+"所支付费用"
-              },
-              header: {
-                  'content-type': 'application/json'
-              },
-              success: function (res) {
-                  console.log(res);
-                  wx.requestPayment({
-                      'timeStamp': res.data['out_trade_no'],
-                      'nonceStr': res.data['nonceStr'],
-                      'package': res.data["package"],
-                      'signType': 'MD5',
-                      'paySign': res.data["paySign"],
-                      'success': function (res) {
-                          var sharingId = that.data.orderDetail.sharingId;
-                          wx.request({
-                              url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&sharingId=' + sharingId).replace(/\s+/g, ""),
-                              method: "GET",
-                              header: {
-                                  'content-type': 'application/json',
-                              },
-                              success: function (res) {
-                                  if(res.data=="success"){
-                                      wx.showModal({
-                                          title: '提示',
-                                          content: '支付成功',
-                                          confirmText: "知道了",
-                                          showCancel: false,
-                                          success: function (res) {
-                                              if (res.confirm) {
-                                                  wx.navigateBack({
-                                                      delta: 2
-                                                  })
-                                              }
-                                          }
-                                      })
-                                  }else{
-                                      wx.showModal({
-                                          title: '提示',
-                                          content: '支付过程出现问题，请联系客服！',
-                                          confirmText: "知道了",
-                                          showCancel: false,
-                                          success: function (res) {
-                                              if (res.confirm) {
-                                                  wx.setClipboardData({
-                                                      data: app.globalData.contractPhone,
-                                                      success: function (res) {
-                                                          wx.showToast({
-                                                              title: '已复制号码到粘贴板',
-                                                          })
-                                                      }
-                                                  })
-                                                  wx.makePhoneCall({
-                                                      phoneNumber: app.globalData.contractPhone //联系客服
-                                                  })
-                                              }
-                                          }
-                                      })
-                                  }
-                              }
-                          })
-                      },
-                      'fail': function (res) {
-                          console.log('fail:' + JSON.stringify(res));
-                      }
-                  })
-              },
-              fail: function (err) {
-                  console.log(err)
-              }
-          })
+        var thatData = that.data.orderDetail
+        wx.request({
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
+            method: 'POST',
+            data: {
+                'total_fee': thatData.money,
+                'openid': app.globalData.openId,
+                'body': "借阅《" + thatData.book_name + "》" + thatData.days+"天所花费金额"
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+                console.log(res.data)
+                wx.requestPayment({
+                    'appId': app.globalData.appId,
+                    'timeStamp': res.data['timeStamp'],
+                    'nonceStr': res.data['nonceStr'],
+                    'package': res.data["package"],
+                    'signType': 'MD5',
+                    'paySign': res.data["paySign"],
+                    'success': function (res) {
+                        var sharingId = that.data.orderDetail.sharingId;
+                        wx.request({
+                            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&sharingId=' + sharingId).replace(/\s+/g, ""),
+                            method: "GET",
+                            header: {
+                                'content-type': 'application/json',
+                            },
+                            success: function (res) {
+                                if (res.data == "success") {
+                                    wx.showModal({
+                                        title: '提示',
+                                        content: '支付成功',
+                                        confirmText: "知道了",
+                                        showCancel: false,
+                                        success: function (res) {
+                                            if (res.confirm) {
+                                                wx.navigateBack({
+                                                    delta: 2
+                                                })
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    wx.showModal({
+                                        title: '提示',
+                                        content: '支付过程出现问题，请联系客服！',
+                                        confirmText: "知道了",
+                                        showCancel: false,
+                                        success: function (res) {
+                                            if (res.confirm) {
+                                                wx.setClipboardData({
+                                                    data: app.globalData.contractPhone,
+                                                    success: function (res) {
+                                                        wx.showToast({
+                                                            title: '已复制号码到粘贴板',
+                                                        })
+                                                    }
+                                                })
+                                                wx.makePhoneCall({
+                                                    phoneNumber: app.globalData.contractPhone //联系客服
+                                                })
+                                            }
+                                        }
+                                    })
+                                }
+                            }
+                        })
+                    },
+                    'fail': function (res) {
+                        console.log('fail:' + JSON.stringify(res));
+                    }
+                })
+            },
+            fail: function (err) {
+                console.log(err)
+            }
+        })
 
         // var can_share_id = that.data.orderDetail.can_share_id;
         // var sharingId = that.data.orderDetail.sharingId;

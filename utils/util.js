@@ -156,20 +156,8 @@ module.exports = {
                                             url: url,
                                             success: function (res) {
                                                 if (res.data[0]["certificationOk"] == 0) {
-                                                    // var str = "您还没有认证，请前往个人中心认证!";
-                                                    // wx.showModal({
-                                                    //     title: '提醒',
-                                                    //     content: str,
-                                                    //     showCancel: false,
-                                                    // })
                                                     param.showNotification('', '', "您还没有认证，请前往个人中心认证!");
                                                 } else if (res.data[0]["certificationOk"] == 3) {
-                                                    // var str = "";
-                                                    // wx.showModal({
-                                                    //     title: '提醒',
-                                                    //     content: str,
-                                                    //     showCancel: false,
-                                                    // })
                                                     param.showNotification('', '', "认证被驳回，请重新上传信息！");
                                                 }
 
