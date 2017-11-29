@@ -31,7 +31,7 @@
             <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
                 <view>
                     <view style='float:left'>
-                        <text style='color:red'>注</text>： 请联系书主，见面后扫码收回
+                        <text style='color:red'>注</text>： 联系借书人，见面后扫码收回
                     </view>
                     <!-- 更多信息 -->
                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
@@ -39,8 +39,8 @@
                 </view>
                 <view wx:if='{{currentCanShare == book.can_share_id}}'>
                     <view style='text-align:left;width:50%;display:inline-block'>
-                        书主：
-                        <text style='color:red'>{{book.userName?book.userName:book.nickName}}</text>
+                        借书人：
+                        <text>{{book.userName?book.userName:book.nickName}}</text>
                     </view>
                     <view style='text-align:right;width:50%;display:inline-block'>
                         时间：{{book.agree_at?book.agree_at:'暂无数据'}}
@@ -50,7 +50,7 @@
             <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
                 <view class='operate'>
                     <button size='mini' plain='true' type='primary' data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="creatBorrowQRcode">出示二维码</button>
-                    <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindtap="callOwner">联系书主</button>
+                    <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindtap="callOwner">联系借书人</button>
                     <view style='clear:both'></view>
                 </view>
             </view>

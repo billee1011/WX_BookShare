@@ -25,6 +25,11 @@ App({
         //     })
         // }, that.globalData.timer);
 
+        wx.onNetworkStatusChange(function (res) {
+            console.log(res.isConnected)
+            console.log(res.networkType)
+        })
+
         //获取手机的宽度和高度
         that.globalData.phoneInfo = wx.getSystemInfoSync()
         
@@ -102,7 +107,8 @@ App({
         latitude: 39.2349700000,//团队所在纬度
         longitude: 117.0582000000,//团队所在经度
         contractPhone:'13752766442',//联系我们的联系方式
-        sort_url:'http://139.199.171.106'
+        sort_url:'http://139.199.171.106',
+        advertiseUrl:'http://139.199.171.106'
 
     },
 })

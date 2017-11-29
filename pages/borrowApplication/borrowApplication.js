@@ -88,7 +88,7 @@ Page({
                         }).show()
                     }
                     that.setData({
-                        application: res.data[0],
+                        application: res.data[0] ? res.data[0]:'',
                         record: res.data[1]
                     })
                 }
@@ -112,6 +112,7 @@ Page({
         var formId = e.detail.formId;
         var sharingId = e.currentTarget.dataset.sharingid;
         var openId = e.currentTarget.dataset.openid;
+        var that = this
         wx.request({
             url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=agreeApplication&sharingId=' + sharingId).replace(/\s+/g, ""),
             method: "GET",
@@ -137,6 +138,7 @@ Page({
                         icon: 'success',
                         duration: 2000
                     })
+                    that.onLoad()
                 } else if (res.data == "fail") {
                     wx.showToast({
                         title: '同意失败，请稍后重试',
@@ -217,6 +219,7 @@ Page({
     //扫码确认借出
     screenQRcode:function(e){
         var price = e.currentTarget.dataset.price;
+        var that = this
         wx.getSetting({
             success(res) {
                 if (res.authSetting['scope.userInfo']) {
@@ -257,6 +260,7 @@ Page({
                                                                     icon: 'success',
                                                                     duration: 2000
                                                                 })
+                                                                that.onLoad()
                                                             } else if (res.data == "fail") {
                                                                 wx.showToast({
                                                                     title: '借出失败，请稍后重试',
@@ -316,6 +320,7 @@ Page({
     //确认借出 不扫描二维码
     affirmLoan:function(e){
         var sharingId = e.currentTarget.dataset.sharingid;
+        var that = this
         wx.request({
             url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=affirmLoan&sharingId=' + sharingId).replace(/\s+/g, ""),
             method: "GET",
@@ -335,6 +340,7 @@ Page({
                         icon: 'success',
                         duration: 2000
                     })
+                    that.onLoad()
                 } else if (res.data == "fail") {
                     wx.showToast({
                         title: '借出失败，请稍后重试',

@@ -1,50 +1,59 @@
 <!--头部 end-->
-		<view class="banner">
-			<view style='margin:0 auto' style='width:{{images.width}}rpx'>
-                <image src="{{orderDetail.image_large}}" style="width:{{ images.width }}rpx; height:{{ images.height }}rpx;margin-left:{{ images.marginLeftWidth }}rpx;" bindload="imageLoad" mode='aspectFit'></image>
-            </view>
-		</view>
-        <!-- 书籍信息 -->
-    <view style='background:#fff;width:100%;text-align:center'>
-        <view class='meta' style='padding: 12rpx 15rpx;'>
-            <view class='title'>{{orderDetail.book_name}}</view>
-        </view>
+<view class="banner">
+    <view style='margin:0 auto' style='width:{{images.width}}rpx'>
+        <image src="{{orderDetail.image_large}}" style="width:{{ images.width }}rpx; height:{{ images.height }}rpx;margin-left:{{ images.marginLeftWidth }}rpx;" bindload="imageLoad" mode='aspectFit'></image>
     </view>
-    <!--书籍信息结束  -->
-    <view class='divLine'></view>
-		<!--充值列表-->
-		<view class="person_wallet_recharge">
-			<ul class="ul">
-                <li class="current">
-                    <text>￥0.1</text>
-                    <view class="sel" style=""></view>
-                </li>
-                <li>
-                    <text>￥0.3</text>
-                    <view class="sel" style=""></view>
-                </li>
-                <li>
-                    <text>￥0.5</text>
-                    <view class="sel" style=""></view>
-                </li>
-                <li>
-                    <text>￥1.0</text>
-                    <view class="sel" style=""></view>
-                </li>
-                <li>
-                    <text>￥3.0</text>
-                    <view class="sel" style=""></view>
-                </li>
-                <li>
-                    <text>￥5.0</text>
-                    <view class="sel" style=""></view>
-                </li>
-                <view class="countup integral">￥{{orderDetail.money}}</view>
-                <view style="clear: both;"></view>
-            </ul>
-            
-            <view class="botton" style='margin-top:30rpx' bindtap='pay'>支付</view>
-        </view>
-        <view style='position:fixed;z-index:333px;bottom:0px;width:100%;font-size:12px'>
-            <view class="agreement" style='width:100%;text-align:center;'><p>点击支付，即您已经表示同意<text style='color:#797785'>《平台规定》</text></p></view>
-        </view>
+</view>
+<!-- 书籍信息 -->
+<view style='background:#fff;width:100%;text-align:center'>
+    <view class='meta' style='padding: 12rpx 15rpx;'>
+        <view class='title'>{{orderDetail.book_name}}</view>
+    </view>
+</view>
+<!--书籍信息结束  -->
+<view class='divLine'></view>
+<!--充值列表-->
+<view class="person_wallet_recharge">
+    <ul class="ul">
+        <li class="current">
+            <text>￥0.1</text>
+            <view class="sel" style=""></view>
+        </li>
+        <li>
+            <text>￥0.3</text>
+            <view class="sel" style=""></view>
+        </li>
+        <li>
+            <text>￥0.5</text>
+            <view class="sel" style=""></view>
+        </li>
+        <li>
+            <text>￥1.0</text>
+            <view class="sel" style=""></view>
+        </li>
+        <li>
+            <text>￥3.0</text>
+            <view class="sel" style=""></view>
+        </li>
+        <li>
+            <text>￥5.0</text>
+            <view class="sel" style=""></view>
+        </li>
+        <view class="countup integral">￥{{orderDetail.money}}</view>
+        <view style="clear: both;"></view>
+    </ul>
+
+    <view class="botton" style='margin-top:30rpx' bindtap='pay'>支付</view>
+</view>
+<view style='position:fixed;z-index:333px;bottom:0px;width:100%;font-size:12px'>
+    <view class="agreement" style='width:100%;text-align:center;'>
+        <p>点击支付，即您已经表示同意
+            <text style='color:#797785'>《平台规定》</text>
+        </p>
+    </view>
+    <view class="agreement" style='width:100%;text-align:center;'>
+        <contact-button type="default-dark" size="20" session-from="weapp">联系工作人员
+        </contact-button>
+    </view>
+
+</view>

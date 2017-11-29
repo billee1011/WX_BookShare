@@ -4,6 +4,7 @@ var app = getApp()
 Page({
     data: {
         phoneInfo: app.globalData.phoneInfo,
+        libraryPic: app.globalData.advertiseUrl
     },
     onLoad:function(options){
         wx.showLoading({
@@ -29,7 +30,6 @@ Page({
                         c2cBookObj: res.data
                     })
                 }
-
             },
             fail: function () {
                 wx.showToast({

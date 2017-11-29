@@ -49,29 +49,24 @@ Page({
         
     },
     onReady:function(){
-        console.log(app.globalData.userId)
-        wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
-            method: "GET",
-            header: {
-                'content-type': 'application/json',
-            },
-            success: function (res) {
-                console.log(res.data)
-            },
-            fail: function () {
-                wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
-                    image: '../../images/fail.png',
-                    duration: 2000
-                })
-            }
-        })
-    },
-
-    //下滑到px时搜索取消
-    scroll: function (e) {
-        console.log(e)
+        //获取未归还图书
+        // wx.request({
+        //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+        //     method: "GET",
+        //     header: {
+        //         'content-type': 'application/json',
+        //     },
+        //     success: function (res) {
+        //         console.log(res.data)
+        //     },
+        //     fail: function () {
+        //         wx.showToast({
+        //             title: '获取数据失败，请稍后重试！',
+        //             image: '../../images/fail.png',
+        //             duration: 2000
+        //         })
+        //     }
+        // })
     },
 
     //引导页面开始
@@ -157,7 +152,7 @@ Page({
                 })
             },
             onClose(data) {
-                console.log(data)
+                
             },
         })
     },
@@ -171,7 +166,6 @@ Page({
             url += that.data.searchValue;
         }
         if (that.data.ageIndex != 0) {
-            console.log(that.data.ageIndex)
             var ageArray = that.data.ageValue
             var ageIndex = that.data.ageIndex
             url += "&age=";
