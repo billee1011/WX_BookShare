@@ -55,7 +55,7 @@
                             <view class='operate'>
                                 <button size='mini' plain='true' type='primary' data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="creatBorrowQRcode">出示二维码</button>
                                 <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-phonenum="{{book.phoneNumber}}" bindtap="callOwner">联系书主</button>
-                                <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" style='color: #cccccc;border:1px solid  #cccccc'>取消</button>
+                                <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-sharingid="{{book.sharing_id}}" bindtap="cancelBorrow" style='color: #000;border:1px solid  #ccc'>取消</button>
                                 <view style='clear:both'></view>
                             </view>
                         </view>
