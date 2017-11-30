@@ -4,15 +4,16 @@ var app = getApp()
 Page({
     data: {
         phoneInfo: app.globalData.phoneInfo,
+        changePic: false
     },
-    onLoad:function(options){
+    onLoad: function (options) {
         wx.showLoading({
             title: '加载中',
         })
         var that = this;
         var data = new Array();
         var userId = options.userId
-        if (!userId || userId ==null){
+        if (!userId || userId == null) {
             userId = app.globalData.userId;
         }
         /**获取C2C的图书 type=3**/
@@ -50,10 +51,10 @@ Page({
             },
             success: function (res) {
                 if (res.data.length > 0) {
-                    for(var i in res.data){
+                    for (var i in res.data) {
                         data.push(res.data[i]);
                     }
-                    
+
                 }
                 that.setData({
                     myLibrary: data
@@ -101,42 +102,163 @@ Page({
         return {
             title: "快来我的图书馆借书吧!",
             desc: "我的图书馆里有很多好书,快来看看吧!",
-            path: '/pages/library/library?userId=' + app.globalData.userId
+            path: '/pages/library/library?userId=' + app.globalData.userId,
+            changePic: false, //是否切换了图片
         }
     },
 
     aldminishare: function (e) {
-        console.log(this)
+        var that = this;
         var page = this;
         var url = page['__route__'] + '?userId=' + app.globalData.userId;
         var data = {};
-
         data = e.currentTarget.dataset
         data['path'] = url;
-        wx.showToast({
-            title: '分享生成中...',
-            icon: 'loading',
-            duration: 999999
-        })
-        wx.request({
-            method: 'post',
-            url: 'https://shareapi.aldwx.com/Main/action/Template/Template/applet_htmlpng',
-            data: data,
-            success: function (data) {
-                if (data.data.code === 200) {
-                    wx.previewImage({
-                        urls: [data.data.data]
+        console.log(that)
+
+        if (that.data.pictureFiles) {
+            wx.uploadFile({
+                url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadMyLibraryPic',
+                header: {
+                    'content-type': "multipart/form-data"
+                }, // 设置请求的 header
+                filePath: that.data.pictureFiles,
+                name: 'authPic',//app.globalData.userId+
+
+                success: function (res) {
+                    var picUrl = 'https://' + app.globalData.apiUrl + res.data;
+                    data.wares_image = picUrl;
+                    // data.wares_logo = 'https://35978598.1949science.cn/Public/images/logo.png';
+                    if (data) {
+                        wx.showToast({
+                            title: '分享生成中...',
+                            icon: 'loading',
+                            duration: 999999
+                        })
+                        wx.request({
+                            method: 'post',
+                            url: 'https://shareapi.aldwx.com/Main/action/Template/Template/applet_htmlpng',
+                            data: data,
+                            success: function (data) {
+                                if (data.data.code === 200) {
+                                    wx.previewImage({
+                                        urls: [data.data.data]
+                                    })
+                                }
+                                // 关闭loading
+                                wx.hideLoading()
+                            },
+                            complete: function () {
+                                wx.hideLoading()
+                            },
+                            fail: function () {
+                                wx.hideLoading();
+                            }
+                        })
+                    } else {
+                        wx.showModal({
+                            title: '提示',
+                            content: '图片上传失败,请重试！',
+                            showCancel: false,
+                            confirmText: "我知道了",
+                            success: function () {
+                                return;
+                            }
+                        })
+                    }
+                }
+            })
+        } else {
+            wx.showToast({
+                title: '分享生成中...',
+                icon: 'loading',
+                duration: 999999
+            })
+            wx.request({
+                method: 'post',
+                url: 'https://shareapi.aldwx.com/Main/action/Template/Template/applet_htmlpng',
+                data: data,
+                success: function (data) {
+                    if (data.data.code === 200) {
+                        wx.previewImage({
+                            urls: [data.data.data]
+                        })
+                    }
+                    // 关闭loading
+                    wx.hideLoading()
+                },
+                complete: function () {
+                    wx.hideLoading()
+                },
+                fail: function () {
+                    wx.hideLoading();
+                }
+            })
+        }
+
+
+    },
+    changePicture: function (e) {
+        //长按切换照片
+        var that = this;
+        var index = e.target.dataset.index;
+        wx.showActionSheet({
+            itemList: ['更改图片', '删除'],
+            success: function (res) {
+                if (res.tapIndex == "0") {
+                    wx.chooseImage({
+                        count: 1,
+                        success: function (res) {
+                            if (res.errMsg == "chooseImage:ok") {
+                                that.setData({
+                                    pictureFiles: res.tempFilePaths[0],
+                                    hidden: true,
+                                    changePic: true,//切换了图片
+                                })
+                            } else {
+                                wx.showToast({
+                                    title: '选择照片失败，请重试',
+                                    image: '../../images/fail.png',
+                                    duration: 2000
+                                })
+                            }
+                            // that.togglePtype()
+                        }
+                    })
+                } else if (res.tapIndex == "1") {
+                    that.setData({
+                        pictureFiles: null,
+                        hidden: false,
+                        changePic: true,//切换了图片
                     })
                 }
-                // 关闭loading
-                wx.hideLoading()
             },
-            complete: function () {
-                wx.hideLoading()
-            },
-            fail: function () {
-                wx.hideLoading();
+            fail: function (res) {
+
             }
         })
-    }
+
+    },
+    chooseImage: function () {
+        var that = this;
+        //选择校园卡或者教工卡
+        wx.chooseImage({
+            count: 1,
+            success: function (res) {
+                if (res.errMsg == "chooseImage:ok") {
+                    that.setData({
+                        pictureFiles: res.tempFilePaths[0],
+                        hidden: true
+                    })
+                } else {
+                    wx.showToast({
+                        title: '选择照片失败，请重试',
+                        image: '../../images/fail.png',
+                        duration: 2000
+                    })
+                }
+                //that.togglePtype()
+            }
+        })
+    },
 });
