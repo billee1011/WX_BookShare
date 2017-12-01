@@ -127,7 +127,7 @@ Page({
                     'success': function (res) {
                         var sharingId = that.data.orderDetail.sharingId;
                         wx.request({
-                            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&sharingId=' + sharingId).replace(/\s+/g, ""),
+                            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&sharingId=' + sharingId + "&can_share_id=" + that.data.orderDetail.can_share_id + "&money=" + that.data.orderDetail.money).replace(/\s+/g, ""),
                             method: "GET",
                             header: {
                                 'content-type': 'application/json',
@@ -175,6 +175,21 @@ Page({
                     },
                     'fail': function (res) {
                         console.log('fail:' + JSON.stringify(res));
+                        if (res.errMsg =="requestPayment:fail cancel"){
+                            wx.showModal({
+                                title: '提示',
+                                content: '您选择了取消支付，请前往“借书人”->“更多”->“待支付”支付',
+                                showCancel:false,
+                                confirmText:"知道了",
+                            })
+                        }else{
+                            wx.showModal({
+                                title: '提示',
+                                content: '支付过程中遇到问题，请点击下方联系工作人员！',
+                                showCancel: false,
+                                confirmText: "知道了",
+                            })
+                        }
                     }
                 })
             },

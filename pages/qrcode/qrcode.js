@@ -36,6 +36,52 @@ Page({
                 })
             }
         })
+
+        //定时器获取订单状态 
+        var timename = setInterval(function(){
+            wx.request({
+                url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getScreenState&sharingId=' + options.sharingId).replace(/\s+/g, ""),
+                success: function (res) {
+                    if (qrtype == 1){
+                        if(res.data[0]["if_return"]==1){
+                            wx.showModal({
+                                title: '提示',
+                                content: '收书成功！对方支付即可得到收益了呦！',
+                                showCancel:false,
+                                confirmText:"知道了",
+                                success:function(res){
+                                    if(res.confirm){
+                                        wx.navigateBack({
+                                            delta:1
+                                        })
+                                        clearInterval(timename);
+                                        return ;
+                                    }
+                                }
+                            })
+                        }
+                    } else if (qrtype == 0){
+                        if (res.data[0]["if_loan"] == 1) {
+                            wx.showModal({
+                                title: '提示',
+                                content: '借书成功，您现在可以看书了，不过要记得还书噢！',
+                                showCancel: false,
+                                confirmText: "知道了",
+                                success: function (res) {
+                                    if (res.confirm) {
+                                        wx.navigateBack({
+                                            delta: 1
+                                        })
+                                        clearInterval(timename)
+                                        return;
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
+            })
+        }, 2000);
     },
 
     onReady:function(){

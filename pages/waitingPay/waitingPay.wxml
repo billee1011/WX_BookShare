@@ -12,7 +12,6 @@
                     <view style='width:180px;height:70rpx;float:left;text-align:left;position:relative'>
                         <image src='../../images/applier.png' style='width:30rpx;height:30rpx;position:absolute;top:18rpx;left:10rpx'></image>
                         <text style='line-height:30px;margin-left:50rpx'>{{book.pilot_name?book.pilot_name:book.owner_name}}</text>
-                        <image src='../../images/personal_icon_arrow.png' style='width:15rpx;height:20rpx;position:absolute;top:24rpx;margin-left:10rpx'></image>
                     </view>
                     <view style='float:right;margin-right:25rpx'>
                         <text class='order-status' style='color:red'>待支付</text>

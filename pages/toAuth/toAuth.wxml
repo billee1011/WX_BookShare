@@ -2,7 +2,7 @@
 <view style="width:98%;margin:10px 1%">
     <view class="page-section userinfo">
          <view class="page-body-info">
-            <view class="weui-cells__tips">提示：请上传正确的用户信息，才能通过认证！！！</view>
+            <view class="weui-cells__tips">提示：请上传正确的用户信息，才能通过认证(通过后不可修改)！！！</view>
             <view style='font-size:15px;margin-top:5px;'>
                 请上传校园卡或者教工卡
             </view>

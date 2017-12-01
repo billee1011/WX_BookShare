@@ -83,7 +83,7 @@
                                 </view>
                                 <view class="clear-both"></view>
                             </view>
-                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx; margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
                                 <view>
                                     <view style='float:left'>预期收入：
                                         <text style='color:red'>￥{{book.forecastMoney!=null?book.forecastMoney:0.00}}</text>
@@ -102,12 +102,12 @@
                                     </view>
                                 </view>
                             </view>
-                            <view  style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                            <!-- <view  style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
                                 <view class='operate'>
                                     <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="retrieval">拿回</button>
                                     <view style='clear:both'></view>
                                 </view>
-                            </view>
+                            </view> -->
                         </view>
                     </view>
                     <!--b2c图书列表 end-->

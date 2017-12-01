@@ -63,10 +63,14 @@
     </view>  
   </view>  
 </view>   -->
+<<<<<<< HEAD
 
 
 <!-- 
 <view>
+=======
+<!-- <view>
+>>>>>>> 7dbc6d01224c58d7770c05f4ece9d3fbac15f46e
     <view class='bookcase_owner'>刘鑫的图书馆</view>
     <view class='bookcase_body' style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
         <view style='padding:100px 35px 5px 35px;'>
@@ -80,7 +84,6 @@
                 bindtap="aldminishare"
                 data-template_key="c064296fb9fab42265f5c0d8484ebcfc">
             </image>
-            
         </view>
             <view wx:for="{{myLibrary}}">
                 <view class='bookcase_board' wx:if="{{index % 3 == 0}}" style="background-size:{{phoneInfo.screenWidth-60}}px 20px;position：relative">
@@ -117,6 +120,7 @@
         </view>
     </view>
 </view> -->
+<<<<<<< HEAD
 
 
 
@@ -147,3 +151,18 @@
         data-wares_price="" bindtap="aldminishare" data-template_key="c064296fb9fab42265f5c0d8484ebcfc">
     </image>
 </view>  -->
+=======
+<input bindinput='setValue' ></input>
+
+<view class="in-code">
+            <image src="../../images/invite/ewm.png" 
+                data-wares_image="{{libraryPic}}/bookshare_svn/uploads/libraryPic/2.png"
+                data-wares_logo="../../logo.png"
+                data-wares_title="{{title}}"
+                data-wares_content="{{content}}"
+                data-wares_price=""
+                bindtap="aldminishare"
+                data-template_key="c064296fb9fab42265f5c0d8484ebcfc">
+            </image>
+        </view>
+>>>>>>> 7dbc6d01224c58d7770c05f4ece9d3fbac15f46e
