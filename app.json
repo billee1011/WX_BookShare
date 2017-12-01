@@ -58,7 +58,8 @@
         "pages/haveBorrowed/haveBorrowed",
         "pages/ageSelect/ageSelect",
         "pages/socket/socket",
-        "pages/404/404"
+        "pages/404/404",
+        "pages/withDraw/withDraw"
         
     ],
     "window": {

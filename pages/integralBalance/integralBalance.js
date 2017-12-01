@@ -104,5 +104,12 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+
+    //打开提现页面
+    openWithDraw:function(){
+        wx.navigateTo({
+            url: '../withDraw/withDraw',
+        })
     }
 })

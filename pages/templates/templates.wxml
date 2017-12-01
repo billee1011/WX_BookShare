@@ -821,6 +821,22 @@
         <view class='rightText'>+{{record.value}}</view>
     </view>
 
+    <view class="item" style='display: flex;' wx:if="{{record.type == 10}}">
+        <text class="leftText1">
+                    提现至零钱申请
+                </text>
+        <text class='leftText2'>{{record.add_time}}</text>
+        <view class='rightText'>-{{record.value}}</view>
+    </view>
+
+    <view class="item" style='display: flex;' wx:if="{{record.type == 11}}">
+        <text class="leftText1">
+                    提现
+                </text>
+        <text class='leftText2'>{{record.add_time}}</text>
+        <view class='rightText'>-{{record.value}}</view>
+    </view>
+
     <view class="item" style='display: flex;' wx:if="{{record.type == 91}}">
         <text class="leftText1">
                     其他原因

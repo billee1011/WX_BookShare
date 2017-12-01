@@ -1,0 +1,61 @@
+<!--pages/withDraw/withDraw.wxml-->
+<view class="moneyContainer"></view>
+
+<!-- 第一块 -->
+<view class="firstblock font_size">
+    <view tapmode="presshover" style="">
+        <view style="width:15%;margin-left:3%;margin-right:0%;float: left">
+            <image src="../../images/account.png" style="width: 40px;height: 40px;margin-top: 10px;opacity: 0.8"></image>
+        </view>
+        <view style="height: 50px;margin: 0px 0;width: 60%;float: left">
+            <span style="width:100%;height: 100%;margin-top:0px;margin-left:8px;float: left;font-size: 17px">
+                <b>我的钱包</b>
+            </span>
+        </view>
+    </view>
+</view>
+<!-- 第二块 -->
+<view class="secondblock  font_size">
+    <view class="h1"></view>
+    <view class="item">
+        <span>账户余额</span>
+        <span style="color: #FF3333;float: right;margin-right: 4%">{{integral?integral:0.00}}元</span>
+    </view>
+    <view class="h1"></view>
+    <view class="item" tapmode="presshover">
+        <span>提现金额</span>
+    </view>
+    <view class="item" tapmode="presshover" style="font-size:40px">
+        <span style="float: left">￥</span>
+        <input style="width:90%;float:right;height: 40px;line-height: 40px;margin-top: -40px;text-align:right;padding-right: 10px" type="number" bindinput='withDrawValue'/>
+    </view>
+    <view class="item" tapmode="presshover" style="font-size: 12px;color: red;">
+        <span>
+            <image src="../../../image/selfCenter/warning.png" style="width:12px;height:auto;margin-bottom: -2px"></image>
+            <span>提现金额大于5.00元</span>
+        </span>
+    </view>
+    <view class="h1"></view>
+     <view class="item">
+        <span>支付宝昵称</span>
+        <input style="width:90%;margin-top:-40px;float:right;text-align:right;border-bottom: 1px solid #f7f7f7;height: 40px;line-height: 40px;padding-right: 10px" type="text" id="nickName" />
+    </view>
+    <view class="h1"></view>
+    <view class="item">
+        <span>支付宝账号</span>
+        <input style="width:90%;margin-top:-40px;float:right;text-align:right;border-bottom: 1px solid #f7f7f7;height: 40px;line-height: 40px;padding-right: 10px" type="text" />
+    </view> 
+</view>
+<!-- 第三块 -->
+<view class="h15"></view>
+<view class="thirdblock" style="width:100%;background-color: #f7f7f7;text-align:center;padding-bottom: 3px;">
+    <button class='btn alter-button' style="width:80%;text-align: center;color:#f6f6f6;background-color: #6699FF;border-color: #dedeee" bindtap='withDraw'>
+        提现
+    </button>
+</view>
+<!--</wxs>-->
+<!-- 底部小字  -->
+<view class="fourthblock">
+    为您的
+    <span style="color: #6699FF">支付安全</span>保驾护航
+</view>

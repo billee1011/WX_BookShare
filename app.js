@@ -26,8 +26,12 @@ App({
         // }, that.globalData.timer);
 
         wx.onNetworkStatusChange(function (res) {
-            console.log(res.isConnected)
-            console.log(res.networkType)
+            if (res.isConnected == false){
+                wx.navigateTo({
+                    url: '../404/404',
+                })
+                return ;
+            }
         })
 
         //获取手机的宽度和高度
@@ -35,7 +39,6 @@ App({
         
 
     },
-
     getUserInfo: function (cb) {
         var that = this
         if (this.globalData.userInfo) {

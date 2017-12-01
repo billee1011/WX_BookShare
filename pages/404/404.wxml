@@ -1,2 +1,9 @@
 <!--pages/404/404.wxml-->
-<text>pages/404/404.wxml</text>
+<view>
+    <image src='../../images/404.jpg' style='width:{{phoneInfo.windowWidth}}px;height:{{phoneInfo.windowHeight}}px'></image>
+</view>
+
+<view style='position:fixed;bottom:60px;width:100%'>
+    <button type="default" size="default" plain="true" bindtap="returnPage" hover-class="other-button-hover" style='width:50%;margin:0 25%;color:#EAEEF1;border-color:#EAEEF1'> 返回 </button>
+    <view style='clear:both'></view>
+</view>

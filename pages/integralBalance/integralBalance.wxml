@@ -9,7 +9,7 @@
         </view>
         <view class='h1'></view>
         <view class="item" style='padding:5px 5%;'>
-            <button class='submit' bindtap="" type="submit" disable>
+            <button class='submit' bindtap="openWithDraw">
                 提现
             </button>
         </view>

@@ -1,0 +1,127 @@
+/* pages/withDraw/withDraw.wxss */
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    background: #f7f7f7;
+    color: #555;
+}
+
+.h10 {
+    height: 10px;
+    background: #f7f7f7;
+}
+
+.h1 {
+    height: 1px;
+    background: #f0f0f0;
+}
+
+.h15 {
+    height: 16px;
+    background: #f7f7f7;
+}
+
+.fr {
+    float: right;
+}
+
+.hint {
+    color: #666;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.firstblock, .secondblock, .thirdblock {
+    background-color: #fff;
+}
+
+.firstblock view {
+    height: 60px;
+    line-height: 60px;
+    background-color: #fff;
+}
+
+.firstblock view image {
+    line-height: 60px;
+    height: 60px;
+    width: 50px;
+    display: inline-block;
+    margin-left: 4%;
+}
+
+.firstblock view span {
+    display: inline-block;
+    height: 60px;
+}
+
+/* 头部登陆 */
+
+.login {
+    background-image: url(../../image/personal_bkg.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.loginbg {
+    /*position: absolute;*/
+    width: 100%;
+}
+
+.person_arrow {
+    position: absolute;
+    height: 20px;
+    right: 10px;
+    top: 90px;
+}
+
+/* 设置条目 */
+
+.item {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 3%;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.item_ico {
+    float: left;
+    width: 20px;
+    padding: 15px 10px 10px 0;
+}
+
+.item_arrow {
+    float: right;
+    width: 10px;
+    height: auto;
+    margin: 15px 10px;
+}
+
+.presshover {
+    background-color: #fafafa;
+}
+
+.alter-button {
+    background: #ffd31c;
+    width: 100%;
+}
+
+.font_size {
+    font-size: 14px;
+}
+
+.fourthblock {
+    position: fixed;
+    bottom: 13px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: #888;
+}
+
+.buyhover {
+    opacity: 0.8;
+    color: white;
+    background: #69f;
+}

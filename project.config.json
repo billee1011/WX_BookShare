@@ -82,6 +82,18 @@
 					"name": "billBoard",
 					"pathName": "pages/billBoard/billBoard",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "404",
+					"pathName": "pages/404/404",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "withDraw",
+					"pathName": "pages/withDraw/withDraw",
+					"query": ""
 				}
 			]
 		}

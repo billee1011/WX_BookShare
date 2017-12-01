@@ -1,1 +1,4 @@
 /* pages/404/404.wxss */
+page{
+    background: #fff
+}
