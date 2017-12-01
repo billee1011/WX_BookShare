@@ -127,7 +127,7 @@
     overflow: scroll;  
 }   */
 
-.itemBox {
+/* .itemBox {
     float: left;
 }
 
@@ -164,9 +164,9 @@
     background-repeat: no-repeat;
     background-position: center bottom;
     padding-bottom: 14px;
-}
+} */
 
-.in-code {
+/* .in-code {
 	width: 40px;
 	height: 40px;
 	position: absolute;
@@ -179,4 +179,91 @@
 	height: 100%;
 	display: block;
 	border: none;
+} */
+
+.page-body-info {
+    display: flex;
+    box-sizing: border-box;
+    /* padding: 30rpx; */
+    height: 420rpx;
+    border-top: 1rpx solid #d9d9d9;
+    border-bottom: 1rpx solid #d9d9d9;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-body-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width: 100%;
+    /* padding: 50rpx 0 150rpx 0; */
+}
+
+.weui-cells__tips {
+    margin-top: 0.3em;
+    color: #999;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.image-plus {
+    width: 150rpx;
+    height: 150rpx;
+    border: 2rpx solid #d9d9d9;
+    position: relative;
+}
+
+.image-plus-nb {
+    border: 0;
+}
+
+.image-plus-horizontal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #d9d9d9;
+    width: 4rpx;
+    height: 80rpx;
+    transform: translate(-50%, -50%);
+}
+
+.image-plus-vertical {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #d9d9d9;
+    width: 80rpx;
+    height: 4rpx;
+    transform: translate(-50%, -50%);
+}
+
+.image-plus-text {
+    color: #888;
+    font-size: 28rpx;
+}
+
+.btn {
+    position: relative;
+    display: block;
+    margin: 48rpx auto;
+    margin-left: 28rpx;
+    margin-right: 28rpx;
+    box-sizing: border-box;
+    font-size: 36rpx;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    line-height: 2.55555556;
+    border-radius: 10rpx;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.btn_primary {
+    background-color: #1aad19;
 }

@@ -63,7 +63,14 @@
     </view>  
   </view>  
 </view>   -->
+<<<<<<< HEAD
+
+
+<!-- 
+<view>
+=======
 <!-- <view>
+>>>>>>> 7dbc6d01224c58d7770c05f4ece9d3fbac15f46e
     <view class='bookcase_owner'>刘鑫的图书馆</view>
     <view class='bookcase_body' style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
         <view style='padding:100px 35px 5px 35px;'>
@@ -113,6 +120,38 @@
         </view>
     </view>
 </view> -->
+<<<<<<< HEAD
+
+
+
+
+<view class="page-body-info">
+    <view class="weui-cells__tips">提示：上传照片用于生成个人图书馆宣传海报</view>
+    <view class="weui-cells__tips">可长按保存，然后分享至朋友圈</view>
+    <block wx:if="{{pictureFiles}}">
+        <image src="{{pictureFiles}}" class="image" mode="aspectFit" bindtap="changePicture"></image>
+    </block>
+    <block wx:else>
+        <view class="image-plus image-plus-nb" bindtap="chooseImage">
+            <view class="image-plus-horizontal"></view>
+            <view class="image-plus-vertical"></view>
+        </view>
+        <view class="image-plus-text">选择图片</view>
+    </block>
+</view>
+
+<button class="btn btn_primary" href="javascript:;" type='button' data-type='2' data-wares_image="https://35978598.1949science.cn//uploads/library/2017-11-302017-11-30/library400702042.jpg" data-wares_logo="https://35978598.1949science.cn/Public/images/logo.png"
+    data-wares_title="蜜蜂图书共享平台" data-wares_content="我在蜜蜂图书上传了几本书，分享给你，进来看看吧~" data-wares_price="只要原价*0.01/天" bindtap="aldminishare" data-template_key="c064296fb9fab42265f5c0d8484ebcfc">生成个人海报</button>
+
+ <!-- <button data-article_title="时光煮雨，匆匆了那些" data-article_time="2017-08-03" data-article_brand="蜜蜂图书" data-article_image="http://shareapi.aldwx.com/public/image/template/mini-article-two-img.jpg" data-article_content="我在蜜蜂图书上传了几本书，分享给你，进来看看吧~"
+    bindtap="aldminishare" data-template_key="96460982f1d389341e815790cc68e747">分享</button>  -->
+ 
+<!-- <view class="in-code">
+    <image src="../../images/invite/ewm.png" data-wares_image="http://shareapi.aldwx.com/public/image/template/mini-retailers-img.jpg" data-wares_logo="http://shareapi.aldwx.com/public/image/template/mini-retailers-logo.png" data-wares_title="蜜蜂图书共享" data-wares_content="我在蜜蜂图书上传了几本书，分享给你，进来看看吧~"
+        data-wares_price="" bindtap="aldminishare" data-template_key="c064296fb9fab42265f5c0d8484ebcfc">
+    </image>
+</view>  -->
+=======
 <input bindinput='setValue' ></input>
 
 <view class="in-code">
@@ -126,3 +165,4 @@
                 data-template_key="c064296fb9fab42265f5c0d8484ebcfc">
             </image>
         </view>
+>>>>>>> 7dbc6d01224c58d7770c05f4ece9d3fbac15f46e
