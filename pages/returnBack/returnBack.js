@@ -2,6 +2,7 @@
 //获取应用实例
 var app = getApp()
 import { $wuxPrompt } from '../../components/wux'
+var utils = require('../../utils/util.js');
 const sliderWidth = 96
 Page({
     data: {

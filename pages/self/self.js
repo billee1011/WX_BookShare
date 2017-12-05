@@ -30,12 +30,6 @@ Page({
         //         })
         //     }
         // })
-        that.setData({
-            userInfo: app.globalData.userInfo,
-            certificationOk: app.globalData.certificationOk,
-        })
-        
-        
     },
     
     onReady:function(){
@@ -61,7 +55,13 @@ Page({
     },
     onShow: function () {
         var that = this;
-        utils.checkSettingStatu(that);
+        console.log(that);
+        // that.setData({
+        //     userInfo: app.globalData.userInfo,
+        //     certificationOk: app.globalData.certificationOk,
+        // })
+        // console.log(that);
+        // utils.checkSettingStatu(that);
         that.onLoad();
     },
 
