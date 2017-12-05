@@ -30,9 +30,9 @@
         </view>
     </view>
     <view class="item">
-        <view style='padding-left: 15px;'>是否可以被别人看到</view>
+        <view style='padding-left: 15px;'>对他人不可见</view>
         <view style="padding-left:46%;">
-            <switch bindchange="changeProtect" checked="{{checked}}" />
+            <switch bindchange="setCanSee" checked="{{cardContent.can_see==1?true:false}}" />
         </view>
     </view>
     <view class="operate" style='margin-top:10px;'>

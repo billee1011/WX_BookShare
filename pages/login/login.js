@@ -4,11 +4,9 @@ var app = getApp()
 Page({
     data: {
         phoneInfo: app.globalData.phoneInfo,
-<<<<<<< HEAD
-        changePic: false
-=======
-        libraryPic: app.globalData.advertiseUrl
->>>>>>> 7dbc6d01224c58d7770c05f4ece9d3fbac15f46e
+        changePic: false,
+        libraryPic: app.globalData.advertiseUrl,
+        userInfo: app.globalData.userInfo,
     },
     onLoad: function (options) {
         wx.showLoading({
@@ -42,6 +40,7 @@ Page({
                     duration: 2000
                 })
             }
+            
         })
         /**获取C2C的图书结束**/
 
@@ -73,7 +72,7 @@ Page({
             }
         })
         wx.hideLoading()
-
+        this.getUserData()
     },
 
     //进入图书详情
@@ -86,7 +85,7 @@ Page({
         var that = this
         if (that.data.bookListType == 2) {
             wx.navigateTo({
-                url: '../detail/detail?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+                url: '../detailPay/detailPay?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
             })
         } else {
             //新页面
@@ -98,26 +97,27 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-        return {
-            title: "快来我的图书馆借书吧!",
-            desc: "我的图书馆里有很多好书,快来看看吧!",
-            path: '/pages/library/library?userId=' + app.globalData.userId,
-            changePic: false, //是否切换了图片
-        }
+    getUserData:function(){
+        var that = this
+        wx.getUserInfo({
+            success: function (res) {
+                if (res.errMsg =="getUserInfo:ok"){
+                    that.setData({
+                        userInfo: res.userInfo
+                    })
+                }
+            }
+        })
     },
 
     aldminishare: function (e) {
         var that = this;
         var page = this;
-        var url = page['__route__'] + '?userId=' + app.globalData.userId;
+        var url = 'pages/library/library?userId=' + app.globalData.userId;
         var data = {};
         data = e.currentTarget.dataset
         data['path'] = url;
-        console.log(that)
+        console.log(data);
 
         if (that.data.pictureFiles) {
             wx.uploadFile({
@@ -139,15 +139,16 @@ Page({
                             duration: 999999
                         })
                         wx.request({
-                            method: 'post',
                             url: 'https://shareapi.aldwx.com/Main/action/Template/Template/applet_htmlpng',
                             data: data,
+                            method: 'POST',
                             success: function (data) {
                                 if (data.data.code === 200) {
                                     wx.previewImage({
                                         urls: [data.data.data]
                                     })
                                 }
+                                console.log(data.data)
                                 // 关闭loading
                                 wx.hideLoading()
                             },
@@ -178,9 +179,9 @@ Page({
                 duration: 999999
             })
             wx.request({
-                method: 'post',
                 url: 'https://shareapi.aldwx.com/Main/action/Template/Template/applet_htmlpng',
                 data: data,
+                method: 'POST',
                 success: function (data) {
                     if (data.data.code === 200) {
                         wx.previewImage({

@@ -1,80 +1,5 @@
-<!-- <view class="bottom">
-
-    <view class="bottom-box">
-        <view class="list-box" bindtap="borrowIn">
-            <view class="icon-box">
-                <image src="../../images/borrowIn.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>借入</span>
-            </view>
-        </view>
-        <view class="list-box" bindtap="screenISBN">
-            <view class="icon-box">
-                <image src="../../images/share.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>分享</span>
-            </view>
-        </view>
-        <view class="list-box" bindtap="pilot">
-            <view class="icon-box">
-                <image src="../../images/self_support.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>自营点</span>
-            </view>
-        </view>
-        <view class="list-box" bindtap="borrowApplication">
-            <view class="icon-box">
-                <image src="../../images/borrowOut.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>借出</span>
-            </view>
-        </view>
-        <view style="clear:both"></view>
-    </view>
-    <view class="bottom-box">
-        <view class="list-box" bindtap="returnBack">
-            <view class="icon-box">
-                <image src="../../images/giveBack.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>归还</span>
-            </view>
-        </view>
-        <view class="list-box" bindtap="bookMan">
-            <view class="icon-box">
-                <image src="../../images/count.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>管理</span>
-            </view>
-        </view>
-         <view class="list-box" bindtap="openComment">
-            <view class="icon-box">
-                <image src="../../images/book_lists.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>书单</span>
-            </view>
-        </view> 
-        <view class="list-box" bindtap="getBook">
-            <view class="icon-box">
-                <image src="../../images/receive.png" style="width:48px;height:48px;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>收书</span>
-            </view>
-        </view>
-        <view style="clear:both"></view>
-    </view>
-
-</view> -->
 <import src="../../components/button/button.wxml" />
 
-<!-- <template is="button" data="{{ ...$wux.button.br }}" /> -->
 <view style='width:100%;'>
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='width:100%;height:200px;background:#fff'>
         <block wx:for="{{imgUrls}}">
@@ -89,9 +14,9 @@
         <text>当前角色：<text style='color:#00c700;font-size:36rpx;font-weight:600;' wx:if="{{role}}">书主</text>
         <text style='color:#00c700;font-size:36rpx;font-weight:600;' wx:else>借书人</text></text>
         <!-- <image src='../../images/exchange.png' style='width:40rpx;height:40rpx;float:right;margin-right:30rpx;margin-top:5px;'></image> -->
-         <view style='display:inline-block;'>（点击切换至：</view> 
-         <text><text wx:if="{{role}}">借书人）</text>
-         <text wx:else>书主）</text></text>
+        <view style='display:inline-block;'>（点击切换至：</view>
+        <text><text wx:if="{{role}}">借书人）</text>
+        <text wx:else>书主）</text></text>
     </view>
 </view>
 <!-- 书主操作按钮 -->
@@ -135,7 +60,10 @@
             <view class="icon-box">
                 <view style="width:200rpx;height:210rpx;margin: 0 auto;position:relative">
                     <template is="button" data="{{ ...$wux.button.br }}" />
-                    <view class='redPoint' wx:if="{{operateNum[1]>0}}"></view>
+                    <!-- <view class='redPoint' wx:if="{{operateNum[1]>0}}"></view> -->
+                    <view class="jh-tab-bubble" style='top:13rpx;right:13rpx' wx:if="{{ operateNum[1] > 0}}">
+                    <text class="jh-tab-count">{{ operateNum[1] < 100? operateNum[1]: 99 }}</text>
+                </view>
                 </view>
             </view>
             <view class="icon-text">
@@ -150,6 +78,14 @@
 <!-- 借书人操作按钮 -->
 <view class="bottom" wx:if="{{!role}}">
     <view class="bottom-box">
+        <view class="list-box" bindtap="toBorrowed">
+            <view class="icon-box">
+                <image src="../../images/toBorrow.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
+            </view>
+            <view class="icon-text" style='margin-top:5px'>
+                <span>我要借书</span>
+            </view>
+        </view>
         <view class="list-box" bindtap="borrowBasket">
             <view style='position:relative;width:200rpx;margin:0 auto'>
                 <image src="../../images/toTake.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
@@ -159,22 +95,6 @@
             </view>
             <view class="icon-text">
                 <span>我要取书</span>
-            </view>
-        </view>
-        <!-- <view class="list-box" bindtap="openToReturn">
-            <view class="icon-box">
-                <image src="../../images/share1.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text">
-                <span>待归还</span>
-            </view>
-        </view> -->
-        <view class="list-box" bindtap="toBorrowed">
-            <view class="icon-box">
-                <image src="../../images/toBorrow.png" style="width:200rpx;height:200rpx;margin: 0 auto"></image>
-            </view>
-            <view class="icon-text" style='margin-top:5px'>
-                <span>我要借书</span>
             </view>
         </view>
         <view style="clear:both"></view>
@@ -196,6 +116,10 @@
             <view class="icon-box">
                 <view style="width:200rpx;height:210rpx;margin: 0 auto;position:relative">
                     <template is="button" data="{{ ...$wux.button.br2 }}" />
+                    <!-- <view class='redPoint' wx:if="{{operateNum[4]>0}}"></view> -->
+                    <view class="jh-tab-bubble" style='top:13rpx;right:13rpx' wx:if="{{ operateNum[4] > 0}}">
+                    <text class="jh-tab-count">{{ operateNum[4] < 100? operateNum[4]: 99 }}</text>
+                </view>
                 </view>
             </view>
             <view class="icon-text">

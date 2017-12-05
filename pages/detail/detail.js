@@ -230,8 +230,8 @@ Page({
         var that = this;
         wx.previewImage({
             //数据源
-            current: that.data.morePic[e.currentTarget.dataset.index],
-            urls: that.data.morePic
+            current: that.data.morePic[e.currentTarget.dataset.index] ? that.data.morePic[e.currentTarget.dataset.index]:0,
+            urls: that.data.morePic ? that.data.morePic:that.data.bookInfo.image_large
         })
     },
 

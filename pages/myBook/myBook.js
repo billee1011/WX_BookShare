@@ -83,7 +83,7 @@ Page({
                         ],
                         buttonClicked(index, item) {
                             wx.navigateTo({
-                                url: '../uploadPilot/uploadPilot'
+                                url: '../uploadPilot/uploadPilot?donateType=0'
                             })
                         },
                     }).show()
@@ -118,28 +118,19 @@ Page({
         var that = this
         if (that.data.bookListType == 2) {
             wx.navigateTo({
-                url: '../detail/detail?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+                url: '../detailPay/detailPay?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
             })
         } else {
             //新页面
             wx.navigateTo({
-                url: '../detail1/detail1?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+                url: '../detailPay/detailPay?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
             })
         }
 
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-        return {
-            title: "快来我的图书馆借书吧!",
-            desc: "我的图书馆里有很多好书,快来看看吧!",
-            path: '/pages/library/library?userId=' + app.globalData.userId
-        }
-    },
+    
 
     openMore:function(e){
         var canShareId = e.currentTarget.dataset.canshareid;

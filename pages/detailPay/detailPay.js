@@ -56,13 +56,28 @@ Page({
                 'content-type': 'application/json',
             },
             success: function (res) {
+                
+                var ageArray = new Array();
+                var sortArray = new Array();
+                if (res.data[0].age && res.data[0].age != 'undefined' && res.data[0].age != 'null'){
+                    for (var i = 1; i <= 4; i++) {
+                        ageArray.push(res.data[0].age.indexOf(i));
+                    }
+                }
+                if (res.data[0].sort && res.data[0].sort != 'undefined' && res.data[0].sort != 'null'){
+                    for (var i = 1; i <= 13; i++) {
+                        sortArray.push(res.data[0].sort.indexOf(i));
+                    }
+                }
+                
                 that.setData({
                     bookInfo: res.data[0],
                     commentInfo: res.data[0].comment,
                     loading: false,
-                    morePic: res.data[0]["morePic"]
+                    morePic: res.data[0]["morePic"],
+                    ageArray: ageArray,
+                    sortArray: sortArray
                 })
-                console.log(that.data)
                 wx.setNavigationBarTitle({ title: res.data[0].book_name })
             },
             fail: function () {
@@ -79,14 +94,6 @@ Page({
     onShow: function () {
         utils.checkSettingStatu();
     },
-
-    // previewImage: function (e) {
-    //     var that = this;
-    //     wx.previewImage({
-    //         //数据源
-    //         urls: [that.data.imgUrls]
-    //     })
-    // },
 
     togglePtype: function () {
         //显示分类
@@ -125,7 +132,7 @@ Page({
             title: '提醒',
             content: '您是否要借阅此书？',
             confirmText:"是的",
-            cancelText:"点错了",
+            cancelText:"取消",
             success:function(res){
                 if(res.confirm){
                     //借书

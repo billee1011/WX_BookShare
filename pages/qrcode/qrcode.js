@@ -54,11 +54,12 @@ Page({
                                         wx.navigateBack({
                                             delta:1
                                         })
-                                        clearInterval(timename);
-                                        return ;
+                                        
                                     }
                                 }
                             })
+                            clearInterval(timename);
+                            return;
                         }
                     } else if (qrtype == 0){
                         if (res.data[0]["if_loan"] == 1) {
@@ -72,11 +73,12 @@ Page({
                                         wx.navigateBack({
                                             delta: 1
                                         })
-                                        clearInterval(timename)
-                                        return;
+                                        
                                     }
                                 }
                             })
+                            clearInterval(timename)
+                            return;
                         }
                     }
                 }

@@ -64,3 +64,13 @@
     float: right;
     margin-right: 30px
 }
+
+.cl_list{
+    width:99%;height:50px;margin-bottom: 5px;float: none
+}
+.cl_title{
+    float:left;width:100px;line-height:47px;
+}
+.cl_input{
+    width:150px;float:right;height:50px;line-height:50px
+}

@@ -1,0 +1,9 @@
+.cl_list{
+    width:99%;height:50px;margin-bottom: 5px;float: none
+}
+.cl_title{
+    float:left;width:100px;line-height:47px;
+}
+.cl_input{
+    width:100px;float:right;height:50px;line-height:50px
+}

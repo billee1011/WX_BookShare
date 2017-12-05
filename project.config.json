@@ -94,6 +94,18 @@
 					"name": "withDraw",
 					"pathName": "pages/withDraw/withDraw",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "library",
+					"pathName": "pages/library/library",
+					"query": "userId=136"
+				},
+				{
+					"id": -1,
+					"name": "selfUpload",
+					"pathName": "pages/selfUpload/selfUpload",
+					"query": ""
 				}
 			]
 		}

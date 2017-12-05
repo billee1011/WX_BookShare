@@ -17,7 +17,6 @@ Page({
                 'content-type': 'application/json'
             },
             success: function (res) {
-                console.log(res.data)
                 if (res.data == "noReturn") {
                     $wuxPrompt.init('msg1', {
                         title: '空空如也',

@@ -5,7 +5,7 @@ var app = getApp()
 Page({
     data: {
         loading: false,
-        bookInfo: null,
+        bookInfo: {},
         disabled: false,
         uploadDays: 10,//默认上传天数
         location: null,//地理名称
@@ -19,10 +19,12 @@ Page({
         halfSrc: '../../images/half.png',
         key1: 5,//评分
 
-        sortsIndex:0,
-        array: ['无限制', '3-5岁', '6-9岁', '10-12岁'],
-        arrayValue:['0','1','2','3'],
         index: 0,
+        damageArray: ['全新', '八成新以上', '六成新以上'],
+        damageIndex:1,
+
+        //刚开始自己上传图书隐藏
+        modalFlag:true
     },
     //事件处理函数
     onLoad: function (options) {
@@ -72,7 +74,6 @@ Page({
 
         //绑定监听
         event.on('ageDataChanged', this, function (data) {
-            console.log(data)
             var that = this;
             var sumAge = "";
             for (var i = 0; i < data.length; i++) {
@@ -126,7 +127,6 @@ Page({
                                 if (res.scanType == "EAN_13") {
                                     //条形码
                                     var isbnCode = res.result;
-                                    console.log(isbnCode)
                                     that.getDouBanApi(isbnCode);
 
                                 } else {
@@ -136,9 +136,18 @@ Page({
                                     })
                                 }
                             } else {
-                                wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
-                                    image: '../../images/fail.png',
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '获取数据失败，请至手动添加图书！',
+                                    showCancel: false,
+                                    confirmText: "前去填写",
+                                    success: function (res) {
+                                        if (res.confirm) {
+                                            that.setData({
+                                                modalFlag: false
+                                            })
+                                        }
+                                    }
                                 })
                             }
                         }
@@ -166,9 +175,22 @@ Page({
             success: function (res) {
                 if (res.data.msg == "book_not_found") {
                     wx.showToast({
-                        title: '没有此图书信息，请至手动添加！',
+                        title: '',
                         image: '../../images/fail.png',
                         duration: 2000
+                    })
+                    wx.showModal({
+                        title: '提示',
+                        content: '没有此图书信息，请至手动添加！',
+                        showCancel:false,
+                        confirmText:"前去填写",
+                        success:function(res){
+                            if(res.confirm){
+                                that.setData({
+                                    modalFlag:false
+                                })
+                            }
+                        }
                     })
                 } else {
                     var bookData = res.data;
@@ -212,10 +234,11 @@ Page({
         })
     },
 
-    //选择分类
-    bindSortsChange: function (e) {
+    //选择破损
+    bindDamageChange: function (e) {
+        console.log(e)
         this.setData({
-            sortsIndex: e.detail.value
+            damageIndex: e.detail.value
         })
     },
 
@@ -244,8 +267,6 @@ Page({
     shareBook: function () {
         var that = this;
         var index = that.data.index;
-        var arrayValue = that.data.arrayValue;
-        var sortsIndex = that.data.sortsIndex;
         
         if (!that.data.location) {
             wx.showToast({
@@ -255,8 +276,27 @@ Page({
             })
             return;
         }
+
+        if (!that.data.selectDataStr) {
+            wx.showToast({
+                title: '您还没有选择分类！',
+                image: '../../images/warning.png',
+                duration: 2000
+            })
+            return;
+        }
+
+        if (!that.data.selectAgeDataStr) {
+            wx.showToast({
+                title: '您还没有选择适龄！',
+                image: '../../images/warning.png',
+                duration: 2000
+            })
+            return;
+        }
+
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + that.data.selectAgeDataStr + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.selectDataStr).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
+            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=shareBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + that.data.uploadDays + "&location=" + that.data.location + "&longitude=" + that.data.longitude + "&latitude=" + that.data.latitude + "&card_content=" + that.data.card_content + "&book_content=" + that.data.key1 + "&age=" + that.data.selectAgeDataStr + "&price=" + parseInt(that.data.bookInfo.price) + "&sort=" + that.data.selectDataStr + "&damage=" + that.data.damageIndex).replace(/\s+/g, ""),//之前的单个分类sortsIDArray[sortsIndex]
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -383,6 +423,133 @@ Page({
         }
         wx.navigateTo({
             url: url,
+        })
+    },
+
+    //设置图书名称
+    setBookName:function(e){
+        var that = this
+        console.log(that.data.bookInfo)
+        var bookInfo = {};
+        bookInfo = that.data.bookInfo;
+        bookInfo['title'] = e.detail.value
+        that.setData({
+            bookInfo: bookInfo
+        })
+    },
+
+    //设置作者
+    setWriter: function (e) {
+        var that = this
+        var bookInfo = that.data.bookInfo;
+        bookInfo.author = new Array()
+        bookInfo.author[0] = e.detail.value
+        that.setData({
+            bookInfo: bookInfo
+        })
+    },
+
+    //设置ISBN
+    setISBN: function (e) {
+        var that = this
+        var bookInfo = that.data.bookInfo;
+        bookInfo.isbn13 = e.detail.value
+        that.setData({
+            bookInfo: bookInfo
+        })
+    },
+
+    //设置Price
+    setPrice: function (e) {
+        var that = this
+        var bookInfo = that.data.bookInfo;
+        bookInfo.price = e.detail.value
+        that.setData({
+            bookInfo: bookInfo
+        })
+    },
+
+    chooseImage: function () {
+        var that = this;
+        //选择校园卡或者教工卡
+        wx.chooseImage({
+            count: 1,
+            success: function (res) {
+                if (res.errMsg == "chooseImage:ok") {
+                    that.setData({
+                        pictureFiles: res.tempFilePaths[0],
+                        hidden: true
+                    })
+                } else {
+                    wx.showToast({
+                        title: '选择照片失败，请重试',
+                        image: '../../images/fail.png',
+                        duration: 2000
+                    })
+                }
+                //that.togglePtype()
+            }
+        })
+    },
+    modalOk:function(){
+        var that = this
+        var bookInfo = that.data.bookInfo;
+        if (!bookInfo.title || !bookInfo.author || !bookInfo.isbn13 || !bookInfo.price){
+            wx.showModal({
+                title: '提示',
+                content: '您还有信息没有填写！',
+                showCancel: false,
+                confirmText: "我知道了",
+            })
+            return ;
+        }
+        if (!that.data.pictureFiles){
+            wx.showModal({
+                title: '提示',
+                content: '您没有还有上传图片！',
+                showCancel: false,
+                confirmText: "我知道了",
+            })
+            return;
+        }
+        bookInfo.author = bookInfo.author[0] ? bookInfo.author[0] : '未知';
+        wx.showToast({
+            title: '上传图书信息中！',
+            icon: 'loading',
+            duration: 999999
+        })
+        wx.uploadFile({
+            url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=selfUploadBook',
+            header: {
+                'content-type': "multipart/form-data"
+            }, // 设置请求的 header
+            filePath: that.data.pictureFiles,
+            formData: bookInfo,
+            name: 'bookPic',
+            success: function (res) {
+                if (res.data) {
+                    that.setData({
+                        bookId:res.data,
+                        modalFlag:true
+                    })
+                    wx.showToast({
+                        title: '上传图书成功',
+                    })
+                } else {
+                    wx.showModal({
+                        title: '提示',
+                        content: '上传失败,请重试！',
+                        showCancel: false,
+                        confirmText: "我知道了",
+                        success: function () {
+                            return;
+                        }
+                    })
+                }
+            },
+            complete:function(){
+                wx.hideLoading()
+            }
         })
     }
 })

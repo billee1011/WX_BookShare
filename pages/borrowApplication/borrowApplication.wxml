@@ -21,7 +21,31 @@
                         <template is="borrowApplyLoading" data="{{book}}"></template>
 
                         <!-- 已同意 但未借出模板 -->
-                        <template is="agreeApplyNoLoan" data="{{book}}"></template>
+                        <!-- <template is="agreeApplyNoLoan" data="{{book}}"></template>   -->
+
+                        <view class="book-tmp" wx:if="{{book.if_agree== 1 && book.if_loan == 0 && book.if_refuse== 0}}" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                            <image src="{{book.book_image}}" class="book-image"></image>
+                            <view class="book-info">
+                                <view class="book-name">{{book.book_name}}</view>
+                                <view class="book-applier">
+                                    <view class="left">
+                                        <image src="../../images/applier.png" style="width:15px;height:15px;"></image> {{book.userName?book.userName:book.nickName}}
+                                    </view>
+                                    <view class="right">
+                                        <image src="../../images/time.png" style="width:15px;height:15px;"></image> {{book.agree_at}}
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="clear-both"></view>
+
+                        </view>
+                        <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                            <view class='operate'>
+                                <button size='mini' plain='true' type='primary' data-price="{{book.price}}" data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="screenQRcode">扫码确认</button>
+                                <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-canshareid="{{book.can_share_id}}" data-openid="{{book.openId}}" bindtap="refuseApply">拒绝</button>
+                                <view style='clear:both'></view>
+                            </view>
+                        </view>
 
                         <!-- 已同意 已借出模板 -->
                         <template is="agreeApplyAndLoan" data="{{book}}"></template>

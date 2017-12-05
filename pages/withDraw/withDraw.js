@@ -105,12 +105,8 @@ Page({
                 content: '您还没有输入金额！',
                 showCancel: false,
                 confirmText: "知道了",
-                success: function (res) {
-                    if (res.confirm) {
-                        return ;
-                    }
-                }
             })
+            return;
         }
 
         //金额限制
@@ -120,12 +116,8 @@ Page({
                 content: '您提现金额超出了余额！',
                 showCancel: false,
                 confirmText: "知道了",
-                success: function (res) {
-                    if (res.confirm) {
-                        return;
-                    }
-                }
             })
+            return ;
         }
 
         var that = this

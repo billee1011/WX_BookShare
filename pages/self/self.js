@@ -7,7 +7,7 @@ var app = getApp()
 Page({
     data: {
         userInfo: null,
-        certificationOk: null,
+        certificationOk: app.globalData.certificationOk,
     },
 
     onPullDownRefresh :function(){

@@ -14,7 +14,8 @@
             </button>
         </view>
     </view>
-    <view style='text-align:center;font-size:15px;margin=top:5px;'>明细</view>
+    <view style='text-align:center;font-size:15px;margin=top:5px;height:40px;line-height:40px;' wx:if="{{!integralRecord}}">暂无明细</view>
+    <view style='text-align:center;font-size:15px;margin=top:5px;height:40px;line-height:40px;' wx:else>明细</view>
     <view class="firstblock" style="margin-top:10px;background:transparent">
         <view wx:for="{{integralRecord}}" wx:for-index="index" wx:for-item="record">
             <template is="integralRecord" data="{{record}}"/>
