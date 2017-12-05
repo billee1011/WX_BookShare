@@ -15,7 +15,7 @@
 <!--充值列表-->
 <view class="person_wallet_recharge">
     <ul class="ul">
-        <li class="current">
+        <!-- <li class="current">
             <text>￥0.1</text>
             <view class="sel" style=""></view>
         </li>
@@ -38,7 +38,7 @@
         <li>
             <text>￥5.0</text>
             <view class="sel" style=""></view>
-        </li>
+        </li> -->
         <view class="countup integral">￥{{orderDetail.money}}</view>
         <view style="clear: both;"></view>
     </ul>

@@ -32,7 +32,7 @@
         <view class="item">
             <span>位置：</span>
             <view style='float:right;display:flex;' bindtap="chooseLocation">
-                <view class="rightText" style='text-align:right;margin-right:0px;' >
+                <view class="rightText" style='text-align:right;margin-right:0px;'>
                     <view style="padding-right:10px;">{{location?location:"请选择位置"}}</view>
                 </view>
                 <view style="height:47px;line-height:47px;width:20px;margin-top:3px;margin-right:30px;">
@@ -42,7 +42,9 @@
         </view>
         <view class="h1"></view>
         <view class="item">
-            <view><span>类别：</span></view>
+            <view>
+                <span>类别：</span>
+            </view>
             <!-- <picker bindchange="bindSortsChange" style="width:100px;float:right;margin-top:-46px" class='rightText' value="{{sortsIndex}}" range="{{sortsNameArray}}">
             <view class="picker">
                 {{sortsNameArray[sortsIndex]}}
@@ -57,8 +59,21 @@
         </view>
         <view class="h1"></view> -->
         <view class="item">
-            <view><span>适龄：</span></view>
+            <view>
+                <span>适龄：</span>
+            </view>
             <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
+        </view>
+        <view class="h1"></view>
+        <view class="item">
+            <view>
+                <span>破损程度：</span>
+            </view>
+            <picker bindchange="bindDamageChange" style="width:100px;float:right;margin-top:-46px" class='rightText' value="{{damageIndex}}" range="{{damageArray}}">
+                <view class="picker">
+                    {{damageArray[damageIndex]}}
+                </view>
+            </picker>
         </view>
         <view class="h1"></view>
         <view class="item">
@@ -89,3 +104,34 @@
         </view>
     </view>
 </view>
+
+<!-- 自己上传图书 -->
+<modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确  定" style="">
+   <view class="dew" style="text-align:center;"> <!-- background:url('https://35978598.1949science.cn/Public/images/bee.png') -->
+        <view style='width:80px;margin：0 auto'>
+            <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>
+        </view>
+        <view class="vedw">小蜜蜂数据库没有您这本书,麻烦您手动录入本图书信息</view>
+
+        <view class="catelist cl_list">
+            <text class='cl_title'>图书名称：</text>
+            <input class='cl_input' bindinput='setBookName' type='text' placeholder='请填写图书名称'/>
+        </view>
+        <view class="catelist cl_list">
+            <text class='cl_title'>作者：</text>
+            <input class='cl_input' bindinput='setWriter' type='text' placeholder='请填写作者姓名'/>
+        </view>
+        <view class="catelist cl_list" style=''>
+            <text class='cl_title'>ISBN：</text>
+            <input class='cl_input' bindinput='setISBN' type='number' placeholder='详见图书背后的ISBN码'/>
+        </view>
+        <view class="catelist cl_list" style=''>
+            <text class='cl_title'>价格：</text>
+            <input class='cl_input' bindinput='setPrice' type='digit' placeholder='系列图书请填写单本价格'/>
+        </view>
+        <view class="catelist cl_list" style='width:99%;height:50px'>
+            <button type='primary' bindtap='chooseImage'>上传图片</button>
+        </view>
+        <view class="clear-both"></view>
+    </view>
+</modal>

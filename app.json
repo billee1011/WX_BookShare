@@ -59,7 +59,8 @@
         "pages/ageSelect/ageSelect",
         "pages/socket/socket",
         "pages/404/404",
-        "pages/withDraw/withDraw"
+        "pages/withDraw/withDraw",
+        "pages/selfUpload/selfUpload"
         
     ],
     "window": {
@@ -70,7 +71,7 @@
         "backgroundColor": "#ffffff"
     },
     "tabBar": {
-        "selectedColor": "#00c700",
+        "selectedColor": "#495056",
         "list": [
             {
                 "pagePath": "pages/index/index",

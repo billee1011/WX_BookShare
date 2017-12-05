@@ -91,7 +91,8 @@ Page({
 
     aldminishare: function (e) {
         var page = this;
-        var url = page['__route__'];
+        var url = 'pages/index/index';
+        
         var data = {};
 
         data = e.currentTarget.dataset

@@ -139,9 +139,10 @@ Page({
 
   //设置是否仅自己可见
   setCanSee: function (e) {
+      console.log(e)
       var that = this;
       that.setData({
-          can_see: e.detail.value[0] ? e.detail.value[0] : 0
+          can_see: e.detail.value ? 1 : 0
       })
   },
 
@@ -149,7 +150,7 @@ Page({
   makeCard: function () {
       var that = this;
       var url, successStr, failStr;
-      if (!that.data.cardInfo) {
+      if (!that.data.cardInfo || that.data.cardInfo == 'undefined' || that.data.cardInfo ==null) {
           wx.showToast({
               title: '您没有输入感想！',
               icon: 'false',

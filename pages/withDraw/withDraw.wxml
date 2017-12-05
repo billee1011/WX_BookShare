@@ -27,7 +27,7 @@
     </view>
     <view class="item" tapmode="presshover" style="font-size:40px">
         <span style="float: left">￥</span>
-        <input style="width:90%;float:right;height: 40px;line-height: 40px;margin-top: -40px;text-align:right;padding-right: 10px" type="number" bindinput='withDrawValue'/>
+        <input style="width:90%;float:right;height: 40px;line-height: 40px;margin-top: -40px;text-align:right;padding-right: 10px" type="digit" bindinput='withDrawValue'/>
     </view>
     <view class="item" tapmode="presshover" style="font-size: 12px;color: red;">
         <span>

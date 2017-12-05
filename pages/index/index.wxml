@@ -12,13 +12,14 @@
 <view class="container" style="background:#ffffff!important">
   <!--头部搜索-->
   <view class="search-area">
-    <!-- <view class="classify" style="height:100%">
-            <text bindtap="togglePtype" id="catselectbtn" style="height:72rpx;"></text>
-        </view> -->
     <view class="search-scanner">
-      <image src="../../images/scanner.png" bindtap="screenISBN"></image>
-      <input type="text" class='width:720rpx !important;' bindinput='setSearchValue' placeholder="请输入书名/ISBN号/作者/关键字" bindconfirm="getBookList" confirm-type="search" />
-      <icon type="search" size="18" color="#666666" bindtap='getBookList' />
+    <form>
+        <image src="../../images/scanner.png" bindtap="screenISBN"></image>
+        <input type="text" class='width:720rpx !important;' bindinput='setSearchValue' placeholder="请输入书名/ISBN号/作者/关键字" bindconfirm="getBookList" confirm-type="search" />
+        <icon type="search" size="18" color="#666666" bindtap='getBookList' />
+        <button style='display:inline-block;float:right;width:20px;height:20px;margin-right:10rpx;margin-top:2px;vertical-align:middle' bindtap='clearSearchValue' formType="reset" wx:if="{{searchValue}}">x</button>
+    </form>
+      
     </view>
   </view>
   <!--头部搜索结束-->
@@ -60,6 +61,15 @@
       <picker bindchange="bindPickerChange" style="width:100px;float:right;height:50px;line-height:50px" data-id="5" class=" screen {{activeNum==5?'active':''}}" value="{{ageIndex}}" range="{{age}}">
         <view class="picker">
           {{age[ageIndex]}}
+        </view>
+      </picker>
+      <view class="clear-both"></view>
+    </view>
+    <view class="catelist cl_list" style='width:99%;height:50px'>
+      <text style="float:left;width:100px;line-height:47px">破损程度：</text>
+      <picker bindchange="bindDamagePickerChange" style="width:100px;float:right;height:50px;line-height:50px" data-id="5" class=" screen {{activeNum==5?'active':''}}" value="{{damageIndex}}" range="{{damageArray}}">
+        <view class="picker">
+          {{damageArray[damageIndex]}}
         </view>
       </picker>
       <view class="clear-both"></view>

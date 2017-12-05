@@ -87,3 +87,6 @@
     vertical-align: middle;
     margin-right: 10px;
 }
+.book-tmp{
+    box-shadow:0px 0px 0px #c2c2c4
+}

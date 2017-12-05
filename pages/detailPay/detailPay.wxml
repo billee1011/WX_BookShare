@@ -1,5 +1,5 @@
 <view style='background:#f4f4f4;'>
-<loading hidden="{{ !loading }}">加载中...</loading>
+    <loading hidden="{{ !loading }}">加载中...</loading>
     <!-- 轮播图 -->
     <view style='margin: 0 1.5%;margin-top:1.5%;'>
         <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:500rpx; background:#FFF;'>
@@ -15,7 +15,8 @@
     <!-- 书籍信息 -->
     <view style='background:#fff;margin: 0 1.5%;'>
         <view class='meta' style='padding: 2rpx 5rpx;'>
-            <view class='title'>{{bookInfo.book_name}} {{bookInfo.writer}}———{{bookInfo.book_press}}</view><!--（ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}）-->
+            <view class='title'>{{bookInfo.book_name}} {{bookInfo.writer}}———{{bookInfo.book_press}}</view>
+            <!--（ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}）-->
             <view class='price'>
                 <text class='big-price'>{{bookInfo.price}}</text>
                 <text class='small-price'>元/天</text>
@@ -23,13 +24,60 @@
             <view class='location'>
                 <image class='location_pic' wx:if="{{book_type == 0}}" src='../../images/applier.png'></image>
                 <image class='location_pic' wx:if="{{book_type == 1}}" src='../../images/location.png'></image>
-                <text class="address" wx:if="{{book_type == 0}}"  bindtap='alertLocation' data-value="{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}">书主：{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}</text>
-                <text class="address" wx:elif="{{book_type == 1}}"  bindtap='alertLocation' data-value="{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}">自营点：{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}</text>
+                <text class="address" wx:if="{{book_type == 0}}" bindtap='alertLocation' data-value="{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}">书主：{{bookInfo.userName?bookInfo.userName:bookInfo.nickName}}</text>
+                <text class="address" wx:elif="{{book_type == 1}}" bindtap='alertLocation' data-value="{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}">自营点：{{bookInfo.pilot_name?bookInfo.pilot_name+'自营点':bookInfo.location}}</text>
 
             </view>
         </view>
     </view>
     <!--书籍信息结束  -->
+    <!-- 适龄 -->
+    <view class='age' wx:if="{{bookInfo.age!=null&&bookInfo.age!='undefined'&&bookInfo.age}}">
+        <view style='font-size:12px;'>
+            适龄：
+        </view>
+        <view>
+            <view class='age-block' wx:if="{{ageArray[0] !=-1 && ageArray[0]}}">适合所有儿童</view>
+            <view class='age-block' wx:if="{{ageArray[1] !=-1 && ageArray[1]}}">3-6岁</view>
+            <view class='age-block' wx:if="{{ageArray[2] !=-1 && ageArray[2]}}">6-9岁</view>
+            <view class='age-block' wx:if="{{ageArray[3] !=-1 && ageArray[3]}}">9-12岁</view>
+        </view>
+    </view>
+    <!-- 适龄借书 -->
+    <!-- 所属类目 -->
+    <view class='sort' wx:if="{{sortArray}}">
+        <view style='font-size:12px;'>
+            类别：
+        </view>
+        <view>
+            <view class='age-block' wx:if="{{sortArray[0] !=-1 && sortArray[0]}}">全部</view>
+            <view class='age-block' wx:if="{{sortArray[1] !=-1 && sortArray[1]}}">中国儿童文学</view>
+            <view class='age-block' wx:if="{{sortArray[2] !=-1 && sortArray[2]}}">外国儿童文学</view>
+            <view class='age-block' wx:if="{{sortArray[3] !=-1 && sortArray[3]}}">绘本/图画书</view>
+            <view class='age-block' wx:if="{{sortArray[4] !=-1 && sortArray[4]}}">科普/百科</view>
+            <view class='age-block' wx:if="{{sortArray[5] !=-1 && sortArray[5]}}">启蒙认知</view>
+            <view class='age-block' wx:if="{{sortArray[6] !=-1 && sortArray[6]}}">益智游戏</view>
+            <view class='age-block' wx:if="{{sortArray[7] !=-1 && sortArray[7]}}">玩具书</view>
+            <view class='age-block' wx:if="{{sortArray[8] !=-1 && sortArray[8]}}">卡通动漫</view>
+            <view class='age-block' wx:if="{{sortArray[9] !=-1 && sortArray[9]}}">少儿英语</view>
+            <view class='age-block' wx:if="{{sortArray[10] !=-1 && sortArray[10]}}">励志/成长</view>
+            <view class='age-block' wx:if="{{sortArray[11] !=-1 && sortArray[11]}}">阅读工具书</view>
+            <view class='age-block' wx:if="{{sortArray[12] !=-1 && sortArray[12]}}">其他</view>
+        </view>
+    </view>
+    <!-- 所属类目结束 -->
+    <!-- 折损程度 -->
+    <view class='sort'>
+        <view style='font-size:12px;'>
+            折损：
+        </view>
+        <view>
+            <view class='age-block' wx:if="{{bookInfo.damage == 0}}">全新</view>
+            <view class='age-block' wx:elif="{{bookInfo.damage == 2}}">六成新</view>
+            <view class='age-block' wx:else>八成新</view>
+        </view>
+    </view>
+    <!-- 折损程度 end -->
     <view class='divLine'></view>
     <!--摘要  -->
     <view class='abstract' wx:if="{{bookInfo.introduction}}">

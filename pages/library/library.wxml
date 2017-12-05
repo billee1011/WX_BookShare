@@ -1,4 +1,4 @@
-<view class="htmleaf-container">
+<!-- <view class="htmleaf-container">
 		<view class="htmleaf-content" style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
 			<view id="splitter"  style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
 			<text style='font-size:40px' bindtap="openLibrary" >点击进入</text>
@@ -7,4 +7,45 @@
 			<image src="./road-to-nowhere.jpg" style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;' alt="Photograph of highway to Uluru, Australia" style="position: static; opacity: 0"></image>
 			</view>
 		</view>
-	</view>
+	</view> -->
+
+
+     <view>
+    <view class='bookcase_owner'>刘鑫的图书馆</view>
+    <view class='bookcase_body' style='width:{{phoneInfo.screenWidth}}px;height:{{phoneInfo.screenHeight}}px;'>
+        <view style='padding:100px 35px 5px 35px;'>
+            <view wx:for="{{myLibrary}}">
+                <view class='bookcase_board' wx:if="{{index % 3 == 0}}" style="background-size:{{phoneInfo.screenWidth-60}}px 20px;position：relative">
+                    <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px' bindtap="detail" data-bookId="{{myLibrary[index].book_id}}" data-type="{{myLibrary[index].type}}" data-canShareID="{{myLibrary[index].can_share_id}}">
+                        <view>
+                            <image src='{{myLibrary[index].image_large}}' style='width:{{phoneInfo.screenWidth/3-60}}px;height:80px;margin:0 10px' ></image>
+                        </view>
+                        <span style='color:#000;width:{{phoneInfo.screenWidth/3-40}}px;' class="bookcase_bookName">
+                             {{myLibrary[index].book_name}} 
+                        </span>
+
+                    </view>
+                    <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px' bindtap="detail" data-bookId="{{myLibrary[index+1].book_id}}" data-type="{{myLibrary[index+1].type}}" data-canShareID="{{myLibrary[index+1].can_share_id}}">
+                        <view>
+                            <image src='{{myLibrary[index+1].image_large}}' style='width:{{phoneInfo.screenWidth/3-60}}px;height:80px;margin:0 10px'></image>
+                        </view>
+                        <span style='color:#000;width:{{phoneInfo.screenWidth/3-40}}px;' class="bookcase_bookName">
+                             {{myLibrary[index+1].book_name}} 
+                        </span>
+
+                    </view>
+                    <view class='itemBox' style='width:{{phoneInfo.screenWidth/3-40}}px;margin:0 8px' bindtap="detail" data-bookId="{{myLibrary[index+2].book_id}}" data-type="{{myLibrary[index+2].type}}" data-canShareID="{{myLibrary[index+2].can_share_id}}">
+                        <view>
+                            <image src='{{myLibrary[index+2].image_large}}' style='width:{{phoneInfo.screenWidth/3-60}}px;height:80px;margin:0 10px'></image>
+                        </view>
+                        <span style='color:#000;width:{{phoneInfo.screenWidth/3-40}}px;' class="bookcase_bookName">
+                             {{myLibrary[index+2].book_name}} 
+                        </span>
+
+                    </view>
+                    <view style='clear:both'></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> 

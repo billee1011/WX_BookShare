@@ -56,7 +56,7 @@
     color: #81838e;
     margin-left: 16rpx;
     margin-right: 11px;
-    max-width:160px;
+    max-width: 160px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -69,7 +69,7 @@
 }
 
 .abstract_title {
-    font-size: 17px;
+    font-size: 12px;
     line-height: 25px;
 }
 
@@ -90,7 +90,7 @@
     height: 42px;
     border-radius: 20px;
     margin-top: 5px;
-    margin-left: 8px;    
+    margin-left: 8px;
     float: left;
 }
 
@@ -113,9 +113,29 @@
     margin-left: 24rpx;
     margin-right: 24rpx;
 }
-.comment_time{
+
+.comment_time {
     font-size: 13px;
     color: #81838e;
     margin-top: 12rpx;
     margin-left: 380rpx;
+}
+
+.age, .sort {
+    margin: 0 1.5%;
+    padding: 10px 10px;
+    margin-top: 1.5%;
+    line-height: 30px;
+    background: #fff;
+}
+
+.age-block {
+    background: #f4f4f4;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 3px 8px;
+    margin-right: 10px;
+    font-size: 14px;
+    line-hieght: 22px;
+    margin-bottom: 4px;
 }

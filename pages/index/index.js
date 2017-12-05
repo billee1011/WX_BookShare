@@ -24,7 +24,10 @@ Page({
         locks: 0, 
 
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
-        searchLoadingComplete: false  //“没有数据”的变量，默认false，隐藏  
+        searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏  
+
+        damageArray: ['不区分破损','全新', '八成新以上', '六成新以上'],
+        damageIndex: 0//默认为八成新
     },
 
     
@@ -131,9 +134,30 @@ Page({
         var that = this
         that.setData({
             ageIndex: e.detail.value,
-            activeNum: that.data.activeNum
+            activeNum: that.data.activeNum,
+            damageIndex: that.data.damageIndex
         })
         that.getBookList()
+    },
+
+    //破损程度选择器
+    bindDamagePickerChange: function (e) {
+        var that = this
+        that.setData({
+            ageIndex: that.data.ageIndex,
+            activeNum: that.data.activeNum,
+            damageIndex: e.detail.value
+        })
+        that.getBookList()
+    },
+
+    //清空输入内容
+    clearSearchValue:function(){
+        var that = this
+        that.setData({
+            searchValue:''
+        })
+        that.getBookList();
     },
 
     //信息展示
@@ -165,6 +189,8 @@ Page({
             url += "&value=";
             url += that.data.searchValue;
         }
+
+        //年龄
         if (that.data.ageIndex != 0) {
             var ageArray = that.data.ageValue
             var ageIndex = that.data.ageIndex
@@ -172,10 +198,18 @@ Page({
             url += ageArray[ageIndex];
 
         }
+
+        //分类
         if (that.data.sortIndex != 1) {
             url += "&sort=";
             url += that.data.sortIndex;
 
+        }
+
+        //破损程度
+        if (that.data.damageIndex != 0) {
+            url += "&damage=";
+            url += that.data.damageIndex;
         }
         //图书列表数据获取
         wx.request({
