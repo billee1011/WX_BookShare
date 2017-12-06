@@ -21,9 +21,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
-				
+				{
+					"id": -1,
+					"name": "operateShare",
+					"pathName": "pages/operateShare/operateShare"
+				}
 			]
 		}
 	}
