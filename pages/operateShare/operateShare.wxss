@@ -74,3 +74,11 @@
 .cl_input{
     width:150px;float:right;height:50px;line-height:50px
 }
+textarea {
+    width: 700rpx;
+    padding: 25rpx 0;
+}
+.textarea-wrp {
+    padding: 0 25rpx;
+    background-color: #fff;
+}

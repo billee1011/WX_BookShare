@@ -50,19 +50,19 @@
             类别：
         </view>
         <view>
-            <view class='age-block' wx:if="{{sortArray[0] !=-1 && sortArray[0]}}">全部</view>
-            <view class='age-block' wx:if="{{sortArray[1] !=-1 && sortArray[1]}}">中国儿童文学</view>
-            <view class='age-block' wx:if="{{sortArray[2] !=-1 && sortArray[2]}}">外国儿童文学</view>
-            <view class='age-block' wx:if="{{sortArray[3] !=-1 && sortArray[3]}}">绘本/图画书</view>
-            <view class='age-block' wx:if="{{sortArray[4] !=-1 && sortArray[4]}}">科普/百科</view>
-            <view class='age-block' wx:if="{{sortArray[5] !=-1 && sortArray[5]}}">启蒙认知</view>
-            <view class='age-block' wx:if="{{sortArray[6] !=-1 && sortArray[6]}}">益智游戏</view>
-            <view class='age-block' wx:if="{{sortArray[7] !=-1 && sortArray[7]}}">玩具书</view>
-            <view class='age-block' wx:if="{{sortArray[8] !=-1 && sortArray[8]}}">卡通动漫</view>
-            <view class='age-block' wx:if="{{sortArray[9] !=-1 && sortArray[9]}}">少儿英语</view>
-            <view class='age-block' wx:if="{{sortArray[10] !=-1 && sortArray[10]}}">励志/成长</view>
-            <view class='age-block' wx:if="{{sortArray[11] !=-1 && sortArray[11]}}">阅读工具书</view>
-            <view class='age-block' wx:if="{{sortArray[12] !=-1 && sortArray[12]}}">其他</view>
+            <view class='age-block' wx:if="{{sortArray[0] !=-1}}">全部</view>
+            <view class='age-block' wx:if="{{sortArray[1] !=-1}}">中国儿童文学</view>
+            <view class='age-block' wx:if="{{sortArray[2] !=-1}}">外国儿童文学</view>
+            <view class='age-block' wx:if="{{sortArray[3] !=-1}}">绘本/图画书</view>
+            <view class='age-block' wx:if="{{sortArray[4] !=-1}}">科普/百科</view>
+            <view class='age-block' wx:if="{{sortArray[5] !=-1}}">启蒙认知</view>
+            <view class='age-block' wx:if="{{sortArray[6] !=-1}}">益智游戏</view>
+            <view class='age-block' wx:if="{{sortArray[7] !=-1}}">玩具书</view>
+            <view class='age-block' wx:if="{{sortArray[8] !=-1}}">卡通动漫</view>
+            <view class='age-block' wx:if="{{sortArray[9] !=-1}}">少儿英语</view>
+            <view class='age-block' wx:if="{{sortArray[10] !=-1}}">励志/成长</view>
+            <view class='age-block' wx:if="{{sortArray[11] !=-1}}">阅读工具书</view>
+            <view class='age-block' wx:if="{{sortArray[12] !=-1}}">其他</view>
         </view>
     </view>
     <!-- 所属类目结束 -->

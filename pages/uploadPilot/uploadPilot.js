@@ -1,12 +1,13 @@
 //uploadPilot.js 自营点上传图书
 var event = require('../../utils/event.js')
+import { $wuxBackdrop } from '../../components/wux'
 //获取应用实例
 var app = getApp()
 var sourceType = [['camera'], ['album'], ['camera', 'album']]
 var sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 Page({
     data: {
-        bookInfo: null,
+        bookInfo: {},
         hidden: 0,
         step: 1,
         cateisShow: false,
@@ -39,6 +40,8 @@ Page({
     //事件处理函数
     onLoad: function (options) {
         var that = this;
+        // that.$wuxBackdrop = $wuxBackdrop.init();
+        // that.retain()
         that.setData({
             donateType: options.donateType
         })
@@ -143,20 +146,21 @@ Page({
         event.on('DataChanged', this, function (data) {
             var that = this;
             var sumSort = "";
+            var selectDataStr = '';
             for (var i = 0; i < data.length; i++) {
                 var index = data[i];
-                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " "
+                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " ";
+                selectDataStr = selectDataStr + data[i] + ",";
             }
             this.setData({
                 sumSort: sumSort,
                 selectData: data,
-                selectDataStr: JSON.stringify(data)
+                selectDataStr: selectDataStr
             })
         })
 
         //绑定监听
         event.on('ageDataChanged', this, function (data) {
-            console.log(data)
             var that = this;
             var sumAge = "";
             for (var i = 0; i < data.length; i++) {
@@ -225,7 +229,6 @@ Page({
 
     //选择破损
     bindDamageChange: function (e) {
-        console.log(e)
         this.setData({
             damageIndex: e.detail.value
         })
@@ -489,7 +492,6 @@ Page({
                                                 }
                                             })
                                         } else {
-                                            console.log(res.data)
                                             wx.showToast({
                                                 title: '扫描书柜失败！',
                                                 image: '../../images/fail.png',
@@ -696,7 +698,6 @@ Page({
     //设置图书名称
     setBookName: function (e) {
         var that = this
-        console.log(that.data.bookInfo)
         var bookInfo = {};
         bookInfo = that.data.bookInfo;
         bookInfo['title'] = e.detail.value
@@ -800,8 +801,11 @@ Page({
                         modalFlag: true,
                         hidden:1
                     })
-                    wx.showToast({
-                        title: '上传图书成功',
+                    wx.showModal({
+                        title: '提示',
+                        content: '上传图书成功',
+                        showCancel:false,
+                        confirmText:"好的"
                     })
                 } else {
                     wx.showModal({

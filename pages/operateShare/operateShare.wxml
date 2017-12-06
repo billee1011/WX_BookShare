@@ -1,15 +1,25 @@
 <!-- 第一块 -->
 <loading hidden="{{ !loading }}">加载中...</loading>
 <view class="container">
-    <view class="firstblock" style="margin-top:10px">
-        <view class="item">
+    <view style='width:100%;background:#fff;margin-top:10px'>
+        <view style='border-bottom:1px solid #f4f4f4'>
+            <view style='width:49%;display:inline-block;height:40px;line-height:40px;text-align:center;border-right:1px solid #f4f4f4' bindtap="screenISBN" disabled="{{disabled2}}">扫码上传</view>
+            <view style='width:50%;display:inline-block;height:40px;line-height:40px;text-align:center' bindtap='openModal'>手动上传</view>
+        </view>
+        <view style='width:100%;display:inline-block;height:40px;line-height:40px;text-align:center;border-right:1px solid #f4f4f4'>
+            查看图书信息
+        </view>
+    </view>
+
+    <view class="firstblock">
+        <!-- <view class="item">
             <span>图书：</span>
-            <view class="rightText" style="width:200px;height:47px;line-height:47px;" bindtap="screenISBN">
-                <button type="primary" style="background:#33ccff;width:90%;float:right;font-size:12px;margin-top:10px" disabled="{{disabled2}}"> 扫描要上传的图书 </button>
+            <view class="rightText" style="width:200px;height:47px;line-height:47px;">
+                <button type="primary" style="background:#33ccff;width:90%;float:right;font-size:12px;margin-top:10px" "> 扫描要上传的图书 </button>
             </view>
         </view>
-        <view class="h1"></view>
-        <view class="item">
+        <view class="h1"></view> -->
+        <!-- <view class="item">
             <span>书名:</span>
             <input type="text" class="rightText" value="{{bookInfo.title}}" bindinput="setBorrowDays" placeholder="请输入书名" />
         </view>
@@ -22,7 +32,7 @@
         <view class="item">
             <span>ISBN:</span>
             <input type="number" class="rightText" value="{{bookInfo.isbn13}}" bindinput="setBorrowDays" placeholder="请输入ISBN号" />
-        </view>
+        </view> -->
 
 
     </view>
@@ -107,7 +117,8 @@
 
 <!-- 自己上传图书 -->
 <modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确  定" style="">
-   <view class="dew" style="text-align:center;"> <!-- background:url('https://35978598.1949science.cn/Public/images/bee.png') -->
+    <view class="dew" style="text-align:center;">
+        <!-- background:url('https://35978598.1949science.cn/Public/images/bee.png') -->
         <view style='width:80px;margin：0 auto'>
             <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>
         </view>
@@ -115,19 +126,23 @@
 
         <view class="catelist cl_list">
             <text class='cl_title'>图书名称：</text>
-            <input class='cl_input' bindinput='setBookName' type='text' placeholder='请填写图书名称'/>
+            <input class='cl_input' bindinput='setBookName' value="{{bookInfo.title}}" type='text' placeholder='请填写图书名称' />
         </view>
         <view class="catelist cl_list">
             <text class='cl_title'>作者：</text>
-            <input class='cl_input' bindinput='setWriter' type='text' placeholder='请填写作者姓名'/>
+            <input class='cl_input' bindinput='setWriter' value="{{bookInfo.author[0]}}" type='text' placeholder='请填写作者姓名' />
         </view>
-        <view class="catelist cl_list" style=''>
+        <!-- <view class="catelist cl_list">
             <text class='cl_title'>ISBN：</text>
-            <input class='cl_input' bindinput='setISBN' type='number' placeholder='详见图书背后的ISBN码'/>
-        </view>
-        <view class="catelist cl_list" style=''>
+            <input class='cl_input' bindinput='setISBN' value="{{bookInfo.isbn13}}" type='number' placeholder='详见图书背后的ISBN码'/>
+        </view> -->
+        <view class="catelist cl_list">
             <text class='cl_title'>价格：</text>
-            <input class='cl_input' bindinput='setPrice' type='digit' placeholder='系列图书请填写单本价格'/>
+            <input class='cl_input' bindinput='setPrice' value="{{bookInfo.price}}" type='digit' placeholder='系列图书请填写单本价格' />
+        </view>
+        <view >
+            <text class='cl_title'>简介：</text>
+            <textarea bindblur="bindTextAreaBlur" value="{{bookInfo.summary}}" auto-height />
         </view>
         <view class="catelist cl_list" style='width:99%;height:50px'>
             <button type='primary' bindtap='chooseImage'>上传图片</button>

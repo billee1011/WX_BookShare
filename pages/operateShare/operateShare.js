@@ -59,16 +59,20 @@ Page({
         
         //绑定监听
         event.on('DataChanged', this, function (data) {
+            console.log(data)
             var that = this;
             var sumSort = "";
+            var selectDataStr='';
             for(var i=0;i<data.length;i++){
                 var index = data[i];
-                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " "
+                sumSort = sumSort + that.data.sortsArray[index - 1].sort_name + " ";
+                selectDataStr = selectDataStr + data[i] + ",";
+                console.log(selectDataStr)
             }
             this.setData({
                 sumSort: sumSort,
                 selectData: data,
-                selectDataStr: JSON.stringify(data)
+                selectDataStr: selectDataStr
              })
         })
 
@@ -550,6 +554,14 @@ Page({
             complete:function(){
                 wx.hideLoading()
             }
+        })
+    },
+
+    //打开openModal
+    openModal:function(){
+        var that = this;
+        that.setData({
+            modalFlag:false
         })
     }
 })
