@@ -68,6 +68,7 @@ Page({
                     for (var i = 1; i <= 13; i++) {
                         sortArray.push(res.data[0].sort.indexOf(i));
                     }
+                    console.log(sortArray)
                 }
                 
                 that.setData({

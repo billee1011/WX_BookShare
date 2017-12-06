@@ -93,7 +93,18 @@ Page({
     },
 
     checkboxChange: function (e) {
+        console.log(e)
         var that = this;
+        if(e.detail.value[0]==1){
+            var dataObj = that.data.agesArray
+            for (var i in dataObj) {
+                dataObj[i].checked = true;
+            }
+            console.log(dataObj)
+            that.setData({
+                agesArray: dataObj,
+            })
+        }
         event.emit('ageDataChanged', e.detail.value);
     },
     goback: function () {
