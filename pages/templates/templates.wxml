@@ -353,7 +353,7 @@
 <!-- 归还页面模板 -->
 <!-- 等待归还模板 -->
 <template name="returnBackContact">
-    <view class="book-tmp" bindtap="detail" wx:if="{{book.type == 0 && book.if_affirm == 0 && book.if_refuse==0 && book.if_finish==1}}">
+    <view class="book-tmp" wx:if="{{book.type == 0 && book.if_affirm == 0 && book.if_refuse==0 && book.if_finish==1}}">
         <image src="{{book.book_image}}" class="book-image"></image>
         <view class="book-info">
             <view class="book-name">
