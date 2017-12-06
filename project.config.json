@@ -21,91 +21,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "operateUpload",
-					"pathName": "pages/operateUpload/operateUpload",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "sorts",
-					"pathName": "pages/sorts/sorts",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "logs",
-					"pathName": "pages/logs/logs",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "operateShare",
-					"pathName": "pages/operateShare/operateShare",
-					"query": ""
-				},
-				{
-					"id": 4,
-					"name": "pay",
-					"pathName": "pages/pay/pay",
-					"query": "sharingId=337"
-				},
-				{
-					"id": 5,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": "userId=136"
-				},
-				{
-					"id": -1,
-					"name": "ageSelect",
-					"pathName": "pages/ageSelect/ageSelect",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "uploadPilot",
-					"pathName": "pages/uploadPilot/uploadPilot",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "socket",
-					"pathName": "pages/socket/socket",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "billBoard",
-					"pathName": "pages/billBoard/billBoard",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "404",
-					"pathName": "pages/404/404",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "withDraw",
-					"pathName": "pages/withDraw/withDraw",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "library",
-					"pathName": "pages/library/library",
-					"query": "userId=136"
-				},
-				{
-					"id": -1,
-					"name": "selfUpload",
-					"pathName": "pages/selfUpload/selfUpload",
-					"query": ""
+					"pathName": "pages/operateShare/operateShare"
 				}
 			]
 		}

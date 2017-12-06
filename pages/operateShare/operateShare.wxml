@@ -118,11 +118,10 @@
 <!-- 自己上传图书 -->
 <modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确  定" style="">
     <view class="dew" style="text-align:center;">
-        <!-- background:url('https://35978598.1949science.cn/Public/images/bee.png') -->
-        <view style='width:80px;margin：0 auto'>
+        <view style='width:160rpx;float:left;margin-right:24rpx;'>
             <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>
         </view>
-        <view class="vedw">小蜜蜂数据库没有您这本书,麻烦您手动录入本图书信息</view>
+        <view style='width:320rpx;float:left;'>小蜜蜂数据库暂时没有您这本书呢，麻烦您手动录入本图书信息哦~</view>
 
         <view class="catelist cl_list">
             <text class='cl_title'>图书名称：</text>
@@ -140,9 +139,8 @@
             <text class='cl_title'>价格：</text>
             <input class='cl_input' bindinput='setPrice' value="{{bookInfo.price}}" type='digit' placeholder='系列图书请填写单本价格' />
         </view>
-        <view >
-            <text class='cl_title'>简介：</text>
-            <textarea bindblur="bindTextAreaBlur" value="{{bookInfo.summary}}" auto-height />
+        <view class="catelist cl_list" style='height:300rpx;'>
+            <textarea class='briefIntro' maxlength='-1' placeholder='请输入图书简介...' bindblur="bindTextAreaBlur" value="{{bookInfo.summary}}" />
         </view>
         <view class="catelist cl_list" style='width:99%;height:50px'>
             <button type='primary' bindtap='chooseImage'>上传图片</button>
