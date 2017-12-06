@@ -11,13 +11,21 @@ Page({
     },
 
     onPullDownRefresh :function(){
-        utils.getUserData();
+        var that = this
+        utils.getUserData(that);
         wx.stopPullDownRefresh()
     },
     
     onLoad: function (options) {
         var that = this;
-        utils.getUserData(that);
+        that.setData({
+            userInfo:app.globalData.userInfo,
+            certificationOk: app.globalData.certificationOk
+        })
+        if (!app.globalData.userInfo){
+            utils.getUserData(that);
+        }
+        
         //获取未支付 待归还 待收回的数量
         // wx.request({
         //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
@@ -50,7 +58,6 @@ Page({
                     }
                 })
             }
-            
         }
     },
     onShow: function () {

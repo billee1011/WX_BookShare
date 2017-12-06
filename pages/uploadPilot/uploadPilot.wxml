@@ -86,7 +86,7 @@
 
 
 <!--分类 start-->
-<scroll-view style="height:100%" id="catewrap" scroll-into-view="c2" style="display:{{!cateisShow?'none':'block'}}" scroll-y="true" hidden="{{!cateisShow}}">
+ <scroll-view style="height:100%" id="catewrap" scroll-y="true" wx:if="{{cateisShow}}">
     <view id="cateall" bindtap="cateselect" class="cl_list ">
         <text style="float:left;width:100px;line-height:47px">适龄</text>
         <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
@@ -132,12 +132,12 @@
         确定
     </button>
 
-</scroll-view>
+</scroll-view> 
 <!--分类 end-->
 
 
 <!-- 自己上传图书 -->
-<modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确  定" style="">
+<modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确  定" style="z-index:9999px">
    <view class="dew" style="text-align:center;"> <!-- background:url('https://35978598.1949science.cn/Public/images/bee.png') -->
         <view style='width:80px;margin：0 auto'>
             <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>

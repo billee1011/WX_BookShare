@@ -166,6 +166,10 @@ button{
     padding:0 10px
 }
 
+#catewrap {
+    z-index: 3px;
+}
+
 .cl_list{
     width:99%;height:50px;margin-bottom: 5px;float: none
 }

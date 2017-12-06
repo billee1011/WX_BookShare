@@ -17,7 +17,7 @@
         <image src="../../images/scanner.png" bindtap="screenISBN"></image>
         <input type="text" class='width:720rpx !important;' bindinput='setSearchValue' placeholder="请输入书名/ISBN号/作者/关键字" bindconfirm="getBookList" confirm-type="search" />
         <icon type="search" size="18" color="#666666" bindtap='getBookList' />
-        <button style='display:inline-block;float:right;width:20px;height:20px;margin-right:10rpx;margin-top:2px;vertical-align:middle' bindtap='clearSearchValue' formType="reset" wx:if="{{searchValue}}">x</button>
+        <button style='float:right;width:20px;height:20px;border-radius:10px;line-height:20px!important;margin-right:10px;border:0px solid #fff' bindtap='clearSearchValue' formType="reset" wx:if="{{searchValue}}">x</button>
     </form>
       
     </view>
