@@ -94,17 +94,36 @@ Page({
 
     checkboxChange: function (e) {
         console.log(e)
+        console.log((e.detail.value).length)
         var that = this;
-        if(e.detail.value[0]==1){
-            var dataObj = that.data.agesArray
+        var dataObj = that.data.agesArray
+        if (e.detail.value[0] == 1){
             for (var i in dataObj) {
-                dataObj[i].checked = true;
+                if(i==0){
+                    dataObj[i].checked = true;
+                }else{
+                    dataObj[i].disabled = true;
+                }
+                
             }
-            console.log(dataObj)
-            that.setData({
-                agesArray: dataObj,
-            })
+        } else if ( (e.detail.value).length == 0){
+            for (var i in dataObj) {
+                    dataObj[i].checked = false;
+                    dataObj[i].disabled = false;
+            }
+        }else{
+            for (var i in dataObj) {
+                dataObj[i].checked = false;
+            }
+            for (var i in e.detail.value) {
+                dataObj[e.detail.value[i]-1].checked = true;
+            }
         }
+        console.log(dataObj)
+        that.setData({
+            agesArray: dataObj,
+        })
+        
         event.emit('ageDataChanged', e.detail.value);
     },
     goback: function () {

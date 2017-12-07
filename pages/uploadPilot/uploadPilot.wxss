@@ -179,3 +179,10 @@ button{
 .cl_input{
     width:150px;float:right;height:50px;line-height:50px
 }
+.briefIntro {
+    width: 92%;
+    margin: 4% 4% 4% 4%;
+    line-height: 50rpx;
+    text-align: left;
+    /* text-indent: 2em; */
+}

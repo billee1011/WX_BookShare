@@ -201,6 +201,7 @@ Page({
                     that.setData({
                         bookInfo: res.data,
                         disabled: true,
+                        pictureFiles: bookData.images.small
                     })
                     bookData.author = bookData.author[0] ? bookData.author[0]:'未知';
                     bookData.translator = bookData.translator[0] ? bookData.author[0] : '未知';
@@ -214,8 +215,15 @@ Page({
                             'content-type': 'application/json'
                         },
                         success: function (res) {
+                            console.log(res.data)
                             that.setData({
                                 bookId: res.data.id,
+                            })
+                            wx.showModal({
+                                title: '提示',
+                                content: '已拉取到图书信息，请您继续编辑信息！(点击“查看图书信息”可查看、编辑图书信息)',
+                                confirmText:'好的',
+                                showCancel:false
                             })
                         },
                         fail: function () {
@@ -306,6 +314,7 @@ Page({
                 'content-type': 'application/json'
             },
             success: function (res) {
+                console.log(res.data)
                 if (res.data == "have shared") {
                     wx.showToast({
                         title: '已经分享过，无需再分享！',
@@ -454,10 +463,10 @@ Page({
     },
 
     //设置ISBN
-    setISBN: function (e) {
+    setSummary: function (e) {
         var that = this
         var bookInfo = that.data.bookInfo;
-        bookInfo.isbn13 = e.detail.value
+        bookInfo.summary = e.detail.value
         that.setData({
             bookInfo: bookInfo
         })
@@ -498,7 +507,7 @@ Page({
     modalOk:function(){
         var that = this
         var bookInfo = that.data.bookInfo;
-        if (!bookInfo.title || !bookInfo.author || !bookInfo.isbn13 || !bookInfo.price){
+        if (!bookInfo.title || !bookInfo.author || !bookInfo.summary || !bookInfo.price){
             wx.showModal({
                 title: '提示',
                 content: '您还有信息没有填写！',
@@ -536,8 +545,11 @@ Page({
                         bookId:res.data,
                         modalFlag:true
                     })
-                    wx.showToast({
-                        title: '上传图书成功',
+                    wx.showModal({
+                        title: '提示',
+                        content: '上传图书成功，请您继续编辑信息！(点击“查看图书信息”可查看、编辑图书信息)',
+                        confirmText: '好的',
+                        showCancel: false
                     })
                 } else {
                     wx.showModal({
@@ -563,5 +575,12 @@ Page({
         that.setData({
             modalFlag:false
         })
+    },
+
+    modalCancel:function(){
+        var that = this;
+        that.setData({
+            modalFlag: true
+        }) 
     }
 })

@@ -142,13 +142,22 @@ Page({
                                                     duration: 2000
                                                 })
                                             } else if (res.data == "success") {
-                                                wx.showToast({
-                                                    title: '借书成功！',
-                                                    icon: 'success',
-                                                    duration: 2000
-                                                })
+                                                
                                                 that.setData({
                                                     step: e.target.dataset.index
+                                                })
+                                                wx.showModal({
+                                                    title: '提示',
+                                                    content: '恭喜您借书成功，您现在可以将书带走了！',
+                                                    confirmText:"好的",
+                                                    showCancel:false,
+                                                    success:function(res){
+                                                        if(res.confirm){
+                                                            wx.navigateBack({
+                                                                delta:1
+                                                            })
+                                                        }
+                                                    }
                                                 })
                                             }else{
                                                 wx.showToast({

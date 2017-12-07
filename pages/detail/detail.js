@@ -14,6 +14,7 @@ Page({
         interval: 3000,
         duration: 500,
         circular: true,
+        
 
         //原始
         loading: true,
@@ -39,7 +40,8 @@ Page({
         that.setData({
             params: params,
             book_type: book_type,
-            bookId: bookId
+            bookId: bookId,
+            selfId: app.globalData.userId,
         })
         wx.request({
             url: ('https://' + app.globalData.apiUrl + "?m=home&c=Api&a=getBookInfo&bookId=" + that.data.bookId + "&userId=" + app.globalData.userId).replace(/\s+/g, ""),
@@ -497,6 +499,16 @@ Page({
         var that = this
         that.setData({
             index:e.detail.value
+        })
+    },
+
+    //自己的图书不能借阅
+    selfBook: function () {
+        wx.showModal({
+            title: '提示',
+            content: '这是您自己的图书，您不能借阅！',
+            confirmText: '我知道了',
+            showCancel: false
         })
     }
 

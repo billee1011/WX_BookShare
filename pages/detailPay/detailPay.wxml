@@ -15,7 +15,7 @@
     <!-- 书籍信息 -->
     <view style='background:#fff;margin: 0 1.5%;'>
         <view class='meta' style='padding: 2rpx 5rpx;'>
-            <view class='title'>{{bookInfo.book_name}} {{bookInfo.writer}}———{{bookInfo.book_press}}</view>
+            <view class='title'>【{{bookInfo.book_name}}】 {{bookInfo.writer}}{{'———'+bookInfo.book_press}}</view>
             <!--（ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}）-->
             <view class='price'>
                 <text class='big-price'>{{bookInfo.price}}</text>
@@ -143,8 +143,12 @@
             <span>看过</span>
         </view>
     </view>
-    <view type="submit" bindtap="borrowBook" style="width:48%;background:#75a8f9;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#fff" class="bottom-operate">
+    <view type="submit" bindtap="borrowBook" style="width:48%;background:#75a8f9;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#fff" class="bottom-operate" wx:if="{{selfId != bookInfo.owner_id}}">
         借阅
+    </view>
+    <view type="submit" bindtap="selfBook" style="width:48%;background:#f7f7f7;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#000" class="bottom-operate" wx:else>
+        <image src='../../images/disabled.png' style='width:13px;height:13px;'></image>
+        自己的图书
     </view>
 </view>
 <!-- 弹出框 -->

@@ -1,12 +1,12 @@
 <!-- 第一块 -->
 <loading hidden="{{ !loading }}">加载中...</loading>
-<view class="container">
+<view class="container" wx:if="{{modalFlag}}">
     <view style='width:100%;background:#fff;margin-top:10px'>
         <view style='border-bottom:1px solid #f4f4f4'>
             <view style='width:49%;display:inline-block;height:40px;line-height:40px;text-align:center;border-right:1px solid #f4f4f4' bindtap="screenISBN" disabled="{{disabled2}}">扫码上传</view>
             <view style='width:50%;display:inline-block;height:40px;line-height:40px;text-align:center' bindtap='openModal'>手动上传</view>
         </view>
-        <view style='width:100%;display:inline-block;height:40px;line-height:40px;text-align:center;border-right:1px solid #f4f4f4'>
+        <view bindtap='openModal' wx:if="{{bookInfo.title || bookInfo.author[0] || bookInfo.price ||bookInfo.summary}}" style='width:100%;display:inline-block;height:40px;line-height:40px;text-align:center;border-right:1px solid #f4f4f4'>
             查看图书信息
         </view>
     </view>
@@ -100,7 +100,7 @@
             </view>
         </view>
         <view class="h1"></view>
-        <view class="comment">
+        <view class="comment" wx:if="{{modalFlag}}">
             <textarea style="line-height:20px;width:100%" type='text' bindinput="setContent" placeholder-style="padding-top:10px" maxlength="-1" placeholder='请写出您对此书的评价~' />
         </view>
         <view class="h1"></view>
@@ -108,21 +108,23 @@
             <span>若没有该书数据，请在扫描ISBN码后手动填写书名和作者，我们会尽快完善详细信息。</span>
         </view>
         <view class="h1"></view>
-        <view class="item">
+        <!-- <view class="item">
             <button type="primary" size="mini" style="float:left;font-size:12px;margin-top:10px;background:red" bindtap="continueShare"> 继续分享 </button>
-            <button type="primary" size="mini" style="float:right;font-size:12px;margin-top:10px;margin-right:10px" bindtap="shareBook"> 完成分享 </button>
-        </view>
+            
+        </view> -->
+        <button type="primary"  style="font-size:18px;margin-top:10px;margin-right:10px" bindtap="shareBook"> 完成分享 </button>
     </view>
 </view>
 
 <!-- 自己上传图书 -->
-<modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确  定" style="">
-    <view class="dew" style="text-align:center;">
+<modal class="modal" wx:if="{{!modalFlag}}" bindcancel="modalCancel" bindconfirm="modalOk" confirmText="确  定" >
+    <view class="dew" style="text-align:center;position:relative;color:#000">
+        <image src='{{pictureFiles}}' style="left:0px;top:0px;width:100%;height:100%;position:absolute;z-index:-1;filter: blur(20px);"></image>
         <view style='width:160rpx;float:left;margin-right:24rpx;'>
-            <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>
+            <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto;'></image>
         </view>
         <view style='width:320rpx;float:left;'>小蜜蜂数据库暂时没有您这本书呢，麻烦您手动录入本图书信息哦~</view>
-
+        
         <view class="catelist cl_list">
             <text class='cl_title'>图书名称：</text>
             <input class='cl_input' bindinput='setBookName' value="{{bookInfo.title}}" type='text' placeholder='请填写图书名称' />
@@ -131,19 +133,16 @@
             <text class='cl_title'>作者：</text>
             <input class='cl_input' bindinput='setWriter' value="{{bookInfo.author[0]}}" type='text' placeholder='请填写作者姓名' />
         </view>
-        <!-- <view class="catelist cl_list">
-            <text class='cl_title'>ISBN：</text>
-            <input class='cl_input' bindinput='setISBN' value="{{bookInfo.isbn13}}" type='number' placeholder='详见图书背后的ISBN码'/>
-        </view> -->
         <view class="catelist cl_list">
             <text class='cl_title'>价格：</text>
             <input class='cl_input' bindinput='setPrice' value="{{bookInfo.price}}" type='digit' placeholder='系列图书请填写单本价格' />
         </view>
         <view class="catelist cl_list" style='height:300rpx;'>
-            <textarea class='briefIntro' maxlength='-1' placeholder='请输入图书简介...' bindblur="bindTextAreaBlur" value="{{bookInfo.summary}}" />
+            <textarea class='briefIntro' maxlength='-1' placeholder='请输入图书简介...' bindinput='setSummary' bindblur="bindTextAreaBlur" value="{{bookInfo.summary}}" />
         </view>
         <view class="catelist cl_list" style='width:99%;height:50px'>
-            <button type='primary' bindtap='chooseImage'>上传图片</button>
+            <button type='primary' bindtap='chooseImage' wx:if="{{pictureFiles}}">重新上传图片</button>
+             <button type='primary' bindtap='chooseImage' wx:else>上传图片</button>
         </view>
         <view class="clear-both"></view>
     </view>

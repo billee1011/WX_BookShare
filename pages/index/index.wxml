@@ -51,7 +51,7 @@
   </view>
   <!--图书列表 end-->
   <!--分类 start-->
-  <scroll-view style="height:100%" id="catewrap" scroll-into-view="c2" hidden="{{!cateisShow}}">
+  <scroll-view style="height:100%" id="catewrap" scroll-y="true" scroll-into-view="c2" hidden="{{!cateisShow}}">
     <view class="close" bindtap="togglePtype" id="closecatelist"></view>
     <view id="cateall" bindtap="cateselect" class="cl_list ">
       <text class="cl_ico_checked cl_ico"></text>当前选择：{{sortsArray[sortIndex-1].sort_name!='重置'?sortsArray[sortIndex-1].sort_name:'全部'}}

@@ -288,6 +288,7 @@ Page({
                                                     url: data,
                                                     method: "GET",
                                                     success: function (res) {
+                                                        console.log(res.data)
                                                         that.setData({
                                                             bookId: res.data.id,
                                                             hidden: 1
@@ -359,6 +360,7 @@ Page({
                                         'content-type': 'application/json'
                                     },
                                     success: function (res) {
+                                        console.log(res.data)
                                         if (res.data[0]["result"] == "have shared") {
                                             wx.showToast({
                                                 title: '已经分享过，无需再分享！',
@@ -373,7 +375,7 @@ Page({
                                             wx.setStorageSync("bookId", that.data.bookId)
                                             wx.setStorageSync("can_share_id", that.data.can_share_id)
                                             wx.setStorageSync("price", that.data.price)
-                                            wx.setStorageSync("hidden", 2)
+                                            wx.setStorageSync("hidden", 1)
                                             var url2 = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=insertPilot&user_id=' + app.globalData.userId + "&qrcode_id=" + qrcodeId + "&can_share_id=" + that.data.can_share_id + "&donateType=" + that.data.donateType).replace(/\s+/g, "")
                                             wx.request({
                                                 url: url2,
@@ -383,10 +385,11 @@ Page({
                                                 },
                                                 success: function (res) {
                                                     if (res.data == "had screen") {
-                                                        wx.showToast({
-                                                            title: '该二维码已被使用，请更换二维码',
-                                                            image: '../../images/warning.png',
-                                                            duration: 2000
+                                                        wx.showModal({
+                                                            title: '提示',
+                                                            content: '该二维码已被使用，请更换二维码',
+                                                            confirmText:"我知道了",
+                                                            showCancel:false
                                                         })
                                                     } else if (res.data == "success") {
                                                         that.setData({
@@ -718,10 +721,10 @@ Page({
     },
 
     //设置ISBN
-    setISBN: function (e) {
+    setSummary: function (e) {
         var that = this
         var bookInfo = that.data.bookInfo;
-        bookInfo.isbn13 = e.detail.value
+        bookInfo.summary = e.detail.value
         that.setData({
             bookInfo: bookInfo
         })
@@ -737,7 +740,7 @@ Page({
         })
     },
 
-    chooseImage: function () {
+    modalChooseImage: function () {
         var that = this;
         //选择校园卡或者教工卡
         wx.chooseImage({
@@ -759,10 +762,19 @@ Page({
             }
         })
     },
+
+    //打开openModal
+    openModal: function () {
+        var that = this;
+        that.setData({
+            modalFlag: false
+        })
+    },
+
     modalOk: function () {
         var that = this
         var bookInfo = that.data.bookInfo;
-        if (!bookInfo.title || !bookInfo.author || !bookInfo.isbn13 || !bookInfo.price) {
+        if (!bookInfo.title || !bookInfo.author || !bookInfo.summary || !bookInfo.price) {
             wx.showModal({
                 title: '提示',
                 content: '您还有信息没有填写！',
@@ -822,6 +834,13 @@ Page({
             complete: function () {
                 wx.hideLoading()
             }
+        })
+    },
+
+    modalCancel: function () {
+        var that = this;
+        that.setData({
+            modalFlag: true
         })
     }
 })
