@@ -27,7 +27,7 @@ Page({
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏  
 
         damageArray: ['不区分破损','全新', '八成新以上', '六成新以上'],
-        damageIndex: 0//默认为八成新
+        damageIndex: 0,//默认为八成新
     },
 
     
@@ -331,6 +331,13 @@ Page({
         //显示分类
         this.setData({
             cateisShow: !this.data.cateisShow
+        })
+    },
+    resetting:function(){
+        this.setData({
+            ageIndex: 0,
+            damageIndex: 0,
+            sortIndex: 0,
         })
     },
 
