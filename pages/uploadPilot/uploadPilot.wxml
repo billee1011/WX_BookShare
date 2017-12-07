@@ -113,7 +113,7 @@
             <view class="weui-cell__bd">
               <view class="weui-uploader">
                 <view class="weui-uploader__hd">
-                  <view class="weui-uploader__title">点击可预览选好的图片</view>
+                  <view class="weui-uploader__title">拍些图书内的照片会更吸引人哦！</view>
                   <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
                 </view>
                 <view class="weui-uploader__bd">

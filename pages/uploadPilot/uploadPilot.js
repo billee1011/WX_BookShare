@@ -11,8 +11,6 @@ Page({
         hidden: 0,
         step: 1,
         cateisShow: false,
-        array: ['无限制', '3-5岁', '6-9岁', '10-12岁'],
-        arrayValue: ['0', '1', '2', '3'],
         ageIndex: 0,
         sortsIDArray: null,//获取图书分类
         sortsNameArray: null,//获取图书分类
@@ -813,6 +811,7 @@ Page({
                         modalFlag: true,
                         hidden:1
                     })
+                    wx.setStorageSync("bookInfo", bookInfo)
                     wx.showModal({
                         title: '提示',
                         content: '上传图书成功',

@@ -93,12 +93,7 @@ Page({
     },
 
     //事件处理函数
-    bindViewTap: function () {
-        wx.navigateTo({
-            url: '../logs/logs'
-        })
-    },
-
+    
     login:function(){
         //认证信息及个人信息切换
         var that = this;
@@ -117,16 +112,14 @@ Page({
     },
 
     openAccount: function (event) {
-        //打开我的账户z中间
-        // wx.navigateTo({
-        //     url: '../myAccount/myAccount',
-        // })
         if (app.globalData.certificationOk != 2) {
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-                image: '../../images/warning.png',
+            wx.showModal({
+                title: '提示',
+                content: '您还没有进行信息认证！',
+                confirmText:"我知道了",
+                showCancel:false,
             })
-            return;
+            return ;
         }
         wx.navigateTo({
             url: '../integralBalance/integralBalance',
@@ -144,9 +137,11 @@ Page({
     //自营点上传图书
     uploadPilot: function () {
         if (app.globalData.certificationOk != 2) {
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-                image: '../../images/warning.png',
+            wx.showModal({
+                title: '提示',
+                content: '您还没有进行信息认证！',
+                confirmText: "我知道了",
+                showCancel: false,
             })
             return;
         }
@@ -157,9 +152,11 @@ Page({
 
     billBoard:function(){
         if (app.globalData.certificationOk != 2) {
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-                image: '../../images/warning.png',
+            wx.showModal({
+                title: '提示',
+                content: '您还没有进行信息认证！',
+                confirmText: "我知道了",
+                showCancel: false,
             })
             return;
         }
@@ -200,9 +197,11 @@ Page({
     //待归还
     returnBack: function () {
         if (app.globalData.certificationOk != 2) {
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-                image: '../../images/warning.png',
+            wx.showModal({
+                title: '提示',
+                content: '您还没有进行信息认证！',
+                confirmText: "我知道了",
+                showCancel: false,
             })
             return;
         }
@@ -213,9 +212,11 @@ Page({
     //收书
     getBook: function () {
         if (app.globalData.certificationOk != 2) {
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-                image: '../../images/warning.png',
+            wx.showModal({
+                title: '提示',
+                content: '您还没有进行信息认证！',
+                confirmText: "我知道了",
+                showCancel: false,
             })
             return;
         }
@@ -225,9 +226,11 @@ Page({
     },
     openWaitingPay:function(){
         if (app.globalData.certificationOk != 2) {
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-                image: '../../images/warning.png',
+            wx.showModal({
+                title: '提示',
+                content: '您还没有进行信息认证！',
+                confirmText: "我知道了",
+                showCancel: false,
             })
             return;
         }

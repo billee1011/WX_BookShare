@@ -21,14 +21,16 @@
   margin-top: 200px;
 }*/
 
-page{
-  background: #fff
+page {
+    background: #fff;
 }
-.prompt-container{
-  background: #fff
+
+.prompt-container {
+    background: #fff;
 }
-.prompt-icon{
-  width:200rpx;
+
+.prompt-icon {
+    width: 200rpx;
 }
 
 .clear-both {
@@ -67,7 +69,7 @@ page{
     width: 45rpx;
     height: 45rpx;
     display: inline-block;
-    float: left;
+    float: left; 
     padding-right: 10rpx;
 }
 
@@ -82,7 +84,7 @@ page{
 
 .search-scanner icon {
     display: inline-block;
-    float: right;
+    float: right; 
     margin-right: 10rpx;
     margin-top: 2px;
 }
@@ -127,7 +129,6 @@ page{
     color: #ff5f00;
 }
 
-
 /* .screen-box .active::after {
     border: 5px solid transparent;
     border-top: 5px solid #ff5f00;
@@ -143,8 +144,7 @@ page{
 /**图书列表**/
 
 .book-list {
-    /* width: 94%; */
-    /* margin: 4rpx 0 4rpx 0;    
+    /* width: 94%; *//* margin: 4rpx 0 4rpx 0;    
     padding: 4rpx 0; */
     padding: 0 0;
 }
@@ -180,7 +180,6 @@ page{
     white-space: nowrap;
 }
 
-
 .book-author {
     height: 50%;
     line-height: 60rpx;
@@ -200,6 +199,7 @@ page{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .book-applier .right {
     float: right;
     width: 120px;
@@ -207,6 +207,7 @@ page{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 /*图书分类 start*/
 
 #catselectbtn {
@@ -232,19 +233,6 @@ page{
     background-color: #fff;
 }
 
-.close {
-    width: 78rpx;
-    height: 78rpx;
-    background-size: 100% auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAQAAAAko+iWAAABEUlEQVR4Ae3VxXHFUBSDYUPX4XWY2X6vBvUVLCBMCiea0cxZ6F8bvgu+bqqVUkoppZRSSglLuMA6Wvn+Dps4x7wHd41b3OIErUgbH++/8uC2cavxiHaLTQ+ux6jxiDbQnU6enebnEe1UoDl56P008YV+mrZUOs3P02l+nk7z89QT0c/TaX6enyb/mqrQmDc8g8aPtFK8arSPi3uLY6YVCD2mr7gBbS3a5JVGvFq0EwzEK0U7RouOeF0pWnNfFR7Tjuj31TKvDK0Kjw8Ppuk8P03n+Wk6z0erwmPaIdF+543oqtCYd0q8AjSBZ6CV4WHnA03jbXpw10yTeVce3CIusPJKU3jruMSsw5ZSSimllFJKd8ozWKU4zle8AAAAAElFTkSuQmCC);
-}
-
-#closecatelist {
-    margin: 15rpx auto;
-}
-
 .catelist {
     margin-bottom: 20rpx;
     overflow: hidden;
@@ -252,7 +240,8 @@ page{
 }
 
 .cl_list {
-    width: 179rpx;
+    /* width: 179rpx; */
+    width: 24.5%;
     border: 1rpx solid #eee;
     text-align: center;
     height: 90rpx;
@@ -266,7 +255,7 @@ page{
 }
 
 .cl_ico {
-    height: 182rpx;
+    height: 160rpx;
     line-height: 1;
 }
 
@@ -279,7 +268,7 @@ page{
 
 #cateall {
     float: none;
-    width: auto;
+    /* width: auto; */
     margin: 20rpx auto;
 }
 
@@ -313,7 +302,7 @@ page{
 }
 
 #catselectbtn {
-    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAMAAACecocUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdQTFRFiIiI+/z9vr6/xcXGnJyd9PX28/T1n5+fnp6ejIyMm5ub7e7v3t/gBUeqYAAAAEBJREFUeNpiYAABZgYI4GZj42LmYmPjBrJZGRlZmFkYGVnR2Bzs7JzMnOzsHAwMTCDAAyZRxHHqRTYfYS9AgAEAaTABl1/qO3QAAAAASUVORK5CYII=);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAMAAACecocUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdQTFRFiIiI+/z9vr6/xcXGnJyd9PX28/T1n5+fnp6ejIyMm5ub7e7v3t/gBUeqYAAAAEBJREFUeNpiYAABZgYI4GZj42LmYmPjBrJZGRlZmFkYGVnR2Bzs7JzMnOzsHAwMTCDAAyZRxHHqRTYfYS9AgAEAaTABl1/qO3QAAAAASUVORK5CYII=);
     color: #999;
     font-size: 24rpx;
     padding: 0rpx 20rpx 0rpx 40rpx;
@@ -327,21 +316,53 @@ page{
     border: none;
 }
 
-.loading{  
-  padding: 10rpx;  
-  text-align: center;  
-}  
-.loading:before{  
-  display: inline-block;  
-  margin-right: 5rpx;  
-  vertical-align: middle;  
-  content: '';  
-  width: 40rpx;  
-  height: 40rpx;  
-  background: url(../../images/icon-loading.png) no-repeat;  
-  background-size: contain;  
-  animation: rotate 1s linear infinite;  
-}  
-.loading.complete:before{  
-  display: none;  
-}  
+.loading {
+    padding: 10rpx;
+    text-align: center;
+}
+
+.loading:before {
+    display: inline-block;
+    margin-right: 5rpx;
+    vertical-align: middle;
+    content: '';
+    width: 40rpx;
+    height: 40rpx;
+    background: url(../../images/icon-loading.png) no-repeat;
+    background-size: contain;
+    animation: rotate 1s linear infinite;
+}
+
+.loading.complete:before {
+    display: none;
+}
+
+.btn {
+    width: 48%;
+    position: relative;
+    display: block;
+    margin-right: 12rpx;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 2.55555556;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.btn_plain-default {
+    color: #353535;
+    border: 1px solid #353535;
+    display: inline-block;
+    margin-right: 2%;
+}
+.btn_primary {
+    color: #1aad19;
+    border: 1px solid #1aad19;
+    display: inline-block;
+}

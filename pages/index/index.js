@@ -1,5 +1,4 @@
 import { $wuxNotification } from '../../components/wux'
-import { $wuxBackdrop } from '../../components/wux'
 import { $wuxPrompt } from '../../components/wux'
 var utils = require('../../utils/util.js');
 //index.js
@@ -13,8 +12,8 @@ Page({
         loading: true,
         bookObj: null,
         ageIndex: 0,
-        age: ["请选择",'无限制', '3-5岁', '6-9岁', '10-12岁'],
-        ageValue:[null,0,1,2,3],
+        age: ["请选择",'无限制', '3-6岁', '6-9岁', '9-12岁'],
+        ageValue:[null,1,2,3,4],
         sortIndex:0,
         sort_url: app.globalData.sort_url,
         //当前设备信息
@@ -27,7 +26,7 @@ Page({
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏  
 
         damageArray: ['不区分破损','全新', '八成新以上', '六成新以上'],
-        damageIndex: 0//默认为八成新
+        damageIndex: 0,//默认为八成新
     },
 
     
@@ -45,47 +44,8 @@ Page({
         utils.getUserData(that);
         that.getBookList();
         that.getSorts();
-        wx.hideLoading()
-        
-        // that.$wuxBackdrop = $wuxBackdrop.init();
-        // that.retain()
-        
+        wx.hideLoading()        
     },
-    onReady:function(){
-        //获取未归还图书
-        // wx.request({
-        //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
-        //     method: "GET",
-        //     header: {
-        //         'content-type': 'application/json',
-        //     },
-        //     success: function (res) {
-        //         console.log(res.data)
-        //     },
-        //     fail: function () {
-        //         wx.showToast({
-        //             title: '获取数据失败，请稍后重试！',
-        //             image: '../../images/fail.png',
-        //             duration: 2000
-        //         })
-        //     }
-        // })
-    },
-
-    //引导页面开始
-    retain() {
-        this.$wuxBackdrop.retain()
-        this.setData({
-            locks: this.$wuxBackdrop.backdropHolds
-        })
-    },
-    release() {
-        this.$wuxBackdrop.release()
-        this.setData({
-            locks: this.$wuxBackdrop.backdropHolds
-        })
-    },
-    //引导页面结束
 
     //获取分类
     getSorts:function(){
@@ -333,6 +293,15 @@ Page({
             cateisShow: !this.data.cateisShow
         })
     },
+    resetting:function(){
+        var that = this
+        that.setData({
+            ageIndex: 0,
+            damageIndex: 0,
+            sortIndex: 0,
+        })
+        that.getBookList()
+    },
 
     checkDetail:function(){
         
@@ -342,5 +311,11 @@ Page({
         that.setData({
             step: that.data.step + 1
         })
+    },
+    
+    affirmScreen:function(){
+        var that = this;
+        that.getBookList()
+        that.togglePtype();
     }
 })

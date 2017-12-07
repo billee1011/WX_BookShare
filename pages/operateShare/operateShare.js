@@ -207,9 +207,13 @@ Page({
                     bookData.translator = bookData.translator[0] ? bookData.author[0] : '未知';
                     bookData.tags = JSON.stringify(bookData.tags)
                     var price = bookData.price;
-                    price = price.replace(/[^0-9|.]/ig, "")
+                    price = price.replace(/[^0-9|.]/ig, "") == 0 ? price.replace(/[^0-9|.]/ig, ""):10
+                    var bookSummary = bookData.summary;
+                    if (bookSummary.length>500){
+                        bookSummary = bookSummary.substr(0, 500)+"..."
+                    }
                     wx.request({
-                        url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=uploadBookInfo&book_name=' + bookData.title + "&writer=" + bookData.author + "&translator=" + bookData.translator + "&introduction=" + (bookData.summary) + "&book_image=" + bookData.image + "&book_sort=" + (bookData.tags) + "&ISBN10=" + bookData.isbn10 + "&book_press=" + bookData.publisher + "&publish_date=" + bookData.pubdate + "&web_url=" + bookData.url + "&rating=" + bookData.rating.average + "&writer_intro=" + bookData.author_intro + "&image_large=" + bookData.images.large + "&image_medium=" + bookData.images.medium + "&image_small=" + bookData.images.small + "&ISBN13=" + bookData.isbn13 + "&pages=" + bookData.pages + "&price=" + parseInt(price) + "&rating_max=" + bookData.rating.max + "&rating_min=" + bookData.rating.min + "&raters_num=" + bookData.rating.numRaters + "&subtitle=" + bookData.subtitle).replace(/\s+/g, ""),
+                        url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=uploadBookInfo&book_name=' + bookData.title + "&writer=" + bookData.author + "&translator=" + bookData.translator + "&introduction=" + bookSummary + "&book_image=" + bookData.image + "&book_sort=" + (bookData.tags) + "&ISBN10=" + bookData.isbn10 + "&book_press=" + bookData.publisher + "&publish_date=" + bookData.pubdate + "&web_url=" + bookData.url + "&rating=" + bookData.rating.average + "&writer_intro=" + bookData.author_intro + "&image_large=" + bookData.images.large + "&image_medium=" + bookData.images.medium + "&image_small=" + bookData.images.small + "&ISBN13=" + bookData.isbn13 + "&pages=" + bookData.pages + "&price=" + parseInt(price) + "&rating_max=" + bookData.rating.max + "&rating_min=" + bookData.rating.min + "&raters_num=" + bookData.rating.numRaters + "&subtitle=" + bookData.subtitle).replace(/\s+/g, ""),
                         method: "GET",
                         header: {
                             'content-type': 'application/json'
@@ -531,6 +535,10 @@ Page({
             icon: 'loading',
             duration: 999999
         })
+        var bookSummary = bookInfo.summary;
+        if (bookSummary.length > 500) {
+            bookInfo.summary = bookSummary.substr(0, 500) + "..."
+        }
         wx.uploadFile({
             url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=selfUploadBook',
             header: {

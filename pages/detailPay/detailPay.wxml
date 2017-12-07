@@ -15,7 +15,7 @@
     <!-- 书籍信息 -->
     <view style='background:#fff;margin: 0 1.5%;'>
         <view class='meta' style='padding: 2rpx 5rpx;'>
-            <view class='title'>【{{bookInfo.book_name}}】 {{bookInfo.writer}}{{'———'+bookInfo.book_press}}</view>
+            <view class='title'>【{{bookInfo.book_name}}】 {{bookInfo.writer}}{{bookInfo.book_press?'———'+bookInfo.book_press:''}}</view>
             <!--（ISBN：{{bookInfo.ISBN10}}、{{bookInfo.ISBN13}}）-->
             <view class='price'>
                 <text class='big-price'>{{bookInfo.price}}</text>

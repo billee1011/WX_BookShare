@@ -31,14 +31,8 @@
 				},
 				{
 					"id": -1,
-					"name": "sorts",
-					"pathName": "pages/sorts/sorts",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "uploadPilot",
-					"pathName": "pages/uploadPilot/uploadPilot",
+					"name": "pay",
+					"pathName": "pages/pay/pay",
 					"query": ""
 				}
 			]

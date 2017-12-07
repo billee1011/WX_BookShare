@@ -256,6 +256,6 @@ header ._left img {
 .integral {
     font-size: 50px;
     text-align: center;
-    padding-top: 90px;
+    padding-top: 40px;
     color:#ff4c4c;
 }
