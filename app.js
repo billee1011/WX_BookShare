@@ -8,17 +8,15 @@ App({
 
         //登录
         var that = this;
-        wx.request({
-            url: ('https://' + that.globalData.apiUrl + '?m=home&c=User&a=getAccessToken').replace(/\s+/g, ""),
-            success: function (res) {
-                that.globalData.access_token = res.data.access_token
-            }
-        })
+        // wx.request({
+        //     url: ( that.globalData.apiUrl + '?m=home&c=User&a=getAccessToken').replace(/\s+/g, ""),
+        //     success: function (res) {
+        // })
         
         //定时器获取access_token
         // var timename = setInterval(function(){
         //     wx.request({
-        //         url: ('https://' + that.globalData.apiUrl + '?m=home&c=User&a=getAccessToken').replace(/\s+/g, ""),
+        //         url: ( that.globalData.apiUrl + '?m=home&c=User&a=getAccessToken').replace(/\s+/g, ""),
         //         success: function (res) {
         //             that.globalData.access_token = res.data.access_token
         //         }
@@ -102,7 +100,7 @@ App({
         appSecret: 'a534c61c9b99d4dc0cb010cd4017da9b',//25f225cee1b8da033ecbd23ac68beb1a
         session_key: null,
         openId: null,
-        apiUrl: "35978598.1949science.cn/",//"localhost:8081",//www.1949science.cn  139.199.171.106/bookshare
+        apiUrl: "http://139.199.36.38",//"localhost:8081",//www.1949science.cn  139.199.171.106/bookshare 35978598.1949science.cn/
         userId:null,//用户userId
         timer: 30000,//定时器设置时间
         access_token:null,

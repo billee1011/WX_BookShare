@@ -50,7 +50,7 @@ Page({
     //获取分类
     getSorts:function(){
         var that = this
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
         wx.request({
             url: url,
             method: "GET",
@@ -144,7 +144,7 @@ Page({
     //获取图书列表
     getBookList:function(){
         var that = this 
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=bookList&screen=' + that.data.activeNum).replace(/\s+/g, "");
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=bookList&screen=' + that.data.activeNum).replace(/\s+/g, "");
         if (that.data.searchValue){
             url += "&value=";
             url += that.data.searchValue;

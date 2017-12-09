@@ -19,7 +19,7 @@ Page({
         var that = this;
         this.initEleWidth();
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getBookManList&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getBookManList&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             header: {
                 'content-type': 'application/json'
             },
@@ -51,7 +51,7 @@ Page({
         var canShareId = e.currentTarget.dataset.canshareid;
         var that = this;
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=downLine&canShareId=' + canShareId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=downLine&canShareId=' + canShareId).replace(/\s+/g, ""),
             header: {
                 'content-type': 'application/json'
             },
@@ -87,7 +87,7 @@ Page({
         var canShareId = e.currentTarget.dataset.canshareid;
         var that = this;
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=onLine&canShareId=' + canShareId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=onLine&canShareId=' + canShareId).replace(/\s+/g, ""),
             header: {
                 'content-type': 'application/json'
             },

@@ -43,11 +43,11 @@
                         <view style='clear:both'></view>
                     </view>
                     <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
-                        <view style='text-align:left;width:50%;display:inline-block'>
+                        <view style='text-align:left;width:30%;display:inline-block'>
                             时长：
                             <text style='color:red'>{{book.time!=null?book.time:0}}天</text>
                         </view>
-                        <view style='text-align:right;width:50%;display:inline-block'>
+                        <view style='text-align:right;width:70%;display:inline-block'>
                             借阅时间：{{book.loan_at!=null?book.loan_at:"暂无数据"}}
                         </view>
                     </view>

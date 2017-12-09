@@ -18,7 +18,7 @@ Page({
             title: '加载中',
         })
         var that = this
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
         wx.request({
             url: url,
             method: "GET",

@@ -22,7 +22,7 @@ Page({
         var that = this;
         that.getSystemInfo()
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -75,7 +75,7 @@ Page({
         })
 
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getPilotBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getPilotBorrowIn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -188,7 +188,7 @@ Page({
         var sharingId = e.currentTarget.dataset.sharingid;
         var that = this;
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=finishBorrow&sharingId=' + sharingId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=finishBorrow&sharingId=' + sharingId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'

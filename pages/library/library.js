@@ -68,7 +68,7 @@ Page({
         }
         /**获取C2C的图书 type=3**/
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getC2CMyBookMoney&userId=' + userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getC2CMyBookMoney&userId=' + userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -93,7 +93,7 @@ Page({
 
         /**获取上传至自营点图书 */
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getB2CMyBookMoney&userId=113').replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getB2CMyBookMoney&userId=113').replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -166,7 +166,7 @@ Page({
 
         if (that.data.pictureFiles) {
             wx.uploadFile({
-                url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadMyLibraryPic',
+                url:  app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadMyLibraryPic',
                 header: {
                     'content-type': "multipart/form-data"
                 }, // 设置请求的 header
@@ -174,7 +174,7 @@ Page({
                 name: 'authPic',//app.globalData.userId+
 
                 success: function (res) {
-                    var picUrl = 'https://' + app.globalData.apiUrl + res.data;
+                    var picUrl =  app.globalData.apiUrl + res.data;
                     data.wares_image = picUrl;
                     // data.wares_logo = 'https://35978598.1949science.cn/Public/images/logo.png';
                     if (data) {

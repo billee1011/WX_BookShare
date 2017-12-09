@@ -22,7 +22,7 @@ Page({
         dataId = options.userId ? options.userId : app.globalData.userId
         typeVal = options.typeVal ? options.typeVal : options.bookListType
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getSystemBookList&userId=' + dataId + "&type=" + typeVal).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getSystemBookList&userId=' + dataId + "&type=" + typeVal).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'

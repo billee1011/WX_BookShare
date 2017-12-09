@@ -14,7 +14,7 @@ Page({
     onLoad: function (options) {
         var that = this
         // wx.request({
-        //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=getPay').replace(/\s+/g, ""),
+        //     url: ( app.globalData.apiUrl + '?m=home&c=Pay&a=getPay').replace(/\s+/g, ""),
         //     method: 'POST',
         //     data: {
         //         bookingNo: that.data.sharingId,  /*订单号*/
@@ -49,7 +49,7 @@ Page({
     pay:function(){
         var that = this
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
             method: 'POST',
             data: {
                 total_fee: 1,   /*订单金额*/

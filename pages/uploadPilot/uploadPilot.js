@@ -43,7 +43,7 @@ Page({
         that.setData({
             donateType: options.donateType
         })
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
         wx.request({
             url: url,
             method: "GET",
@@ -73,7 +73,7 @@ Page({
         if (qrcodeId) {
             wx.showModal({
                 title: '提醒',
-                content: '您上一次上传的' + bookInfo.title + '还未扫描书柜，是否继续？',
+                content: '您上一次上传的《' + bookInfo.title + '》还未扫描书柜，是否继续？',
                 cancelText: "残忍拒绝",
                 cancelColor: "#E21918",
                 confirmText: "现在就去",
@@ -88,7 +88,7 @@ Page({
                         })
                     } else {
                         //根据qrcodeId删除之前上传的
-                        var url3 = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=deleteByQrcodeId&qrcodeId=' + qrcodeId).replace(/\s+/g, "");
+                        var url3 = ( app.globalData.apiUrl + '?m=home&c=Api&a=deleteByQrcodeId&qrcodeId=' + qrcodeId).replace(/\s+/g, "");
 
                         wx.request({
                             url: url3,
@@ -110,7 +110,7 @@ Page({
             var that = this;
             wx.showModal({
                 title: '提醒',
-                content: '您上一次上传的' + bookInfo.title + '还未扫描书后二维码，是否继续？',
+                content: '您上一次上传的《' + bookInfo.title + '》还未扫描书后二维码，是否继续？',
                 cancelText: "残忍拒绝",
                 cancelColor: "#E21918",
                 confirmText: "现在就去",
@@ -203,7 +203,7 @@ Page({
     //根据can_share_id删除can_share表中的信息
     deleteByCanShareId: function () {
         var that = this
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=deleteByCanShareId&can_share_id=' + that.data.can_share_id).replace(/\s+/g, "");
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=deleteByCanShareId&can_share_id=' + that.data.can_share_id).replace(/\s+/g, "");
         wx.request({
             url: url,
             method: "GET",
@@ -280,7 +280,7 @@ Page({
                                                     price: price
                                                 })
                                                 wx.setStorageSync("bookInfo", res.data)
-                                                var data = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=uploadBookInfo&book_name=' + bookData.title + "&writer=" + bookData.author + "&translator=" + bookData.translator + "&introduction=" + (bookData.summary) + "&book_image=" + bookData.image + "&book_sort=" + (bookData.tags).substring(0, 300) + "&ISBN10=" + bookData.isbn10 + "&book_press=" + bookData.publisher + "&publish_date=" + bookData.pubdate + "&web_url=" + bookData.url + "&rating=" + bookData.rating.average + "&writer_intro=123" + "&image_large=" + bookData.images.large + "&image_medium=" + bookData.images.medium + "&image_small=" + bookData.images.small + "&ISBN13=" + bookData.isbn13 + "&pages=" + bookData.pages + "&price=" + price + "&rating_max=" + bookData.rating.max + "&rating_min=" + bookData.rating.min + "&raters_num=" + bookData.rating.numRaters + "&subtitle=" + bookData.subtitle).replace(/\s+/g, "");
+                                                var data = ( app.globalData.apiUrl + '?m=home&c=Api&a=uploadBookInfo&book_name=' + bookData.title + "&writer=" + bookData.author + "&translator=" + bookData.translator + "&introduction=" + (bookData.summary) + "&book_image=" + bookData.image + "&book_sort=" + (bookData.tags).substring(0, 300) + "&ISBN10=" + bookData.isbn10 + "&book_press=" + bookData.publisher + "&publish_date=" + bookData.pubdate + "&web_url=" + bookData.url + "&rating=" + bookData.rating.average + "&writer_intro=123" + "&image_large=" + bookData.images.large + "&image_medium=" + bookData.images.medium + "&image_small=" + bookData.images.small + "&ISBN13=" + bookData.isbn13 + "&pages=" + bookData.pages + "&price=" + price + "&rating_max=" + bookData.rating.max + "&rating_min=" + bookData.rating.min + "&raters_num=" + bookData.rating.numRaters + "&subtitle=" + bookData.subtitle).replace(/\s+/g, "");
 
                                                 wx.request({
                                                     url: data,
@@ -350,7 +350,7 @@ Page({
                                     })
                                     return;
                                 }
-                                var url1 = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=sharePilotBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + app.globalData.pilotKeepTime).replace(/\s+/g, "")
+                                var url1 = ( app.globalData.apiUrl + '?m=home&c=Api&a=sharePilotBook&ownerId=' + app.globalData.userId + "&bookId=" + that.data.bookId + "&keep_time=" + app.globalData.pilotKeepTime).replace(/\s+/g, "")
                                 wx.request({
                                     url: url1,
                                     method: "GET",
@@ -374,7 +374,7 @@ Page({
                                             wx.setStorageSync("can_share_id", that.data.can_share_id)
                                             wx.setStorageSync("price", that.data.price)
                                             wx.setStorageSync("hidden", 1)
-                                            var url2 = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=insertPilot&user_id=' + app.globalData.userId + "&qrcode_id=" + qrcodeId + "&can_share_id=" + that.data.can_share_id + "&donateType=" + that.data.donateType).replace(/\s+/g, "")
+                                            var url2 = ( app.globalData.apiUrl + '?m=home&c=Api&a=insertPilot&user_id=' + app.globalData.userId + "&qrcode_id=" + qrcodeId + "&can_share_id=" + that.data.can_share_id + "&donateType=" + that.data.donateType).replace(/\s+/g, "")
                                             wx.request({
                                                 url: url2,
                                                 method: "GET",
@@ -383,6 +383,7 @@ Page({
                                                 },
                                                 success: function (res) {
                                                     if (res.data == "had screen") {
+                                                        that.deleteByCanShareId();
                                                         wx.showModal({
                                                             title: '提示',
                                                             content: '该二维码已被使用，请更换二维码',
@@ -468,7 +469,7 @@ Page({
                                     })
                                     return;
                                 }
-                                var url3 = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=updateOwner&pilot_id=' + array[0] + "&can_share_id=" + that.data.can_share_id + "&price=" + that.data.price + "&user_id=" + app.globalData.userId + "&bookcase_qrcode=" + res.result).replace(/\s+/g, "");
+                                var url3 = ( app.globalData.apiUrl + '?m=home&c=Api&a=updateOwner&pilot_id=' + array[0] + "&can_share_id=" + that.data.can_share_id + "&price=" + that.data.price + "&user_id=" + app.globalData.userId + "&bookcase_qrcode=" + res.result).replace(/\s+/g, "");
 
                                 wx.request({
                                     url: url3,
@@ -622,7 +623,7 @@ Page({
         }
 
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + that.data.selectAgeDataStr + "&sort=" + thatData.selectDataStr + "&card_content=" + thatData.cardContent + "&book_content=5" + "&damage="+thatData.damageIndex).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + that.data.selectAgeDataStr + "&sort=" + thatData.selectDataStr + "&card_content=" + thatData.cardContent + "&book_content=5" + "&damage="+thatData.damageIndex).replace(/\s+/g, ""),
             method: "GET",
             dataType: "text",
             success: function (res) {
@@ -660,7 +661,7 @@ Page({
         })
         // console.log(that.data.imageList);
         app.uploadimg({
-            url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
+            url:  app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
             path: that.data.imageList,//这里是选取的图片的地址数组,
             formData: {
                 'can_share_id': that.data.can_share_id
@@ -797,7 +798,7 @@ Page({
             duration: 999999
         })
         wx.uploadFile({
-            url: 'https://' + app.globalData.apiUrl + '/index.php?m=home&c=Api&a=selfUploadBook',
+            url:  app.globalData.apiUrl + '/index.php?m=home&c=Api&a=selfUploadBook',
             header: {
                 'content-type': "multipart/form-data"
             }, // 设置请求的 header

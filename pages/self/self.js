@@ -17,6 +17,9 @@ Page({
     },
     
     onLoad: function (options) {
+        wx.showLoading({
+            title: '信息加载中',
+        })
         var that = this;
         that.setData({
             userInfo:app.globalData.userInfo,
@@ -28,7 +31,7 @@ Page({
         
         //获取未支付 待归还 待收回的数量
         // wx.request({
-        //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+        //     url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
         //     method: "GET",
         //     success: function (res) {
         //         that.setData({
@@ -38,6 +41,7 @@ Page({
         //         })
         //     }
         // })
+        wx.hideLoading()
     },
     
     onReady:function(){
@@ -62,13 +66,7 @@ Page({
     },
     onShow: function () {
         var that = this;
-        console.log(that);
-        // that.setData({
-        //     userInfo: app.globalData.userInfo,
-        //     certificationOk: app.globalData.certificationOk,
-        // })
-        // console.log(that);
-        // utils.checkSettingStatu(that);
+        utils.checkSettingStatu(that);
         that.onLoad();
     },
 
@@ -97,17 +95,22 @@ Page({
     login:function(){
         //认证信息及个人信息切换
         var that = this;
-        if (that.data.certificationOk == 2){
-            //个人信息页面
-            wx.navigateTo({
-                url: '../selfInfo/selfInfo',
-            })
+        if (app.globalData.authSettingUserInfo){
+            if (that.data.certificationOk == 2) {
+                //个人信息页面
+                wx.navigateTo({
+                    url: '../selfInfo/selfInfo',
+                })
+            } else if (that.data.certificationOk == 1 || that.data.certificationOk == 3 || that.data.certificationOk == 0) {
+                //去认证页面
+                wx.navigateTo({
+                    url: '../toAuth/toAuth',
+                })
+            }
         }else{
-            //去认证页面
-            wx.navigateTo({
-                url: '../toAuth/toAuth',
-            })
+            utils.checkSettingStatu(that);
         }
+        
         
     },
 

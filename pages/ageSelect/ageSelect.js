@@ -15,7 +15,7 @@ Page({
      */
     onLoad: function (options) {
         var that = this
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getAges').replace(/\s+/g, "")
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getAges').replace(/\s+/g, "")
         wx.request({
             url: url,
             method: "GET",

@@ -1,4 +1,4 @@
-var  app = getApp();
+var app = getApp();
 function formatTime(date) {
     var year = date.getFullYear()
     var month = date.getMonth() + 1
@@ -80,9 +80,7 @@ module.exports = {
         wx.getSetting({
 
             success: function success(res) {
-
                 var authSetting = res.authSetting;
-
                 if (that.isEmptyObject(authSetting)) {
 
                     console.log('首次授权');
@@ -94,6 +92,7 @@ module.exports = {
                     // 没有授权的提醒
 
                     if (authSetting['scope.userInfo'] === false) {
+                        wx.clearStorage();
 
                         wx.showModal({
 
@@ -104,17 +103,58 @@ module.exports = {
                             showCancel: false,
 
                             success: function (res) {
-
                                 if (res.confirm) {
 
                                     wx.openSetting({
 
                                         success: function success(res) {
-                                            that.getUserData(param)
+                                            if (res.authSetting["scope.userInfo"]) {
+                                                //这里是授权成功之后 填写你重新获取数据的js
+                                                app.globalData.authSettingUserInfo == true;
+                                                // that.getUserData(param);
+                                                if (param != null) {
+                                                    if (param.route == 'pages/self/self') {
+                                                        wx.showModal({
+                                                            title: '提示',
+                                                            content: '授权成功！',
+                                                            success: function (res) {
+                                                                // utils.getUserData(param);
+                                                                // var t2 = window.setTimeout("hello()", 3000);//使用字符串执行方法
+                                                                // param.onLoad();
+                                                                wx.showLoading({
+                                                                    title: '信息加载中',
+                                                                })
 
+                                                                while(true){
+                                                                    console.log(param.data.userInfo);
+                                                                    if(param.data.userInfo){
+                                                                        wx.hideLoading()
+                                                                        param.onLoad();
+                                                                        break ;
+                                                                    }
+                                                                }
+
+                                                                
+                                                                
+                                                            }
+                                                        })
+                                                    }
+                                                }
+                                            }
                                         }
 
                                     });
+
+                                } else if (res.confirm == false && res.cancel == false) {
+                                    //Android点击蒙层关闭情况
+                                    if (param != null) {
+                                        if (param.route == 'pages/self/self') {
+                                            return;
+                                        }
+                                    }
+                                    wx.navigateBack({
+                                        delta: 1
+                                    })
 
                                 }
 
@@ -133,25 +173,26 @@ module.exports = {
     },
 
     //获取个人信息
-    getUserData: function (el){
+    getUserData: function (el) {
         var param = el;
         wx.login({
             success: function (res) {
                 if (res.code) {
                     //请求access_token
-                    if (!getApp().globalData.openId){
+                    if (!wx.getStorageSync('openId') || !wx.getStorageSync('userId')) {
                         wx.request({
-                            url: 'https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=getSessionKey&code=' + res.code,
+                            url:  getApp().globalData.apiUrl + '?m=home&c=User&a=getSessionKey&code=' + res.code,
                             success: function (res) {
                                 var resData = res;
-                                getApp().globalData.session_key = res.data.session_key
-                                getApp().globalData.openId = res.data.openid
+                                wx.setStorageSync('session_key', res.data.session_key)
+                                wx.setStorageSync('openId', res.data.openid)
+
                                 //获取个人信息
                                 wx.getUserInfo({
                                     success: function (res) {
                                         var res = JSON.parse(res.rawData);//eval('(' + res.rawData + ')');
                                         //创建账号到数据库
-                                        var url = ('https://' + getApp().globalData.apiUrl + '?m=home&c=User&a=regiser&avatarUrl=' + res.avatarUrl + "&city=" + res.city + "&country=" + res.country + "&gender=" + res.gender + "&nickName=" + res.nickName + "&province=" + res.province + "&openId=" + resData.data.openid).replace(/\s+/g, "");
+                                        var url = ( getApp().globalData.apiUrl + '?m=home&c=User&a=regiser&avatarUrl=' + res.avatarUrl + "&city=" + res.city + "&country=" + res.country + "&gender=" + res.gender + "&nickName=" + res.nickName + "&province=" + res.province + "&openId=" + resData.data.openid).replace(/\s+/g, "");
                                         wx.request({
                                             url: url,
                                             success: function (res) {
@@ -160,14 +201,11 @@ module.exports = {
                                                 } else if (res.data[0]["certificationOk"] == 3) {
                                                     param.showNotification('', '', "认证被驳回，请重新上传信息！");
                                                 }
+                                                wx.setStorageSync('userId', res.data[0]["ID"])
+                                                wx.setStorageSync('userInfo', res.data[0])
+                                                wx.setStorageSync('certificationOk', res.data[0]["certificationOk"])
 
-                                                getApp().globalData.userId = res.data[0]["ID"];
-                                                getApp().globalData.userInfo = res.data[0];
-                                                getApp().globalData.certificationOk = res.data[0]["certificationOk"];
-                                                param.setData({
-                                                    userInfo: getApp().globalData.userInfo,
-                                                    certificationOk: getApp().globalData.certificationOk,
-                                                })
+
                                             }
                                         })
                                     }
@@ -175,7 +213,31 @@ module.exports = {
                             }
                         })
                     }
-                    
+
+
+                    if (wx.getStorageSync('certificationOk') != 2 && wx.getStorageSync('userId')) {
+                        var url = ( app.globalData.apiUrl + '?m=home&c=User&a=getcertification&id=' + wx.getStorageSync('userId')).replace(/\s+/g, "")
+                        wx.request({
+                            url: url,
+                            method: "GET",
+                            dataType: "json",
+                            success: function (res) {
+                                wx.setStorageSync('certificationOk', res.data)
+                            }
+                        })
+                    }
+
+                    getApp().globalData.session_key = wx.getStorageSync('session_key')
+                    getApp().globalData.openId = wx.getStorageSync('openId')
+                    getApp().globalData.userId = wx.getStorageSync('userId')
+                    getApp().globalData.userInfo = wx.getStorageSync('userInfo')
+                    getApp().globalData.certificationOk = wx.getStorageSync('certificationOk')
+
+                    param.setData({
+                        userInfo: getApp().globalData.userInfo,
+                        certificationOk: getApp().globalData.certificationOk,
+                    })
+
                 } else {
                     getApp().globalData.userId = null;
                 }
@@ -184,15 +246,14 @@ module.exports = {
     },
 
     //获取当前用户是否有未完成的订单
-    getNonePay:function(){
+    getNonePay: function () {
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturn&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json',
             },
             success: function (res) {
-                console.log(res.data)
                 if (res.data) {
                     wx.navigateTo({
                         url: '../pay/pay?sharingId=' + res.data[0].sharingId,

@@ -18,7 +18,7 @@ Page({
             title: '余额加载中',
         })
         var that = this
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=User&a=getIntegral&userId=' + app.globalData.userId).replace(/\s+/g, "");
+        var url = ( app.globalData.apiUrl + '?m=home&c=User&a=getIntegral&userId=' + app.globalData.userId).replace(/\s+/g, "");
         wx.request({
             url: url,
             method: "GET",
@@ -121,7 +121,7 @@ Page({
         }
 
         var that = this
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=withDraw').replace(/\s+/g, "");
+        var url = ( app.globalData.apiUrl + '?m=home&c=Pay&a=withDraw').replace(/\s+/g, "");
         wx.request({
             url: url,
             method: "POST",

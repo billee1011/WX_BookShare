@@ -16,7 +16,7 @@ Page({
         var that = this
         var sharingId = options.sharingId;
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturnDetail&sharingId=' + sharingId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=New&a=getNoneReturnDetail&sharingId=' + sharingId + "&userId=" + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json',
@@ -105,10 +105,10 @@ Page({
         var that = this
         var thatData = that.data.orderDetail
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Pay&a=pay').replace(/\s+/g, ""),
             method: 'POST',
             data: {
-                'total_fee': thatData.money,
+                'total_fee': thatData.realMoney ? thatData.realMoney:thatData.money,
                 'openid': app.globalData.openId,
                 'body': "借阅《" + thatData.book_name + "》" + thatData.days+"天所花费金额"
             },
@@ -127,7 +127,7 @@ Page({
                     'success': function (res) {
                         var sharingId = that.data.orderDetail.sharingId;
                         wx.request({
-                            url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&sharingId=' + sharingId + "&can_share_id=" + that.data.orderDetail.can_share_id + "&money=" + that.data.orderDetail.money).replace(/\s+/g, ""),
+                            url: ( app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&sharingId=' + sharingId + "&can_share_id=" + that.data.orderDetail.can_share_id + "&money=" + that.data.orderDetail.money).replace(/\s+/g, ""),
                             method: "GET",
                             header: {
                                 'content-type': 'application/json',
@@ -201,7 +201,7 @@ Page({
         // var can_share_id = that.data.orderDetail.can_share_id;
         // var sharingId = that.data.orderDetail.sharingId;
         // wx.request({
-        //     url: ('https://' + app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&can_share_id=' + can_share_id + "&sharingId=" + sharingId+ "&money=" + that.data.orderDetail.money + "&ownerId=" + that.data.ownerId).replace(/\s+/g, ""),
+        //     url: ( app.globalData.apiUrl + '?m=home&c=New&a=hadPayed&can_share_id=' + can_share_id + "&sharingId=" + sharingId+ "&money=" + that.data.orderDetail.money + "&ownerId=" + that.data.ownerId).replace(/\s+/g, ""),
         //     method: "GET",
         //     header: {
         //         'content-type': 'application/json',

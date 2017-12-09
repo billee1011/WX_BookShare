@@ -23,9 +23,9 @@ Page({
             canShareId: options.canShareId,
             pageType: options.type
         })
-        var url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowCancelReason').replace(/\s+/g, "");
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowCancelReason').replace(/\s+/g, "");
         if(options.type == 1){
-            url = ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getRefuseCancelReason').replace(/\s+/g, "");
+            url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getRefuseCancelReason').replace(/\s+/g, "");
         }
         wx.request({
             url: url,
@@ -115,7 +115,7 @@ Page({
             return ;
         }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=cancelBorrow&sharingId=' + that.data.sharingId + "&canShareId=" + that.data.canShareId + "&refuse_reason=" + that.data.refuse_reason + "&refuse_content=" + that.data.refuse_content).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=cancelBorrow&sharingId=' + that.data.sharingId + "&canShareId=" + that.data.canShareId + "&refuse_reason=" + that.data.refuse_reason + "&refuse_content=" + that.data.refuse_content).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'

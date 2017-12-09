@@ -17,7 +17,7 @@ Page({
             qrtype: qrtype
         })
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=createQRcode&sharingId=' + sharingId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=createQRcode&sharingId=' + sharingId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -40,7 +40,7 @@ Page({
         //定时器获取订单状态 
         var timename = setInterval(function(){
             wx.request({
-                url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getScreenState&sharingId=' + options.sharingId).replace(/\s+/g, ""),
+                url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getScreenState&sharingId=' + options.sharingId).replace(/\s+/g, ""),
                 success: function (res) {
                     if (qrtype == 1){
                         if(res.data[0]["if_return"]==1){

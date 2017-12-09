@@ -21,7 +21,7 @@ Page({
         var that = this;
         /**获取C2C的图书 type=3**/
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getC2CMyBookMoney&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getC2CMyBookMoney&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -62,7 +62,7 @@ Page({
 
         /**获取上传至自营点图书 */
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getB2CMyBookMoney&userId=' + app.globalData.userId).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getB2CMyBookMoney&userId=' + app.globalData.userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
@@ -167,7 +167,7 @@ Page({
             success: function (res) {
                 if (res.confirm) {
                     wx.request({
-                        url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=downLine&canShareId=' + canShareId).replace(/\s+/g, ""),
+                        url: ( app.globalData.apiUrl + '?m=home&c=Api&a=downLine&canShareId=' + canShareId).replace(/\s+/g, ""),
                         header: {
                             'content-type': 'application/json',
                         },
@@ -213,7 +213,7 @@ Page({
             success: function (res) {
                 if (res.confirm) {
                     wx.request({
-                        url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=onLine&canShareId=' + canShareId).replace(/\s+/g, ""),
+                        url: ( app.globalData.apiUrl + '?m=home&c=Api&a=onLine&canShareId=' + canShareId).replace(/\s+/g, ""),
                         header: {
                             'content-type': 'application/json'
                         },
