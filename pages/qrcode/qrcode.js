@@ -23,8 +23,9 @@ Page({
                 'content-type': 'application/json'
             },
             success: function (res) {
+                console.log(app.globalData.apiUrl + res.data)
                 that.setData({
-                    picUrl: "https://"+app.globalData.apiUrl+res.data
+                    picUrl: app.globalData.apiUrl+res.data
                 })
                 
             },

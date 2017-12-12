@@ -145,7 +145,7 @@
    <view class="dew" style="text-align:center;color:#000">
         <image src='{{pictureFiles}}' style="left:0px;top:0px;width:100%;height:100%;position:absolute;z-index:-1;filter: blur(20px);"></image>
         <view style='width:160rpx;float:left;margin-right:24rpx;'>
-            <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto;'></image>
+            <image src="{{picUrl}}/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto;'></image>
         </view>
         <view style='width:320rpx;float:left;'>小蜜蜂数据库暂时没有您这本书呢，麻烦您手动录入本图书信息哦~</view>
         

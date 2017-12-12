@@ -35,7 +35,7 @@
             <span>提现金额大于5.00元</span>
         </span>
     </view>
-    <view class="h1"></view>
+    <!-- <view class="h1"></view>
      <view class="item">
         <span>支付宝昵称</span>
         <input style="width:90%;margin-top:-40px;float:right;text-align:right;border-bottom: 1px solid #f7f7f7;height: 40px;line-height: 40px;padding-right: 10px" type="text" id="nickName" />
@@ -44,7 +44,7 @@
     <view class="item">
         <span>支付宝账号</span>
         <input style="width:90%;margin-top:-40px;float:right;text-align:right;border-bottom: 1px solid #f7f7f7;height: 40px;line-height: 40px;padding-right: 10px" type="text" />
-    </view> 
+    </view>  -->
 </view>
 <!-- 第三块 -->
 <view class="h15"></view>

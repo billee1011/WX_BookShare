@@ -35,7 +35,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -65,7 +65,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -126,7 +126,7 @@ Page({
                     'content-type': "multipart/form-data"
                 }, // 设置请求的 header
                 filePath: that.data.pictureFiles,
-                name: 'authPic',//app.globalData.userId+
+                name: 'libraryPic',//app.globalData.userId+
 
                 success: function (res) {
                     var picUrl =  app.globalData.apiUrl + res.data;

@@ -10,25 +10,25 @@ Page({
         certificationOk: app.globalData.certificationOk,
     },
 
-    onPullDownRefresh :function(){
+    onPullDownRefresh: function () {
         var that = this
         utils.getUserData(that);
         wx.stopPullDownRefresh()
     },
-    
+
     onLoad: function (options) {
         wx.showLoading({
             title: '信息加载中',
         })
         var that = this;
         that.setData({
-            userInfo:app.globalData.userInfo,
-            certificationOk: app.globalData.certificationOk
+            userInfo: app.globalData.userInfo,
+            certificationOk: app.globalData.certificationOk ? app.globalData.certificationOk:0
         })
-        if (!app.globalData.userInfo){
+        if (!app.globalData.userInfo) {
             utils.getUserData(that);
         }
-        
+
         //获取未支付 待归还 待收回的数量
         // wx.request({
         //     url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getUserNeedNum&userId=' + app.globalData.userId).replace(/\s+/g, ""),
@@ -43,11 +43,11 @@ Page({
         // })
         wx.hideLoading()
     },
-    
-    onReady:function(){
+
+    onReady: function () {
         var that = this;
-        if (that.data.userInfo){
-            if (that.data.certificationOk == 0){
+        if (that.data.userInfo) {
+            if (that.data.certificationOk == 0) {
                 wx.showModal({
                     title: '认证提醒',
                     content: '您还没有认证',
@@ -91,27 +91,40 @@ Page({
     },
 
     //事件处理函数
-    
-    login:function(){
+
+    login: function () {
         //认证信息及个人信息切换
         var that = this;
-        if (app.globalData.authSettingUserInfo){
-            if (that.data.certificationOk == 2) {
-                //个人信息页面
-                wx.navigateTo({
-                    url: '../selfInfo/selfInfo',
-                })
-            } else if (that.data.certificationOk == 1 || that.data.certificationOk == 3 || that.data.certificationOk == 0) {
-                //去认证页面
-                wx.navigateTo({
-                    url: '../toAuth/toAuth',
-                })
+        var res = that.checkAuthSetting()
+        wx.getSetting({
+            success(res) {
+                console.log(res)
+                if (res.authSetting['scope.userInfo'] === true) {
+                    console.log(that.data.certificationOk)
+                    if (that.data.certificationOk == 2) {
+                        //个人信息页面
+                        wx.navigateTo({
+                            url: '../selfInfo/selfInfo',
+                        })
+                    } else if (that.data.certificationOk == 1 || that.data.certificationOk == 3 || that.data.certificationOk == 0) {
+                        //去认证页面
+                        wx.navigateTo({
+                            url: '../toAuth/toAuth',
+                        })
+                    }
+                } else {
+                    utils.checkSettingStatu(that);
+                }
             }
-        }else{
-            utils.checkSettingStatu(that);
-        }
-        
-        
+        })
+
+
+
+    },
+
+    //判断是否授权
+    checkAuthSetting: function () {
+
     },
 
     openAccount: function (event) {
@@ -119,17 +132,17 @@ Page({
             wx.showModal({
                 title: '提示',
                 content: '您还没有进行信息认证！',
-                confirmText:"我知道了",
-                showCancel:false,
+                confirmText: "我知道了",
+                showCancel: false,
             })
-            return ;
+            return;
         }
         wx.navigateTo({
             url: '../integralBalance/integralBalance',
         })
     },
 
-    openBookList:function(event){
+    openBookList: function (event) {
         //打开个人中心图书列表
         var index = event.currentTarget.dataset.index;
         wx.navigateTo({
@@ -153,7 +166,7 @@ Page({
         })
     },
 
-    billBoard:function(){
+    billBoard: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showModal({
                 title: '提示',
@@ -170,27 +183,27 @@ Page({
     },
 
 
-    openOpinion:function(){
+    openOpinion: function () {
         //打开意见反馈
         wx.navigateTo({
             url: '../opinion/opinion',
         })
     },
 
-    aboutUs:function(){
+    aboutUs: function () {
         //打开关于我们
         wx.navigateTo({
             url: '../aboutUs/aboutUs',
         })
     },
 
-    openSetting:function(){
+    openSetting: function () {
         wx.navigateTo({
             url: '../setting/setting',
         })
     },
 
-    openCards:function(){
+    openCards: function () {
         wx.navigateTo({
             url: '../card/card',
         })
@@ -227,7 +240,7 @@ Page({
             url: '../getBook/getBook'
         })
     },
-    openWaitingPay:function(){
+    openWaitingPay: function () {
         if (app.globalData.certificationOk != 2) {
             wx.showModal({
                 title: '提示',

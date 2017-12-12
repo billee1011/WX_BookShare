@@ -41,6 +41,7 @@
         </li> -->
         <view class="weui-cells__tips" style='text-align:center' wx:if="{{orderDetail.thisTime == 1}}">您的第一次借阅，由我们来为您买单！</view>
         <view class="countup integral" wx:if="{{orderDetail.thisTime == 1}}"> ￥<text style="text-decoration:line-through;">{{orderDetail.money}}</text>    ￥<text>{{orderDetail.realMoney}}</text></view>
+        <view class="countup integral" wx:else> ￥<text>{{orderDetail.money}}</text></view>
         <view style="clear: both;"></view>
     </ul>
 

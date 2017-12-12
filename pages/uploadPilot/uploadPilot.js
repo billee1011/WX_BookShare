@@ -33,7 +33,8 @@ Page({
         damageIndex: 1,
 
         //刚开始自己上传图书隐藏
-        modalFlag: true
+        modalFlag: true,
+        picUrl: app.globalData.apiUrl,
     },
     //事件处理函数
     onLoad: function (options) {
@@ -316,7 +317,7 @@ Page({
                                 }
                             } else {
                                 wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
+                                    title: '获取数据失败，请检查网络配置！',
                                     image: '../../images/fail.png',
                                 })
                             }
@@ -436,7 +437,7 @@ Page({
 
                             } else {
                                 wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
+                                    title: '获取数据失败，请检查网络配置！',
                                     image: '../../images/fail.png',
                                 })
                             }
@@ -614,59 +615,110 @@ Page({
                 cancelText: "算了",
                 success: function (res) {
                     if (res.confirm) {
-                        return;
+                        
                     } else if (res.cancel) {
-                        console.log('用户点击取消')
+                        var content = thatData.cardContent ? thatData.cardContent :'精心为您推荐的这本书，希望您的孩子能够喜欢！'
+                        var ageParam = that.data.selectAgeDataStr ? that.data.selectAgeDataStr :'[&quot;3&quot;]'
+                        var sortParam = thatData.selectDataStr ? thatData.selectDataStr:'4'
+                        wx.request({
+                            url: (app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + ageParam + "&sort=" + sortParam + "&card_content=" + content + "&book_content=5" + "&damage=" + thatData.damageIndex).replace(/\s+/g, ""),
+                            method: "GET",
+                            dataType: "text",
+                            success: function (res) {
+                                if (res.data == "success") {
+                                    wx.showModal({
+                                        title: '提醒',
+                                        content: '更新图书信息成功!',
+                                        showCancel: false,
+                                        success: function (res) {
+                                            if (res.confirm) {
+                                                wx.navigateBack({
+                                                    delta: 1
+                                                })
+                                            }
+                                        }
+                                    })
+                                } else {
+                                    wx.showToast({
+                                        title: '更新图书信息失败！',
+                                        image: '../../images/fail.png',
+                                        duration: 2000
+                                    })
+                                }
+                            },
+                            fail: function () {
+                                wx.showToast({
+                                    title: '更新图书信息失败！',
+                                    image: '../../images/fail.png',
+                                    duration: 2000
+                                })
+                            }
+                        })
+                        // console.log(that.data.imageList);
+                        if (that.data.imageList) {
+                            app.uploadimg({
+                                url: app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
+                                path: that.data.imageList,//这里是选取的图片的地址数组,
+                                formData: {
+                                    'can_share_id': that.data.can_share_id
+                                },
+                            });
+                        }
                     }
                 }
             })
-        }
-
-        wx.request({
-            url: ( app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + that.data.selectAgeDataStr + "&sort=" + thatData.selectDataStr + "&card_content=" + thatData.cardContent + "&book_content=5" + "&damage="+thatData.damageIndex).replace(/\s+/g, ""),
-            method: "GET",
-            dataType: "text",
-            success: function (res) {
-                if (res.data == "success") {
-                    wx.showModal({
-                        title: '提醒',
-                        content: '更新图书信息成功!',
-                        showCancel: false,
-                        success: function (res) {
-                            if (res.confirm) {
-                                // wx.reLaunch({
-                                //     url: '../detailPay/detailPay?bookId=' + that.data.bookId + '&canShareId=' + that.data.can_share_id+'&book_type=1'
-                                // })
-                                wx.navigateBack({
-                                    delta:1
-                                })
+        }else{
+            var content = thatData.cardContent ? thatData.cardContent : '精心为您推荐的这本书，希望您的孩子能够喜欢！'
+            var ageParam = that.data.selectAgeDataStr ? that.data.selectAgeDataStr : '[&quot;1&quot;]'
+            var sortParam = thatData.selectDataStr ? thatData.selectDataStr : '4'
+            wx.request({
+                url: (app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + ageParam + "&sort=" + sortParam + "&card_content=" + content + "&book_content=5" + "&damage=" + thatData.damageIndex).replace(/\s+/g, ""),
+                method: "GET",
+                dataType: "text",
+                success: function (res) {
+                    if (res.data == "success") {
+                        wx.showModal({
+                            title: '提醒',
+                            content: '更新图书信息成功!',
+                            showCancel: false,
+                            success: function (res) {
+                                if (res.confirm) {
+                                    wx.navigateBack({
+                                        delta: 1
+                                    })
+                                }
                             }
-                        }
-                    })
-                } else {
+                        })
+                    } else {
+                        wx.showToast({
+                            title: '更新图书信息失败！',
+                            image: '../../images/fail.png',
+                            duration: 2000
+                        })
+                    }
+                },
+                fail: function () {
                     wx.showToast({
                         title: '更新图书信息失败！',
                         image: '../../images/fail.png',
                         duration: 2000
                     })
                 }
-            },
-            fail: function () {
-                wx.showToast({
-                    title: '扫描书柜失败！',
-                    image: '../../images/fail.png',
-                    duration: 2000
-                })
+            })
+            // console.log(that.data.imageList);
+            if (that.data.imageList) {
+                app.uploadimg({
+                    url: app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
+                    path: that.data.imageList,//这里是选取的图片的地址数组,
+                    formData: {
+                        'can_share_id': that.data.can_share_id
+                    },
+                });
             }
-        })
-        // console.log(that.data.imageList);
-        app.uploadimg({
-            url:  app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
-            path: that.data.imageList,//这里是选取的图片的地址数组,
-            formData: {
-                'can_share_id': that.data.can_share_id
-            },
-        });
+        }
+
+        
+        
 
     },
 
@@ -806,6 +858,7 @@ Page({
             formData: bookInfo,
             name: 'bookPic',
             success: function (res) {
+                console.log(res.data)
                 if (res.data) {
                     that.setData({
                         bookId: res.data,

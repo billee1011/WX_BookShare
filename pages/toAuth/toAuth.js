@@ -259,6 +259,7 @@ Page({
                 },
 
                 success: function (res) {
+                    console.log(res.data)
                     var data = res.data
                     wx.hideLoading()
                     if (data == "success") {

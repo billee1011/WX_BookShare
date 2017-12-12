@@ -11,16 +11,16 @@
             <view class="title" id="user_name">
                 {{userInfo.nickName?userInfo.nickName:"点击授权登录"}}
             </view>
-            <view class="subtitle" id="shenfen" wx:if="{{userInfo.certificationOk == 0}}">
+            <view class="subtitle" id="shenfen" wx:if="{{certificationOk == 0}}">
                 未认证
             </view>
-            <view class="subtitle" id="shenfen" wx:if="{{userInfo.certificationOk == 1}}">
+            <view class="subtitle" id="shenfen" wx:if="{{certificationOk == 1}}">
                 认证中
             </view>
-            <view class="subtitle" id="shenfen" wx:if="{{userInfo.certificationOk == 2}}">
+            <view class="subtitle" id="shenfen" wx:if="{{certificationOk == 2}}">
                 已认证
             </view>
-            <view class="subtitle" id="shenfen" wx:if="{{userInfo.certificationOk == 3}}">
+            <view class="subtitle" id="shenfen" wx:if="{{certificationOk == 3}}">
                 被驳回
             </view>
         </view>

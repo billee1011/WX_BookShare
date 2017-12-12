@@ -40,7 +40,7 @@ Page({
           },
           fail: function () {
               wx.showToast({
-                  title: '获取数据失败，请稍后重试！',
+                  title: '获取数据失败，请检查网络配置！',
                   image: '../../images/fail.png',
                   duration: 2000
               })

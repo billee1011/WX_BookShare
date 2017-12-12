@@ -1,4 +1,4 @@
-<!-- 首页 -->
+<!-首页 -->
 <!-- 列表形式的页面 -->
 <template name="indexList">
     <view class="book-tmp" bindtap="detail" bindlongtap='checkDetail' data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
@@ -818,7 +818,7 @@
 
     <view class="item" style='display: flex;' wx:if="{{record.type == 10}}">
         <text class="leftText1">
-                    提现至零钱申请
+                    发起提现申请
                 </text>
         <text class='leftText2'>{{record.add_time}}</text>
         <view class='rightText'>-{{record.value}}</view>
@@ -826,7 +826,7 @@
 
     <view class="item" style='display: flex;' wx:if="{{record.type == 11}}">
         <text class="leftText1">
-                    提现
+                    已成功提现
                 </text>
         <text class='leftText2'>{{record.add_time}}</text>
         <view class='rightText'>-{{record.value}}</view>

@@ -110,7 +110,7 @@ module.exports = {
                                         success: function success(res) {
                                             if (res.authSetting["scope.userInfo"]) {
                                                 //这里是授权成功之后 填写你重新获取数据的js
-                                                app.globalData.authSettingUserInfo == true;
+                                                app.globalData.authSettingUserInfo = true;
                                                 // that.getUserData(param);
                                                 if (param != null) {
                                                     if (param.route == 'pages/self/self') {
@@ -121,17 +121,20 @@ module.exports = {
                                                                 // utils.getUserData(param);
                                                                 // var t2 = window.setTimeout("hello()", 3000);//使用字符串执行方法
                                                                 // param.onLoad();
-                                                                wx.showLoading({
-                                                                    title: '信息加载中',
-                                                                })
+                                                                // wx.showLoading({
+                                                                //     title: '信息加载中',
+                                                                // })
 
-                                                                while(true){
-                                                                    console.log(param.data.userInfo);
-                                                                    if(param.data.userInfo){
-                                                                        wx.hideLoading()
-                                                                        param.onLoad();
-                                                                        break ;
-                                                                    }
+                                                                // while(true){
+                                                                //     console.log(param.data.userInfo);
+                                                                //     if(param.data.userInfo){
+                                                                //         wx.hideLoading()
+                                                                //         param.onLoad();
+                                                                //         break ;
+                                                                //     }
+                                                                // }
+                                                                if(res.confirm){
+                                                                    param.onLoad();
                                                                 }
 
                                                                 
@@ -232,7 +235,7 @@ module.exports = {
                     getApp().globalData.userId = wx.getStorageSync('userId')
                     getApp().globalData.userInfo = wx.getStorageSync('userInfo')
                     getApp().globalData.certificationOk = wx.getStorageSync('certificationOk')
-
+                    getApp().globalData.userInfo.certificationOk = wx.getStorageSync('certificationOk')
                     param.setData({
                         userInfo: getApp().globalData.userInfo,
                         certificationOk: getApp().globalData.certificationOk,

@@ -41,7 +41,7 @@
                         </view>
                         <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
                             <view class='operate'>
-                                <button size='mini' plain='true' type='primary' data-price="{{book.price}}" data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" bindtap="screenQRcode">扫码确认</button>
+                                <button size='mini' plain='true' type='primary' data-price="{{book.price}}" data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" data-bookid="{{book.book_id}}" data-borrowerid='{{book.borrower_id}}' bindtap="screenQRcode">扫码确认</button>
                                 <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-canshareid="{{book.can_share_id}}" data-openid="{{book.openId}}" bindtap="refuseApply">拒绝</button>
                                 <view style='clear:both'></view>
                             </view>

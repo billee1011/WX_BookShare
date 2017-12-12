@@ -28,8 +28,8 @@
         <view class="screen {{activeNum==2?'active':''}}" id="scanner2" bindtap="changeTab" data-id="2">最新</view>
         <view class="screen {{activeNum==3?'active':''}}" id="scanner3" bindtap="changeTab" data-id="3">最热</view>
         <view class="screen {{sortIndex>1 || ageIndex!=0?'active':''}}" style="position:relative" id="scanner4" bindtap="togglePtype" data-id="4">
-            <text>筛选</text>
-            <view style='position:absolute;right:12px;top:3px'>
+            <text>{{sortsArray[sortIndex-1].sort_name?sortsArray[sortIndex-1].sort_name:'筛选'}}</text>
+            <view style='position:absolute;right:12px;top:3px' wx:if="{{sortsArray[sortIndex-1].sort_name=='全部'}}">
                 <image wx:if="{{sortIndex>1 || ageIndex!=0}}" src='../../images/screen-active.png' style='width:16px;height:16px;'></image>
                 <image wx:else src='../../images/screen.png' style='width:16px;height:16px;'></image>
             </view>
@@ -52,7 +52,7 @@
     <!--分类 start-->
     <scroll-view style="height:100%" id="catewrap" scroll-y='true' scroll-into-view="c2" hidden="{{!cateisShow}}">
         <view id="cateall" bindtap="cateselect" class="cl_list cl_list" style='width:98%;'>
-            <text class="cl_ico_checked cl_ico"></text>当前选择：{{sortsArray[sortIndex-1].sort_name!='重置'?sortsArray[sortIndex-1].sort_name:'全部'}}
+            <text class="cl_ico_checked cl_ico"></text>当前选择：{{sortsArray[sortIndex-1].sort_name?sortsArray[sortIndex-1].sort_name+'、':''}}  {{ageIndex!=0?age[ageIndex]+'、':''}}{{damageIndex!=0?damageArray[damageIndex]:''}}
         </view>
         <view class="catelist cl_list" style='width:98%;height:50px'>
             <text style="float:left;width:100px;line-height:47px">适龄：</text>
@@ -82,8 +82,9 @@
             </view>
         </view>
         <view style='text-align:center;margin-left: 24rpx;width:96%;'>
-            <button class="btn btn_plain-default" href="javascript:;" type='button' data-type='2' bindtap='resetting'>重 置</button>
-            <button class="btn btn_primary" href="javascript:;" type='button' data-type='2' bindtap='affirmScreen'>确 认</button>
+            <button class="btn btn_plain-gray" style='color: #838B8B;border: 1px solid #838B8B;' plain="default" type='button' bindtap='resetting'>重 置</button>
+            <button class="btn btn_plain-default" style='color: #4A708B;border: 1px solid #4A708B;' plain="true" type='button' bindtap='togglePtype'>关 闭</button>
+            <button class="btn btn_primary" style='color: #528B8B;border: 1px solid #528B8B;' plain="true" type='primary' bindtap='affirmScreen'>确 认</button>
         </view>
     </scroll-view>
     <!--分类 end-->

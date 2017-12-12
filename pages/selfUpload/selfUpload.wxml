@@ -1,7 +1,7 @@
 <modal class="modal" hidden="{{modalFlag}}" no-cancel bindconfirm="modalOk" confirmText="确定" style="">
-    <view class="dew" style="text-align:center;background:url('https://35978598.1949science.cn/Public/images/bee.png')">
+    <view class="dew" style="text-align:center;background:url('{{picUrl}}/Public/images/bee.png')">
         <view style='width:80px;margin：0 auto'>
-            <image src="https://35978598.1949science.cn/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>
+            <image src="{{picUrl}}/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto'></image>
         </view>
         <view class="vedw">您需要手动输入本图书信息</view>
 

@@ -17,5 +17,5 @@
 </view>
 
 
-<button class="btn btn_primary" href="javascript:;" type='button' data-type='2' data-wares_image="http://139.199.171.106/bookshare_svn/uploads/advertisement/3.jpg" data-wares_logo="{{userInfo.avatarUrl}}"
+<button class="btn btn_primary" href="javascript:;" type='button' data-type='2' data-wares_image="{{libraryPic}}bookshare_svn/uploads/advertisement/3.jpg" data-wares_logo="{{userInfo.avatarUrl}}"
     data-wares_title="{{userInfo.nickName}}" data-wares_content="我在蜜蜂图书上传了几本书，分享给你，进来看看吧~" data-wares_price="只要原价*0.01/天" bindtap="aldminishare" data-template_key="c064296fb9fab42265f5c0d8484ebcfc">生成个人海报</button>

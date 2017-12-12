@@ -95,7 +95,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -219,6 +219,8 @@ Page({
     //扫码确认借出
     screenQRcode:function(e){
         var price = e.currentTarget.dataset.price;
+        var bookId = e.currentTarget.dataset.bookid;
+        var borrowerId = e.currentTarget.dataset.borrowerid;
         var that = this
         wx.getSetting({
             success(res) {
@@ -242,7 +244,7 @@ Page({
                                             if (app.globalData.userId == res.data["owner_id"]){
                                                 if (res.data["user_id"] == array[1]){
                                                     wx.request({
-                                                        url: ( app.globalData.apiUrl + '?m=home&c=Api&a=screenBorrow&sharingId=' + sharingId + "&price=" + price + "&userId=" + app.globalData.userId).replace(/\s+/g, ""),
+                                                        url: (app.globalData.apiUrl + '?m=home&c=Api&a=screenBorrow&sharingId=' + sharingId + "&price=" + price + "&userId=" + app.globalData.userId + "&book_id=" + bookId + "&borrowerId=" + borrowerId).replace(/\s+/g, ""),
                                                         method: "GET",
                                                         header: {
                                                             'content-type': 'application/json'
@@ -295,7 +297,7 @@ Page({
                                         },
                                         fail: function () {
                                             wx.showToast({
-                                                title: '获取数据失败，请稍后重试！',
+                                                title: '获取数据失败，请检查网络配置！',
                                                 image: '../../images/fail.png',
                                                 duration: 2000
                                             })
@@ -304,7 +306,7 @@ Page({
                                 }
                             } else {
                                 wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
+                                    title: '获取数据失败，请检查网络配置！',
                                     image: '../../images/fail.png',
                                 })
                             }

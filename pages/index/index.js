@@ -12,8 +12,8 @@ Page({
         loading: true,
         bookObj: null,
         ageIndex: 0,
-        age: ["请选择",'无限制', '3-6岁', '6-9岁', '9-12岁'],
-        ageValue:[null,1,2,3,4],
+        age: ['无限制', '3-6岁', '6-9岁', '9-12岁'],
+        ageValue:[1,2,3,4],
         sortIndex:0,
         sort_url: app.globalData.sort_url,
         //当前设备信息
@@ -77,8 +77,8 @@ Page({
         that.setData({
             sortIndex: e.currentTarget.dataset.id
         })
-        that.getBookList()
-        that.togglePtype();
+        // that.getBookList()
+        // that.togglePtype();
     },
 
     //设置搜索内容
@@ -97,7 +97,7 @@ Page({
             activeNum: that.data.activeNum,
             damageIndex: that.data.damageIndex
         })
-        that.getBookList()
+        // that.getBookList()
     },
 
     //破损程度选择器
@@ -108,7 +108,7 @@ Page({
             activeNum: that.data.activeNum,
             damageIndex: e.detail.value
         })
-        that.getBookList()
+        // that.getBookList()
     },
 
     //清空输入内容
@@ -143,7 +143,10 @@ Page({
 
     //获取图书列表
     getBookList:function(){
-        var that = this 
+        var that = this
+        that.setData({
+            loading: true,
+        }) 
         var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=bookList&screen=' + that.data.activeNum).replace(/\s+/g, "");
         if (that.data.searchValue){
             url += "&value=";
@@ -201,12 +204,13 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
             }
         })
+        
     },
 
     onShow: function (){
@@ -252,7 +256,7 @@ Page({
                                 }
                             } else {
                                 wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
+                                    title: '获取数据失败，请检查网络配置！',
                                     image: '../../images/fail.png',
                                 })
                             }
@@ -300,7 +304,7 @@ Page({
             damageIndex: 0,
             sortIndex: 0,
         })
-        that.getBookList()
+        // that.getBookList()
     },
 
     checkDetail:function(){

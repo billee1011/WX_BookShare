@@ -15,8 +15,8 @@ page {
 .bottom {
     width: 100%;
     margin-bottom: 0px;
-    z-index: 100px;
-    position: fixed;
+    /* z-index: 100px; */
+    /* position: fixed; */
     /* bottom: 51px; */
     /* background: #fff; */
 }

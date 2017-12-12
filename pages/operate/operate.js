@@ -1,4 +1,5 @@
 import { $wuxButton } from '../../components/wux'
+import { $wuxBackdrop } from '../../components/wux'
 var utils = require('../../utils/util.js');
 var app = getApp()
 // pages/home/index.js
@@ -13,9 +14,9 @@ Page({
 
         //轮播广告
         imgUrls: [
+            app.globalData.advertiseUrl + '/bookshare_svn/uploads/advertisement/3.jpg',
             app.globalData.advertiseUrl + '/bookshare_svn/uploads/advertisement/1.jpg',
             app.globalData.advertiseUrl + '/bookshare_svn/uploads/advertisement/2.jpg',
-            app.globalData.advertiseUrl + '/bookshare_svn/uploads/advertisement/3.jpg'
         ],
         indicatorDots: true,
         autoplay: true,
@@ -31,6 +32,7 @@ Page({
         var that = this
         this.initButton()
         this.initButtonBorrow();
+        this.$wuxBackdrop = $wuxBackdrop.init()
         //加载借书申请、代收书等数量
         wx.request({
             url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getOperateNum&ownerId=' + app.globalData.userId).replace(/\s+/g, ""),
@@ -45,7 +47,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -267,6 +269,12 @@ Page({
                 }
             },
             callback(vm, opened) {
+                console.log(opened)
+                if (opened) {
+                    that.retain()
+                } else {
+                    that.release()
+                }
                 vm.setData({
                     opened,
                 })
@@ -321,6 +329,12 @@ Page({
                 }
             },
             callback(vm, opened) {
+                console.log(opened)
+                if (opened) {
+                    that.retain()
+                } else {
+                    that.release()
+                }
                 vm.setData({
                     opened,
                 })
@@ -407,5 +421,17 @@ Page({
             url: '../index/index'
         });
     },
+    retain() {
+        this.$wuxBackdrop.retain()
+        this.setData({
+            locks: this.$wuxBackdrop.backdropHolds
+        })
+    },
+    release() {
+        this.$wuxBackdrop.release()
+        this.setData({
+            locks: this.$wuxBackdrop.backdropHolds
+        })
+    }
 
 })

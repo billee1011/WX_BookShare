@@ -34,9 +34,9 @@
     </view>
      <view class="operate" style='display:block;bottom:0px;position:fixed;'>
         <view class="left">
-            <button type="primary" style="float:left;width:50%" bindtap="editCardDetail">编辑</button>
+            <button type="primary" bindtap="editCardDetail">编辑</button>
         </view>
-        <view class="right" style="width:150px;float:right">
+        <!-- <view class="right" style="width:150px;float:right">
             <image src="../../images/save.png" style="width:46px;height:46px;margin-left:10px;margin-right:30px;"></image>
             <image src="../../images/share.png" style="width:46px;height:46px;" data-article_title="{{bookInfo.book_name}}"
                 data-article_time="{{date}}"
@@ -46,6 +46,6 @@
                 bindtap="aldminishare"
                 data-template_key="22bd1ac8cc9e09868392ba940fc0c304">
             </image>
-        </view>
+        </view> -->
     </view> 
 </view>

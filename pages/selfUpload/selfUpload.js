@@ -8,7 +8,8 @@ Page({
         animationData: "",
         showModalStatus: false,
         imageHeight: 0,
-        imageWidth: 0
+        imageWidth: 0,
+        picUrl: app.globalData.apiUrl,
     },
     imageLoad: function (e) {
         this.setData({ imageHeight: e.detail.height, imageWidth: e.detail.width });

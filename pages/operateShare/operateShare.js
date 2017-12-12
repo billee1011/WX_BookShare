@@ -12,7 +12,7 @@ Page({
         longitude: null,//经度,
         latitude: null,//纬度,
         disabled2:false,
-
+        picUrl: app.globalData.apiUrl,
         stars: [0, 1, 2, 3, 4],
         normalSrc: '../../images/normal.png',
         selectedSrc: '../../images/selected.png',
@@ -548,6 +548,7 @@ Page({
             formData: bookInfo,
             name: 'bookPic',
             success: function (res) {
+                console.log(res.data)
                 if (res.data) {
                     that.setData({
                         bookId:res.data,

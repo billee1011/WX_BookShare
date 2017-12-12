@@ -100,7 +100,7 @@ App({
         appSecret: 'a534c61c9b99d4dc0cb010cd4017da9b',//25f225cee1b8da033ecbd23ac68beb1a
         session_key: null,
         openId: null,
-        apiUrl: "http://139.199.36.38",//"localhost:8081",//www.1949science.cn  139.199.171.106/bookshare 35978598.1949science.cn/
+        apiUrl: "https://www.qvjunping.me/bookshare/",//"localhost:8081",//www.1949science.cn  139.199.171.106/bookshare 35978598.1949science.cn/
         userId:null,//用户userId
         timer: 30000,//定时器设置时间
         access_token:null,
@@ -108,8 +108,8 @@ App({
         latitude: 39.2349700000,//团队所在纬度
         longitude: 117.0582000000,//团队所在经度
         contractPhone:'13752766442',//联系我们的联系方式
-        sort_url:'http://139.199.171.106',
-        advertiseUrl:'http://139.199.171.106'
+        sort_url:'https://www.qvjunping.me/',
+        advertiseUrl:'https://www.qvjunping.me/'
 
     },
 })

@@ -37,7 +37,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -45,7 +45,6 @@ Page({
         })
 
     },
-
     onShow: function () {
         // this.onLoad(this.data);
     },
@@ -86,7 +85,7 @@ Page({
                                         },
                                         fail: function () {
                                             wx.showToast({
-                                                title: '获取数据失败，请稍后重试！',
+                                                title: '获取数据失败，请检查网络配置！',
                                                 image: '../../images/fail.png',
                                                 duration: 2000
                                             })
@@ -103,7 +102,7 @@ Page({
 
                             } else {
                                 wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
+                                    title: '获取数据失败，请检查网络配置！',
                                     image: '../../images/fail.png',
                                 })
                             }
@@ -132,7 +131,7 @@ Page({
                                     console.log(res.result)
                                     // var qrcode = res.result.substring(10);
                                     var qrcode = res.result;
-                                    var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=screenBookCaseFinish&canShareId=' + that.data.canShareId + '&sharingId=' + that.data.sharingId + '&bookCaseQRcode=' + qrcode).replace(/\s+/g, "");
+                                    var url = (app.globalData.apiUrl + '?m=home&c=Api&a=screenBookCaseFinish&canShareId=' + that.data.canShareId + '&sharingId=' + that.data.sharingId + '&bookCaseQRcode=' + qrcode + "&user_id=" + app.globalData.userId).replace(/\s+/g, "");
                                     console.log(url)
                                     wx.request({
                                         url: url,

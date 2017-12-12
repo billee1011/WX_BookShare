@@ -34,7 +34,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '获取数据失败，请稍后重试！',
+                    title: '获取数据失败，请检查网络配置！',
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -81,7 +81,7 @@ Page({
                                             if (array[1] == res.data["owner_id"]) {
                                                 if (res.data["user_id"] == app.globalData.userId) {
                                                     wx.request({
-                                                        url: ( app.globalData.apiUrl + '?m=home&c=Api&a=screenReturn&sharingId=' + sharingId + "&user_id=" + app.globalData.userId + " & book_id=" + bookId).replace(/\s+/g, ""),
+                                                        url: ( app.globalData.apiUrl + '?m=home&c=Api&a=screenReturn&sharingId=' + sharingId + "&user_id=" + app.globalData.userId + "&book_id=" + bookId).replace(/\s+/g, ""),
                                                         method: "GET",
                                                         header: {
                                                             'content-type': 'application/json'
@@ -144,7 +144,7 @@ Page({
                                         },
                                         fail: function () {
                                             wx.showToast({
-                                                title: '获取数据失败，请稍后重试！',
+                                                title: '获取数据失败，请检查网络配置！',
                                                 image: '../../images/fail.png',
                                                 duration: 2000
                                             })
@@ -153,7 +153,7 @@ Page({
                                 }
                             } else {
                                 wx.showToast({
-                                    title: '获取数据失败，请稍后重试！',
+                                    title: '获取数据失败，请检查网络配置！',
                                     image: '../../images/fail.png',
                                 })
                             }
