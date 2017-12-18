@@ -1,0 +1,118 @@
+<import src="../templates/templates.wxml" />
+<import src="../../components/prompt/prompt.wxml" />
+
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar" style='position:fixed;background:#f4f4f4'>
+                <block wx:for-items="{{ tabs}}" wx:key="{{ index }}">
+                    <view id="{{ index }}" class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{ item }}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{ sliderLeft }}px; transform: translateX({{ sliderOffset }}px); -webkit-transform: translateX({{ sliderOffset }}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{ activeIndex != 0 }}">
+                    <template is="prompt" data="{{ ...$wux.prompt.msg1 }}" />
+                    <!--c2c图书列表-->
+                    <view class="book-list">
+                        <view wx:for="{{c2cBookObj}}" wx:for-index="index" wx:for-item="book">
+                            <!-- <template is="myBookTemplate" data="{{book}}" /> -->
+                            <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                                <image src="{{book.book_image}}" class="book-image"></image>
+                                <view class="book-info">
+                                    <view class="book-name">{{book.book_name}}</view>
+                                    <view class="book-applier">
+                                        {{book.writer}}
+                                    </view>
+                                </view>
+                                <view class="jh-tab-bubble" style='top:10rpx;right:10rpx' wx:if="{{book.borrow_times!=0}}">
+                                    <text class="jh-tab-count">{{ book.borrow_times }}</text>
+                                </view>
+                                <view class="clear-both"></view>
+
+                            </view>
+                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                                <!-- <view> -->
+                                    <!-- <view style='float:left'>预期收入：
+                                        <text style='color:red'>￥{{book.forecastMoney!=null?book.forecastMoney:0.00}}</text>
+                                    </view> -->
+                                    <!-- 更多信息 -->
+                                    <!-- <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image> -->
+                                    <!-- <text style='color:#8A8A8A'>更多</text> -->
+                                    <!-- <view style='clear:both'></view> -->
+                                <!-- </view> -->
+                                <view> <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
+                                    <view style='text-align:left;width:50%;display:inline-block'>
+                                        已带来收入：
+                                        <text style='color:red'>￥{{book.totalMoney!=null?book.totalMoney:0.00}}</text>
+                                    </view>
+                                    <view style='text-align:right;width:50%;display:inline-block'>
+                                        当前状态：{{book.userName!=null?book.userName+"已借":"暂无人借"}}
+                                    </view>
+                                </view>
+                            </view>
+                            <view  style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                                <view class='operate'>
+                                    <button size='mini' plain='true' type='warn' data-bookid="{{book.book_id}}" data-canshareid="{{book.ID}}" bindtap="editKeepTime" style='color: #cccccc;border:1px solid  #cccccc'>编辑</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="downLine" wx:if="{{book.online == 1}}">下线</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="onLine" wx:if="{{book.online == 0}}">上线</button>
+                                    <view style='clear:both'></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <!--c2c图书列表 end-->
+                </view>
+                <view class="weui-tab__content" hidden="{{ activeIndex != 1 }}">
+                    <template is="prompt" data="{{ ...$wux.prompt.msg2 }}" />
+                    <!--b2c图书列表-->
+                    <view class="book-list">
+                        <view wx:for="{{b2cBookObj}}" wx:for-index="index" wx:for-item="book">
+                            <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                                <image src="{{book.book_image}}" class="book-image"></image>
+                                <view class="book-info">
+                                    <view class="book-name">{{book.book_name}}</view>
+                                    <view class="book-applier">
+                                        {{book.writer}}
+                                    </view>
+                                </view>
+                                <view class="jh-tab-bubble" style='top:10rpx;right:10rpx' wx:if="{{book.borrow_times!=0}}">
+                                    <text class="jh-tab-count">{{ book.borrow_times }}</text>
+                                </view>
+                                <view class="clear-both"></view>
+                            </view>
+                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx; margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                                <!-- <view>
+                                    <view style='float:left'>预期收入：
+                                        <text style='color:red'>￥{{book.forecastMoney!=null?book.forecastMoney:0.00}}</text>
+                                    </view>
+                                    <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                                    <view style='clear:both'></view>
+                                </view> -->
+                                <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
+                                    <view style='text-align:left;width:50%;display:inline-block'>
+                                        已带来收入：
+                                        <text style='color:red'>￥{{book.totalMoney!=null?book.totalMoney:0.00}}</text>
+                                    </view>
+                                    <view style='text-align:right;width:50%;display:inline-block'>
+                                        当前状态：{{book.userName!=null?book.userName+"已借":"暂无人借"}}
+                                    </view>
+                                </view>
+                                <view  >
+                                <view class='operate'>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="downLine">拿回</button>
+                                   <button size='mini' plain='true' type='warn' data-bookid="{{book.book_id}}" data-canshareid="{{book.ID}}" bindtap="editKeepTime" style='color: #cccccc;border:1px solid  #cccccc'>编辑</button>
+                                    <view style='clear:both'></view>
+                                </view>
+                                </view>
+                            </view>    
+                        </view>
+                    </view>
+                    <!--b2c图书列表 end-->
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
