@@ -14,13 +14,21 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading({
+            title: '加载中',
+        })
         var that = this; 
         that.setData({
             sharingId: options.sharingId,
-            canShareId: options.canShareId
+            canShareId: options.canShareId,
+            pageType: options.type
         })
+        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowCancelReason').replace(/\s+/g, "");
+        if(options.type == 1){
+            url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getRefuseCancelReason').replace(/\s+/g, "");
+        }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=getBorrowCancelReason').replace(/\s+/g, ""),
+            url: url,
           method: "GET",
           header: {
             'content-type': 'application/json'
@@ -29,6 +37,7 @@ Page({
             that.setData({
               items: res.data
             })
+            wx.hideLoading()
           },
           fail: function () {
             wx.showToast({
@@ -92,8 +101,21 @@ Page({
     //取消借书
     cancelBorrow: function () {
         var that = this;
+        var word = '您还没有选择取消原因！';
+        if( that.data.pageType == 1){
+            word = '您还没有选择拒绝原因！';
+        }
+        if (!that.data.refuse_reason && !that.data.refuse_content){
+            wx.showModal({
+                title: '提示',
+                content: word,
+                showCancel:false,
+                confirmText:"我知道了",
+            })
+            return ;
+        }
         wx.request({
-            url: ('https://' + app.globalData.apiUrl + '?m=home&c=Api&a=cancelBorrow&sharingId=' + that.data.sharingId + "&canShareId=" + that.data.canShareId + "&refuse_reason=" + that.data.refuse_reason + "&refuse_content=" + that.data.refuse_content).replace(/\s+/g, ""),
+            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=cancelBorrow&sharingId=' + that.data.sharingId + "&canShareId=" + that.data.canShareId + "&refuse_reason=" + that.data.refuse_reason + "&refuse_content=" + that.data.refuse_content).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'
