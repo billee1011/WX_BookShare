@@ -186,6 +186,15 @@ module.exports = {
                         wx.request({
                             url:  getApp().globalData.apiUrl + '?m=home&c=User&a=getSessionKey&code=' + res.code,
                             success: function (res) {
+                                // if(!res.openid){
+                                //     wx.showModal({
+                                //         title: '提示',
+                                //         content: '在获取您个人信息的时候出了点问题，麻烦您退出后再重新进入试试！',
+                                //         showCancel:false,
+                                //         confirmText:"好的",
+                                //         success:function(){}
+                                //     })
+                                // }
                                 var resData = res;
                                 wx.setStorageSync('session_key', res.data.session_key)
                                 wx.setStorageSync('openId', res.data.openid)

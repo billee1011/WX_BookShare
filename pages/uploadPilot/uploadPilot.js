@@ -17,7 +17,7 @@ Page({
         sortsIndex: 0,
 
         //上传图片
-        imageList: [],
+        imageList: new Array(),
         imageListIndex: 0,
         sourceTypeIndex: 2,
         sourceType: ['拍照', '相册', '拍照或相册'],
@@ -287,7 +287,6 @@ Page({
                                                     url: data,
                                                     method: "GET",
                                                     success: function (res) {
-                                                        console.log(res.data)
                                                         that.setData({
                                                             bookId: res.data.id,
                                                             hidden: 1
@@ -359,7 +358,6 @@ Page({
                                         'content-type': 'application/json'
                                     },
                                     success: function (res) {
-                                        console.log(res.data)
                                         if (res.data[0]["result"] == "have shared") {
                                             wx.showToast({
                                                 title: '已经分享过，无需再分享！',
@@ -618,8 +616,9 @@ Page({
                         
                     } else if (res.cancel) {
                         var content = thatData.cardContent ? thatData.cardContent :'精心为您推荐的这本书，希望您的孩子能够喜欢！'
-                        var ageParam = that.data.selectAgeDataStr ? that.data.selectAgeDataStr :'[&quot;3&quot;]'
+                        var ageParam = that.data.selectAgeDataStr ? that.data.selectAgeDataStr :'["3"]'
                         var sortParam = thatData.selectDataStr ? thatData.selectDataStr:'4'
+                        
                         wx.request({
                             url: (app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + ageParam + "&sort=" + sortParam + "&card_content=" + content + "&book_content=5" + "&damage=" + thatData.damageIndex).replace(/\s+/g, ""),
                             method: "GET",
@@ -654,8 +653,7 @@ Page({
                                 })
                             }
                         })
-                        // console.log(that.data.imageList);
-                        if (that.data.imageList) {
+                         if (that.data.imageList[0] && that.data.imageList[0]!=undefined) {
                             app.uploadimg({
                                 url: app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
                                 path: that.data.imageList,//这里是选取的图片的地址数组,
@@ -669,8 +667,9 @@ Page({
             })
         }else{
             var content = thatData.cardContent ? thatData.cardContent : '精心为您推荐的这本书，希望您的孩子能够喜欢！'
-            var ageParam = that.data.selectAgeDataStr ? that.data.selectAgeDataStr : '[&quot;1&quot;]'
+            var ageParam = that.data.selectAgeDataStr ? that.data.selectAgeDataStr : '["3"]'
             var sortParam = thatData.selectDataStr ? thatData.selectDataStr : '4'
+            
             wx.request({
                 url: (app.globalData.apiUrl + '/index.php?m=home&c=Api&a=changeAgeSorts&can_share_id=' + thatData.can_share_id + "&book_id=" + thatData.bookId + "&user_id=" + app.globalData.userId + "&age=" + ageParam + "&sort=" + sortParam + "&card_content=" + content + "&book_content=5" + "&damage=" + thatData.damageIndex).replace(/\s+/g, ""),
                 method: "GET",
@@ -705,8 +704,7 @@ Page({
                     })
                 }
             })
-            // console.log(that.data.imageList);
-            if (that.data.imageList) {
+            if (that.data.imageList[0] && that.data.imageList[0] != undefined) {
                 app.uploadimg({
                     url: app.globalData.apiUrl + '/index.php?m=home&c=Api&a=uploadBookDetailPic',//这里是你图片上传的接口
                     path: that.data.imageList,//这里是选取的图片的地址数组,
@@ -858,7 +856,6 @@ Page({
             formData: bookInfo,
             name: 'bookPic',
             success: function (res) {
-                console.log(res.data)
                 if (res.data) {
                     that.setData({
                         bookId: res.data,

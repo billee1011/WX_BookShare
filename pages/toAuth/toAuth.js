@@ -94,7 +94,8 @@ Page({
                 if (res.errMsg == "chooseImage:ok") {
                     that.setData({
                         pictureFiles: res.tempFilePaths[0],
-                        hidden: true
+                        hidden: true,
+                        changePic:true
                     })
                 } else {
                     wx.showToast({
@@ -308,6 +309,7 @@ Page({
                     "eMail": that.data.eMail
                 },
                 success: function (res) {
+                    console.log(res.data)
                     var data = res.data
                     if (data == "success") {
                         app.globalData.certificationOk = 1;

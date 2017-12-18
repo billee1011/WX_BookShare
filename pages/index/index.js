@@ -13,23 +13,23 @@ Page({
         bookObj: null,
         ageIndex: 0,
         age: ['无限制', '3-6岁', '6-9岁', '9-12岁'],
-        ageValue:[1,2,3,4],
-        sortIndex:0,
+        ageValue: [1, 2, 3, 4],
+        sortIndex: 0,
         sort_url: app.globalData.sort_url,
         //当前设备信息
         phoneInfo: app.globalData.phoneInfo,
 
         //页面引导
-        locks: 0, 
+        locks: 0,
 
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏  
 
-        damageArray: ['不区分破损','全新', '八成新以上', '六成新以上'],
+        damageArray: ['不区分破损', '全新', '八成新以上', '六成新以上'],
         damageIndex: 0,//默认为八成新
     },
 
-    
+
     onPullDownRefresh: function () {
         //监听页面刷新
         this.onLoad()
@@ -44,13 +44,13 @@ Page({
         utils.getUserData(that);
         that.getBookList();
         that.getSorts();
-        wx.hideLoading()        
+        wx.hideLoading()
     },
 
     //获取分类
-    getSorts:function(){
+    getSorts: function () {
         var that = this
-        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
+        var url = (app.globalData.apiUrl + '?m=home&c=Api&a=getSorts').replace(/\s+/g, "")
         wx.request({
             url: url,
             method: "GET",
@@ -72,7 +72,7 @@ Page({
     },
 
     //选中分类
-    selectSort:function(e){
+    selectSort: function (e) {
         var that = this;
         that.setData({
             sortIndex: e.currentTarget.dataset.id
@@ -90,7 +90,7 @@ Page({
     },
 
     //选择器
-    bindPickerChange: function(e) {
+    bindPickerChange: function (e) {
         var that = this
         that.setData({
             ageIndex: e.detail.value,
@@ -112,20 +112,20 @@ Page({
     },
 
     //清空输入内容
-    clearSearchValue:function(){
+    clearSearchValue: function () {
         var that = this
         that.setData({
-            searchValue:''
+            searchValue: ''
         })
         that.getBookList();
     },
 
     //信息展示
-    showNotification:function(image,title,text) {
+    showNotification: function (image, title, text) {
         this.closeNotification = $wuxNotification.show({
-            image: image ? image:'http://light7.org/assets/img/i-wechat.png',
-            title: title ? title:'通知',
-            text: text ? text:'通知消息',
+            image: image ? image : 'http://light7.org/assets/img/i-wechat.png',
+            title: title ? title : '通知',
+            text: text ? text : '通知消息',
             data: {
                 message: '逗你玩的!!!'
             },
@@ -136,19 +136,19 @@ Page({
                 })
             },
             onClose(data) {
-                
+
             },
         })
     },
 
     //获取图书列表
-    getBookList:function(){
+    getBookList: function () {
         var that = this
         that.setData({
             loading: true,
-        }) 
-        var url = ( app.globalData.apiUrl + '?m=home&c=Api&a=bookList&screen=' + that.data.activeNum).replace(/\s+/g, "");
-        if (that.data.searchValue){
+        })
+        var url = (app.globalData.apiUrl + '?m=home&c=Api&a=bookList&screen=' + that.data.activeNum).replace(/\s+/g, "");
+        if (that.data.searchValue) {
             url += "&value=";
             url += that.data.searchValue;
         }
@@ -182,24 +182,24 @@ Page({
                 that.setData({
                     bookObj: res.data,
                     loading: false,
-                    haveBook:false
+                    haveBook: false
                 })
-                if(res.data.length==0){
-                  that.setData({
-                    haveBook: true
-                  })
-                  $wuxPrompt.init('msg2', {
-                    title: '当前分类下还没有图书哦',
-                    text: '可以去看看其他分类',
-                    buttons: [
-                      {
-                        text: '切换'
-                      }
-                    ],
-                    buttonClicked(index, item) {
-                      that.togglePtype()
-                    },
-                  }).show()
+                if (res.data.length == 0) {
+                    that.setData({
+                        haveBook: true
+                    })
+                    $wuxPrompt.init('msg2', {
+                        title: '当前分类下还没有图书哦',
+                        text: '可以去看看其他分类',
+                        buttons: [
+                            {
+                                text: '切换'
+                            }
+                        ],
+                        buttonClicked(index, item) {
+                            that.togglePtype()
+                        },
+                    }).show()
                 }
             },
             fail: function () {
@@ -210,12 +210,12 @@ Page({
                 })
             }
         })
-        
+
     },
 
-    onShow: function (){
+    onShow: function () {
         this.onLoad();
-        
+
     },
 
     changeTab: function (event) {
@@ -228,18 +228,19 @@ Page({
     },
 
     screenISBN: function () {
-        if (app.globalData.certificationOk != 2){
-            wx.showToast({
-                title: '您还没有进行信息认证！',
-            })
-            return ;
-        }
+        // if (app.globalData.certificationOk != 2){
+        //     wx.showToast({
+        //         title: '您还没有进行信息认证！',
+        //     })
+        //     return ;
+        // }
         wx.getSetting({
             success(res) {
                 if (res.authSetting['scope.userInfo']) {
                     //已授权 扫描ISBN
                     wx.scanCode({
                         success: (res) => {
+                            console.log(res)
                             if (res.errMsg == "scanCode:ok") {
                                 //扫描成功
                                 if (res.scanType == "EAN_13") {
@@ -248,11 +249,18 @@ Page({
                                     wx.navigateTo({
                                         url: '../share/share?isbn=' + isbnCode,
                                     })
-                                } else {
-                                    wx.showToast({
-                                        title: '条形码有误！',
-                                        image: '../../images/fail.png',
-                                    })
+                                } else if (res.scanType == "QR_CODE") {
+                                    if (res.result.indexOf('detail')) {
+                                        var qrcodeId = res.result.substring(69);
+                                        console.log(qrcodeId)
+                                        //图书后面的二维码
+                                        wx.navigateTo({
+                                            url: '../detailPay/detailPay?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+                                        })
+                                    } else if (res.result.indexOf('bookcase')) {
+                                        //书柜的二维码
+                                        
+                                    }
                                 }
                             } else {
                                 wx.showToast({
@@ -279,7 +287,7 @@ Page({
         // wx.navigateTo({
         //     url: '../detail/detail?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
         // })
-        
+
         //新页面
         // wx.navigateTo({
         //     url: '../detail1/detail1?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
@@ -297,7 +305,7 @@ Page({
             cateisShow: !this.data.cateisShow
         })
     },
-    resetting:function(){
+    resetting: function () {
         var that = this
         that.setData({
             ageIndex: 0,
@@ -307,8 +315,8 @@ Page({
         // that.getBookList()
     },
 
-    checkDetail:function(){
-        
+    checkDetail: function () {
+
     },
     nextStep: function () {
         var that = this;
@@ -316,8 +324,8 @@ Page({
             step: that.data.step + 1
         })
     },
-    
-    affirmScreen:function(){
+
+    affirmScreen: function () {
         var that = this;
         that.getBookList()
         that.togglePtype();
