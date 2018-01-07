@@ -1,0 +1,36 @@
+<!--pages/location/location.wxml-->
+<view class="weui-cells weui-cells_after-title" bindchange="checkboxChange">
+    <view style='height:40px;line-height:40px;padding:2px 5px;font-size:14px;background:#fff;border-bottom:1px solid #f7f7f7' bindtap='chooseLocation'>
+        <label>当前位置：{{location?location:"请选择位置"}}</label> 
+        <image style='width:22px;height:22px;margin-top:8px;float:right;margin-right:10px;' src='../../images/reloadLocation.png'></image>
+    </view>
+     <view style='height:20px;line-height:20px;padding:2px 5px;font-size:12px;background:#fff;text-align:center' bindtap='chooseLocation'>
+        <label>默认选择距离所选地点15km以内的图书</label> 
+    </view> 
+    <radio-group bindchange="checkboxChange" >
+         <label class="weui-cell weui-check__label" style="text-align:center">
+                <view style='height:20px;line-height:20px;padding:2px 5px;font-size:12px;background:#fff;text-align:center;margin:0 auto' bindtap='chooseLocation'>
+        <label wx:if="{{locationArray.pilot_id}}">点击“确定”进入{{location?location:'该自营点'}}的图书</label> 
+        <label wx:else>
+            {{location?location+"附近有下列自营点，点击确定进入":"全部自营点列表"}}
+        </label>
+    </view> 
+            </label> 
+        <view wx:for="{{sortsArray}}" wx:key="{{item.value}}">
+            <label class="weui-cell weui-check__label" style='padding:20px 15px'>
+            <view class="weui-cell__hd" >
+                    <radio value="{{item.ID}},{{item.longitude}},{{item.latitude}},{{item.pilot_name}}" data-longitude='{{item.longitude}}' data-latitude='{{item.latitude}}' checked="{{item.checked}}" />
+                </view>
+                <view >
+                    <image src='../../images/invite/nub{{index+1}}.png' style='width:30rpx;height:30rpx;margin-right:14rpx'></image>
+                </view>
+                <view class="weui-cell__bd">{{item.pilot_name}}</view>
+            </label>
+        </view>
+
+    </radio-group>
+</view>
+<view style='height:10px;width:100%'></view>
+<view class='bottom'>
+    <view bindtap='goback' class="weui-btn weui-btn_primary">确定</view>
+</view>

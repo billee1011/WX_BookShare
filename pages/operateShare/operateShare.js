@@ -178,15 +178,10 @@ Page({
             },
             success: function (res) {
                 if (res.data.msg == "book_not_found") {
-                    wx.showToast({
-                        title: '',
-                        image: '../../images/fail.png',
-                        duration: 2000
-                    })
                     wx.showModal({
                         title: '提示',
                         content: '没有此图书信息，请至手动添加！',
-                        showCancel:false,
+                        showCancel:false,   
                         confirmText:"前去填写",
                         success:function(res){
                             if(res.confirm){
@@ -207,7 +202,7 @@ Page({
                     bookData.translator = bookData.translator[0] ? bookData.author[0] : '未知';
                     bookData.tags = JSON.stringify(bookData.tags)
                     var price = bookData.price;
-                    price = price.replace(/[^0-9|.]/ig, "") == 0 ? price.replace(/[^0-9|.]/ig, ""):10
+                    price = price.replace(/[^0-9|.]/ig, "") != 0 ? price.replace(/[^0-9|.]/ig, ""):10
                     var bookSummary = bookData.summary;
                     if (bookSummary.length>500){
                         bookSummary = bookSummary.substr(0, 500)+"..."

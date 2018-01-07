@@ -1,6 +1,7 @@
 //toAuth.js 认证页面
 //获取应用实例
 var app = getApp()
+var saveFormIds = require('../../utils/saveFormIds.js');
 Page({
     data: {
         userInfo: {},
@@ -18,7 +19,13 @@ Page({
         userSchool:null,
         userClass:null,
         studentCard:null,
-        changePic:false //是否切换了图片
+        changePic:false, //是否切换了图片
+
+        //tabs切换
+        tabs: ['自营点认证', '其他人员认证'],
+        activeIndex: '0',
+        sliderOffset: 0,
+        sliderLeft: 0,
     },
     onLoad: function () {
         var that = this;
@@ -53,7 +60,7 @@ Page({
         })
         
         wx.request({
-            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getSchoolList').replace(/\s+/g, ""),
+            url: (app.globalData.apiUrl + '?m=home&c=Api&a=getPilotList').replace(/\s+/g, ""),
             header: {
                 'content-type': 'application/json'
             },
@@ -82,6 +89,14 @@ Page({
         //显示分类
         this.setData({
             cateisShow: !this.data.cateisShow
+        })
+    },
+
+    //切换tab
+    tabClick(e) {
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.id,
         })
     },
 
@@ -205,22 +220,14 @@ Page({
         })
     },
     /*****************************详细认证方法 **********************************/
-    toAuth: function () {
+    toAuth: function (e) {
+        saveFormIds.save(e.detail.formId)
         //提交信息
         var that = this;
         var thatData = that.data;
         var schoolIndex = that.data.schoolIndex;
-        var formData = {
-            "ID": app.globalData.userId,
-            'userName': that.data.userName,
-            'phoneNumber': that.data.phoneNumber,
-            'userSchool': that.data.school[schoolIndex],
-            'userClass': that.data.userClass,
-            "studentCard": that.data.studentCard,
-            "eMail": that.data.eMail
-        };
         
-        if (!thatData.userName || !thatData.phoneNumber || !thatData.userClass || !thatData.studentCard || !thatData.eMail){
+        if (!thatData.userName || !thatData.phoneNumber || !thatData.eMail){
             wx.showToast({
                 title: '你是不是忘记填了点什么！',
                 image: '../../images/warning.png',
@@ -303,7 +310,7 @@ Page({
                     "ID": app.globalData.userId,
                     'userName': that.data.userName,
                     'phoneNumber': that.data.phoneNumber,
-                    'userSchool': that.data.school[schoolIndex],
+                    'userSchool': that.data.schoolId[schoolIndex],
                     'userClass': that.data.userClass,
                     "studentCard": that.data.studentCard,
                     "eMail": that.data.eMail

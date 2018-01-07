@@ -138,7 +138,7 @@
                     <template is="prompt" data="{{ ...$wux.prompt.msg2 }}" />
                     <!-- 取消模板  -->
                     <view wx:for="{{bookData}}" wx:for-index="index" wx:for-item="book">
-                        <view style='background:#fafafa;margin-bottom:10rpx;' bindtap="detail" wx:if="{{book.if_refuse == 1}}">
+                        <view style='background:#fafafa;margin-bottom:10rpx;' bindtap="detail" wx:if="{{book.if_refuse == 1 && book.reason_type == 0}}">
                             <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
                                 <image src="{{book.book_image}}" class="book-image"></image>
                                 <view class="book-info">
@@ -155,11 +155,10 @@
                                 <view>
                                     <view style='float:left'>
                                         <text wx:if="{{book.reason_type == 0}}">取消时间：</text>
-                                        <text wx:if="{{book.reason_type == 1}}">拒绝时间：</text>
                                         <text>{{book.refuse_at?book.refuse_at:'暂无数据'}}</text>
                                     </view>
                                     <!-- 更多信息 -->
-                                    <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
+                                    <!-- <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image> -->
                                     <view style='clear:both'></view>
                                 </view>
                                 <view> <!-- wx:if='{{currentSharingId == book.sharing_id}}' -->
@@ -173,6 +172,45 @@
                         <view class="clear-both"></view>
                     </view>
 
+                </view>
+
+                <view class="weui-tab__content" hidden="{{ activeIndex != 3 }}">
+                    <template is="prompt" data="{{ ...$wux.prompt.msg3 }}" />
+                    <!-- 被拒绝模板  -->
+                    <view wx:for="{{bookData}}" wx:for-index="index" wx:for-item="book">
+                        <view style='background:#fafafa;margin-bottom:10rpx;' bindtap="detail" wx:if="{{book.if_refuse == 1 && book.reason_type == 1}}">
+                            <view class="book-tmp" bindtap="detail" data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}" style='position:relative;margin-bottom:0px;border-bottom:1px solid #f7f7f7;box-shadow:0 0 0 #fff'>
+                                <image src="{{book.book_image}}" class="book-image"></image>
+                                <view class="book-info">
+                                    <view class="book-name">{{book.book_name}}</view>
+                                    <view class="book-applier">
+                                        {{book.writer}}
+                                    </view>
+                                </view>
+                                
+                                <view class="clear-both"></view>
+
+                            </view>
+                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4' bindtap='openMore' data-canShareID="{{book.can_share_id}}"  data-sharingId='{{book.sharing_id}}'>
+                                <view>
+                                    <view style='float:left'>
+                                        <text wx:if="{{book.reason_type == 1}}">拒绝时间：</text>
+                                        <text>{{book.refuse_at?book.refuse_at:'暂无数据'}}</text>
+                                    </view>
+                                    <!-- 更多信息 -->
+                                    <!-- <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image> -->
+                                    <view style='clear:both'></view>
+                                </view>
+                                <view> <!-- wx:if='{{currentSharingId == book.sharing_id}}' -->
+                                    <view style='text-align:left;width:100%;display:inline-block'>
+                                        原因：
+                                        <text style='color:red'>{{book.reason!=null&&book.reason?book.reason:book.refuse_content}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="clear-both"></view>
+                    </view>
                 </view>
             </view>
         </view>

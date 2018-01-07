@@ -12,6 +12,19 @@ function formatTime(date) {
     return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+function htmldecode(str) {//译码
+    str = str.replace(/&amp;/gi, '&');
+    //str = str.replace(/&nbsp;/gi, '');
+    str = str.replace(/&quot;/gi, '');
+    str = str.replace('[', '');
+    str = str.replace(']', '');
+    str = str.replace(/&#39;/g, "'");
+    str = str.replace(/&lt;/gi, '<');
+    str = str.replace(/&gt;/gi, '>');
+    //  str = str.replace(/<br[^>]*>(?:(rn)|r|n)?/gi, 'n');
+    return str;
+}
+
 //date类型转 2017/09/22
 function formatTimeToDay(date) {
     var year = date.getFullYear()
@@ -69,6 +82,7 @@ module.exports = {
         return !0
 
     },
+    htmldecode: htmldecode,
 
     // 检测授权状态
     checkSettingStatu: function (cb) {

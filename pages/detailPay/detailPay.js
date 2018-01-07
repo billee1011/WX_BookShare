@@ -1,6 +1,7 @@
 
 const app = getApp()
 var utils = require('../../utils/util.js');
+var saveFormIds = require('../../utils/saveFormIds.js');
 // pages/detail1/detail1.js
 Page({
 
@@ -123,7 +124,9 @@ Page({
     },
 
     borrowBook: function (e) {
+        // saveFormIds.save(e.detail.formId)
         var that = this
+        
         if (app.globalData.certificationOk != 2) {
           wx.showModal({
             title: '提示',
@@ -193,15 +196,23 @@ Page({
                                         duration: 2000
                                     })
                                 } else if (res.data[0].result == "success") {
+                                    var sharingId = res.data[0].id;
                                     if (book_type == 0) {
                                         wx.showModal({
                                             title: '通知',
                                             content: '借入成功，您可以直接联系书主借书！',
                                             success: function (res) {
                                                 if (res.confirm) {
-                                                    wx.makePhoneCall({
-                                                        phoneNumber: that.data.bookInfo.phoneNumber //仅为示例，并非真实的电话号码
-                                                    })
+                                                    // wx.makePhoneCall({
+                                                    //     phoneNumber: that.data.bookInfo.phoneNumber //仅为示例，并非真实的电话号码
+                                                    // })
+                                                    var formData = {
+                                                        "touser": wx.getStorageSync("openId"),
+                                                        "form_id": e.detail.formId,
+                                                        "templateType": 1,
+                                                        "sharingId": sharingId
+                                                    }
+                                                    saveFormIds.sendPushTemplete(formData)
                                                 } else if (res.cancel) {
                                                     wx.showModal({
                                                         title: '通知',

@@ -12,7 +12,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      wx.request({
+          url: 'http://openapi.nanchangmama.com/make_post/',
+          data: {
+              'userName': '武妝妝',
+              'userAvatar': 'http://static.dryeam.com/testIcon.jpg',
+              'qrImg': 'http://static.dryeam.com/qrimg.jpg',
+              'backGroundImg': 'http://static.dryeam.com/20170815112219.jpg',
+              'textColor': { 'B': 45, 'R': 123, 'G': 9 }
+          },
+          method: 'POST',
+          header:{
+              'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (data) {
+              console.log(data.data)
+          },
+          complete: function () {
+              wx.hideLoading()
+          },
+          fail: function () {
+              wx.hideLoading();
+          }
+      })
   },
 
   /**

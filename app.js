@@ -102,7 +102,7 @@ App({
         openId: null,
         apiUrl: "https://www.qvjunping.me/bookshare/",//"localhost:8081",//www.1949science.cn  139.199.171.106/bookshare 35978598.1949science.cn/
         userId:null,//用户userId
-        timer: 30000,//定时器设置时间
+        timer: 2000,//定时器设置时间
         access_token:null,
         pilotKeepTime:7 ,//自营点时间
         latitude: 39.2349700000,//团队所在纬度

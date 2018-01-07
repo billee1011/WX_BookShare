@@ -60,7 +60,10 @@
         "pages/socket/socket",
         "pages/404/404",
         "pages/withDraw/withDraw",
-        "pages/selfUpload/selfUpload"
+        "pages/selfUpload/selfUpload",
+        "pages/location/location",
+        "pages/map/map"
+        
         
     ],
     "window": {

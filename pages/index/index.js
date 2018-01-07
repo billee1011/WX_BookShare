@@ -27,6 +27,12 @@ Page({
 
         damageArray: ['不区分破损', '全新', '八成新以上', '六成新以上'],
         damageIndex: 0,//默认为八成新
+
+
+        whetherrequest: 0,    //是否允许请求图书列表数据bookObj,1时允许，初值为0
+        count: 1,    //下次需请求图书列表数据的序号
+        isEmpty: true,    //判断图书列表数据是否为空
+        nextUrl: "",     //console.log输出url时以查看格式
     },
 
 
@@ -174,17 +180,49 @@ Page({
             url += "&damage=";
             url += that.data.damageIndex;
         }
+
+        //将要请求的下一图书列表数据及请求数量对url进行拼接
+        url += "&count=";
+        url += that.data.count;
+        url += "&amount=18";
+        
+        if (wx.getStorageSync('locationArray')){
+            var locationArray = wx.getStorageSync('locationArray');
+            if (locationArray.pilot_id){
+                url += "&pilot_id=";
+                url += locationArray.pilot_id;
+            } else if (locationArray.latitude && locationArray.longitude){
+                url += "&latitude=";
+                url += locationArray.latitude;
+                url += "&longitude=";
+                url += locationArray.longitude;
+            }
+        }
+        
         //图书列表数据获取
         wx.request({
             url: url,
             method: "GET",
             success: function (res) {
+
+                var dataArray = res.data;
+                var totalbookObj;
+                if (!that.data.isEmpty) {
+                    totalbookObj = that.data.bookObj.concat(dataArray);
+                } else {
+                    totalbookObj = dataArray;
+                    that.data.isEmpty = false;
+                }
+                console.log(that.data.count);                          //console
                 that.setData({
-                    bookObj: res.data,
+                    bookObj: totalbookObj,        //将拼接后的图书列表数据赋bookObj
                     loading: false,
                     haveBook: false
                 })
-                if (res.data.length == 0) {
+
+                that.data.whetherrequest = 0;   //请求图书数据标识置初值
+
+                if (res.data.length == 0 && that.data.count == 1) {
                     that.setData({
                         haveBook: true
                     })
@@ -214,7 +252,7 @@ Page({
     },
 
     onShow: function () {
-        this.onLoad();
+        // this.onLoad();
 
     },
 
@@ -224,6 +262,7 @@ Page({
         this.setData({
             activeNum: num
         })
+        this.clear();
         this.getBookList()
     },
 
@@ -240,7 +279,9 @@ Page({
                     //已授权 扫描ISBN
                     wx.scanCode({
                         success: (res) => {
-                            console.log(res)
+                            wx.showLoading({
+                                title: '加载信息中！',
+                            })
                             if (res.errMsg == "scanCode:ok") {
                                 //扫描成功
                                 if (res.scanType == "EAN_13") {
@@ -252,11 +293,33 @@ Page({
                                 } else if (res.scanType == "QR_CODE") {
                                     if (res.result.indexOf('detail')) {
                                         var qrcodeId = res.result.substring(69);
-                                        console.log(qrcodeId)
-                                        //图书后面的二维码
-                                        wx.navigateTo({
-                                            url: '../detailPay/detailPay?bookId=' + bookId + "&canShareId=" + canShareId + "&book_type=" + book_type,
+                                        var url = (app.globalData.apiUrl + '?m=home&c=Api&a=getCanShareIdByQrocde&qrcode_id=' + qrcodeId).replace(/\s+/g, "")
+                                        wx.request({
+                                            url: url,
+                                            method: "GET",
+                                            dataType: "json",
+                                            success: function (res) {
+                                                console.log(res.data)
+                                                if (res.data == "noQrocde") {
+                                                    wx.showModal({
+                                                        title: '提示',
+                                                        content: '您扫描的二维码还没有对应的书哦！',
+                                                    })
+                                                } else if (res.data =="fail"){
+                                                    wx.showModal({
+                                                        title: '提示',
+                                                        content: '获取图书时失败，请重试！',
+                                                    })
+                                                }else{
+                                                    //图书后面的二维码
+                                                    wx.navigateTo({
+                                                        url: '../detailPay/detailPay?bookId=' + res.data[0].book_id + "&canShareId=" + res.data[0].ID + "&book_type=1",
+                                                    })
+                                                }
+                                                
+                                            }
                                         })
+                                        
                                     } else if (res.result.indexOf('bookcase')) {
                                         //书柜的二维码
                                         
@@ -268,6 +331,7 @@ Page({
                                     image: '../../images/fail.png',
                                 })
                             }
+                            wx.hideLoading()
                         }
                     })
                 } else {
@@ -327,7 +391,44 @@ Page({
 
     affirmScreen: function () {
         var that = this;
+        that.clear();
         that.getBookList()
         that.togglePtype();
+    },
+    // location:function(){
+    //     wx.getLocation({
+    //         type: 'wgs84',
+    //         success: function (res) {
+    //             console.log(res)
+    //             var latitude = res.latitude
+    //             var longitude = res.longitude
+    //             var speed = res.speed
+    //             var accuracy = res.accuracy
+    //         }
+    //     })
+    // }
+
+    //触底
+    onScrollLower: function (event) {
+        var that = this;
+        this.data.whetherrequest++;
+        if (this.data.whetherrequest == 1) {
+            this.setData({
+                count: that.data.count + 18    //下次请求图书列表数据的序号
+            })
+            console.log(that.data.count)   //检查
+
+            this.getBookList()
+            console.log(this.data.nextUrl);
+        }
+    },
+
+    //changetab和筛选时置初值
+    clear: function () {
+        var that = this
+        that.setData({
+            count: 1,
+            isEmpty: true
+        })
     }
 })

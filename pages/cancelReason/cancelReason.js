@@ -1,4 +1,5 @@
 var app = getApp();
+var saveFormIds = require('../../utils/saveFormIds.js');
 Page({
 
     /**
@@ -99,13 +100,20 @@ Page({
     },
 
     //取消借书
-    cancelBorrow: function () {
+    cancelBorrow: function (e) {
         var that = this;
+        // console.log(e)
         var word = '您还没有选择取消原因！';
+        var word1 = '已取消借书，无需重复！';
+        var word2 = '取消成功';
+        var word3 = '取消失败，请稍后重试';
         if( that.data.pageType == 1){
             word = '您还没有选择拒绝原因！';
+            word1 = '已拒绝借书，无需重复！';
+            word2 = '拒绝成功';
+            word3 = '拒绝失败，请稍后重试';
         }
-        if (!that.data.refuse_reason || that.data.refuse_content){
+        if (!that.data.refuse_reason && !that.data.refuse_content){
             wx.showModal({
                 title: '提示',
                 content: word,
@@ -123,22 +131,35 @@ Page({
             success: function (res) {
                 if (res.data == "canceled") {
                     wx.showToast({
-                        title: '已取消借书，无需重复！',
+                        title: word1,
                         image: '../../images/warning.png',
                         duration: 2000
                     })
                 } else if (res.data == "success") {
-                    wx.showToast({
-                        title: '取消成功',
-                        icon: 'success',
-                        duration: 2000
+                    var formData = {
+                        "touser": wx.getStorageSync("openId"),
+                        "form_id": e.detail.formId,
+                        "templateType": 2,
+                        "sharingId": that.data.sharingId
+                    }
+                    saveFormIds.sendPushTemplete(formData)
+                    wx.showModal({
+                        title: '提示',
+                        content: word2,
+                        confirmText:"好的",
+                        showCancel:false,
+                        success:function(res){
+                            if(res.confirm){
+                                wx.navigateBack({
+                                    delta: 1
+                                })
+                            }
+                        }
                     })
-                    wx.navigateBack({
-                        delta:1
-                    })
+                    
                 } else if (res.data == "fail") {
                     wx.showToast({
-                        title: '取消失败，请稍后重试',
+                        title: word3,
                         image: '../../images/fail.png',
                         duration: 2000
                     })
@@ -146,7 +167,7 @@ Page({
             },
             fail: function () {
                 wx.showToast({
-                    title: '取消失败，请稍后重试',
+                    title: word3,
                     image: '../../images/fail.png',
                     duration: 2000
                 })
@@ -155,7 +176,7 @@ Page({
     },
     checkboxChange: function (e) {
       var that = this;
-      var array = e.detail.value,str = '';
+   var array = e.detail.value,str = '';
       for(var i = 0;i<array.length;i++){
         str += array[i]+',';
       }

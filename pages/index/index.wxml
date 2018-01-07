@@ -14,7 +14,10 @@
     <view class="search-area">
         <view class="search-scanner">
             <form>
-                <image src="../../images/scanner.png" bindtap="screenISBN"></image>
+            <!-- <navigator url='../location/location' open-type='navigate'>
+                <image src="../../images/chooseLocation.png" bindtap="location"></image>
+            </navigator> -->
+                <image src="../../images/scanner1.png" bindtap="screenISBN"></image>
                 <input type="text" class='width:720rpx !important;' bindinput='setSearchValue' placeholder="请输入书名/ISBN号/作者/关键字" bindconfirm="getBookList" confirm-type="search" />
                 <icon type="search" size="18" color="#666666" bindtap='getBookList' />
                 <button style='float:right;width:20px;height:20px;border-radius:10px;line-height:20px!important;margin-right:10px;border:0px solid #fff' bindtap='clearSearchValue' formType="reset" wx:if="{{searchValue}}">x</button>
@@ -38,7 +41,9 @@
     <!--筛选结束-->
     <view style='width:100%;height:130rpx;'></view>
     <!--图书列表-->
-    <view class="book-list">
+    <scroll-view class="book-list"
+    scroll-y = "true" scroll-x = "false" style="height:975rpx"
+    bindscrolltolower = "onScrollLower">
         <template is="prompt" wx:if="{{haveBook}}" data="{{ ...$wux.prompt.msg2 }}" />
         <view wx:for="{{bookObj}}" wx:for-index="index" wx:for-item="book" style='display:inline-block;width:{{ phoneInfo.windowWidth*0.25 }}px;margin:2px 4%'>
             <!-- <template is="indexList" data="{{book}}" /> -->
@@ -47,12 +52,12 @@
             <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
         </view>
         <view style='clear:both'></view>
-    </view>
+    </scroll-view>
     <!--图书列表 end-->
     <!--分类 start-->
     <scroll-view style="height:100%" id="catewrap" scroll-y='true' scroll-into-view="c2" hidden="{{!cateisShow}}">
         <view id="cateall" bindtap="cateselect" class="cl_list cl_list" style='width:98%;'>
-            <text class="cl_ico_checked cl_ico"></text>当前选择：{{sortsArray[sortIndex-1].sort_name?sortsArray[sortIndex-1].sort_name+'、':''}}  {{ageIndex!=0?age[ageIndex]+'、':''}}{{damageIndex!=0?damageArray[damageIndex]:''}}
+            <text class="cl_ico_checked cl_ico"></text>当前选择：{{sortsArray[sortIndex-1].sort_name?sortsArray[sortIndex-1].sort_name+'、':''}} {{ageIndex!=0?age[ageIndex]+'、':''}}{{damageIndex!=0?damageArray[damageIndex]:''}}
         </view>
         <view class="catelist cl_list" style='width:98%;height:50px'>
             <text style="float:left;width:100px;line-height:47px">适龄：</text>

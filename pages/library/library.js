@@ -74,6 +74,7 @@ Page({
                 'content-type': 'application/json'
             },
             success: function (res) {
+                console.log(res.data)
                 data = res.data;
                 if (res.data.length > 0) {
                     that.setData({
@@ -93,7 +94,7 @@ Page({
 
         /**获取上传至自营点图书 */
         wx.request({
-            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getB2CMyBookMoney&userId=113').replace(/\s+/g, ""),
+            url: (app.globalData.apiUrl + '?m=home&c=Api&a=getB2CMyBookMoney&userId=' + userId).replace(/\s+/g, ""),
             method: "GET",
             header: {
                 'content-type': 'application/json'

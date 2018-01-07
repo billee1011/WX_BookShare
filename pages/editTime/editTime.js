@@ -1,22 +1,20 @@
 //bookMan.js 图书管理
 //获取应用实例
 var app = getApp()
+var utils = require('../../utils/util.js');
+var event = require('../../utils/event.js')
 Page({
     data: {
-        canShareId:null,
-        loading:true,
-        bookInfo:null,
-        keepTime:null,
+        canShareId: null,
+        loading: true,
+        bookInfo: null,
+        keepTime: null,
 
         stars: [0, 1, 2, 3, 4],
         normalSrc: '../../images/normal.png',
         selectedSrc: '../../images/selected.png',
         halfSrc: '../../images/half.png',
         key1: 3,//评分
-
-        array: ['无限制', '0-2岁', '3-7岁', '8-12岁'],
-        arrayValue: ['0', '1', '2', '3'],
-        index: 0,
     },
     //事件处理函数
     onLoad: function (options) {
@@ -28,12 +26,20 @@ Page({
             bookId: bookId
         })
         wx.request({
-            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=getEditInfo&canShareId=' + canShareId).replace(/\s+/g, ""),
+            url: (app.globalData.apiUrl + '?m=home&c=Api&a=getEditInfo&canShareId=' + canShareId).replace(/\s+/g, ""),
             header: {
                 'content-type': 'application/json'
             },
             success: function (res) {
-                if(res.data[0]["result"] == "success"){
+                if (res.data[0]["result"] == "success") {
+                    if (res.data[0]["age"]) {
+                        //对年龄的数据处理
+                        var age = utils.htmldecode(res.data[0]["age"]);
+                        if (age) {
+                            age = age.split(",")
+                        }
+                        res.data[0]["age"] = age;
+                    }
                     that.setData({
                         bookInfo: res.data[0],
                         loading: false,
@@ -41,28 +47,58 @@ Page({
                         location: res.data[0].location,
                         longitude: res.data[0].longitude,
                         latitude: res.data[0].latitude,
-                        index:res.data[0].age,
-                        key1:res.data[0].book_content,
-                        card_content:res.data[0].card_content,
-                        book_id: res.data[0].book_id
+                        index: res.data[0].age,
+                        key1: res.data[0].book_content,
+                        card_content: res.data[0].card_content,
+                        book_id: res.data[0].book_id,
+                        ageObject: res.data[0].ageObject.fullData,
+                        age: res.data[0]["age"]
                     })
-                }else{
+
+                } else {
                     wx.showToast({
                         title: '获取数据失败，请重试！',
                         image: '../../images/fail.png',
                         duration: 2000
                     })
                 }
-                
+
             }
         })
 
-
+        //绑定监听
+        event.on('ageDataChanged', this, function (data) {
+            var that = this;
+            that.setData({
+                age: data
+            })
+        })
     },
     onReady: function () {
 
     },
-    
+
+    //修改适龄
+    //打开适龄页面
+    openAges: function () {
+        var that = this
+        var data = that.data.age;
+        var url = "../ageSelect/ageSelect";
+        if (data) {
+            for (var i in data) {
+                if (i == 0) {
+                    url += "?selected" + i + "=" + data[i];
+                } else {
+                    url += "&selected" + i + "=" + data[i];
+                }
+
+            }
+        }
+        wx.navigateTo({
+            url: url,
+        })
+    },
+
     //设置时间
     setDays: function (e) {
         var that = this;
@@ -72,41 +108,41 @@ Page({
     },
 
     //保存修改
-    saveKeepTime:function(e){
+    saveKeepTime: function (e) {
         var canShareId = e.currentTarget.dataset.canshareid;
         var that = this;
-        var index = that.data.index;
-        var arrayValue = that.data.arrayValue;
-        wx.request({
-            url: ( app.globalData.apiUrl + '?m=home&c=Api&a=editKeepTime&canShareId=' + canShareId + "&keepTime=" + that.data.keepTime + "&book_id=" + that.data.bookId + "&user_id=" + app.globalData.userId + "&book_content=" + that.data.key1 + "&card_content=" + that.data.card_content + "&location=" + that.data.location + "&latitude=" + that.data.latitude + "&longitude=" + that.data.longitude + "&age=" + arrayValue[index]).replace(/\s+/g, ""),
-            header: {
-                'content-type': 'application/json'
-            },
-            success: function (res) {
-                if (res.data == "success") {
-                    wx.showToast({
-                        title: '修改成功！',
-                        icon: 'success',
-                        duration: 4000,
-                        success:function(){
-                            wx.navigateBack({
-                                delta: 1
-                            })
-                        }
-                    })
-                    
-                } else {
-                    wx.showToast({
-                        title: '修改失败，请重试！',
-                        image: '../../images/fail.png',
-                        duration: 2000
-                    })
-                }
+        var arrayValue = JSON.stringify(that.data.age);
+        console.log(arrayValue)
+        // wx.request({
+        //     url: (app.globalData.apiUrl + '?m=home&c=Api&a=editKeepTime&canShareId=' + canShareId + "&keepTime=" + that.data.keepTime + "&book_id=" + that.data.bookId + "&user_id=" + app.globalData.userId + "&book_content=" + that.data.key1 + "&card_content=" + that.data.card_content + "&location=" + that.data.location + "&latitude=" + that.data.latitude + "&longitude=" + that.data.longitude + "&age=" + arrayValue).replace(/\s+/g, ""),
+        //     header: {
+        //         'content-type': 'application/json'
+        //     },
+        //     success: function (res) {
+        //         if (res.data == "success") {
+        //             wx.showToast({
+        //                 title: '修改成功！',
+        //                 icon: 'success',
+        //                 duration: 4000,
+        //                 success: function () {
+        //                     wx.navigateBack({
+        //                         delta: 1
+        //                     })
+        //                 }
+        //             })
 
-            }
-        })
+        //         } else {
+        //             wx.showToast({
+        //                 title: '修改失败，请重试！',
+        //                 image: '../../images/fail.png',
+        //                 duration: 2000
+        //             })
+        //         }
+
+        //     }
+        // })
     },
-    
+
     /**
     * 书评
      */
@@ -148,7 +184,7 @@ Page({
             }
         })
     },
-    
+
     //设置书评内容
     setContent: function (e) {
         var that = this;
@@ -156,6 +192,6 @@ Page({
             card_content: e.detail.value//书评内容
         })
     }
-    
+
 
 })

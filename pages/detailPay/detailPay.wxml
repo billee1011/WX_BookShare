@@ -143,13 +143,17 @@
             <span>看过</span>
         </view>
     </view>
-    <view type="submit" bindtap="borrowBook" style="width:48%;background:#75a8f9;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#fff" class="bottom-operate" wx:if="{{selfId != bookInfo.owner_id}}">
-        借阅
-    </view>
-    <view type="submit" bindtap="selfBook" style="width:48%;background:#f7f7f7;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#000" class="bottom-operate" wx:else>
-        <image src='../../images/disabled.png' style='width:13px;height:13px;'></image>
-        自己的图书
-    </view>
+
+    <form name='pushMsgFm' report-submit="true" data-sharingid="{{book.sharing_id}}" data-canshareid="{{book.can_share_id}}" data-openid="{{book.openId}}" bindsubmit="borrowBook">
+        <button form-type="submit" class="refuse" style="width:48%;background:#75a8f9;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#fff" class="bottom-operate" wx:if="{{selfId != bookInfo.owner_id}}">
+            借阅
+        </button>
+        <view type="submit" bindtap="selfBook" style="width:48%;background:#f7f7f7;float:right;line-height:50px;font-size:15px;padding-top:0px;color:#000" class="bottom-operate" wx:else>
+            <image src='../../images/disabled.png' style='width:13px;height:13px;'></image>
+            自己的图书
+        </view>
+    </form>
+
 </view>
 <!-- 弹出框 -->
 <scroll-view style="height:100%" id="catewrap" scroll-into-view="c2" scroll-y="true" hidden="{{!cateisShow}}">

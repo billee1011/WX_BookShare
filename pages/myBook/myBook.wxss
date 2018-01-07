@@ -20,7 +20,7 @@
 }
 
 .operate button {
-    width: 125rpx;
+    /* width: 125rpx; */
     margin-right: 5px;
     float: right;
     font-size: 24rpx

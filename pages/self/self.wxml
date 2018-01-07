@@ -12,7 +12,7 @@
                 {{userInfo.nickName?userInfo.nickName:"点击授权登录"}}
             </view>
             <view class="subtitle" id="shenfen" wx:if="{{certificationOk == 0}}">
-                未认证
+                未认证，点击前往认证
             </view>
             <view class="subtitle" id="shenfen" wx:if="{{certificationOk == 1}}">
                 认证中
@@ -104,6 +104,11 @@
             <image src="../../images/about.png" class="item_ico"></image>
             <span>关于我们</span>
             <!-- <image src="../../images/right.png" class="item_arrow"></image> -->
+        </view>
+        <view class="h1"></view>
+        <view class="item" bindtap="versionUpdate">
+            <image src="../../images/setting.png" class="item_ico"></image>
+            <span>更新小助手</span>
         </view>
         <view class="h1"></view>
         <!-- <view class="item" bindtap="uploadPilot">

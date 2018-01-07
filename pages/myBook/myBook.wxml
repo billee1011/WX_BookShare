@@ -35,15 +35,16 @@
                             </view>
                             <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
                                 <!-- <view> -->
-                                    <!-- <view style='float:left'>预期收入：
+                                <!-- <view style='float:left'>预期收入：
                                         <text style='color:red'>￥{{book.forecastMoney!=null?book.forecastMoney:0.00}}</text>
                                     </view> -->
-                                    <!-- 更多信息 -->
-                                    <!-- <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image> -->
-                                    <!-- <text style='color:#8A8A8A'>更多</text> -->
-                                    <!-- <view style='clear:both'></view> -->
+                                <!-- 更多信息 -->
+                                <!-- <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image> -->
+                                <!-- <text style='color:#8A8A8A'>更多</text> -->
+                                <!-- <view style='clear:both'></view> -->
                                 <!-- </view> -->
-                                <view> <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
+                                <view>
+                                    <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                                     <view style='text-align:left;width:50%;display:inline-block'>
                                         已带来收入：
                                         <text style='color:red'>￥{{book.totalMoney!=null?book.totalMoney:0.00}}</text>
@@ -53,9 +54,9 @@
                                     </view>
                                 </view>
                             </view>
-                            <view  style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                            <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
                                 <view class='operate'>
-                                    <button size='mini' plain='true' type='warn' data-bookid="{{book.book_id}}" data-canshareid="{{book.ID}}" bindtap="editKeepTime" style='color: #cccccc;border:1px solid  #cccccc'>编辑</button>
+                                    <button size='mini' plain='true' type='warn' data-bookid="{{book.book_id}}" data-canshareid="{{book.ID}}" bindtap="editKeepTime" style='color: #4A708B;border:1px solid  #4A708B'>编辑</button>
                                     <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="downLine" wx:if="{{book.online == 1}}">下线</button>
                                     <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="onLine" wx:if="{{book.online == 0}}">上线</button>
                                     <view style='clear:both'></view>
@@ -83,7 +84,7 @@
                                 </view>
                                 <view class="clear-both"></view>
                             </view>
-                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx; margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
+                            <view style='width:96%;text-align:right;background:#fff;line-height:60rpx;padding:8rpx 2%;font-size:24rpx;' bindtap='openMore' data-canShareID="{{book.can_share_id}}">
                                 <!-- <view>
                                     <view style='float:left'>预期收入：
                                         <text style='color:red'>￥{{book.forecastMoney!=null?book.forecastMoney:0.00}}</text>
@@ -91,7 +92,8 @@
                                     <image src='../../images/more.png' style='width:20rpx;height:20rpx;margin-top:4rpx'></image>
                                     <view style='clear:both'></view>
                                 </view> -->
-                                <view>  <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
+                                <view>
+                                    <!-- wx:if='{{currentCanShare == book.can_share_id}}' -->
                                     <view style='text-align:left;width:50%;display:inline-block'>
                                         已带来收入：
                                         <text style='color:red'>￥{{book.totalMoney!=null?book.totalMoney:0.00}}</text>
@@ -101,12 +103,14 @@
                                     </view>
                                 </view>
                             </view>
-                            <!-- <view  style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
+                            <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4;margin-bottom:20rpx;'>
                                 <view class='operate'>
-                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.ID}}" bindtap="retrieval">拿回</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="editKeepTime"  style='color: #4A708B;border:1px solid  #4A708B'>编辑</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="downLine" wx:if="{{book.online == 1}}">拿回</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="onLine" wx:if="{{book.online == 0}}">放回图书</button>
                                     <view style='clear:both'></view>
                                 </view>
-                            </view> -->
+                            </view>
                         </view>
                     </view>
                     <!--b2c图书列表 end-->

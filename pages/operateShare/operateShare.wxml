@@ -55,24 +55,14 @@
             <view>
                 <span>类别：</span>
             </view>
-            <!-- <picker bindchange="bindSortsChange" style="width:100px;float:right;margin-top:-46px" class='rightText' value="{{sortsIndex}}" range="{{sortsNameArray}}">
-            <view class="picker">
-                {{sortsNameArray[sortsIndex]}}
-            </view>
-        </picker> -->
-            <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumSort}}' class='rightText' bindtap='openSorts'></input>
+            <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择（必选）' value='{{sumSort}}' class='rightText' bindtap='openSorts'></input>
         </view>
         <view class="h1"></view>
-        <!-- <view class="item">
-            <view><span style="font-size:10px;">可借天数：</span></view>
-            <input style="margin-top:-46px" type="number" class="rightText" value="{{uploadDays}}" bindinput="setDays" />
-        </view>
-        <view class="h1"></view> -->
         <view class="item">
             <view>
                 <span>适龄：</span>
             </view>
-            <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
+            <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='请选择（必选）' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
         </view>
         <view class="h1"></view>
         <view class="item">
@@ -105,26 +95,22 @@
         </view>
         <view class="h1"></view>
         <view class="comment1">
-            <span>若没有该书数据，请在扫描ISBN码后手动填写书名和作者，我们会尽快完善详细信息。</span>
+            <span>注：如果小蜜蜂数据库没有您这本书，麻烦您手动录入本图书信息哦~</span>
         </view>
         <view class="h1"></view>
-        <!-- <view class="item">
-            <button type="primary" size="mini" style="float:left;font-size:12px;margin-top:10px;background:red" bindtap="continueShare"> 继续分享 </button>
-            
-        </view> -->
-        <button type="primary"  style="font-size:18px;margin-top:10px;margin-right:10px" bindtap="shareBook"> 完成分享 </button>
+        <button type="primary" style="font-size:18px;margin-top:10px;margin-right:10px" bindtap="shareBook"> 完成分享 </button>
     </view>
 </view>
 
 <!-- 自己上传图书 -->
-<modal class="modal" wx:if="{{!modalFlag}}" bindcancel="modalCancel" bindconfirm="modalOk" confirmText="确  定" >
+<modal class="modal" wx:if="{{!modalFlag}}" bindcancel="modalCancel" bindconfirm="modalOk" confirmText="确  定">
     <view class="dew" style="text-align:center;position:relative;color:#000">
         <image src='{{pictureFiles}}' style="left:0px;top:0px;width:100%;height:100%;position:absolute;z-index:-1;filter: blur(20px);"></image>
         <view style='width:160rpx;float:left;margin-right:24rpx;'>
             <image src="{{picUrl}}/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto;'></image>
         </view>
         <view style='width:320rpx;float:left;'>小蜜蜂数据库暂时没有您这本书呢，麻烦您手动录入本图书信息哦~</view>
-        
+
         <view class="catelist cl_list">
             <text class='cl_title'>图书名称：</text>
             <input class='cl_input' bindinput='setBookName' value="{{bookInfo.title}}" type='text' placeholder='请填写图书名称' />
@@ -142,7 +128,7 @@
         </view>
         <view class="catelist cl_list" style='width:99%;height:50px'>
             <button type='primary' bindtap='chooseImage' wx:if="{{pictureFiles}}">重新上传图片</button>
-             <button type='primary' bindtap='chooseImage' wx:else>上传图片</button>
+            <button type='primary' bindtap='chooseImage' wx:else>上传图片</button>
         </view>
         <view class="clear-both"></view>
     </view>

@@ -358,6 +358,7 @@ Page({
                                         'content-type': 'application/json'
                                     },
                                     success: function (res) {
+                                        console.log(res.data)
                                         if (res.data[0]["result"] == "have shared") {
                                             wx.showToast({
                                                 title: '已经分享过，无需再分享！',

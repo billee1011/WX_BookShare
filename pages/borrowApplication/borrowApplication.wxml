@@ -57,7 +57,7 @@
                     <view class="book-list">
                         <view wx:for="{{record}}" wx:for-index="index" wx:for-item="book">
                             <!-- 拒绝模板 -->
-                            <template is="refuseApply" data="{{book}}"></template>
+                            <template is="refuseApply" data="{{book}}" wx:if="{{book.reason_type == 1}}"></template>
 
                             <!-- 完成模板 -->
                             <template is="finishApply" data="{{book}}"></template>

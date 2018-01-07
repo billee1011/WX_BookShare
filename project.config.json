@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -33,6 +33,36 @@
 					"id": -1,
 					"name": "pay",
 					"pathName": "pages/pay/pay",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "library",
+					"pathName": "pages/library/library",
+					"query": "userId=145"
+				},
+				{
+					"id": -1,
+					"name": "修改图书",
+					"pathName": "pages/editTime/editTime",
+					"query": "canShareId=446&bookId=288"
+				},
+				{
+					"id": -1,
+					"name": "pilotBorrowIn",
+					"pathName": "pages/pilotBorrowIn/pilotBorrowIn",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "editTime",
+					"pathName": "pages/editTime/editTime",
+					"query": "canShareId=446&bookId=288"
+				},
+				{
+					"id": -1,
+					"name": "home",
+					"pathName": "pages/home/index",
 					"query": ""
 				}
 			]
