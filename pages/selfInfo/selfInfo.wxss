@@ -3,7 +3,7 @@
 .item {
     height: 50px;
     line-height: 50px;
-    padding-left: 15px;
+    padding-left: 10px;
     background-color: #fff;
     font-size: 16px;
     color: #333;
@@ -13,7 +13,7 @@
     float: left;
     width: 27px;
     height: 27px;
-    padding: 13px 15px 10px 0;
+    padding: 13px 6px 10px 0;
 }
 
 .value-right {
@@ -22,7 +22,7 @@
     height: 47px;
     line-height: 47px;
     text-align: right;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 .item_arrow {
@@ -47,7 +47,7 @@
 }
 
 .h1 {
-    height: 3px;
+    height: 1px;
     margin: 0 15px;
     background: #f0f0f0;
 }

@@ -1,0 +1,2 @@
+<!--pages/versionUpdate/versionUpdate.wxml-->
+<web-view src="https://www.qvjunping.me/bookshare/?m=home&c=Html5&a=versionUpdate"></web-view>

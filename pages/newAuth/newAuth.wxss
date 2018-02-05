@@ -1,0 +1,4 @@
+/* pages/newAuth/newAuth.wxss */
+page{
+    background: #fff
+}

@@ -20,12 +20,6 @@ Page({
         userClass:null,
         studentCard:null,
         changePic:false, //是否切换了图片
-
-        //tabs切换
-        tabs: ['自营点认证', '其他人员认证'],
-        activeIndex: '0',
-        sliderOffset: 0,
-        sliderLeft: 0,
     },
     onLoad: function () {
         var that = this;
@@ -92,19 +86,12 @@ Page({
         })
     },
 
-    //切换tab
-    tabClick(e) {
-        this.setData({
-            sliderOffset: e.currentTarget.offsetLeft,
-            activeIndex: e.currentTarget.id,
-        })
-    },
-
     chooseImage: function () {
         var that = this;
         //选择校园卡或者教工卡
         wx.chooseImage({
             count: 1,
+            sizeType: 'compressed',
             success: function (res) {
                 if (res.errMsg == "chooseImage:ok") {
                     that.setData({

@@ -62,13 +62,17 @@
         "pages/withDraw/withDraw",
         "pages/selfUpload/selfUpload",
         "pages/location/location",
-        "pages/map/map"
+        "pages/map/map",
+        "pages/newAuth/newAuth",
+        "pages/commonAuth/commonAuth",
+        "pages/agreement/agreement",
+        "pages/versionUpdate/versionUpdate"
         
         
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#000000",
+        "navigationBarBackgroundColor": "#0E72F0",
         "navigationBarTitleText": "蜜蜂图书共享平台",
         "navigationBarTextStyle": "white",
         "backgroundColor": "#ffffff"

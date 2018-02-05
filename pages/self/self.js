@@ -56,7 +56,7 @@ Page({
                     success: function (res) {
                         if (res.confirm) {
                             wx.navigateTo({
-                                url: '../toAuth/toAuth',
+                                url: '../newAuth/newAuth',
                             })
                         }
                     }
@@ -80,8 +80,9 @@ Page({
             },
             time: 3000,
             onClick(data) {
+                //去认证新页面
                 wx.navigateTo({
-                    url: '../toAuth/toAuth',
+                    url: '../newAuth/newAuth',
                 })
             },
             onClose(data) {
@@ -106,8 +107,13 @@ Page({
                         wx.navigateTo({
                             url: '../selfInfo/selfInfo',
                         })
-                    } else if (that.data.certificationOk == 1 || that.data.certificationOk == 3 || that.data.certificationOk == 0) {
-                        //去认证页面
+                    } else if (that.data.certificationOk == 0) {
+                        //去认证新页面
+                        wx.navigateTo({
+                            url: '../newAuth/newAuth',
+                        })
+                    } else if (that.data.certificationOk == 1 || that.data.certificationOk == 3){
+                        //教职工认证页面
                         wx.navigateTo({
                             url: '../toAuth/toAuth',
                         })
@@ -252,6 +258,13 @@ Page({
         }
         wx.navigateTo({
             url: '../waitingPay/waitingPay'
+        })
+    },
+    
+    //版本更新
+    versionUpdate:function(){
+        wx.navigateTo({
+            url: '../versionUpdate/versionUpdate',
         })
     }
 })

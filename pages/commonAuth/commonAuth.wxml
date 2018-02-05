@@ -2,26 +2,11 @@
 
 <view class="page">
     <view style="width:98%;margin:10px 1%">
-        <view class="page-section userinfo">
-            <view class="page-body-info">
-                <!-- <view style='font-size:15px;margin-top:5px;'>
-                    请上传校园卡或者教工卡
-                </view> -->
-                <block wx:if="{{pictureFiles}}">
-                    <image src="{{pictureFiles}}" style='margin-bottom:10px' class="image" mode="aspectFit" bindtap="changePicture"></image>
-                </block>
-
-                <block wx:else>
-                    <view class="image-plus image-plus-nb" bindtap="chooseImage">
-                        <view class="image-plus-horizontal"></view>
-                        <view class="image-plus-vertical"></view>
-                    </view>
-                    <view class="image-plus-text">请上传校园卡或者教工卡</view>
-                </block>
-
-            </view>
+        <!-- 头像 -->
+        <view class='userinfo' style='margin-bottom:20px'>
+            <image class='userinfo-avatar' src='{{userInfo.favicon}}'></image>
         </view>
-        
+
         <view class="name item">
             <image src="../../images/name.png" class="item_ico"></image>
             <text>姓名</text>
@@ -57,9 +42,9 @@
         </view>
         <view class="h1"></view>
         <view id="footer" style="width:98%;margin:25px auto;">
-            <form name='pushMsgFm' report-submit="true" bindsubmit="toAuth">
+            <form name='pushMsgFm' report-submit="true" bindsubmit="pay">
                 <button form-type="submit" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}">
-                    认证
+                    立即支付￥29.9即可通过认证
                 </button>
             </form>
             

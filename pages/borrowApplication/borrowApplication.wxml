@@ -41,8 +41,12 @@
                         </view>
                         <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4'>
                             <view class='operate'>
-                                <button size='mini' plain='true' type='primary' data-price="{{book.price}}" data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" data-bookid="{{book.book_id}}" data-borrowerid='{{book.borrower_id}}' bindtap="screenQRcode">扫码确认</button>
-                                <button size='mini' plain='true' type='warn' data-sharingid="{{book.sharing_id}}" data-canshareid="{{book.can_share_id}}" data-openid="{{book.openId}}" bindtap="refuseApply">拒绝</button>
+                                <form name='pushMsgFm' report-submit="true" bindsubmit="screenQRcode" data-price="{{book.price}}" data-sharingid="{{book.sharing_id}}" data-openid="{{book.openId}}" data-bookid="{{book.book_id}}" data-borrowerid='{{book.borrower_id}}'>
+                                    <button form-type="submit" size='mini' plain='true' type='primary'>扫码确认</button>
+                                </form>
+                                <form name='pushMsgFm' report-submit="true" data-sharingid="{{book.sharing_id}}" data-canshareid="{{book.can_share_id}}" data-openid="{{book.openId}}" bindsubmit="refuseApply">
+                                    <button form-type="submit" size='mini' plain='true' type='warn'>拒绝</button>
+                                </form>
                                 <view style='clear:both'></view>
                             </view>
                         </view>

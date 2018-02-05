@@ -1,6 +1,9 @@
+page{
+    background: #f7f7f7
+}
 .container {
     margin-top: 10px;
-    width: 94%;
+    width: 100%;
     padding: 2px 2px;
     margin: 0 auto;
 }
@@ -16,6 +19,12 @@
     padding-left: 15px;
     background-color: #fff;
     font-size: 13px;
+}
+.item_ico {
+    float: left;
+    width: 27px;
+    height: 20px;
+    padding: 13px 3px 10px 0;
 }
 
 .h10 {
@@ -36,7 +45,7 @@
 }
 .half {
     position: absolute;
-    margin-left: 240rpx;
+    margin-left: 310rpx;
     margin-top: -60px;
 }
 
@@ -58,7 +67,7 @@
     width: 60%;
     text-align: right;
     float: right;
-    margin-right: 30px
+    margin-right: 15px
 }
 .rightText {
     margin-right: 18px;

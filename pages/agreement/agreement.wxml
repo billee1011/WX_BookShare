@@ -1,0 +1,194 @@
+<view style='width:95%;margin:30px 2.5%'>
+    <!--pages/agreement/agreement.wxml-->
+<view style="text-align:center">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">蜜蜂图书服务协议</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:blue">提示条款</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:black">欢迎您与蜜蜂图书共同签署本《蜜蜂图书服务协议》并使用蜜蜂图书平台服务。</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:blue">关于平台</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">蜜蜂平台是中国首款基于社区的儿童读物的共享图书类平台，平台由三部分构成，即云端图书馆，蜜蜂APP和智能自营书柜。</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">我们要做儿童知识领域的共享单车。蜜蜂平台以盘活闲置图书资源为己任，提倡循环阅读、环保阅读，通过图书循环经济制度创新继续实现闲散图书资源的价值，降低有阅读需求的孩子的读书成本。同时，我们希望通过共享软件的聚合功能，搭建一个学习交流平台，让有相同兴趣的孩子组成书友会，引导儿童多读书、读好书。</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:#2e1fed">基于社区</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">我们想避免快递的费用，更重要的是，我们还想带着孩子们一起感受分享的快乐，&ldquo;蜜蜂图书&rdquo;团队还为所有参与分享的小朋友们准备了精美的书签，只要积攒够5个，就可以参加我们不定时的线下读书会，科学课，甚至和我们一起去看大山里的孩子......</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">叫醒你家的闲置童书吧，让它们流动起来，让孩子们学会爱和分享，让更多大山里的孩子看到未来和希望</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:#2e1fed">签约主体</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">希望本协议由您与蜜蜂图书平台的经营者共同缔结，本协议对您与蜜蜂平台的经营者均具有合同效力。</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:blue">用户注册与认证</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">在用户认证过程中，您应按蜜蜂图书平台页面的提示准确、真实、完整地提供您的信息（包括真实姓名、教职工卡号、及教职工卡的照片、手机号、邮箱等），以便蜜蜂图书确认您是燕山大学的教师或教师家属。您了解并同意，您有义务保持您提供信息的真实性及有效性。</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:blue">计费规则的确认</span>
+        </span>
+    </span>
+</view>
+
+<view style="text-align:left">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">【注册】首次注册，凭教师职工号免交押金29.9元。</span>
+    </span>
+</view>
+
+<view style="text-align:left">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">【上传图书】用户将家中闲置的图书通过简单的扫码上传图书信息。上传的图书有三种状态：九成新以上（无折角，无图划）、旧书但完整、有一定的涂抹破损但不影响阅读。</span>
+    </span>
+</view>
+
+<view style="">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">【借阅图书】每天按图书标价的2%计费。其中的费用60%归上传图书者，20%流向燕山大学管理者，剩下的20%流向蜜蜂平台。</span>
+    </span>
+</view>
+
+<view style="">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">【归还图书】归还图书时按照借阅标准付费</span>
+    </span>
+</view>
+
+<view style="">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:blue">用户行为的评价及处理</span>
+        </span>
+    </span>
+</view>
+
+<view style="">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">为了向用户提供更加优质的服务，且为维持平台正常运营秩序，蜜蜂平台有权对认证</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">用户使用借阅服务的行为进行评价及处理。</span>
+    </span>
+</view>
+
+<ol>
+    <li>
+        <span style="font-size:9.0pt">
+            <span style="font-family:宋体">归还图书时，图书有涂抹破损，但是不影响正常流转，由借阅者自行决定付费。</span>
+        </span>
+    </li>
+    <li>
+        <span style="font-size:9.0pt">
+            <span style="font-family:宋体">若图书丢失或破损至无法流转，由借阅者补原图书或图书原价。</span>
+        </span>
+    </li>
+</ol>
+
+<view style="margin-left:-63.0pt">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span style="color:blue">特别说明</span>
+        </span>
+    </span>
+</view>
+
+<view style="text-align:left">
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span>蜜蜂平台每半年整理一次图书，对于流转次数小于3次的图书，上传者以自行取回，也可以捐给山区小朋友。</span>
+        </span>
+    </span>
+</view>
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span>如果你的图书被借阅15次以上，我们想让你把这本图书捐给山区里那些没有书读的孩子们。一本书虽然不能带给山区孩子富足的生活，但是可以架起他们通往外面世界的桥梁。</span>
+        </span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">不用担心邮寄问题，因为我们平台会适时批量地往山区邮寄一些书籍！</span>
+    </span>
+</view>
+
+<view>
+    <span style="font-size:9.0pt">
+        <span style="font-family:宋体">
+            <span>您是否愿意将在平台上已经流转15次的图书捐给山区的孩子们？</span>
+        </span>
+    </span>
+</view>
+</view>

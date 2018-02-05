@@ -2,14 +2,35 @@
 <loading hidden="{{ !loading }}">加载中...</loading>
 
 <view class="container">
-    <view class="h10"></view>
     <view class="thirdblock">
         <view class="item">
-            <span>书名:</span>
-            <input value='{{bookInfo.book_name}}' class="rightText"></input>
+            <input value='{{bookInfo.cbook_name?bookInfo.cbook_name:bookInfo.book_name}}' style='float:none;text-align:left;width:100%' class="rightText" bindinput='setBookName'></input>
         </view>
-        <view class="h1"></view>
-        <view class="item">
+        <view class="weui-cells" style='margin-top:0px;border-top:0px solid #fff;'>
+            <view class="weui-cell" style='border-top:0px solid #fff;'>
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <!-- <view class="weui-uploader__hd">
+                            <view class="weui-uploader__title" style='color:#f4f4f4;font-size:12px'>拍些图书内的照片会更吸引人哦！</view>
+                        </view> -->
+                        <view class="weui-uploader__bd" style='margin-right:0px'>
+                            <view class="weui-uploader__files">
+                                <block wx:for="{{imageList}}" wx:for-item="image">
+                                    <view class="weui-uploader__file" style='width:24%;margin-right:1%' wx:if="{{image}}">
+                                        <image class="weui-uploader__img" style='width:100%;height:100px;' data-index='{{index}}' data-canSharePicId='{{canSharePicIds[index]}}' src="{{image}}" data-src="{{image}}" bindtap="previewImage" bindlongtap='openAction' wx:if="{{canSharePicIds[index]}}"></image>
+                                        <image class="weui-uploader__img" style='width:100%;height:100px;' data-index='{{index}}' data-canSharePicId='{{canSharePicIds[index]}}' src="{{image}}" data-src="{{image}}" bindtap="previewImage" wx:else></image>
+                                    </view>
+                                </block>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- <view class="item">
             <span>作者:</span>
             <input value='{{bookInfo.writer}}' class="rightText"></input>
         </view>
@@ -18,20 +39,22 @@
             <span>ISBN:</span>
             <input value="{{bookInfo.ISBN13}}" class="rightText"></input>
         </view>
-        <view class="h1"></view>
+        <view class="h1"></view> -->
+    </view>
+    <view class='thirdblock'  style='margin-top:15px;border-top:1px solid #f0f0f0'>
         <view class="item">
+            <image class='item_ico' src='../../images/chooseLocation.png'></image>
             <span>位置：</span>
             <view class="rightText" bindtap="chooseLocation">
                 <view style='display:inline-block'>{{location?location:"请选择位置"}}</view>
-                <view style="height:47px;line-height:47px;margin-left:10px;margin-top:3px;display:inline-block">
+                <!-- <view style="height:47px;line-height:47px;margin-left:10px;margin-top:3px;display:inline-block">
                     <image style='height:20px;width:20px;' src='../../images/location.png'></image>
-                </view>
+                </view> -->
             </view>
         </view>
         <view class="h1"></view>
         <view class="item">
-            <!-- <span>适龄：</span> -->
-            <!-- <input type="number" class="rightText" value="{{}}" bindinput="" /> -->
+            <image class='item_ico' src='../../images/age.png'></image>
             <span>适龄：</span>
             <view class="section">
                 <view style="height:47px;line-height:47px;margin-left:10px;float:right" bindtap='openAges'>
@@ -44,6 +67,7 @@
         </view>
         <view class="h1"></view>
         <view class="item">
+            <image class='item_ico' src='../../images/comment.png'></image>
             <span>书评：</span>
             <view class='half'>
                 <block wx:for="{{stars}}">
@@ -62,9 +86,10 @@
         </view>
         <view class="h1"></view>
         <view class="h1"></view>
+
         <view class="item" style='height:55px;'>
             <form name='pushMsgFm' report-submit="true" data-canshareid="{{bookInfo.can_share_id}}" bindsubmit="saveKeepTime">
-                <button form-type="submit" style="width:95%;margin:10px 5px 10px 0px;background: #FE552E;color:#fff;bottom:0px" class="btn">
+                <button type='primary' form-type="submit" style="width:95%;margin:10px 5px 10px 0px;bottom:0px" class="btn">
                     完成编辑
                 </button>
             </form>

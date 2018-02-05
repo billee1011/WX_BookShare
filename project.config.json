@@ -20,6 +20,10 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -63,6 +67,24 @@
 					"id": -1,
 					"name": "home",
 					"pathName": "pages/home/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "newAuth",
+					"pathName": "pages/newAuth/newAuth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "agreement",
+					"pathName": "pages/agreement/agreement",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "editTime",
+					"pathName": "pages/editTime/editTime",
 					"query": ""
 				}
 			]

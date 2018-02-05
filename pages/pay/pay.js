@@ -178,7 +178,7 @@ Page({
                         if (res.errMsg =="requestPayment:fail cancel"){
                             wx.showModal({
                                 title: '提示',
-                                content: '您选择了取消支付，不支付会继续扣钱哦！请前往“借书人”->“更多”->“待支付”支付',
+                                content: '您选择了取消支付，不支付会继续产生费用哦！请前往“借书人”->“更多”->“待支付”支付',
                                 showCancel:false,
                                 confirmText:"知道了",
                             })

@@ -26,7 +26,7 @@
     <view bindtap="detail" bindlongtap='checkDetail' data-bookId="{{book.book_id}}" data-type="{{book.type}}" data-canShareID="{{book.can_share_id}}">
         <view style='margin: 0 auto'>
             <view>
-                <image src='{{book.book_image}}' style="width:100%;margin: 0 auto" mode='widthFix'></image>
+                <image src='{{book.book_image}}' lazy-load="true" style="width:100%;margin: 0 auto" mode='widthFix'></image>
             </view>
             <view style='width:100%;height:30px;line-height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size:12px;text-align:center'>{{book.book_name}}</view>
         </view>

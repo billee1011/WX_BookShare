@@ -257,6 +257,7 @@ Page({
                 if (res.tapIndex == "0") {
                     wx.chooseImage({
                         count: 1,
+                        sizeType: 'compressed',
                         success: function (res) {
                             if (res.errMsg == "chooseImage:ok") {
                                 that.setData({

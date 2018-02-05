@@ -105,9 +105,9 @@
                             </view>
                             <view style='margin-bottom:20rpx;box-shadow:1px 1px 1px #c2c2c4;margin-bottom:20rpx;'>
                                 <view class='operate'>
-                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="editKeepTime"  style='color: #4A708B;border:1px solid  #4A708B'>编辑</button>
-                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="downLine" wx:if="{{book.online == 1}}">拿回</button>
-                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" bindtap="onLine" wx:if="{{book.online == 0}}">放回图书</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-bookid="{{book.book_id}}" bindtap="editKeepTime"  style='color: #4A708B;border:1px solid  #4A708B'>编辑</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-bookid="{{book.book_id}}" bindtap="downLine" wx:if="{{book.online == 1}}">拿回</button>
+                                    <button size='mini' plain='true' type='warn' data-canshareid="{{book.can_share_id}}" data-bookid="{{book.book_id}}" bindtap="onLine" wx:if="{{book.online == 0}}">放回图书</button>
                                     <view style='clear:both'></view>
                                 </view>
                             </view>

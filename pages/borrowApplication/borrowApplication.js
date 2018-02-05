@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var saveFormIds = require('../../utils/saveFormIds.js');
 import { $wuxPrompt } from '../../components/wux'
 const sliderWidth = 96
 
@@ -209,6 +210,7 @@ Page({
     // },
 
     refuseApply:function(e){
+        saveFormIds.save(e.detail.formId)
         var sharingId = e.currentTarget.dataset.sharingid;
         var canShareId = e.currentTarget.dataset.canshareid;
         wx.navigateTo({
@@ -218,6 +220,7 @@ Page({
 
     //扫码确认借出
     screenQRcode:function(e){
+        saveFormIds.save(e.detail.formId)
         var price = e.currentTarget.dataset.price;
         var bookId = e.currentTarget.dataset.bookid;
         var borrowerId = e.currentTarget.dataset.borrowerid;

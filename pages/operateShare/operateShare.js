@@ -131,6 +131,7 @@ Page({
                                 if (res.scanType == "EAN_13") {
                                     //条形码
                                     var isbnCode = res.result;
+                                    console.log(isbnCode)
                                     that.getDouBanApi(isbnCode);
 
                                 } else {
@@ -172,7 +173,7 @@ Page({
     getDouBanApi: function (isbnCode){
         var that = this;
         wx.request({
-            url: ('https://api.douban.com/v2/book/isbn/' + isbnCode).replace(/\s+/g, ""),
+            url: (app.globalData.apiUrl + '?m=home&c=Api&a=getBookInfoApi&ISBN=' + isbnCode).replace(/\s+/g, ""),
             header: {
                 'content-type': 'json'
             },
@@ -486,6 +487,7 @@ Page({
         //选择校园卡或者教工卡
         wx.chooseImage({
             count: 1,
+            sizeType: 'compressed',
             success: function (res) {
                 if (res.errMsg == "chooseImage:ok") {
                     that.setData({

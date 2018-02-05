@@ -30,7 +30,7 @@ Page({
 
 
         whetherrequest: 0,    //是否允许请求图书列表数据bookObj,1时允许，初值为0
-        count: 1,    //下次需请求图书列表数据的序号
+        count: 0,    //下次需请求图书列表数据的序号
         isEmpty: true,    //判断图书列表数据是否为空
         nextUrl: "",     //console.log输出url时以查看格式
     },
@@ -123,6 +123,13 @@ Page({
         that.setData({
             searchValue: ''
         })
+        that.clear()
+        that.getBookList();
+    },
+
+    getSearchValue:function(){
+        var that = this
+        that.clear();
         that.getBookList();
     },
 
@@ -137,8 +144,9 @@ Page({
             },
             time: 3000,
             onClick(data) {
+                //去认证新页面
                 wx.navigateTo({
-                    url: '../toAuth/toAuth',
+                    url: '../newAuth/newAuth',
                 })
             },
             onClose(data) {
@@ -157,6 +165,9 @@ Page({
         if (that.data.searchValue) {
             url += "&value=";
             url += that.data.searchValue;
+        }
+        if (app.globalData.userId) {
+            url += ('&userId='+ app.globalData.userId).replace(/\s+/g, "")
         }
 
         //年龄
@@ -222,7 +233,7 @@ Page({
 
                 that.data.whetherrequest = 0;   //请求图书数据标识置初值
 
-                if (res.data.length == 0 && that.data.count == 1) {
+                if (res.data.length == 0 && that.data.count == 0) {
                     that.setData({
                         haveBook: true
                     })
@@ -427,7 +438,7 @@ Page({
     clear: function () {
         var that = this
         that.setData({
-            count: 1,
+            count: 0,
             isEmpty: true
         })
     }

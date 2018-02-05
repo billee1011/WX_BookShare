@@ -2,28 +2,22 @@
 <view style="width:98%;margin:10px 1%">
     <view class="photo item" style="height:120px;text-align:center;padding-left:0px;">
         <view class="photo-box" style="margin:0 auto;padding-top:8px;">
-             <image src="{{userInfo.favicon==''?'../../images/user_defaulthead@2x.png':userInfo.favicon}}" style="border-radius: 100px" class="personal_logo" id="personal_logo"></image>
+            <image src="{{userInfo.favicon==''?'../../images/user_defaulthead@2x.png':userInfo.favicon}}" style="border-radius: 100px" class="personal_logo" id="personal_logo"></image>
         </view>
     </view>
     <view class="h1"></view>
-    <!-- <view class="name item">
+    <view class="name item">
         <image src="../../images/name.png" class="item_ico"></image>
         <text>姓名</text>
-        <input class="value-right" type="text" value="{{userInfo.userName?userInfo.userName:''}}" placeholder="请输入真实姓名" />
-    </view>
-    <view class="h1"></view> -->
-    <!-- <view class="school item">
-        <image src="../../images/school.png" class="item_ico"></image>
-        <text>学校</text>
-        <text class="value-right">{{userInfo.userSchool}} </text>
+        <span class="value-right">{{userInfo.userName?userInfo.userName:''}}</span>
     </view>
     <view class="h1"></view>
-    <view class="major item">
-        <image src="../../images/specialty.png" class="item_ico"></image>
-        <text>专业</text>
-        <text class="value-right">{{userInfo.userClass}} </text>
+    <!-- <view class="school item" wx:if="{{userInfo.userSchool}}">
+        <image src="../../images/pilot.png" class="item_ico"></image>
+        <text>自营点</text>
+        <text class="value-right">{{userInfo.userSchool}} </text>
     </view>
-    <view class="h1"></view> -->
+    <view class="h1" wx:if="{{userInfo.userSchool}}"></view> -->
     <view class="phone item">
         <image src="../../images/telephone.png" class="item_ico"></image>
         <text>联系方式</text>
@@ -31,12 +25,38 @@
     </view>
     <view class="h1"></view>
     <view class="phone item">
-        <image src="../../images/telephone.png" class="item_ico"></image>
+        <image src="../../images/eMail.png" class="item_ico"></image>
         <text>邮箱</text>
         <span class="value-right">{{userInfo.eMail}}</span>
     </view>
+    <view class="h10"></view>
+    <!-- 孩子信息 -->
+    <view class="name item">
+        <image src="../../images/babyName.png" class="item_ico"></image>
+        <text>宝贝姓名</text>
+        <input class="value-right" type="text" value="{{babyName?babyName:''}}" bindinput='setBabyName' placeholder="例如： 桃桃" />
+    </view>
     <view class="h1"></view>
-    <view class="status item">
+    <view class="name item">
+        <image src="../../images/babySex.png" class="item_ico"></image>
+        <text>宝贝性别</text>
+        <picker bindchange="setBabySex" class="value-right" value="{{babySex}}" range="{{sex}}">
+            <view class="picker">
+                {{sex[babySex]}}
+            </view>
+        </picker>
+    </view>
+    <view class="h1"></view>
+    <view class="name item">
+        <image src="../../images/babyBirth.png" class="item_ico"></image>
+        <text>宝贝生日</text>
+        <picker class="value-right"  mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="setBirth">  
+            <view class="picker">  
+            {{babyBirth}}  
+            </view>  
+        </picker> 
+    </view>
+    <!-- <view class="status item">
         <image src="../../images/status.png" class="item_ico"></image>
         <text>状态</text>
         <span class="value-right" wx:if="{{userInfo.certificationOk == 0}}">未认证</span>
@@ -44,6 +64,11 @@
         <span class="value-right" wx:if="{{userInfo.certificationOk == 2}}">已认证</span>
         <span class="value-right" wx:if="{{userInfo.certificationOk == 3}}">被驳回</span>
     </view>
-    <view class="h1"></view>
+    <view class="h1"></view> -->
     <view class="block" style="width:100%;height:50px;"></view>
+    <form name='pushMsgFm' report-submit="true" bindsubmit="alertInfo">
+        <button form-type="submit" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}">
+            确认修改
+        </button>
+    </form>
 </view>

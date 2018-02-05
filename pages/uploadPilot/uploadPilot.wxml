@@ -21,7 +21,7 @@
             </view>
             <view class="aui-timeline-item">
                 <view class="aui-timeline-body">扫描要贴的二维码</view>
-                
+
             </view>
         </li>
         <li>
@@ -32,9 +32,9 @@
                 <i class="aui-iconfont aui-icon-home aui-bg-warning">3</i>
             </view>
             <view class="aui-timeline-item">
-                
+
                 <view class="aui-timeline-body">把二维码贴到相应的书后</view>
-                
+
             </view>
         </li>
         <li>
@@ -45,9 +45,9 @@
                 <i class="aui-iconfont aui-icon-home aui-bg-warning">4</i>
             </view>
             <view class="aui-timeline-item">
-                
+
                 <view class="aui-timeline-body">扫描书架二维码</view>
-                
+
             </view>
         </li>
         <li>
@@ -58,9 +58,9 @@
                 <i class="aui-iconfont aui-icon-home aui-bg-warning">5</i>
             </view>
             <view class="aui-timeline-item">
-                
+
                 <view class="aui-timeline-body">把书放入相应的书架</view>
-                
+
             </view>
         </li>
 
@@ -70,9 +70,9 @@
     <!-- 扫描ISBN -->
     <view class="container">
         <view wx:if="{{hidden == 0}}" style='width:100%'>
-            <button class='operateButton' style='width:45%;margin:0 2%;display:inline-block' type="primary" bindtap="screenBook" >扫描书后ISBN码</button>
-            <button class='operateButton' style='width:45%;margin:0 2%;display:inline-block' type="primary" bindtap='openModal' >手动录入图书信息</button>
-            
+            <button class='operateButton' style='width:45%;margin:0 2%;display:inline-block' type="primary" bindtap="screenBook">扫描书后ISBN码</button>
+            <button class='operateButton' style='width:45%;margin:0 2%;display:inline-block' type="primary" bindtap='openModal'>手动录入图书信息</button>
+
         </view>
 
         <!-- 扫描图书二维码 -->
@@ -90,7 +90,7 @@
 
 
 <!--分类 start-->
- <scroll-view style="height:100%" id="catewrap" scroll-y="true" wx:if="{{cateisShow}}">
+<scroll-view style="height:100%" id="catewrap" scroll-y="true" wx:if="{{cateisShow}}">
     <view id="cateall" bindtap="cateselect" class="cl_list ">
         <text style="float:left;width:100px;line-height:47px">适龄</text>
         <input style="width:500rpx;float:right;margin-top:-46px" disabled='false' placeholder='默认6-9岁' value='{{sumAge}}' class='rightText' bindtap='openAges'></input>
@@ -105,50 +105,50 @@
             <view class="picker">
                 {{damageArray[damageIndex]}}
             </view>
-        </picker> 
+        </picker>
     </view>
     <textarea placeholder="请输入您的感想,填写书评可能会给您带来更多的积分呦" value="{{cardInfo}}" maxlength="-1" class="card_content" bindinput="setContent" />
     <view class="weui-cells">
-          <view class="weui-cell">
+        <view class="weui-cell">
             <view class="weui-cell__bd">
-              <view class="weui-uploader">
-                <view class="weui-uploader__hd">
-                  <view class="weui-uploader__title">拍些图书内的照片会更吸引人哦！</view>
-                  <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
+                <view class="weui-uploader">
+                    <view class="weui-uploader__hd">
+                        <view class="weui-uploader__title">拍些图书内的照片会更吸引人哦！</view>
+                        <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
+                    </view>
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files">
+                            <block wx:for="{{imageList}}" wx:for-item="image">
+                                <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                        </view>
+                    </view>
                 </view>
-                <view class="weui-uploader__bd">
-                  <view class="weui-uploader__files">
-                    <block wx:for="{{imageList}}" wx:for-item="image">
-                      <view class="weui-uploader__file">
-                        <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
-                      </view>
-                    </block>
-                  </view>
-                  <view class="weui-uploader__input-box">
-                    <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                  </view>
-                </view>
-              </view>
             </view>
-          </view>
         </view>
+    </view>
     <button style="width:95%;margin:0 auto;border-radius:5px;height:50px;background: #FE552E;text-align: center;color:#fff;position:fixed;bottom:0px" bindtap='completeInfo' class="btn">
         确定
     </button>
 
-</scroll-view> 
+</scroll-view>
 <!--分类 end-->
 
 
 <!-- 自己上传图书 -->
 <modal class="modal" wx:if="{{!modalFlag}}" bindcancel="modalCancel" bindconfirm="modalOk" confirmText="确  定" style="z-index:9999px">
-   <view class="dew" style="text-align:center;color:#000">
+    <view class="dew" style="text-align:center;color:#000">
         <image src='{{pictureFiles}}' style="left:0px;top:0px;width:100%;height:100%;position:absolute;z-index:-1;filter: blur(20px);"></image>
         <view style='width:160rpx;float:left;margin-right:24rpx;'>
             <image src="{{picUrl}}/Public/images/bee.png" class="age" style='width:80px;height:80px;margin: 0 auto;'></image>
         </view>
         <view style='width:320rpx;float:left;'>小蜜蜂数据库暂时没有您这本书呢，麻烦您手动录入本图书信息哦~</view>
-        
+
         <view class="catelist cl_list">
             <text class='cl_title'>图书名称：</text>
             <input class='cl_input' bindinput='setBookName' value="{{bookInfo.title}}" type='text' placeholder='请填写图书名称' />
@@ -166,7 +166,7 @@
         </view>
         <view class="catelist cl_list" style='width:99%;height:50px'>
             <button type='primary' bindtap='modalChooseImage' wx:if="{{pictureFiles}}">重新上传图片</button>
-             <button type='primary' bindtap='modalChooseImage' wx:else>上传图片</button>
+            <button type='primary' bindtap='modalChooseImage' wx:else>上传图片</button>
         </view>
         <view class="clear-both"></view>
     </view>

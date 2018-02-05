@@ -116,7 +116,7 @@ Page({
     getDouBanApi: function (isbnCode) {
         var that = this;
         wx.request({
-            url: ('https://api.douban.com/v2/book/isbn/' + isbnCode).replace(/\s+/g, ""),
+            url: (app.globalData.apiUrl + '?m=home&c=Api&a=getBookInfoApi&ISBN=' + isbnCode).replace(/\s+/g, ""),
             header: {
                 'content-type': 'json'
             },

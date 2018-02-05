@@ -1,0 +1,5 @@
+/* pages/agreement/agreement.wxss */
+view span span{
+    display: block;
+    text-indent: 20px
+}
